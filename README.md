@@ -36,7 +36,10 @@ Example 1.1.1.
 Vectors are often written vertically in column form, which emphasizes their role in matrix multiplication:
 
 $$
-\mathbf{v} = \begin{bmatrix} 2 \\ 0 \\ 5 \end{bmatrix} \in \mathbb{R}^3.
+\mathbf{v} = \begin{bmatrix}
+2 \\
+0 \\ 
+5 \end{bmatrix} \in \mathbb{R}^3.
 $$
 
 The vertical layout makes the structure clearer when we consider linear combinations or multiply matrices by vectors.
@@ -367,7 +370,7 @@ where $(2,0)$ is parallel to $(1,0)$ and $(0,3)$ is orthogonal to it.
 In general, if $\mathbf{u} \neq \mathbf{0}$ and $\mathbf{v} \in \mathbb{R}^n$, then
 
 $$
-\mathbf{v} = \text{proj}_{\mathbf{u}}(\mathbf{v}) + \big(\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})\big),
+\mathbf{v} = \text{proj}\_{\mathbf{u}}(\mathbf{v}) + \big(\mathbf{v} - \text{proj}\_{\mathbf{u}}(\mathbf{v})\big),
 $$
 
 where the first term is parallel to $\mathbf{u}$ and the second term is orthogonal. This decomposition underlies methods
@@ -471,7 +474,7 @@ single compact object can represent both numerical data and functional rules.
 2. Is every vector a matrix? Is every matrix a vector? Explain.
 3. Which of the following are square
    matrices: $A \in \mathbb{R}^{4\times4}$, $B \in \mathbb{R}^{3\times5}$, $C \in \mathbb{R}^{1\times1}$?
-4. Let $D = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$. What kind of matrix is this?
+4. Let $D = \begin{bmatrix} 1 & 0 \\\\ 0 & 1 \end{bmatrix}$. What kind of matrix is this?
 5. Consider the matrix $E = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$. Express $e_{11}, e_{12}, e_{21}, e_{22}$
    explicitly.
 
@@ -515,8 +518,7 @@ $$
 A + B = \begin{bmatrix}
 1 + (-1) & 2 + 0 \\
 3 + 5 & 4 + 2
-\end{bmatrix}
-=
+\end{bmatrix} =
 \begin{bmatrix}
 0 & 2 \\
 8 & 6
@@ -592,8 +594,7 @@ $$
 AB = \begin{bmatrix}
 1\cdot4 + 2\cdot2 & 1\cdot(-1) + 2\cdot5 \\
 0\cdot4 + 3\cdot2 & 0\cdot(-1) + 3\cdot5
-\end{bmatrix}
-=
+\end{bmatrix} =
 \begin{bmatrix}
 8 & 9 \\
 6 & 15
@@ -627,21 +628,27 @@ networks.
 1. Compute $A+B$ for
 
 $$
-A = \begin{bmatrix} 2 & 3 \\ -1 & 0 \end{bmatrix}, \quad
-B = \begin{bmatrix} 4 & -2 \\ 5 & 7 \end{bmatrix}.
+A = \begin{bmatrix} 2 & 3 \\
+-1 & 0 \end{bmatrix}, \quad
+B = \begin{bmatrix} 4 & -2 \\
+5 & 7 \end{bmatrix}.
 $$
 
 2. Find $3A$ where
 
 $$
-A = \begin{bmatrix} 1 & -4 \\ 2 & 6 \end{bmatrix}.
+A = \begin{bmatrix} 1 & -4 \\
+2 & 6 \end{bmatrix}.
 $$
 
 3. Multiply
 
 $$
-A = \begin{bmatrix} 1 & 0 & 2 \\ -1 & 3 & 1 \end{bmatrix}, \quad
-B = \begin{bmatrix} 2 & 1 \\ 0 & -1 \\ 3 & 4 \end{bmatrix}.
+A = \begin{bmatrix} 1 & 0 & 2 \\
+-1 & 3 & 1 \end{bmatrix}, \quad
+B = \begin{bmatrix} 2 & 1 \\
+0 & -1 \\
+3 & 4 \end{bmatrix}.
 $$
 
 4. Verify with an explicit example that $AB \neq BA$.
@@ -661,7 +668,7 @@ rows and columns.
 Formally,
 
 $$
-(A^T)_{ij} = a_{ji}.
+(A^T)\_{ij} = a\_{ji}.
 $$
 
 Example 2.3.1.
@@ -686,10 +693,10 @@ $$
 
 Properties of the Transpose.
 
-1. $ (A^T)^T = A$.
-2. $ (A+B)^T = A^T + B^T$.
-3. $ (cA)^T = cA^T$, for scalar $c$.
-4. $ (AB)^T = B^T A^T$.
+1. $(A^T)^T = A$.
+2. $(A+B)^T = A^T + B^T$.
+3. $(cA)^T = cA^T$, for scalar $c$.
+4. $(AB)^T = B^T A^T$.
 
 The last rule is crucial: the order reverses.
 
@@ -723,8 +730,7 @@ $$
 A^{-1} = \frac{1}{\det(A)} \begin{bmatrix}
 4 & -2 \\
 -3 & 1
-\end{bmatrix}
-=
+\end{bmatrix} =
 \begin{bmatrix}
 -2 & 1 \\
 1.5 & -0.5
@@ -741,8 +747,7 @@ AA^{-1} = \begin{bmatrix}
 \begin{bmatrix}
 -2 & 1 \\
 1.5 & -0.5
-\end{bmatrix}
-=
+\end{bmatrix} =
 \begin{bmatrix}
 1 & 0 \\
 0 & 1
@@ -779,14 +784,20 @@ $$
 2. Verify that $(AB)^T = B^T A^T$ for
 
 $$
-A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}, \quad
-B = \begin{bmatrix} 3 & 4 \\ 5 & 6 \end{bmatrix}.
+A = \begin{bmatrix}
+1 & 2 \\
+0 & 1 \end{bmatrix}, \quad
+B = \begin{bmatrix} 
+3 & 4 \\
+5 & 6 \end{bmatrix}.
 $$
 
 3. Determine whether
 
 $$
-C = \begin{bmatrix} 2 & 1 \\ 4 & 2 \end{bmatrix}
+C = \begin{bmatrix}
+2 & 1 \\
+4 & 2 \end{bmatrix}
 $$
 
 is invertible. If so, find $C^{-1}$.
@@ -794,7 +805,9 @@ is invertible. If so, find $C^{-1}$.
 4. Find the inverse of
 
 $$
-D = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix},
+D = \begin{bmatrix}
+0 & 1 \\
+-1 & 0 \end{bmatrix},
 $$
 
 and explain its geometric action on vectors in the plane.
@@ -850,14 +863,22 @@ Example 2.4.1.
 Let
 
 $$
-D = \begin{bmatrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & -1 \end{bmatrix}, \quad
-\mathbf{x} = \begin{bmatrix} 1 \\ 4 \\ -2 \end{bmatrix}.
+D = \begin{bmatrix} 2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & -1 \end{bmatrix}, \quad
+\mathbf{x} = \begin{bmatrix} 
+1 \\
+4 \\
+-2 \end{bmatrix}.
 $$
 
 Then
 
 $$
-D\mathbf{x} = \begin{bmatrix} 2 \\ 12 \\ 2 \end{bmatrix}.
+D\mathbf{x} = \begin{bmatrix} 
+2 \\
+12 \\
+2 \end{bmatrix}.
 $$
 
 ### Permutation Matrices
@@ -879,8 +900,13 @@ $$
 Then
 
 $$
-P\begin{bmatrix} a \\ b \\ c \end{bmatrix} =
-\begin{bmatrix} b \\ a \\ c \end{bmatrix}.
+P\begin{bmatrix} 
+a \\
+b \\
+c \end{bmatrix} =
+\begin{bmatrix} b \\
+a \\
+c \end{bmatrix}.
 $$
 
 Thus, $P$ swaps the first two coordinates.
@@ -946,15 +972,21 @@ these simple forms.
 4. Verify that
 
 $$
-Q = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}
+Q = \begin{bmatrix} 
+0 & 1 \\
+-1 & 0 \end{bmatrix}
 $$
 
 is orthogonal. What geometric transformation does it represent?
 5\. Determine whether
 
 $$
-A = \begin{bmatrix} 2 & 3 \\ 3 & 2 \end{bmatrix}, \quad
-B = \begin{bmatrix} 0 & 5 \\ -5 & 0 \end{bmatrix}
+A = \begin{bmatrix}
+2 & 3 \\
+3 & 2 \end{bmatrix}, \quad
+B = \begin{bmatrix}
+0 & 5 \\
+-5 & 0 \end{bmatrix}
 $$
 
 are symmetric, skew-symmetric, or neither.
@@ -1013,8 +1045,7 @@ can be written as
 
 $$
 \begin{bmatrix} 1 & 2 \\ 3 & -1 \end{bmatrix}
-\begin{bmatrix} x \\ y \end{bmatrix}
-=
+\begin{bmatrix} x \\ y \end{bmatrix} =
 \begin{bmatrix} 5 \\ 4 \end{bmatrix}.
 $$
 
@@ -2007,7 +2038,7 @@ these transformations, their representations, and their invariants.
 5. Let $T:\mathbb{R}[x] \to \mathbb{R}[x]$ be integration:
 
    $$
-   T(p(x)) = \int_0^x p(t)\,dt.
+   T(p(x)) = \int_0^x p(t)\\,dt.
    $$
 
    Prove that $T$ is a linear transformation.
@@ -2027,7 +2058,11 @@ and 0 elsewhere.
 The action of $T$ on each basis vector determines the entire transformation:
 
 $$
-T(\mathbf{e}_j) = \begin{bmatrix} a_{1j} \\ a_{2j} \\ \vdots \\ a_{mj} \end{bmatrix}.
+T(\mathbf{e}\_j) = \begin{bmatrix} 
+a_{1j} \\ 
+a_{2j} \\ 
+\vdots \\ 
+a_{mj} \end{bmatrix}.
 $$
 
 Placing these outputs as columns gives the matrix of $T$:
@@ -3128,7 +3163,7 @@ After normalization, it becomes an orthonormal basis.
    $$
 
 3. Projections:
-   The orthogonal projection onto the span of $\{\mathbf{u}_1,\dots,\mathbf{u}_k\}$ is
+   The orthogonal projection onto the span of $\\{\mathbf{u}_1,\dots,\mathbf{u}_k\\}$ is
 
    $$
    \text{proj}(\mathbf{v}) = \sum_{i=1}^k \langle \mathbf{v}, \mathbf{u}_i \rangle \mathbf{u}_i.
@@ -3153,10 +3188,10 @@ produces orthonormal directions capturing maximum variance.
 
 ### Exercises 7.4
 
-1. Verify that $(1/\sqrt{2})(1,1)$ and $(1/\sqrt{2})(1,-1)$ form an orthonormal basis of $\mathbb{R}^2$.
-2. Express $(3,4)$ in terms of the orthonormal basis $\{(1/\sqrt{2})(1,1), (1/\sqrt{2})(1,-1)\}$.
-3. Prove Parseval’s identity for $\mathbb{R}^n$ with the dot product.
-4. Find an orthonormal basis for the plane $x+y+z=0$ in $\mathbb{R}^3$.
+1. Verify that $(1/\\sqrt{2})(1,1)$ and $(1/\\sqrt{2})(1,-1)$ form an orthonormal basis of $\mathbb{R}^2$.
+2. Express $(3,4)$ in terms of the orthonormal basis $\{(1/\\sqrt{2})(1,1), (1/\\sqrt{2})(1,-1)\}$.
+3. Prove Parseval’s identity for $\\mathbb{R}^n$ with the dot product.
+4. Find an orthonormal basis for the plane $x+y+z=0$ in $\\mathbb{R}^3$.
 5. Explain why orthonormal bases are numerically more stable than arbitrary bases in computations.
 
 # Chapter 8. Eigenvalues and eigenvectors
