@@ -4430,7 +4430,7 @@ be intractable.
 
 2. Explain how SVD can be used to compress an image represented as a matrix of pixel intensities.
 
-3. For a covariance matrix $\\Sigma$, show why its eigenvalues represent variances along principal components.
+3. For a covariance matrix $\Sigma$, show why its eigenvalues represent variances along principal components.
 
 4. Give an example of how eigenvectors of the Laplacian matrix can be used for clustering a small graph.
 
