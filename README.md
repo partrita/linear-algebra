@@ -161,9 +161,9 @@ Thus $(1,0)$ and $(0,1)$ form the basic building blocks of the plane.
 
 ### Notation
 
-* Addition: $\mathbf{u} + \mathbf{v}$ means component-wise addition.
-* Scalar multiplication: $c\mathbf{v}$ scales each entry of $\mathbf{v}$ by $c$.
-* Linear combination: a sum of the form $c_1 \mathbf{v}_1 + \cdots + c_k \mathbf{v}_k$.
+- Addition: $\mathbf{u} + \mathbf{v}$ means component-wise addition.
+- Scalar multiplication: $c\mathbf{v}$ scales each entry of $\mathbf{v}$ by $c$.
+- Linear combination: a sum of the form $c_1 \mathbf{v}_1 + \cdots + c_k \mathbf{v}_k$.
 
 ### Why this matters
 
@@ -271,9 +271,9 @@ Orthogonality generalizes the idea of perpendicularity from geometry to higher d
 
 ### Notation
 
-* Dot product: $\mathbf{u} \cdot \mathbf{v}$.
-* Norm (length): $|\mathbf{v}|$.
-* Orthogonality: $\mathbf{u} \perp \mathbf{v}$ if $\mathbf{u} \cdot \mathbf{v} = 0$.
+- Dot product: $\mathbf{u} \cdot \mathbf{v}$.
+- Norm (length): $|\mathbf{v}|$.
+- Orthogonality: $\mathbf{u} \perp \mathbf{v}$ if $\mathbf{u} \cdot \mathbf{v} = 0$.
 
 ### Why this matters
 
@@ -375,9 +375,9 @@ such as least squares approximation and the Gram–Schmidt process.
 
 ### Notation
 
-* $\mathbf{u} \perp \mathbf{v}$: vectors $\mathbf{u}$ and $\mathbf{v}$ are orthogonal.
-* An orthogonal set: vectors pairwise orthogonal.
-* An orthonormal set: pairwise orthogonal, each of norm 1.
+- $\mathbf{u} \perp \mathbf{v}$: vectors $\mathbf{u}$ and $\mathbf{v}$ are orthogonal.
+- An orthogonal set: vectors pairwise orthogonal.
+- An orthonormal set: pairwise orthogonal, each of norm 1.
 
 ### Why this matters
 
@@ -419,9 +419,9 @@ $$
 Each entry $a_{ij}$ is a scalar, located in the *i*-th row and *j*-th column. The size (or dimension) of the matrix is
 denoted by $m \times n$.
 
-* If $m = n$, the matrix is square.
-* If $m = 1$, the matrix is a row vector.
-* If $n = 1$, the matrix is a column vector.
+- If $m = n$, the matrix is square.
+- If $m = 1$, the matrix is a row vector.
+- If $n = 1$, the matrix is a column vector.
 
 Thus, vectors are simply special cases of matrices.
 
@@ -452,9 +452,9 @@ This will later serve as the representation of a linear transformation on $\math
 
 ### Indexing and Notation
 
-* Matrices are denoted by uppercase bold letters: $A, B, C$.
-* Entries are written as $a_{ij}$, with the row index first, column index second.
-* The set of all real $m \times n$ matrices is denoted $\mathbb{R}^{m \times n}$.
+- Matrices are denoted by uppercase bold letters: $A, B, C$.
+- Entries are written as $a_{ij}$, with the row index first, column index second.
+- The set of all real $m \times n$ matrices is denoted $\mathbb{R}^{m \times n}$.
 
 Thus, a matrix is a function $A: {1,\dots,m} \times {1,\dots,n} \to \mathbb{R}$, assigning a scalar to each row-column
 position.
@@ -611,9 +611,9 @@ makes matrices the algebraic language of transformations.
 
 ### Notation
 
-* Matrix sum: $A+B$.
-* Scalar multiple: $cA$.
-* Product: $AB$, defined only when the number of columns of $A$ equals the number of rows of $B$.
+- Matrix sum: $A+B$.
+- Scalar multiple: $cA$.
+- Product: $AB$, defined only when the number of columns of $A$ equals the number of rows of $B$.
 
 ### Why this matters
 
@@ -751,16 +751,16 @@ $$
 
 ### Geometric Meaning
 
-* The transpose corresponds to reflecting a linear transformation across the diagonal. For vectors, it switches between
+- The transpose corresponds to reflecting a linear transformation across the diagonal. For vectors, it switches between
   row and column forms.
-* The inverse, when it exists, corresponds to reversing a linear transformation. For example, if $A$ scales and rotates
+- The inverse, when it exists, corresponds to reversing a linear transformation. For example, if $A$ scales and rotates
   vectors, $A^{-1}$ rescales and rotates them back.
 
 ### Notation
 
-* Transpose: $A^T$.
-* Inverse: $A^{-1}$, defined only for invertible square matrices.
-* Identity: $I_n$, acts as the multiplicative identity.
+- Transpose: $A^T$.
+- Inverse: $A^{-1}$, defined only for invertible square matrices.
+- Identity: $I_n$, acts as the multiplicative identity.
 
 ### Why this matters
 
@@ -993,9 +993,9 @@ $$
 
 where
 
-* $A \in \mathbb{R}^{m \times n}$ is the coefficient matrix $[a_{ij}]$,
-* $\mathbf{x} \in \mathbb{R}^n$ is the column vector of unknowns,
-* $\mathbf{b} \in \mathbb{R}^m$ is the column vector of constants.
+- $A \in \mathbb{R}^{m \times n}$ is the coefficient matrix $[a_{ij}]$,
+- $\mathbf{x} \in \mathbb{R}^n$ is the column vector of unknowns,
+- $\mathbf{b} \in \mathbb{R}^m$ is the column vector of constants.
 
 This formulation turns the problem of solving equations into analyzing the action of a matrix.
 
@@ -1263,9 +1263,9 @@ machine learning.
 
 3. Show that Gaussian elimination always produces either:
 
-    * a unique solution,
-    * infinitely many solutions, or
-    * a contradiction (no solution).
+    - a unique solution,
+    - infinitely many solutions, or
+    - a contradiction (no solution).
 
 4. Use Gaussian elimination to find all solutions of
    $
@@ -1331,8 +1331,8 @@ $$
 where $(A|\mathbf{b})$ is the augmented matrix.
 If the ranks differ, the system is inconsistent.
 
-* If $\text{rank}(A) = \text{rank}(A|\mathbf{b}) = n$ (number of unknowns), the system has a unique solution.
-* If $\text{rank}(A) = \text{rank}(A|\mathbf{b}) < n$, the system has infinitely many solutions.
+- If $\text{rank}(A) = \text{rank}(A|\mathbf{b}) = n$ (number of unknowns), the system has a unique solution.
+- If $\text{rank}(A) = \text{rank}(A|\mathbf{b}) < n$, the system has infinitely many solutions.
 
 ### Example
 
@@ -1531,9 +1531,9 @@ The null space is the line spanned by the vector $(2, -3, 1)$.
 
 The solution set of a homogeneous system is always a subspace of $\mathbb{R}^n$.
 
-* If $\text{rank}(A) = n$, the only solution is the zero vector.
-* If $\text{rank}(A) = n-1$, the solution set is a line through the origin.
-* If $\text{rank}(A) = n-2$, the solution set is a plane through the origin.
+- If $\text{rank}(A) = n$, the only solution is the zero vector.
+- If $\text{rank}(A) = n-1$, the solution set is a line through the origin.
+- If $\text{rank}(A) = n-2$, the solution set is a plane through the origin.
 
 More generally, the null space has dimension $n - \text{rank}(A)$, known as the nullity.
 
@@ -1701,19 +1701,19 @@ is a subspace of $\mathbb{R}^n$. This subspace represents all solutions to the h
 
 Not every subset is a subspace.
 
-* The set ${ (x,y) \in \mathbb{R}^2 \mid x \geq 0 }$ is not a subspace: it is not closed under scalar multiplication (a
+- The set ${ (x,y) \in \mathbb{R}^2 \mid x \geq 0 }$ is not a subspace: it is not closed under scalar multiplication (a
   negative scalar breaks the condition).
-* Any line in $\mathbb{R}^2$ that does not pass through the origin is not a subspace, because it does not
+- Any line in $\mathbb{R}^2$ that does not pass through the origin is not a subspace, because it does not
   contain $\mathbf{0}$.
 
 ### Geometric Interpretation
 
 Subspaces are the linear structures inside vector spaces.
 
-* In $\mathbb{R}^2$, the subspaces are: the zero vector, any line through the origin, or the entire plane.
-* In $\mathbb{R}^3$, the subspaces are: the zero vector, any line through the origin, any plane through the origin, or
+- In $\mathbb{R}^2$, the subspaces are: the zero vector, any line through the origin, or the entire plane.
+- In $\mathbb{R}^3$, the subspaces are: the zero vector, any line through the origin, any plane through the origin, or
   the entire space.
-* In higher dimensions, the same principle applies: subspaces are the flat linear pieces through the origin.
+- In higher dimensions, the same principle applies: subspaces are the flat linear pieces through the origin.
 
 ### Why this matters
 
@@ -1785,15 +1785,15 @@ well-defined: all bases of a vector space have the same cardinality.
 
 Examples 4.3.3.
 
-* $\dim(\mathbb{R}^2) = 2$, with basis $(1,0), (0,1)$.
-* $\dim(\mathbb{R}^3) = 3$, with basis $(1,0,0), (0,1,0), (0,0,1)$.
-* The set of polynomials of degree at most 3 has dimension 4, with basis $(1, x, x^2, x^3)$.
+- $\dim(\mathbb{R}^2) = 2$, with basis $(1,0), (0,1)$.
+- $\dim(\mathbb{R}^3) = 3$, with basis $(1,0,0), (0,1,0), (0,0,1)$.
+- The set of polynomials of degree at most 3 has dimension 4, with basis $(1, x, x^2, x^3)$.
 
 ### Geometric Interpretation
 
-* The span is like the reach of a set of vectors.
-* A basis is the minimal set of directions needed to reach everything in the space.
-* The dimension is the count of those independent directions.
+- The span is like the reach of a set of vectors.
+- A basis is the minimal set of directions needed to reach everything in the space.
+- The dimension is the count of those independent directions.
 
 Lines, planes, and higher-dimensional flats can all be described in terms of span, basis, and dimension.
 
@@ -2203,9 +2203,9 @@ This fundamental result connects the lost directions (kernel) with the achieved 
 
 ### Geometric Interpretation
 
-* The kernel describes how the transformation flattens space (e.g., projecting a 3D object onto a plane).
-* The image describes the target subspace reached by the transformation.
-* The rank–nullity theorem quantifies the tradeoff: the more dimensions collapse, the fewer remain in the image.
+- The kernel describes how the transformation flattens space (e.g., projecting a 3D object onto a plane).
+- The image describes the target subspace reached by the transformation.
+- The rank–nullity theorem quantifies the tradeoff: the more dimensions collapse, the fewer remain in the image.
 
 ### Why this matters
 
@@ -2381,9 +2381,9 @@ reversed (a handedness flip), such as turning a right-handed coordinate system i
 For $A \in \mathbb{R}^{n \times n}$, the determinant is a scalar that measures how the linear transformation given
 by $A$ scales n-dimensional volume.
 
-* If $\det(A) = 0$: the transformation squashes space into a lower dimension, so $A$ is not invertible.
-* If $\det(A) > 0$: volume is scaled by $\det(A)$, orientation preserved.
-* If $\det(A) < 0$: volume is scaled by $|\det(A)|$, orientation reversed.
+- If $\det(A) = 0$: the transformation squashes space into a lower dimension, so $A$ is not invertible.
+- If $\det(A) > 0$: volume is scaled by $\det(A)$, orientation preserved.
+- If $\det(A) < 0$: volume is scaled by $|\det(A)|$, orientation reversed.
 
 ### Visual Examples
 
@@ -2503,10 +2503,10 @@ This matches the multiplicativity rule: $\det(CB) = \det(C)\det(B) = (-1)(-2) = 
 
 ### Geometric Insights
 
-* Row swaps: flipping orientation of space.
-* Scaling a row: stretching space in one direction.
-* Row replacement: sliding hyperplanes without altering volume.
-* Multiplicativity: performing two transformations multiplies their scaling factors.
+- Row swaps: flipping orientation of space.
+- Scaling a row: stretching space in one direction.
+- Row replacement: sliding hyperplanes without altering volume.
+- Multiplicativity: performing two transformations multiplies their scaling factors.
 
 These properties make determinants both computationally manageable and geometrically interpretable.
 
@@ -2550,9 +2550,9 @@ breaking them into smaller ones.
 
 For an $n \times n$ matrix $A = [a_{ij}]$:
 
-* The minor $M_{ij}$ is the determinant of the $(n-1) \times (n-1)$ matrix obtained by deleting the $i$-th row and $j$
+- The minor $M_{ij}$ is the determinant of the $(n-1) \times (n-1)$ matrix obtained by deleting the $i$-th row and $j$
   -th column of $A$.
-* The cofactor $C_{ij}$ is defined by
+- The cofactor $C_{ij}$ is defined by
 
 $$
 C_{ij} = (-1)^{i+j} M_{ij}.
@@ -2603,11 +2603,11 @@ $$
 \det(A) = 1 \cdot C_{11} + 2 \cdot C_{12} + 3 \cdot C_{13}.
 $$
 
-* For $C_{11}$:
+- For $C_{11}$:
   $M_{11} = \det \begin{bmatrix} 4 & 5 \\ 0 & 6 \end{bmatrix} = 24$, so $C_{11} = (+1)(24) = 24$.
-* For $C_{12}$:
+- For $C_{12}$:
   $M_{12} = \det \begin{bmatrix} 0 & 5 \\ 1 & 6 \end{bmatrix} = 0 - 5 = -5$, so $C_{12} = (-1)(-5) = 5$.
-* For $C_{13}$:
+- For $C_{13}$:
   $M_{13} = \det \begin{bmatrix} 0 & 4 \\ 1 & 0 \end{bmatrix} = 0 - 4 = -4$, so $C_{13} = (+1)(-4) = -4$.
 
 Thus,
@@ -2679,10 +2679,10 @@ $$
 
 Then $|\det(A)|$ equals the volume of the parallelepiped spanned by these vectors.
 
-* In $\mathbb{R}^2$, $|\det(A)|$ gives the area of the parallelogram spanned by $\mathbf{v}_1, \mathbf{v}_2$.
-* In $\mathbb{R}^3$, $|\det(A)|$ gives the volume of the parallelepiped spanned
+- In $\mathbb{R}^2$, $|\det(A)|$ gives the area of the parallelogram spanned by $\mathbf{v}_1, \mathbf{v}_2$.
+- In $\mathbb{R}^3$, $|\det(A)|$ gives the volume of the parallelepiped spanned
   by $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$.
-* In higher dimensions, it generalizes to $n$-dimensional volume (hypervolume).
+- In higher dimensions, it generalizes to $n$-dimensional volume (hypervolume).
 
 Example 6.4.1.
 Let
@@ -2707,8 +2707,8 @@ So the parallelepiped has volume $1$, even though the vectors are not orthogonal
 
 A square matrix $A$ is invertible if and only if $\det(A) \neq 0$.
 
-* If $\det(A) = 0$: the transformation collapses space into a lower dimension (area/volume is zero). No inverse exists.
-* If $\det(A) \neq 0$: the transformation scales volume by $|\det(A)|$, and is reversible.
+- If $\det(A) = 0$: the transformation collapses space into a lower dimension (area/volume is zero). No inverse exists.
+- If $\det(A) \neq 0$: the transformation scales volume by $|\det(A)|$, and is reversible.
 
 Example 6.4.2.
 The matrix
@@ -2853,9 +2853,9 @@ This generalizes geometry to infinite-dimensional spaces.
 
 ### Geometric Interpretation
 
-* Inner product: measures similarity between vectors.
-* Norm: length of a vector.
-* Angle: measure of alignment between two directions.
+- Inner product: measures similarity between vectors.
+- Norm: length of a vector.
+- Angle: measure of alignment between two directions.
 
 These concepts unify algebraic operations with geometric intuition.
 
@@ -2944,9 +2944,9 @@ Thus, least squares is just projection in disguise.
 
 ### Geometric Interpretation
 
-* Projection finds the closest point in a subspace to a given vector.
-* It minimizes distance (error) in the sense of Euclidean norm.
-* Orthogonality ensures the error vector points directly away from the subspace.
+- Projection finds the closest point in a subspace to a given vector.
+- It minimizes distance (error) in the sense of Euclidean norm.
+- Orthogonality ensures the error vector points directly away from the subspace.
 
 ### Why this matters
 
@@ -3136,9 +3136,9 @@ After normalization, it becomes an orthonormal basis.
 
 ### Constructing Orthonormal Bases
 
-* Start with any linearly independent set, then apply the Gram–Schmidt process to obtain an orthonormal set spanning the
+- Start with any linearly independent set, then apply the Gram–Schmidt process to obtain an orthonormal set spanning the
   same subspace.
-* In practice, orthonormal bases are often chosen for numerical stability and simplicity of computation.
+- In practice, orthonormal bases are often chosen for numerical stability and simplicity of computation.
 
 ### Geometric Interpretation
 
@@ -3224,16 +3224,16 @@ This polynomial in $\lambda$ is the characteristic polynomial. Its roots are the
 
 ### Geometric Intuition
 
-* Eigenvectors are directions that remain unchanged in orientation under a transformation; only their length is scaled.
-* Eigenvalues tell us the scaling factor along those directions.
-* If a matrix has many independent eigenvectors, it can often be simplified (diagonalized) by changing basis.
+- Eigenvectors are directions that remain unchanged in orientation under a transformation; only their length is scaled.
+- Eigenvalues tell us the scaling factor along those directions.
+- If a matrix has many independent eigenvectors, it can often be simplified (diagonalized) by changing basis.
 
 ### Applications in Geometry and Science
 
-* Stretching along principal axes of an ellipse (quadratic forms).
-* Stable directions of dynamical systems.
-* Principal components in statistics and machine learning.
-* Quantum mechanics, where observables correspond to operators with eigenvalues.
+- Stretching along principal axes of an ellipse (quadratic forms).
+- Stable directions of dynamical systems.
+- Principal components in statistics and machine learning.
+- Quantum mechanics, where observables correspond to operators with eigenvalues.
 
 ### Why this matters
 
@@ -3272,9 +3272,9 @@ The diagonal entries of $D$ are eigenvalues of $A$, and the columns of $P$ are t
 
 ### When is a Matrix Diagonalizable?
 
-* A matrix is diagonalizable if it has $n$ linearly independent eigenvectors.
-* Equivalently, the sum of the dimensions of its eigenspaces equals $n$.
-* Symmetric matrices (over $\mathbb{R}$) are always diagonalizable, with an orthonormal basis of eigenvectors.
+- A matrix is diagonalizable if it has $n$ linearly independent eigenvectors.
+- Equivalently, the sum of the dimensions of its eigenspaces equals $n$.
+- Symmetric matrices (over $\mathbb{R}$) are always diagonalizable, with an orthonormal basis of eigenvectors.
 
 ### Example 8.2.1
 
@@ -3294,9 +3294,9 @@ So eigenvalues are $\lambda_1 = 4$, $\lambda_2 = 2$.
 
 2. Eigenvectors:
 
-* For $\lambda = 4$, solve $(A-4I)\mathbf{v}=0$:
+- For $\lambda = 4$, solve $(A-4I)\mathbf{v}=0$:
   $\begin{bmatrix} 0 & 1 \\ 0 & -2 \end{bmatrix}\mathbf{v} = 0$, giving $\mathbf{v}_1 = (1,0)$.
-* For $\lambda = 2$: $(A-2I)\mathbf{v}=0$, giving $\mathbf{v}_2 = (1,-2)$.
+- For $\lambda = 2$: $(A-2I)\mathbf{v}=0$, giving $\mathbf{v}_2 = (1,-2)$.
 
 3. Construct $P = \begin{bmatrix} 1 & 1 \\ 0 & -2 \end{bmatrix}$. Then
 
@@ -3308,7 +3308,7 @@ Thus, $A$ is diagonalizable.
 
 ### Why Diagonalize?
 
-* Computing powers:
+- Computing powers:
   If $A = P D P^{-1}$, then
 
   $$
@@ -3317,10 +3317,10 @@ Thus, $A$ is diagonalizable.
 
   Since $D$ is diagonal, $D^k$ is easy to compute.
 
-* Matrix exponentials:
+- Matrix exponentials:
   $e^A = P e^D P^{-1}$, useful in solving differential equations.
 
-* Understanding geometry:
+- Understanding geometry:
   Diagonalization reveals the directions along which a transformation stretches or compresses space independently.
 
 ### Non-Diagonalizable Example
@@ -3506,11 +3506,11 @@ $$
 
 is a solution.
 
-* Eigenvalues determine the growth or decay rate:
+- Eigenvalues determine the growth or decay rate:
 
-    * If $\lambda < 0$, solutions decay (stable).
-    * If $\lambda > 0$, solutions grow (unstable).
-    * If $\lambda$ is complex, oscillations occur.
+  - If $\lambda < 0$, solutions decay (stable).
+  - If $\lambda > 0$, solutions grow (unstable).
+  - If $\lambda$ is complex, oscillations occur.
 
 By combining eigenvector solutions, we can solve general initial conditions.
 
@@ -3546,8 +3546,8 @@ $$
 
 Understanding long-term behavior reduces to analyzing powers of $P$.
 
-* The eigenvalue $\lambda = 1$ always exists. Its eigenvector gives the steady-state distribution.
-* All other eigenvalues satisfy $|\lambda| \leq 1$. Their influence decays as $k \to \infty$.
+- The eigenvalue $\lambda = 1$ always exists. Its eigenvector gives the steady-state distribution.
+- All other eigenvalues satisfy $|\lambda| \leq 1$. Their influence decays as $k \to \infty$.
 
 Example 8.4.2.
 Consider
@@ -3567,8 +3567,8 @@ Thus, regardless of the starting distribution, the chain converges to $\pi$.
 
 ### Geometric Interpretation
 
-* In differential equations, eigenvalues determine the time evolution: exponential growth, decay, or oscillation.
-* In Markov chains, eigenvalues determine the long-term equilibrium of stochastic processes.
+- In differential equations, eigenvalues determine the time evolution: exponential growth, decay, or oscillation.
+- In Markov chains, eigenvalues determine the long-term equilibrium of stochastic processes.
 
 ### Why this matters
 
@@ -3672,9 +3672,9 @@ where $\lambda_i$ are the eigenvalues of $A$.
 
 Quadratic forms describe geometric shapes:
 
-* In 2D: ellipses, parabolas, hyperbolas.
-* In 3D: ellipsoids, paraboloids, hyperboloids.
-* In higher dimensions: generalizations of ellipsoids.
+- In 2D: ellipses, parabolas, hyperbolas.
+- In 3D: ellipsoids, paraboloids, hyperboloids.
+- In higher dimensions: generalizations of ellipsoids.
 
 Diagonalization aligns the coordinate axes with the principal axes of the shape.
 
@@ -3702,12 +3702,12 @@ and statistics.
 
 A symmetric matrix $A \in \mathbb{R}^{n \times n}$ is called:
 
-* Positive definite if
+- Positive definite if
 
   $$
   \mathbf{x}^T A \mathbf{x} > 0 \quad \text{for all nonzero } \mathbf{x} \in \mathbb{R}^n.
   $$
-* Positive semidefinite if
+- Positive semidefinite if
 
   $$
   \mathbf{x}^T A \mathbf{x} \geq 0 \quad \text{for all } \mathbf{x}.
@@ -3762,16 +3762,16 @@ For a symmetric matrix $A$:
 
 ### Geometric Interpretation
 
-* Positive definite matrices correspond to quadratic forms that define ellipsoids centered at the origin.
-* Positive semidefinite matrices define flattened ellipsoids (possibly degenerate).
-* Indefinite matrices define hyperbolas or saddle-shaped surfaces.
+- Positive definite matrices correspond to quadratic forms that define ellipsoids centered at the origin.
+- Positive semidefinite matrices define flattened ellipsoids (possibly degenerate).
+- Indefinite matrices define hyperbolas or saddle-shaped surfaces.
 
 ### Applications
 
-* Optimization: Hessians of convex functions are positive semidefinite; strict convexity corresponds to positive
+- Optimization: Hessians of convex functions are positive semidefinite; strict convexity corresponds to positive
   definite Hessians.
-* Statistics: Covariance matrices are positive semidefinite.
-* Numerical methods: Cholesky decomposition is widely used to solve systems with positive definite matrices efficiently.
+- Statistics: Covariance matrices are positive semidefinite.
+- Numerical methods: Cholesky decomposition is widely used to solve systems with positive definite matrices efficiently.
 
 ### Why this matters
 
@@ -3830,10 +3830,10 @@ If $A \in \mathbb{R}^{n \times n}$ is symmetric ($A^T = A$), then:
 
 ### Consequences
 
-* Symmetric matrices are always diagonalizable, and the diagonalization is numerically stable.
-* Quadratic forms $\mathbf{x}^T A \mathbf{x}$ can be expressed in terms of eigenvalues and eigenvectors, showing
+- Symmetric matrices are always diagonalizable, and the diagonalization is numerically stable.
+- Quadratic forms $\mathbf{x}^T A \mathbf{x}$ can be expressed in terms of eigenvalues and eigenvectors, showing
   ellipsoids aligned with eigen-directions.
-* Positive definiteness can be checked by confirming that all eigenvalues are positive.
+- Positive definiteness can be checked by confirming that all eigenvalues are positive.
 
 ### Example 9.3.1
 
@@ -3853,8 +3853,8 @@ Eigenvalues: $\lambda_1 = 1, \ \lambda_2 = 3$.
 
 2. Eigenvectors:
 
-* For $\lambda=1$: solve $(A-I)\mathbf{v} = 0$, giving $(1,-1)$.
-* For $\lambda=3$: solve $(A-3I)\mathbf{v} = 0$, giving $(1,1)$.
+- For $\lambda=1$: solve $(A-I)\mathbf{v} = 0$, giving $(1,-1)$.
+- For $\lambda=3$: solve $(A-3I)\mathbf{v} = 0$, giving $(1,1)$.
 
 3. Normalize eigenvectors:
 
@@ -3880,15 +3880,15 @@ $$
 The spectral theorem says every symmetric matrix acts like independent scaling along orthogonal directions. In geometry,
 this corresponds to stretching space along perpendicular axes.
 
-* Ellipses, ellipsoids, and quadratic surfaces can be fully understood via eigenvalues and eigenvectors.
-* Orthogonality ensures directions remain perpendicular after transformation.
+- Ellipses, ellipsoids, and quadratic surfaces can be fully understood via eigenvalues and eigenvectors.
+- Orthogonality ensures directions remain perpendicular after transformation.
 
 ### Applications
 
-* Optimization: The spectral theorem underlies classification of critical points via eigenvalues of the Hessian.
-* PCA (Principal Component Analysis): Data covariance matrices are symmetric, and PCA finds orthogonal directions of
+- Optimization: The spectral theorem underlies classification of critical points via eigenvalues of the Hessian.
+- PCA (Principal Component Analysis): Data covariance matrices are symmetric, and PCA finds orthogonal directions of
   maximum variance.
-* Differential equations & physics: Symmetric operators correspond to measurable quantities with real eigenvalues (
+- Differential equations & physics: Symmetric operators correspond to measurable quantities with real eigenvalues (
   stability, energy).
 
 ### Why this matters
@@ -3938,8 +3938,8 @@ Given a dataset of vectors $\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_m \in 
    $$
 3. Apply the spectral theorem: $\Sigma = Q \Lambda Q^T$.
 
-    * Columns of $Q$ are orthonormal eigenvectors (principal directions).
-    * Eigenvalues in $\Lambda$ measure variance explained by each direction.
+    - Columns of $Q$ are orthonormal eigenvectors (principal directions).
+    - Eigenvalues in $\Lambda$ measure variance explained by each direction.
 
 The first principal component is the eigenvector corresponding to the largest eigenvalue; it is the direction of maximum
 variance.
@@ -3955,9 +3955,9 @@ $$
 
 Eigenvalues are about $3.9$ and $0.1$. The eigenvector for $\lambda = 3.9$ is approximately $(1,1)/\sqrt{2}$.
 
-* First principal component: the line $y = x$.
-* Most variance lies along this direction.
-* Second component is nearly orthogonal ($y = -x$), but variance there is tiny.
+- First principal component: the line $y = x$.
+- Most variance lies along this direction.
+- Second component is nearly orthogonal ($y = -x$), but variance there is tiny.
 
 Thus PCA reduces the data to essentially one dimension.
 
@@ -4078,9 +4078,9 @@ $$
 
 ### Geometric Interpretation
 
-* Rotations preserve shape and size, only changing orientation.
-* Projections reduce dimension: from 3D world space to 2D screen space.
-* Homogeneous coordinates allow us to combine multiple transformations (rotation + translation + projection) into a
+- Rotations preserve shape and size, only changing orientation.
+- Projections reduce dimension: from 3D world space to 2D screen space.
+- Homogeneous coordinates allow us to combine multiple transformations (rotation + translation + projection) into a
   single matrix multiplication.
 
 ### Why this matters
@@ -4107,13 +4107,13 @@ method, which underlies regression and model fitting.
 High-dimensional data often contains redundancy: many features are correlated, meaning the data essentially lies near a
 lower-dimensional subspace. Dimensionality reduction identifies these subspaces.
 
-* PCA (Principal Component Analysis):
+- PCA (Principal Component Analysis):
   As introduced earlier, PCA diagonalizes the covariance matrix of the data.
 
-    * Eigenvectors (principal components) define orthogonal directions of maximum variance.
-    * Eigenvalues measure how much variance lies along each direction.
-    * Keeping only the top $k$ components reduces data from $n$-dimensional space to $k$-dimensional space while
-      retaining most variability.
+  - Eigenvectors (principal components) define orthogonal directions of maximum variance.
+  - Eigenvalues measure how much variance lies along each direction.
+  - Keeping only the top $k$ components reduces data from $n$-dimensional space to $k$-dimensional space while
+    retaining most variability.
 
 Example 10.2.1. A dataset of 1000 images, each with 1024 pixels, may have most variance captured by just 50 eigenvectors
 of the covariance matrix. Projecting onto these components compresses the data while preserving essential features.
@@ -4163,8 +4163,8 @@ Solve $A^T A \mathbf{x} = A^T \mathbf{b}$. This yields the best-fit line in the 
 
 ### Geometric Interpretation
 
-* Dimensionality reduction: Find the best subspace capturing most variance.
-* Least squares: Project the target vector onto the subspace spanned by predictors.
+- Dimensionality reduction: Find the best subspace capturing most variance.
+- Least squares: Project the target vector onto the subspace spanned by predictors.
 
 Both are projection problems, solved using inner products and orthogonality.
 
@@ -4202,8 +4202,8 @@ $$
 
 For weighted graphs, entries may be positive weights instead of $0/1$.
 
-* The number of walks of length $k$ from node $i$ to node $j$ is given by the entry $(A^k)_{ij}$.
-* Powers of adjacency matrices thus encode connectivity over time.
+- The number of walks of length $k$ from node $i$ to node $j$ is given by the entry $(A^k)_{ij}$.
+- Powers of adjacency matrices thus encode connectivity over time.
 
 ### Laplacian Matrices
 
@@ -4215,9 +4215,9 @@ $$
 
 where $D$ is the diagonal degree matrix ($D_{ii} = \text{degree}(i)$).
 
-* $L$ is symmetric and positive semidefinite.
-* The smallest eigenvalue is always $0$, with eigenvector $(1,1,\dots,1)$.
-* The multiplicity of eigenvalue $0$ equals the number of connected components in the graph.
+- $L$ is symmetric and positive semidefinite.
+- The smallest eigenvalue is always $0$, with eigenvector $(1,1,\dots,1)$.
+- The multiplicity of eigenvalue $0$ equals the number of connected components in the graph.
 
 This connection between eigenvalues and connectivity forms the basis of spectral graph theory.
 
@@ -4232,8 +4232,8 @@ $$
 
 describes the distribution of positions after $k$ steps.
 
-* The steady-state distribution is given by the eigenvector of $P$ with eigenvalue $1$.
-* The speed of convergence depends on the gap between the largest eigenvalue (which is always $1$) and the second
+- The steady-state distribution is given by the eigenvector of $P$ with eigenvalue $1$.
+- The speed of convergence depends on the gap between the largest eigenvalue (which is always $1$) and the second
   largest eigenvalue.
 
 ### Example 10.3.1
@@ -4254,10 +4254,10 @@ distribution $(1/3,1/3,1/3)$.
 
 ### Applications
 
-* Search engines: Google’s PageRank algorithm models the web as a Markov chain, where steady-state probabilities rank
+- Search engines: Google’s PageRank algorithm models the web as a Markov chain, where steady-state probabilities rank
   pages.
-* Network analysis: Eigenvalues of adjacency or Laplacian matrices reveal communities, bottlenecks, and robustness.
-* Epidemiology and information flow: Random walks model how diseases or ideas spread through networks.
+- Network analysis: Eigenvalues of adjacency or Laplacian matrices reveal communities, bottlenecks, and robustness.
+- Epidemiology and information flow: Random walks model how diseases or ideas spread through networks.
 
 ### Why this matters
 
@@ -4328,23 +4328,23 @@ $$
 
 where $U, V$ are orthogonal and $\Sigma$ is diagonal with nonnegative entries (singular values).
 
-* Singular values measure the importance of directions in feature space.
-* SVD is used for dimensionality reduction (low-rank approximations), topic modeling, and recommender systems.
+- Singular values measure the importance of directions in feature space.
+- SVD is used for dimensionality reduction (low-rank approximations), topic modeling, and recommender systems.
 
 ### Eigenvalues in Machine Learning
 
-* PCA (Principal Component Analysis): diagonalization of the covariance matrix identifies directions of maximal
+- PCA (Principal Component Analysis): diagonalization of the covariance matrix identifies directions of maximal
   variance.
-* Spectral clustering: uses eigenvectors of the Laplacian to group data points into clusters.
-* Stability analysis: eigenvalues of Hessian matrices determine whether optimization converges to a minimum.
+- Spectral clustering: uses eigenvectors of the Laplacian to group data points into clusters.
+- Stability analysis: eigenvalues of Hessian matrices determine whether optimization converges to a minimum.
 
 ### Neural Networks
 
 Even deep learning, though nonlinear, uses linear algebra at its core:
 
-* Each layer is a matrix multiplication followed by a nonlinear activation.
-* Training requires computing gradients, which are expressed in terms of matrix calculus.
-* Backpropagation is essentially repeated applications of the chain rule with linear algebra.
+- Each layer is a matrix multiplication followed by a nonlinear activation.
+- Training requires computing gradients, which are expressed in terms of matrix calculus.
+- Backpropagation is essentially repeated applications of the chain rule with linear algebra.
 
 ### Why this matters
 
@@ -4356,9 +4356,9 @@ be intractable.
 
 1. Show that ridge regression leads to the normal equations
 
-   $$
-   (X^T X + \lambda I)\mathbf{w} = X^T \mathbf{y}.
-   $$
+$$
+(X^T X + \lambda I)\mathbf{w} = X^T \mathbf{y}.
+$$
 
 2. Explain how SVD can be used to compress an image represented as a matrix of pixel intensities.
 
@@ -4367,4 +4367,3 @@ be intractable.
 4. Give an example of how eigenvectors of the Laplacian matrix can be used for clustering a small graph.
 
 5. In a neural network with one hidden layer, write the forward pass in matrix form.
-
