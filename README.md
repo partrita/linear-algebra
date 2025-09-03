@@ -3553,7 +3553,9 @@ Example 8.4.1.
 Let
 
 $$
-A = \begin{bmatrix} 2 & 0 \\ 0 & -1 \end{bmatrix}.
+A = \begin{bmatrix}
+2 & 0 \\
+0 & -1 \end{bmatrix}.
 $$
 
 Then eigenvalues are $2, -1$ with eigenvectors $(1,0)$, $(0,1)$. Solutions are
@@ -3588,7 +3590,9 @@ Example 8.4.2.
 Consider
 
 $$
-P = \begin{bmatrix} 0.9 & 0.5 \\ 0.1 & 0.5 \end{bmatrix}.
+P = \begin{bmatrix}
+0.9 & 0.5 \\
+0.1 & 0.5 \end{bmatrix}.
 $$
 
 Eigenvalues are $\lambda_1 = 1$, $\lambda_2 = 0.4$. The eigenvector for $\lambda = 1$ is proportional to $(5,1)$.
@@ -3654,13 +3658,21 @@ Example 9.1.1.
 For
 
 $$
-A = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix} x \\ y \end{bmatrix},
+A = \begin{bmatrix}
+2 & 1 \\
+1 & 3 \end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix}
+x \\
+y \end{bmatrix},
 $$
 
 $$
 Q(x,y) = \begin{bmatrix} x & y \end{bmatrix}
-\begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix}
-\begin{bmatrix} x \\ y \end{bmatrix}
+\begin{bmatrix}
+2 & 1 \\
+1 & 3 \end{bmatrix}
+\begin{bmatrix}
+x \\
+y \end{bmatrix}
 = 2x^2 + 2xy + 3y^2.
 $$
 
@@ -3683,7 +3695,10 @@ $$
 is described by the quadratic form $\mathbf{x}^T A \mathbf{x} = 1$ with
 
 $$
-A = \begin{bmatrix} 4 & 1 \\ 1 & 5 \end{bmatrix}.
+A = \begin{bmatrix}
+4 & 1 \\
+1 & 5
+\end{bmatrix}.
 $$
 
 ### Diagonalization of Quadratic Forms
@@ -3755,7 +3770,9 @@ Similarly, negative definite (always < 0) and indefinite (can be both < 0 and > 
 Example 9.2.1.
 
 $$
-A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}
+A = \begin{bmatrix}
+2 & 0 \\
+0 & 3 \end{bmatrix}
 $$
 
 is positive definite, since
@@ -3769,7 +3786,9 @@ for all $(x,y) \neq (0,0)$.
 Example 9.2.2.
 
 $$
-A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}
+A = \begin{bmatrix}
+1 & 2 \\
+2 & 1 \end{bmatrix}
 $$
 
 has quadratic form
@@ -3875,7 +3894,9 @@ If $A \in \mathbb{R}^{n \times n}$ is symmetric ($A^T = A$), then:
 Let
 
 $$
-A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}.
+A = \begin{bmatrix}
+2 & 1 \\
+1 & 2 \end{bmatrix}.
 $$
 
 1. Characteristic polynomial:
@@ -3900,8 +3921,15 @@ $$
 4. Then
 
 $$
-Q = \begin{bmatrix} \tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \[6pt] -\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \end{bmatrix}, \quad
-\Lambda = \begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix}.
+Q = 
+\begin{bmatrix}
+\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \[6pt] -\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} 
+\end{bmatrix}, \quad
+\Lambda = 
+\begin{bmatrix}
+1 & 0 \\
+0 & 3
+\end{bmatrix}.
 $$
 
 So
@@ -3985,7 +4013,11 @@ Suppose we have two-dimensional data points roughly aligned along the line $y = 
 approximately
 
 $$
-\Sigma = \begin{bmatrix} 2 & 1.9 \\ 1.9 & 2 \end{bmatrix}.
+\Sigma = 
+\begin{bmatrix}
+2 & 1.9 \\
+1.9 & 2
+\end{bmatrix}.
 $$
 
 Eigenvalues are about $3.9$ and $0.1$. The eigenvector for $\lambda = 3.9$ is approximately $(1,1)/\sqrt{2}$.
@@ -4189,9 +4221,17 @@ x_2 & 1 \\
 x_m & 1
 \end{bmatrix},
 \quad
-\mathbf{b} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_m \end{bmatrix},
+\mathbf{b} = 
+\begin{bmatrix}
+y_1 \\ 
+y_2 \\ 
+\vdots \\
+y_m \end{bmatrix},
 \quad
-\mathbf{x} = \begin{bmatrix} m \\ c \end{bmatrix}.
+\mathbf{x} =
+\begin{bmatrix}
+m \\
+c \end{bmatrix}.
 $$
 
 Solve $A^T A \mathbf{x} = A^T \mathbf{b}$. This yields the best-fit line in the least squares sense.
@@ -4248,7 +4288,7 @@ $$
 L = D - A,
 $$
 
-where $D$ is the diagonal degree matrix ($D_{ii} = \text{degree}(i)$).
+where $D$ is the diagonal degree matrix ( $D_{ii} = \text{degree}(i)$ ).
 
 * $L$ is symmetric and positive semidefinite.
 * The smallest eigenvalue is always $0$, with eigenvector $(1,1,\dots,1)$.
@@ -4325,13 +4365,12 @@ A dataset with $m$ examples and $n$ features is represented as a matrix $X \in \
 $$
 X =
 \begin{bmatrix}
-
-- & \mathbf{x}_1^T & - \\
-- & \mathbf{x}_2^T & - \\
+\- & \mathbf{x}_1^T & - \\
+\- & \mathbf{x}_2^T & - \\
   & \vdots & \\
-- & \mathbf{x}_m^T & -
-  \end{bmatrix},
-  $$
+\- & \mathbf{x}_m^T & -
+\end{bmatrix},
+$$
 
 where each row $\mathbf{x}_i \in \mathbb{R}^n$ is a feature vector. Linear algebra provides tools to analyze, compress,
 and transform this data.
@@ -4340,16 +4379,12 @@ and transform this data.
 
 At the heart of machine learning are linear predictors:
 
-$$
-\hat{y} = X\mathbf{w},
-$$
+$$\hat{y} = X\mathbf{w},$$
 
 where $\mathbf{w}$ is the weight vector. Training often involves solving a least squares problem or a regularized
 variant such as ridge regression:
 
-$$
-\min_{\mathbf{w}} \|X\mathbf{w} - \mathbf{y}\|^2 + \lambda \|\mathbf{w}\|^2.
-$$
+$$\min_{\mathbf{w}} \|X\mathbf{w} - \mathbf{y}\|^2 + \lambda \|\mathbf{w}\|^2.$$
 
 This is solved efficiently using matrix factorizations.
 
@@ -4357,9 +4392,7 @@ This is solved efficiently using matrix factorizations.
 
 The SVD of a matrix $X$ is
 
-$$
-X = U \Sigma V^T,
-$$
+$$X = U \Sigma V^T,$$
 
 where $U, V$ are orthogonal and $\Sigma$ is diagonal with nonnegative entries (singular values).
 
@@ -4397,7 +4430,7 @@ be intractable.
 
 2. Explain how SVD can be used to compress an image represented as a matrix of pixel intensities.
 
-3. For a covariance matrix $\Sigma$, show why its eigenvalues represent variances along principal components.
+3. For a covariance matrix $\\Sigma$, show why its eigenvalues represent variances along principal components.
 
 4. Give an example of how eigenvectors of the Laplacian matrix can be used for clustering a small graph.
 
