@@ -87,7 +87,7 @@
   \apptocmd{\@title}{\par {\large #1 \par}}{}{}
 }
 \makeatother
-\subtitle{Version 0.1.0}
+\subtitle{Version 0.1.1}
 \author{Duc-Tam Nguyen}
 \date{\today}
 
@@ -104,23 +104,25 @@
 \subsection{1.1 Scalars and Vectors}\label{11-scalars-and-vectors}
 
 A scalar is a single numerical quantity, most often taken from the real
-numbers, denoted by \(\mathbb{R}\). Scalars are the fundamental building
-blocks of arithmetic: they can be added, subtracted, multiplied, and,
-except in the case of zero, divided. In linear algebra, scalars play the
-role of coefficients, scaling factors, and entries of larger structures
-such as vectors and matrices. They provide the weights by which more
-complex objects are measured and combined. A vector is an ordered
-collection of scalars, arranged either in a row or a column. When the
-scalars are real numbers, the vector is said to belong to \emph{real}
-\(n\)-dimensional space, written
+numbers, denoted by \(\mathbb{R}\). Scalars are\\
+the fundamental building blocks of arithmetic: they can be added,
+subtracted, multiplied, and, except in the case of\\
+zero, divided. In linear algebra, scalars play the role of coefficients,
+scaling factors, and entries of larger\\
+structures such as vectors and matrices. They provide the weights by
+which more complex objects are measured and\\
+combined. A vector is an ordered collection of scalars, arranged either
+in a row or a column. When the scalars are real\\
+numbers, the vector is said to belong to \emph{real} \(n\)-dimensional
+space, written
 
 \[\mathbb{R}^n = \{ (x_1, x_2, \dots, x_n) \mid x_i \in \mathbb{R} \}.\]
 
 An element of \(\mathbb{R}^n\) is called a vector of dimension \(n\) or
-an \emph{n}-vector. The number \(n\) is called the dimension of the
-vector space. Thus \(\mathbb{R}^2\) is the space of all ordered pairs of
-real numbers, \(\mathbb{R}^3\) the space of all ordered triples, and so
-on.
+an \emph{n}-vector. The number \(n\) is called the\\
+dimension of the vector space. Thus \(\mathbb{R}^2\) is the space of all
+ordered pairs of real numbers, \(\mathbb{R}^3\) the\\
+space of all ordered triples, and so on.
 
 Example 1.1.1.
 
@@ -131,13 +133,16 @@ Example 1.1.1.
   A 3-dimensional vector: \((2, 0, 5) \in \mathbb{R}^3\).
 \item
   A 1-dimensional vector: \((7) \in \mathbb{R}^1\), which corresponds to
-  the scalar \(7\) itself.
+  the scalar \$7\$ itself.
 \end{itemize}
 
 Vectors are often written vertically in column form, which emphasizes
 their role in matrix multiplication:
 
-\[\mathbf{v} = \begin{bmatrix} 2 \\ 0 \\ 5 \end{bmatrix} \in \mathbb{R}^3.\]
+\[\mathbf{v} = \begin{bmatrix}
+2 \\
+0 \\
+5 \end{bmatrix} \in \mathbb{R}^3.\]
 
 The vertical layout makes the structure clearer when we consider linear
 combinations or multiply matrices by vectors.
@@ -145,19 +150,20 @@ combinations or multiply matrices by vectors.
 \subsubsection{Geometric Interpretation}\label{geometric-interpretation}
 
 In \(\mathbb{R}^2\), a vector \((x_1, x_2)\) can be visualized as an
-arrow starting at the origin \((0,0)\) and ending at the point
-\((x_1, x_2)\). Its length corresponds to the distance from the origin,
-and its orientation gives a direction in the plane. In \(\mathbb{R}^3\),
-the same picture extends into three dimensions: a vector is an arrow
-from the origin to \((x_1, x_2, x_3)\). Beyond three dimensions, direct
-visualization is no longer possible, but the algebraic rules of vectors
-remain identical. Even though we cannot draw a vector in
-\(\mathbb{R}^{10}\), it behaves under addition, scaling, and
-transformation exactly as a 2- or 3-dimensional vector does. This
-abstract point of view is what allows linear algebra to apply to data
-science, physics, and machine learning, where data often lives in very
-high-dimensional spaces. Thus a vector may be regarded in three
-complementary ways:
+arrow starting at the origin \((0,0)\) and ending at the\\
+point \((x_1, x_2)\). Its length corresponds to the distance from the
+origin, and its orientation gives a direction in the\\
+plane. In \(\mathbb{R}^3\), the same picture extends into three
+dimensions: a vector is an arrow from the origin\\
+to \((x_1, x_2, x_3)\). Beyond three dimensions, direct visualization is
+no longer possible, but the algebraic rules of\\
+vectors remain identical. Even though we cannot draw a vector in
+\(\mathbb{R}^{10}\), it behaves under addition, scaling,\\
+and transformation exactly as a 2- or 3-dimensional vector does. This
+abstract point of view is what allows linear\\
+algebra to apply to data science, physics, and machine learning, where
+data often lives in very high-dimensional spaces.\\
+Thus a vector may be regarded in three complementary ways:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -189,13 +195,14 @@ complementary ways:
 \subsubsection{Why begin here?}\label{why-begin-here}
 
 Scalars and vectors form the atoms of linear algebra. Every structure we
-will build-vector spaces, linear transformations, matrices,
-eigenvalues-relies on the basic notions of number and ordered collection
-of numbers. Once vectors are understood, we can define operations such
-as addition and scalar multiplication, then generalize to subspaces,
-bases, and coordinate systems. Eventually, this framework grows into the
-full theory of linear algebra, with powerful applications to geometry,
-computation, and data.
+will build-vector spaces, linear\\
+transformations, matrices, eigenvalues-relies on the basic notions of
+number and ordered collection of numbers. Once\\
+vectors are understood, we can define operations such as addition and
+scalar multiplication, then generalize to\\
+subspaces, bases, and coordinate systems. Eventually, this framework
+grows into the full theory of linear algebra, with\\
+powerful applications to geometry, computation, and data.
 
 \subsubsection{Exercises 1.1}\label{exercises-11}
 
@@ -203,10 +210,12 @@ computation, and data.
 \def\labelenumi{\arabic{enumi}.}
 \item
   Write three different vectors in \(\mathbb{R}^2\) and sketch them as
-  arrows from the origin. Identify their coordinates explicitly.
+  arrows from the origin. Identify their coordinates\\
+  explicitly.
 \item
   Give an example of a vector in \(\mathbb{R}^4\). Can you visualize it
-  directly? Explain why high-dimensional visualization is challenging.
+  directly? Explain why high-dimensional\\
+  visualization is challenging.
 \item
   Let \(\mathbf{v} = (4, -3, 2)\). Write \(\mathbf{v}\) in column form
   and state \(v_1, v_2, v_3\).
@@ -215,25 +224,25 @@ computation, and data.
   space? Illustrate with examples.
 \item
   Consider the vector \(\mathbf{u} = (1,1,\dots,1) \in \mathbb{R}^n\).
-  What is special about this vector when \(n\) is large? What might it
-  represent in applications?
+  What is special about this vector when \(n\) is\\
+  large? What might it represent in applications?
 \end{enumerate}
 
 \subsection{1.2 Vector Addition and Scalar
 Multiplication}\label{12-vector-addition-and-scalar-multiplication}
 
 Vectors in linear algebra are not static objects; their power comes from
-the operations we can perform on them. Two fundamental operations define
-the structure of vector spaces: addition and scalar multiplication.
-These operations satisfy simple but far-reaching rules that underpin the
-entire subject.
+the operations we can perform on them. Two\\
+fundamental operations define the structure of vector spaces: addition
+and scalar multiplication. These operations\\
+satisfy simple but far-reaching rules that underpin the entire subject.
 
 \subsubsection{Vector Addition}\label{vector-addition}
 
 Given two vectors of the same dimension, their sum is obtained by adding
 corresponding entries. Formally, if
 
-\[\mathbf{u} = (u_1, u_2, \dots, u_n), \quad 
+\[\mathbf{u} = (u_1, u_2, \dots, u_n), \quad
 \mathbf{v} = (v_1, v_2, \dots, v_n),\]
 
 then their sum is
@@ -246,15 +255,17 @@ Let \(\mathbf{u} = (2, -1, 3)\) and \(\mathbf{v} = (4, 0, -5)\). Then
 \[\mathbf{u} + \mathbf{v} = (2+4, -1+0, 3+(-5)) = (6, -1, -2).\]
 
 Geometrically, vector addition corresponds to the \emph{parallelogram
-rule}. If we draw both vectors as arrows from the origin, then placing
-the tail of one vector at the head of the other produces the sum. The
-diagonal of the parallelogram they form represents the resulting vector.
+rule}. If we draw both vectors as arrows from the\\
+origin, then placing the tail of one vector at the head of the other
+produces the sum. The diagonal of the parallelogram\\
+they form represents the resulting vector.
 
 \subsubsection{Scalar Multiplication}\label{scalar-multiplication}
 
 Multiplying a vector by a scalar stretches or shrinks the vector while
-preserving its direction, unless the scalar is negative, in which case
-the vector is also reversed. If \(c \in \mathbb{R}\) and
+preserving its direction, unless the scalar is\\
+negative, in which case the vector is also reversed. If
+\(c \in \mathbb{R}\) and
 
 \[\mathbf{v} = (v_1, v_2, \dots, v_n),\]
 
@@ -273,15 +284,16 @@ its length.
 \subsubsection{Linear Combinations}\label{linear-combinations}
 
 The interaction of addition and scalar multiplication allows us to form
-\emph{linear combinations}. A linear combination of vectors
-\(\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\) is any vector of the
-form
+\emph{linear combinations}. A linear combination of\\
+vectors \(\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\) is any
+vector of the form
 
 \[c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_k \mathbf{v}_k, \quad c_i \in \mathbb{R}.\]
 
 Linear combinations are the mechanism by which we generate new vectors
-from existing ones. The span of a set of vectors-the collection of all
-their linear combinations-will later lead us to the idea of a subspace.
+from existing ones. The span of a set of\\
+vectors-the collection of all their linear combinations-will later lead
+us to the idea of a subspace.
 
 Example 1.2.3.\\
 Let \(\mathbf{v}_1 = (1,0)\) and \(\mathbf{v}_2 = (0,1)\). Then any
@@ -308,11 +320,12 @@ plane.
 \subsubsection{Why this matters}\label{why-this-matters}
 
 Vector addition and scalar multiplication are the defining operations of
-linear algebra. They give structure to vector spaces, allow us to
-describe geometric phenomena like translation and scaling, and provide
-the foundation for solving systems of equations. Everything that
-follows-basis, dimension, transformations-builds on these simple but
-profound rules.
+linear algebra. They give structure to vector\\
+spaces, allow us to describe geometric phenomena like translation and
+scaling, and provide the foundation for solving\\
+systems of equations. Everything that follows-basis, dimension,
+transformations-builds on these simple but profound\\
+rules.
 
 \subsubsection{Exercises 1.2}\label{exercises-12}
 
@@ -322,27 +335,30 @@ profound rules.
   Compute \(\mathbf{u} + \mathbf{v}\) where \(\mathbf{u} = (1,2,3)\) and
   \(\mathbf{v} = (4, -1, 0)\).
 \item
-  Find \(3\mathbf{v}\) where \(\mathbf{v} = (-2,5)\). Sketch both
-  vectors to illustrate the scaling.
+  Find
+  \$3\textbackslash mathbf\{v\}\( where \)\textbackslash mathbf\{v\} =
+  (-2,5)\$. Sketch both vectors to illustrate the scaling.
 \item
   Show that \((5,7)\) can be written as a linear combination of
   \((1,0)\) and \((0,1)\).
 \item
   Write \((4,4)\) as a linear combination of \((1,1)\) and \((1,-1)\).
 \item
-  Prove that if \(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\), then
+  Prove that if \(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\),\\
+  then
   \((c+d)(\mathbf{u}+\mathbf{v}) = c\mathbf{u} + c\mathbf{v} + d\mathbf{u} + d\mathbf{v}\)
-  for scalars \(c,d \in \mathbb{R}\).
+  for\\
+  scalars \(c,d \in \mathbb{R}\).
 \end{enumerate}
 
 \subsection{1.3 Dot Product, Norms, and
 Angles}\label{13-dot-product-norms-and-angles}
 
 The dot product is the fundamental operation that links algebra and
-geometry in vector spaces. It allows us to measure lengths, compute
-angles, and determine orthogonality. From this single definition flow
-the notions of \emph{norm} and \emph{angle}, which give geometry to
-abstract vector spaces.
+geometry in vector spaces. It allows us to measure\\
+lengths, compute angles, and determine orthogonality. From this single
+definition flow the notions of \emph{norm} and\\
+\emph{angle}, which give geometry to abstract vector spaces.
 
 \subsubsection{The Dot Product}\label{the-dot-product}
 
@@ -425,8 +441,9 @@ higher dimensions.
 \subsubsection{Why this matters}\label{why-this-matters-2}
 
 The dot product turns vector spaces into geometric objects: vectors gain
-lengths, angles, and notions of perpendicularity. This foundation will
-later support the study of orthogonal projections, Gram--Schmidt
+lengths, angles, and notions of\\
+perpendicularity. This foundation will later support the study of
+orthogonal projections, Gram--Schmidt\\
 orthogonalization, eigenvectors, and least squares problems.
 
 \subsubsection{Exercises 1.3}\label{exercises-13}
@@ -447,15 +464,17 @@ orthogonalization, eigenvectors, and least squares problems.
 \item
   Prove that
   \(|\mathbf{u} + \mathbf{v}|^2 = |\mathbf{u}|^2 + |\mathbf{v}|^2 + 2\mathbf{u}\cdot \mathbf{v}\).
-  This identity is the algebraic version of the Law of Cosines.
+  This\\
+  identity is the algebraic version of the Law of Cosines.
 \end{enumerate}
 
 \subsection{1.4 Orthogonality}\label{14-orthogonality}
 
 Orthogonality captures the notion of perpendicularity in vector spaces.
-It is one of the most important geometric ideas in linear algebra,
-allowing us to decompose vectors, define projections, and construct
-special bases with elegant properties.
+It is one of the most important geometric ideas\\
+in linear algebra, allowing us to decompose vectors, define projections,
+and construct special bases with elegant\\
+properties.
 
 \subsubsection{Definition}\label{definition}
 
@@ -476,8 +495,8 @@ since
 \subsubsection{Orthogonal Sets}\label{orthogonal-sets}
 
 A collection of vectors is called orthogonal if every distinct pair of
-vectors in the set is orthogonal. If, in addition, each vector has norm
-1, the set is called orthonormal.
+vectors in the set is orthogonal. If, in\\
+addition, each vector has norm 1, the set is called orthonormal.
 
 Example 1.4.2.\\
 In \(\mathbb{R}^3\), the standard basis vectors
@@ -490,9 +509,10 @@ vanish when the indices differ.
 \subsubsection{Projections}\label{projections}
 
 Orthogonality makes possible the decomposition of a vector into two
-components: one parallel to another vector, and one orthogonal to it.
-Given a nonzero vector \(\mathbf{u}\) and any vector \(\mathbf{v}\), the
-projection of \(\mathbf{v}\) onto \(\mathbf{u}\) is
+components: one parallel to another vector, and one\\
+orthogonal to it. Given a nonzero vector \(\mathbf{u}\) and any vector
+\(\mathbf{v}\), the projection of \(\mathbf{v}\)\\
+onto \(\mathbf{u}\) is
 
 \[\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\mathbf{u} \cdot \mathbf{u}} \mathbf{u}.\]
 
@@ -501,13 +521,13 @@ The difference
 \[\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})\]
 
 is orthogonal to \(\mathbf{u}\). Thus every vector can be decomposed
-uniquely into a parallel and perpendicular part with respect to another
-vector.
+uniquely into a parallel and perpendicular part with\\
+respect to another vector.
 
 Example 1.4.3.\\
 Let \(\mathbf{u} = (1,0)\), \(\mathbf{v} = (2,3)\). Then
 
-\[\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{(1,0)\cdot(2,3)}{(1,0)\cdot(1,0)} (1,0) 
+\[\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{(1,0)\cdot(2,3)}{(1,0)\cdot(1,0)} (1,0)
 = \frac{2}{1}(1,0) = (2,0).\]
 
 Thus
@@ -522,11 +542,11 @@ it.
 In general, if \(\mathbf{u} \neq \mathbf{0}\) and
 \(\mathbf{v} \in \mathbb{R}^n\), then
 
-\[\mathbf{v} = \text{proj}_{\mathbf{u}}(\mathbf{v}) + \big(\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})\big),\]
+\[\mathbf{v} = \text{proj}\_{\mathbf{u}}(\mathbf{v}) + \big(\mathbf{v} - \text{proj}\_{\mathbf{u}}(\mathbf{v})\big),\]
 
 where the first term is parallel to \(\mathbf{u}\) and the second term
-is orthogonal. This decomposition underlies methods such as least
-squares approximation and the Gram--Schmidt process.
+is orthogonal. This decomposition underlies methods\\
+such as least squares approximation and the Gram--Schmidt process.
 
 \subsubsection{Notation}\label{notation-4}
 
@@ -543,10 +563,11 @@ squares approximation and the Gram--Schmidt process.
 \subsubsection{Why this matters}\label{why-this-matters-3}
 
 Orthogonality gives structure to vector spaces. It provides a way to
-separate independent directions cleanly, simplify computations, and
-minimize errors in approximations. Many powerful algorithms in numerical
-linear algebra and data science (QR decomposition, least squares
-regression, PCA) rely on orthogonality.
+separate independent directions cleanly, simplify\\
+computations, and minimize errors in approximations. Many powerful
+algorithms in numerical linear algebra and data\\
+science (QR decomposition, least squares regression, PCA) rely on
+orthogonality.
 
 \subsubsection{Exercises 1.4}\label{exercises-14}
 
@@ -563,8 +584,11 @@ regression, PCA) rely on orthogonality.
   Decompose \((5,2)\) into components parallel and orthogonal to
   \((2,1)\).
 \item
-  Prove that if \(\mathbf{u}, \mathbf{v}\) are orthogonal and nonzero,
-  then \((\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v}) = 0\).
+  Let \(\mathbf{u}, \mathbf{v}\) be orthogonal nonzero vectors.\\
+  (a) Show that
+  \((\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=\lVert \mathbf{u}\rVert^2-\lVert \mathbf{v}\rVert^2.\)\\
+  (b) For what condition on \(\mathbf{u}\) and \(\mathbf{v}\) does
+  \((\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=0\)?
 \end{enumerate}
 
 \section{Chapter 2. Matrices}\label{chapter-2-matrices}
@@ -573,9 +597,10 @@ regression, PCA) rely on orthogonality.
 Notation}\label{21-definition-and-notation}
 
 Matrices are the central objects of linear algebra, providing a compact
-way to represent and manipulate linear transformations, systems of
-equations, and structured data. A matrix is a rectangular array of
-numbers arranged in rows and columns.
+way to represent and manipulate linear\\
+transformations, systems of equations, and structured data. A matrix is
+a rectangular array of numbers arranged in rows\\
+and columns.
 
 \subsubsection{Formal Definition}\label{formal-definition}
 
@@ -591,8 +616,8 @@ a_{m1} & a_{m2} & \cdots & a_{mn}
 \end{bmatrix}.\]
 
 Each entry \(a_{ij}\) is a scalar, located in the \emph{i}-th row and
-\emph{j}-th column. The size (or dimension) of the matrix is denoted by
-\(m \times n\).
+\emph{j}-th column. The size (or dimension) of the matrix is\\
+denoted by \(m \times n\).
 
 \begin{itemize}
 \item
@@ -607,7 +632,7 @@ Thus, vectors are simply special cases of matrices.
 
 \subsubsection{Examples}\label{examples}
 
-Example 2.1.1. A \(2 \times 3\) matrix:
+Example 2.1.1. A \$2 \textbackslash times 3\$ matrix:
 
 \[A = \begin{bmatrix}
 1 & -2 & 4 \\
@@ -617,7 +642,7 @@ Example 2.1.1. A \(2 \times 3\) matrix:
 Here, \(a_{12} = -2\), \(a_{23} = 5\), and the matrix has 2 rows, 3
 columns.
 
-Example 2.1.2. A \(3 \times 3\) square matrix:
+Example 2.1.2. A \$3 \textbackslash times 3\$ square matrix:
 
 \[B = \begin{bmatrix}
 2 & 0 & 1 \\
@@ -643,45 +668,56 @@ on \(\mathbb{R}^3\).
 
 Thus, a matrix is a function
 \(A: {1,\dots,m} \times {1,\dots,n} \to \mathbb{R}\), assigning a scalar
-to each row-column position.
+to each row-column\\
+position.
 
 \subsubsection{Why this matters}\label{why-this-matters-4}
 
 Matrices generalize vectors and give us a language for describing linear
-operations systematically. They encode systems of equations, rotations,
-projections, and transformations of data. With matrices, algebra and
-geometry come together: a single compact object can represent both
-numerical data and functional rules.
+operations systematically. They encode systems\\
+of equations, rotations, projections, and transformations of data. With
+matrices, algebra and geometry come together: a\\
+single compact object can represent both numerical data and functional
+rules.
 
 \subsubsection{Exercises 2.1}\label{exercises-21}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Write a \(3 \times 2\) matrix of your choice and identify its entries
-  \(a_{ij}\).
+  Write a \$3 \textbackslash times
+  2\( matrix of your choice and identify its entries \)a\_\{ij\}\$.
 \item
   Is every vector a matrix? Is every matrix a vector? Explain.
 \item
-  Which of the following are square matrices:
-  \(A \in \mathbb{R}^{4\times4}\), \(B \in \mathbb{R}^{3\times5}\),
-  \(C \in \mathbb{R}^{1\times1}\)?
+  Which of the following are square\\
+  matrices: \(A \in \mathbb{R}^{4\times4}\),
+  \(B \in \mathbb{R}^{3\times5}\), \(C \in \mathbb{R}^{1\times1}\)?
 \item
-  Let \(D = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}\). What kind of
-  matrix is this?
+  Let
+\end{enumerate}
+
+\[D = \begin{bmatrix} 1 & 0 \\\\ 0 & 1 \end{bmatrix}\]
+
+What kind of matrix is this?
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Consider the matrix
-  \(E = \begin{bmatrix} a & b \\ c & d \end{bmatrix}\). Express
-  \(e_{11}, e_{12}, e_{21}, e_{22}\) explicitly.
 \end{enumerate}
+
+\[E = \begin{bmatrix} a & b \\ c & d \end{bmatrix}\]
+
+Express \(e_{11}, e_{12}, e_{21}, e_{22}\) explicitly.
 
 \subsection{2.2 Matrix Addition and
 Multiplication}\label{22-matrix-addition-and-multiplication}
 
 Once matrices are defined, the next step is to understand how they
-combine. Just as vectors gain meaning through addition and scalar
-multiplication, matrices become powerful through two operations:
-addition and multiplication.
+combine. Just as vectors gain meaning through\\
+addition and scalar multiplication, matrices become powerful through two
+operations: addition and multiplication.
 
 \subsubsection{Matrix Addition}\label{matrix-addition}
 
@@ -712,16 +748,15 @@ Then
 \[A + B = \begin{bmatrix}
 1 + (-1) & 2 + 0 \\
 3 + 5 & 4 + 2
-\end{bmatrix}
-=
+\end{bmatrix} =
 \begin{bmatrix}
 0 & 2 \\
 8 & 6
 \end{bmatrix}.\]
 
 Matrix addition is commutative (\(A+B = B+A\)) and associative
-(\((A+B)+C = A+(B+C)\)). The zero matrix, with all entries 0, acts as
-the additive identity.
+(\((A+B)+C = A+(B+C)\)). The zero matrix, with all entries 0,\\
+acts as the additive identity.
 
 \subsubsection{Scalar Multiplication}\label{scalar-multiplication-2}
 
@@ -758,8 +793,8 @@ then their product is the \(m \times p\) matrix
 \[AB = C = [c_{ij}], \quad c_{ij} = \sum_{k=1}^n a_{ik} b_{kj}.\]
 
 Thus, the entry in the \(i\)-th row and \(j\)-th column of \(AB\) is the
-dot product of the \(i\)-th row of \(A\) with the \(j\)-th column of
-\(B\).
+dot product of the \(i\)-th row of \(A\) with the \(j\)-th\\
+column of \(B\).
 
 Example 2.2.3.\\
 Let
@@ -778,24 +813,23 @@ Then
 \[AB = \begin{bmatrix}
 1\cdot4 + 2\cdot2 & 1\cdot(-1) + 2\cdot5 \\
 0\cdot4 + 3\cdot2 & 0\cdot(-1) + 3\cdot5
-\end{bmatrix}
-=
+\end{bmatrix} =
 \begin{bmatrix}
 8 & 9 \\
 6 & 15
 \end{bmatrix}.\]
 
 Notice that matrix multiplication is not commutative in general:
-\(AB \neq BA\). Sometimes \(BA\) may not even be defined if dimensions
-do not align.
+\(AB \neq BA\). Sometimes \(BA\) may not even be defined if\\
+dimensions do not align.
 
 \subsubsection{Geometric Meaning}\label{geometric-meaning}
 
 Matrix multiplication corresponds to the composition of linear
-transformations. If \(A\) transforms vectors in \(\mathbb{R}^n\) and
-\(B\) transforms vectors in \(\mathbb{R}^p\), then \(AB\) represents
-applying \(B\) first, then \(A\). This makes matrices the algebraic
-language of transformations.
+transformations. If \(A\) transforms vectors\\
+in \(\mathbb{R}^n\) and \(B\) transforms vectors in \(\mathbb{R}^p\),
+then \(AB\) represents applying \(B\) first, then \(A\). This\\
+makes matrices the algebraic language of transformations.
 
 \subsubsection{Notation}\label{notation-5}
 
@@ -812,11 +846,12 @@ language of transformations.
 \subsubsection{Why this matters}\label{why-this-matters-5}
 
 Matrix multiplication is the core mechanism of linear algebra: it
-encodes how transformations combine, how systems of equations are
-solved, and how data flows in modern algorithms. Addition and scalar
-multiplication make matrices into a vector space, while multiplication
-gives them an algebraic structure rich enough to model geometry,
-computation, and networks.
+encodes how transformations combine, how systems of\\
+equations are solved, and how data flows in modern algorithms. Addition
+and scalar multiplication make matrices into a\\
+vector space, while multiplication gives them an algebraic structure
+rich enough to model geometry, computation, and\\
+networks.
 
 \subsubsection{Exercises 2.2}\label{exercises-22}
 
@@ -826,16 +861,19 @@ computation, and networks.
   Compute \(A+B\) for
 \end{enumerate}
 
-\[A = \begin{bmatrix} 2 & 3 \\ -1 & 0 \end{bmatrix}, \quad
-B = \begin{bmatrix} 4 & -2 \\ 5 & 7 \end{bmatrix}.\]
+\[A = \begin{bmatrix} 2 & 3 \\
+-1 & 0 \end{bmatrix}, \quad
+B = \begin{bmatrix} 4 & -2 \\
+5 & 7 \end{bmatrix}.\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Find \(3A\) where
+  Find \$3A\$ where
 \end{enumerate}
 
-\[A = \begin{bmatrix} 1 & -4 \\ 2 & 6 \end{bmatrix}.\]
+\[A = \begin{bmatrix} 1 & -4 \\
+2 & 6 \end{bmatrix}.\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -843,8 +881,11 @@ B = \begin{bmatrix} 4 & -2 \\ 5 & 7 \end{bmatrix}.\]
   Multiply
 \end{enumerate}
 
-\[A = \begin{bmatrix} 1 & 0 & 2 \\ -1 & 3 & 1 \end{bmatrix}, \quad
-B = \begin{bmatrix} 2 & 1 \\ 0 & -1 \\ 3 & 4 \end{bmatrix}.\]
+\[A = \begin{bmatrix} 1 & 0 & 2 \\
+-1 & 3 & 1 \end{bmatrix}, \quad
+B = \begin{bmatrix} 2 & 1 \\
+0 & -1 \\
+3 & 4 \end{bmatrix}.\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -858,20 +899,20 @@ B = \begin{bmatrix} 2 & 1 \\ 0 & -1 \\ 3 & 4 \end{bmatrix}.\]
 \subsection{2.3 Transpose and Inverse}\label{23-transpose-and-inverse}
 
 Two special operations on matrices-the transpose and the inverse-give
-rise to deep algebraic and geometric properties. The transpose
-rearranges a matrix by flipping it across its main diagonal, while the
-inverse, when it exists, acts as the undo operation for matrix
-multiplication.
+rise to deep algebraic and geometric properties.\\
+The transpose rearranges a matrix by flipping it across its main
+diagonal, while the inverse, when it exists, acts as\\
+the undo operation for matrix multiplication.
 
 \subsubsection{The Transpose}\label{the-transpose}
 
 The transpose of an \(m \times n\) matrix \(A = [a_{ij}]\) is the
-\(n \times m\) matrix \(A^T = [a_{ji}]\), obtained by swapping rows and
-columns.
+\(n \times m\) matrix \(A^T = [a_{ji}]\), obtained by swapping\\
+rows and columns.
 
 Formally,
 
-\[(A^T)_{ij} = a_{ji}.\]
+\[(A^T)\_{ij} = a\_{ji}.\]
 
 Example 2.3.1.\\
 If
@@ -894,13 +935,13 @@ Properties of the Transpose.
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \( (A^T)^T = A\).
+  \((A^T)^T = A\).
 \item
-  \( (A+B)^T = A^T + B^T\).
+  \((A+B)^T = A^T + B^T\).
 \item
-  \( (cA)^T = cA^T\), for scalar \(c\).
+  \((cA)^T = cA^T\), for scalar \(c\).
 \item
-  \( (AB)^T = B^T A^T\).
+  \((AB)^T = B^T A^T\).
 \end{enumerate}
 
 The last rule is crucial: the order reverses.
@@ -908,8 +949,8 @@ The last rule is crucial: the order reverses.
 \subsubsection{The Inverse}\label{the-inverse}
 
 A square matrix \(A \in \mathbb{R}^{n \times n}\) is said to be
-invertible (or nonsingular) if there exists another matrix \(A^{-1}\)
-such that
+invertible (or nonsingular) if there exists another\\
+matrix \(A^{-1}\) such that
 
 \[AA^{-1} = A^{-1}A = I_n,\]
 
@@ -917,7 +958,8 @@ where \(I_n\) is the \(n \times n\) identity matrix. In this case,
 \(A^{-1}\) is called the inverse of \(A\).
 
 Not every matrix is invertible. A necessary condition is that
-\(\det(A) \neq 0\), a fact that will be developed in Chapter 6.
+\(\det(A) \neq 0\), a fact that will be developed in Chapter\\
+6.
 
 Example 2.3.2.\\
 Let
@@ -933,8 +975,7 @@ inverse is
 \[A^{-1} = \frac{1}{\det(A)} \begin{bmatrix}
 4 & -2 \\
 -3 & 1
-\end{bmatrix}
-=
+\end{bmatrix} =
 \begin{bmatrix}
 -2 & 1 \\
 1.5 & -0.5
@@ -949,8 +990,7 @@ Verification:
 \begin{bmatrix}
 -2 & 1 \\
 1.5 & -0.5
-\end{bmatrix}
-=
+\end{bmatrix} =
 \begin{bmatrix}
 1 & 0 \\
 0 & 1
@@ -961,11 +1001,12 @@ Verification:
 \begin{itemize}
 \item
   The transpose corresponds to reflecting a linear transformation across
-  the diagonal. For vectors, it switches between row and column forms.
+  the diagonal. For vectors, it switches between\\
+  row and column forms.
 \item
   The inverse, when it exists, corresponds to reversing a linear
-  transformation. For example, if \(A\) scales and rotates vectors,
-  \(A^{-1}\) rescales and rotates them back.
+  transformation. For example, if \(A\) scales and rotates\\
+  vectors, \(A^{-1}\) rescales and rotates them back.
 \end{itemize}
 
 \subsubsection{Notation}\label{notation-6}
@@ -982,10 +1023,11 @@ Verification:
 \subsubsection{Why this matters}\label{why-this-matters-6}
 
 The transpose allows us to define symmetric and orthogonal matrices,
-central to geometry and numerical methods. The inverse underlies the
-solution of linear systems, encoding the idea of undoing a
-transformation. Together, these operations set the stage for
-determinants, eigenvalues, and orthogonalization.
+central to geometry and numerical methods. The\\
+inverse underlies the solution of linear systems, encoding the idea of
+undoing a transformation. Together, these\\
+operations set the stage for determinants, eigenvalues, and
+orthogonalization.
 
 \subsubsection{Exercises 2.3}\label{exercises-23}
 
@@ -1003,8 +1045,12 @@ determinants, eigenvalues, and orthogonalization.
   Verify that \((AB)^T = B^T A^T\) for
 \end{enumerate}
 
-\[A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}, \quad
-B = \begin{bmatrix} 3 & 4 \\ 5 & 6 \end{bmatrix}.\]
+\[A = \begin{bmatrix}
+1 & 2 \\
+0 & 1 \end{bmatrix}, \quad
+B = \begin{bmatrix}
+3 & 4 \\
+5 & 6 \end{bmatrix}.\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1012,7 +1058,9 @@ B = \begin{bmatrix} 3 & 4 \\ 5 & 6 \end{bmatrix}.\]
   Determine whether
 \end{enumerate}
 
-\[C = \begin{bmatrix} 2 & 1 \\ 4 & 2 \end{bmatrix}\]
+\[C = \begin{bmatrix}
+2 & 1 \\
+4 & 2 \end{bmatrix}\]
 
 is invertible. If so, find \(C^{-1}\).
 
@@ -1022,7 +1070,9 @@ is invertible. If so, find \(C^{-1}\).
   Find the inverse of
 \end{enumerate}
 
-\[D = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix},\]
+\[D = \begin{bmatrix}
+0 & 1 \\
+-1 & 0 \end{bmatrix},\]
 
 and explain its geometric action on vectors in the plane.
 
@@ -1036,9 +1086,9 @@ and explain its geometric action on vectors in the plane.
 \subsection{2.4 Special Matrices}\label{24-special-matrices}
 
 Certain matrices occur so frequently in theory and applications that
-they are given special names. Recognizing their properties allows us to
-simplify computations and understand the structure of linear
-transformations more clearly.
+they are given special names. Recognizing their\\
+properties allows us to simplify computations and understand the
+structure of linear transformations more clearly.
 
 \subsubsection{The Identity Matrix}\label{the-identity-matrix}
 
@@ -1078,18 +1128,26 @@ independently:
 Example 2.4.1.\\
 Let
 
-\[D = \begin{bmatrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & -1 \end{bmatrix}, \quad 
-\mathbf{x} = \begin{bmatrix} 1 \\ 4 \\ -2 \end{bmatrix}.\]
+\[D = \begin{bmatrix} 2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & -1 \end{bmatrix}, \quad
+\mathbf{x} = \begin{bmatrix}
+1 \\
+4 \\
+-2 \end{bmatrix}.\]
 
 Then
 
-\[D\mathbf{x} = \begin{bmatrix} 2 \\ 12 \\ 2 \end{bmatrix}.\]
+\[D\mathbf{x} = \begin{bmatrix}
+2 \\
+12 \\
+2 \end{bmatrix}.\]
 
 \subsubsection{Permutation Matrices}\label{permutation-matrices}
 
 A permutation matrix is obtained by permuting the rows of the identity
-matrix. Multiplying a vector by a permutation matrix reorders its
-coordinates.
+matrix. Multiplying a vector by a permutation\\
+matrix reorders its coordinates.
 
 Example 2.4.2.\\
 Let
@@ -1102,8 +1160,13 @@ Let
 
 Then
 
-\[P\begin{bmatrix} a \\ b \\ c \end{bmatrix} =
-\begin{bmatrix} b \\ a \\ c \end{bmatrix}.\]
+\[P\begin{bmatrix}
+a \\
+b \\
+c \end{bmatrix} =
+\begin{bmatrix} b \\
+a \\
+c \end{bmatrix}.\]
 
 Thus, \(P\) swaps the first two coordinates.
 
@@ -1117,13 +1180,10 @@ A matrix is symmetric if
 
 \[A^T = A,\]
 
-and skew-symmetric if
-
-\[A^T = -A.\]
-
+and skew-symmetric if\\
 Symmetric matrices appear in quadratic forms and optimization, while
-skew-symmetric matrices describe rotations and cross products in
-geometry.
+skew-symmetric matrices describe rotations and\\
+cross products in geometry.
 
 \subsubsection{Orthogonal Matrices}\label{orthogonal-matrices}
 
@@ -1132,8 +1192,8 @@ A square matrix \(Q\) is orthogonal if
 \[Q^T Q = QQ^T = I.\]
 
 Equivalently, the rows (and columns) of \(Q\) form an orthonormal set.
-Orthogonal matrices preserve lengths and angles; they represent
-rotations and reflections.
+Orthogonal matrices preserve lengths and angles;\\
+they represent rotations and reflections.
 
 Example 2.4.3.\\
 The rotation matrix in the plane:
@@ -1150,11 +1210,12 @@ is orthogonal, since
 \subsubsection{Why this matters}\label{why-this-matters-7}
 
 Special matrices serve as the building blocks of linear algebra.
-Identity matrices define the neutral element, diagonal matrices simplify
-computations, permutation matrices reorder data, symmetric and
-orthogonal matrices describe fundamental geometric structures. Much of
-modern applied mathematics reduces complex problems to operations
-involving these simple forms.
+Identity matrices define the neutral element, diagonal\\
+matrices simplify computations, permutation matrices reorder data,
+symmetric and orthogonal matrices describe\\
+fundamental geometric structures. Much of modern applied mathematics
+reduces complex problems to operations involving\\
+these simple forms.
 
 \subsubsection{Exercises 2.4}\label{exercises-24}
 
@@ -1172,13 +1233,19 @@ involving these simple forms.
   Verify that
 \end{enumerate}
 
-\[Q = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}\]
+\[Q = \begin{bmatrix}
+0 & 1 \\
+-1 & 0 \end{bmatrix}\]
 
 is orthogonal. What geometric transformation does it represent?\\
 5. Determine whether
 
-\[A = \begin{bmatrix} 2 & 3 \\ 3 & 2 \end{bmatrix}, \quad
-B = \begin{bmatrix} 0 & 5 \\ -5 & 0 \end{bmatrix}\]
+\[A = \begin{bmatrix}
+2 & 3 \\
+3 & 2 \end{bmatrix}, \quad
+B = \begin{bmatrix}
+0 & 5 \\
+-5 & 0 \end{bmatrix}\]
 
 are symmetric, skew-symmetric, or neither.
 
@@ -1189,15 +1256,17 @@ Equations}\label{chapter-3-systems-of-linear-equations}
 Solutions}\label{31-linear-systems-and-solutions}
 
 One of the central motivations for linear algebra is solving systems of
-linear equations. These systems arise naturally in science, engineering,
-and data analysis whenever multiple constraints interact. Matrices
-provide a compact language for expressing and solving them.
+linear equations. These systems arise naturally\\
+in science, engineering, and data analysis whenever multiple constraints
+interact. Matrices provide a compact language\\
+for expressing and solving them.
 
 \subsubsection{Linear Systems}\label{linear-systems}
 
 A linear system consists of equations where each unknown appears only to
-the first power and with no products between variables. A general system
-of \(m\) equations in \(n\) unknowns can be written as:
+the first power and with no products between\\
+variables. A general system of \(m\) equations in \(n\) unknowns can be
+written as:
 
 \begin{aligned}
 a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= b_1, \\
@@ -1252,21 +1321,33 @@ A linear system may have:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  No solution (inconsistent): The equations conflict.\\
-  Example:\\
-  \(
-  \begin{cases}
-  x + y = 1 \\
-  x + y = 2
-  \end{cases}
-  \)\\
-  has no solution.
+  No solution (inconsistent): The equations conflict. Example:
+\end{enumerate}
+
+\begin{cases}
+x + y = 1 \\
+x + y = 2
+\end{cases}
+
+This system has no solution.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Exactly one solution (unique): The system's equations intersect at a
   single point.\\
-  Example: The above system with coefficient matrix \(
-  \begin{bmatrix} 1 & 2 \\ 3 & -1 \end{bmatrix}
-  \) has a unique solution.
+  Example: The following coefficient matrix:
+\end{enumerate}
+
+\begin{bmatrix}
+1 & 2 \\
+3 & -1
+\end{bmatrix}
+
+has a unique solution.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Infinitely many solutions: The equations describe overlapping
   constraints (e.g., multiple equations representing the same line or
@@ -1282,11 +1363,13 @@ Interpretation}\label{geometric-interpretation-2}
 \begin{itemize}
 \item
   In \(\mathbb{R}^2\), each linear equation represents a line. Solving a
-  system means finding intersection points of lines.
+  system means finding intersection points of\\
+  lines.
 \item
   In \(\mathbb{R}^3\), each equation represents a plane. A system may
-  have no solution (parallel planes), one solution (a unique
-  intersection point), or infinitely many (a line of intersection).
+  have no solution (parallel planes), one solution (a\\
+  unique intersection point), or infinitely many (a line of
+  intersection).
 \item
   In higher dimensions, the picture generalizes: solutions form
   intersections of hyperplanes.
@@ -1295,68 +1378,85 @@ Interpretation}\label{geometric-interpretation-2}
 \subsubsection{Why this matters}\label{why-this-matters-8}
 
 Linear systems are the practical foundation of linear algebra. They
-appear in balancing chemical reactions, circuit analysis, least-squares
-regression, optimization, and computer graphics. Understanding how to
-represent and classify their solutions is the first step toward
-systematic solution methods like Gaussian elimination.
+appear in balancing chemical reactions, circuit\\
+analysis, least-squares regression, optimization, and computer graphics.
+Understanding how to represent and classify\\
+their solutions is the first step toward systematic solution methods
+like Gaussian elimination.
 
 \subsubsection{Exercises 3.1}\label{exercises-31}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Write the following system in matrix form:\\
-  \(
-  \begin{cases}
-  2x + 3y - z = 7, \\
-  x - y + 4z = 1, \\
-  3x + 2y + z = 5
-  \end{cases}
-  \)
-\item
-  Determine whether the system\\
-  \(
-  \begin{cases}
-  x + y = 1, \\
-  2x + 2y = 2
-  \end{cases}
-  \)\\
-  has no solution, one solution, or infinitely many solutions.
-\item
-  Geometrically interpret the system\\
-  \(
-  \begin{cases}
-  x + y = 3, \\
-  x - y = 1
-  \end{cases}
-  \)\\
-  in the plane.
-\item
-  Solve the system\\
-  \(
-  \begin{cases}
-  2x + y = 1, \\
-  x - y = 4
-  \end{cases}
-  \)\\
-  and check your solution.
-\item
-  In \(\mathbb{R}^3\), describe the solution set of\\
-  \(
-  \begin{cases}
-  x + y + z = 0, \\
-  2x + 2y + 2z = 0
-  \end{cases}
-  \).\\
-  What geometric object does it represent?
+  Write the following system in matrix form:
 \end{enumerate}
+
+\begin{cases}
+2x + 3y - z = 7, \\
+x - y + 4z = 1, \\
+3x + 2y + z = 5
+\end{cases}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Determine whether the system
+\end{enumerate}
+
+\begin{cases}
+x + y = 1, \\
+2x + 2y = 2
+\end{cases}
+
+has no solution, one solution, or infinitely many solutions.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Geometrically interpret the system
+\end{enumerate}
+
+\begin{cases}
+x + y = 3, \\
+x - y = 1
+\end{cases}
+
+in the plane.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Solve the system
+\end{enumerate}
+
+\begin{cases}
+2x + y = 1, \\
+x - y = 4
+\end{cases}
+
+and check your solution.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  In \(\mathbb{R}^3\), describe the solution set of
+\end{enumerate}
+
+\begin{cases}
+x + y + z = 0, \\
+2x + 2y + 2z = 0
+\end{cases}
+
+What geometric object does it represent?
 
 \subsection{3.2 Gaussian Elimination}\label{32-gaussian-elimination}
 
 To solve linear systems efficiently, we use Gaussian elimination: a
-systematic method of transforming a system into a simpler equivalent one
-whose solutions are easier to see. The method relies on elementary row
-operations that preserve the solution set.
+systematic method of transforming a system into a\\
+simpler equivalent one whose solutions are easier to see. The method
+relies on elementary row operations that preserve\\
+the solution set.
 
 \subsubsection{Elementary Row
 Operations}\label{elementary-row-operations}
@@ -1388,13 +1488,15 @@ A matrix is in row echelon form (REF) if:
   All nonzero rows are above any zero rows.
 \item
   Each leading entry (the first nonzero number from the left in a row)
-  is to the right of the leading entry in the row above.
+  is to the right of the leading entry in the row\\
+  above.
 \item
   All entries below a leading entry are zero.
 \end{enumerate}
 
 Further, if each leading entry is 1 and is the only nonzero entry in its
-column, the matrix is in reduced row echelon form (RREF).
+column, the matrix is in reduced row echelon\\
+form (RREF).
 
 \subsubsection{Algorithm of Gaussian
 Elimination}\label{algorithm-of-gaussian-elimination}
@@ -1473,78 +1575,87 @@ Divide row 3 by -2:
 
 Step 5. Back substitution
 
-From the last row:\\
-\(
-z = \tfrac{11}{3}.
-\)
+From the last row:
 
-Second row:\\
-\(
-y - z = -\tfrac{1}{3} \implies y = -\tfrac{1}{3} + \tfrac{11}{3} = \tfrac{10}{3}.
-\)
+\[z = \tfrac{11}{3}.\]
 
-First row:\\
-\(
-x + 2y - z = 3 \implies x + 2\cdot\tfrac{10}{3} - \tfrac{11}{3} = 3.
-\)
+Second row:
 
-So\\
-\(
-x + \tfrac{20}{3} - \tfrac{11}{3} = 3 \implies x + 3 = 3 \implies x = 0.
-\)
+\[y - z = -\tfrac{1}{3} \implies y = -\tfrac{1}{3} + \tfrac{11}{3} = \tfrac{10}{3}.\]
 
-Solution:\\
-\(
-(x,y,z) = \big(0, \tfrac{10}{3}, \tfrac{11}{3}\big).
-\)
+First row:
+
+\[x + 2y - z = 3 \implies x + 2\cdot\tfrac{10}{3} - \tfrac{11}{3} = 3.\]
+
+So
+
+\[x + \tfrac{20}{3} - \tfrac{11}{3} = 3 \implies x + 3 = 3 \implies x = 0.\]
+
+Solution:
+
+\[(x,y,z) = \big(0, \tfrac{10}{3}, \tfrac{11}{3}\big).\]
 
 \subsubsection{Why this matters}\label{why-this-matters-9}
 
 Gaussian elimination is the foundation of computational linear algebra.
-It reduces complex systems to a form where solutions are visible, and it
-forms the basis for algorithms used in numerical analysis, scientific
-computing, and machine learning.
+It reduces complex systems to a form where\\
+solutions are visible, and it forms the basis for algorithms used in
+numerical analysis, scientific computing, and\\
+machine learning.
 
 \subsubsection{Exercises 3.2}\label{exercises-32}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Solve by Gaussian elimination:\\
-  \(
-  \begin{cases}
-  x + y = 2, \\
-  2x - y = 0.
-  \end{cases}
-  \)
+  Solve by Gaussian elimination:
+\end{enumerate}
+
+\begin{cases}
+x + y = 2, \\
+2x - y = 0.
+\end{cases}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
-  Reduce the following augmented matrix to REF:\\
-  \(
-  \left[\begin{array}{ccc|c}
-  1 & 1 & 1 & 6 \\
-  2 & -1 & 3 & 14 \\
-  1 & 4 & -2 & -2
-  \end{array}\right].
-  \)
+  Reduce the following augmented matrix to REF:
+\end{enumerate}
+
+\[\left[\begin{array}{ccc|c}
+1 & 1 & 1 & 6 \\
+2 & -1 & 3 & 14 \\
+1 & 4 & -2 & -2
+\end{array}\right].\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Show that Gaussian elimination always produces either:
+\end{enumerate}
 
-  \begin{itemize}
-  \item
-    a unique solution,
-  \item
-    infinitely many solutions, or
-  \item
-    a contradiction (no solution).
-  \end{itemize}
+\begin{itemize}
 \item
-  Use Gaussian elimination to find all solutions of\\
-  \(
-  \begin{cases}
-  x + y + z = 0, \\
-  2x + y + z = 1.
-  \end{cases}
-  \)
+  a unique solution,
+\item
+  infinitely many solutions, or
+\item
+  a contradiction (no solution).
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Use Gaussian elimination to find all solutions of
+\end{enumerate}
+
+\begin{cases}
+x + y + z = 0, \\
+2x + y + z = 1.
+\end{cases}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Explain why pivoting (choosing the largest available pivot element) is
   useful in numerical computation.
@@ -1553,16 +1664,17 @@ computing, and machine learning.
 \subsection{3.3 Rank and Consistency}\label{33-rank-and-consistency}
 
 Gaussian elimination not only provides solutions but also reveals the
-structure of a linear system. Two key ideas are the rank of a matrix and
-the consistency of a system. Rank measures the amount of independent
-information in the equations, while consistency determines whether the
-system has at least one solution.
+structure of a linear system. Two key ideas are\\
+the rank of a matrix and the consistency of a system. Rank measures the
+amount of independent information in the\\
+equations, while consistency determines whether the system has at least
+one solution.
 
 \subsubsection{Rank of a Matrix}\label{rank-of-a-matrix}
 
 The rank of a matrix is the number of leading pivots in its row echelon
-form. Equivalently, it is the maximum number of linearly independent
-rows or columns.
+form. Equivalently, it is the maximum number of\\
+linearly independent rows or columns.
 
 Formally,
 
@@ -1638,7 +1750,8 @@ Row reduction gives
 \end{array}\right].\]
 
 Here, \(\text{rank}(A) = 1\), but \(\text{rank}(A|\mathbf{b}) = 2\).
-Since the ranks differ, the system is inconsistent: no solution exists.
+Since the ranks differ, the system is inconsistent: no\\
+solution exists.
 
 \subsubsection{Example with Infinite
 Solutions}\label{example-with-infinite-solutions}
@@ -1664,10 +1777,11 @@ infinitely many solutions exist, forming a line.
 \subsubsection{Why this matters}\label{why-this-matters-10}
 
 Rank is a measure of independence: it tells us how many truly distinct
-equations or directions are present. Consistency explains when equations
-align versus when they contradict. These concepts connect linear systems
-to vector spaces and prepare for the ideas of dimension, basis, and the
-Rank--Nullity Theorem.
+equations or directions are present. Consistency\\
+explains when equations align versus when they contradict. These
+concepts connect linear systems to vector spaces and\\
+prepare for the ideas of dimension, basis, and the Rank--Nullity
+Theorem.
 
 \subsubsection{Exercises 3.3}\label{exercises-33}
 
@@ -1703,7 +1817,8 @@ is consistent.
   Show that the rank of the identity matrix \(I_n\) is \(n\).
 \item
   Give an example of a system in \(\mathbb{R}^3\) with infinitely many
-  solutions, and explain why it satisfies the rank condition.
+  solutions, and explain why it satisfies the rank\\
+  condition.
 \item
   Prove that for any matrix \(A \in \mathbb{R}^{m \times n}\),\\
   \(
@@ -1739,7 +1854,8 @@ the rank of the coefficient matrix:
 \[\text{rank}(A) < n.\]
 
 In this case, there are infinitely many solutions, forming a subspace of
-\(\mathbb{R}^n\). The dimension of this solution space is
+\(\mathbb{R}^n\). The dimension of this solution\\
+space is
 
 \[\dim(\text{null}(A)) = n - \text{rank}(A),\]
 
@@ -1816,10 +1932,10 @@ known as the nullity.
 \subsubsection{Why this matters}\label{why-this-matters-11}
 
 Homogeneous systems are central to understanding vector spaces,
-subspaces, and dimension. They lead directly to the concepts of kernel,
-null space, and linear dependence. In applications, homogeneous systems
-appear in equilibrium problems, eigenvalue equations, and computer
-graphics transformations.
+subspaces, and dimension. They lead directly to the\\
+concepts of kernel, null space, and linear dependence. In applications,
+homogeneous systems appear in equilibrium\\
+problems, eigenvalue equations, and computer graphics transformations.
 
 \subsubsection{Exercises 3.4}\label{exercises-34}
 
@@ -1853,15 +1969,16 @@ x - y + z = 0, \\
   Show that the solution set of any homogeneous system is a subspace of
   \(\mathbb{R}^n\).
 \item
-  Suppose \(A\) is a \(3 \times 3\) matrix with \(\text{rank}(A) = 2\).
-  What is the dimension of the null space of \(A\)?
+  Suppose \(A\) is a \$3 \textbackslash times
+  3\( matrix with \)\textbackslash text\{rank\}(A) =
+  2\(. What is the dimension of the null space of \)A\$?
 \item
   For
 \end{enumerate}
 
 \[A = \begin{bmatrix} 1 & 2 & -1 \\ 0 & 1 & 3 \end{bmatrix},\]
 
-compute a basis for the null space of \(A\).
+compute a basis for the null space of \(A\).\\
 
 \section{Chapter 4. Vector Spaces}\label{chapter-4-vector-spaces}
 
@@ -1869,11 +1986,12 @@ compute a basis for the null space of \(A\).
 Space}\label{41-definition-of-a-vector-space}
 
 Up to now we have studied vectors and matrices concretely in
-\(\mathbb{R}^n\). The next step is to move beyond coordinates and define
-vector spaces in full generality. A vector space is an abstract setting
-where the familiar rules of addition and scalar multiplication hold,
-regardless of whether the elements are geometric vectors, polynomials,
-functions, or other objects.
+\(\mathbb{R}^n\). The next step is to move beyond coordinates\\
+and define vector spaces in full generality. A vector space is an
+abstract setting where the familiar rules of addition\\
+and scalar multiplication hold, regardless of whether the elements are
+geometric vectors, polynomials, functions, or\\
+other objects.
 
 \subsubsection{Formal Definition}\label{formal-definition-2}
 
@@ -1887,12 +2005,13 @@ equipped with two operations:
   vector \(\mathbf{u} + \mathbf{v} \in V\).
 \item
   Scalar multiplication: For any scalar \(c \in \mathbb{R}\) and any
-  \(\mathbf{v} \in V\), there is a vector \(c\mathbf{v} \in V\).
+  \(\mathbf{v} \in V\), there is a\\
+  vector \(c\mathbf{v} \in V\).
 \end{enumerate}
 
 These operations must satisfy the following axioms (for all
-\(\mathbf{u}, \mathbf{v}, \mathbf{w} \in V\) and all scalars
-\(a,b \in \mathbb{R}\)):
+\(\mathbf{u}, \mathbf{v}, \mathbf{w} \in V\) and all\\
+scalars \(a,b \in \mathbb{R}\)):
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1907,13 +2026,14 @@ These operations must satisfy the following axioms (for all
   such that \(\mathbf{v} + \mathbf{0} = \mathbf{v}\).
 \item
   Additive inverses: For each \(\mathbf{v} \in V\), there exists
-  \((-\mathbf{v} \in V\) such that
-  \(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\).
+  \((-\mathbf{v} \in V\) such\\
+  that \(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\).
 \item
   Compatibility of scalar multiplication:
   \(a(b\mathbf{v}) = (ab)\mathbf{v}\).
 \item
-  Identity element of scalars: \(1 \cdot \mathbf{v} = \mathbf{v}\).
+  Identity element of scalars: \$1 \textbackslash cdot
+  \textbackslash mathbf\{v\} = \textbackslash mathbf\{v\}\$.
 \item
   Distributivity over vector addition:
   \(a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}\).
@@ -1929,42 +2049,43 @@ vector space.
 
 Example 4.1.1. Standard Euclidean space\\
 \(\mathbb{R}^n\) with ordinary addition and scalar multiplication is a
-vector space. This is the model case from which the axioms are
-abstracted.
+vector space. This is the model case from which the\\
+axioms are abstracted.
 
 Example 4.1.2. Polynomials\\
 The set of all polynomials with real coefficients, denoted
-\(\mathbb{R}[x]\), forms a vector space. Addition and scalar
+\(\mathbb{R}[x]\), forms a vector space. Addition and scalar\\
 multiplication are defined term by term.
 
 Example 4.1.3. Functions\\
 The set of all real-valued functions on an interval, e.g.
-\(f: [0,1] \to \mathbb{R}\), forms a vector space, since functions can
-be added and scaled pointwise.
+\(f: [0,1] \to \mathbb{R}\), forms a vector space, since\\
+functions can be added and scaled pointwise.
 
 \subsubsection{Non-Examples}\label{non-examples}
 
 Not every set with operations qualifies. For instance, the set of
-positive real numbers under usual addition is not a vector space,
-because additive inverses (negative numbers) are missing. The axioms
-must all hold.
+positive real numbers under usual addition is not a\\
+vector space, because additive inverses (negative numbers) are missing.
+The axioms must all hold.
 
 \subsubsection{Geometric
 Interpretation}\label{geometric-interpretation-4}
 
 In familiar cases like \(\mathbb{R}^2\) or \(\mathbb{R}^3\), vector
-spaces provide the stage for geometry: vectors can be added, scaled, and
-combined to form lines, planes, and higher-dimensional structures. In
-abstract settings like function spaces, the same algebraic rules let us
-apply geometric intuition to infinite-dimensional problems.
+spaces provide the stage for geometry: vectors can be\\
+added, scaled, and combined to form lines, planes, and
+higher-dimensional structures. In abstract settings like function\\
+spaces, the same algebraic rules let us apply geometric intuition to
+infinite-dimensional problems.
 
 \subsubsection{Why this matters}\label{why-this-matters-12}
 
 The concept of vector space unifies seemingly different mathematical
-objects under a single framework. Whether dealing with forces in
-physics, signals in engineering, or data in machine learning, the common
-language of vector spaces allows us to use the same techniques
-everywhere.
+objects under a single framework. Whether dealing\\
+with forces in physics, signals in engineering, or data in machine
+learning, the common language of vector spaces allows\\
+us to use the same techniques everywhere.
 
 \subsubsection{Exercises 4.1}\label{exercises-41}
 
@@ -1975,10 +2096,12 @@ everywhere.
   multiplication satisfies all eight vector space axioms.
 \item
   Show that the set of integers \(\mathbb{Z}\) with ordinary operations
-  is not a vector space over \(\mathbb{R}\). Which axiom fails?
+  is not a vector space over \(\mathbb{R}\). Which\\
+  axiom fails?
 \item
   Consider the set of all polynomials of degree at most 3. Show it forms
-  a vector space over \(\mathbb{R}\). What is its dimension?
+  a vector space over \(\mathbb{R}\). What is its\\
+  dimension?
 \item
   Give an example of a vector space where the vectors are not geometric
   objects.
@@ -1989,8 +2112,9 @@ everywhere.
 \subsection{4.2 Subspaces}\label{42-subspaces}
 
 A subspace is a smaller vector space living inside a larger one. Just as
-lines and planes naturally sit inside three-dimensional space, subspaces
-generalize these ideas to higher dimensions and more abstract settings.
+lines and planes naturally sit inside\\
+three-dimensional space, subspaces generalize these ideas to higher
+dimensions and more abstract settings.
 
 \subsubsection{Definition}\label{definition-2}
 
@@ -2006,8 +2130,8 @@ subspace of \(V\) if:
   \(\mathbf{u} + \mathbf{v} \in W\) (closed under addition),
 \item
   For all scalars \(c \in \mathbb{R}\) and vectors \(\mathbf{v} \in W\),
-  the product \(c\mathbf{v} \in W\) (closed under scalar
-  multiplication).
+  the product \(c\mathbf{v} \in W\) (closed under\\
+  scalar multiplication).
 \end{enumerate}
 
 If these hold, then \(W\) is itself a vector space with the inherited
@@ -2021,7 +2145,8 @@ The set
 \[W = \{ (t, 2t) \mid t \in \mathbb{R} \}\]
 
 is a subspace of \(\mathbb{R}^2\). It contains the zero vector, is
-closed under addition, and is closed under scalar multiplication.
+closed under addition, and is closed under scalar\\
+multiplication.
 
 Example 4.2.2. The x--y plane in \(\mathbb{R}^3\)\\
 The set
@@ -2029,7 +2154,8 @@ The set
 \[W = \{ (x, y, 0) \mid x,y \in \mathbb{R} \}\]
 
 is a subspace of \(\mathbb{R}^3\). It is the collection of all vectors
-lying in the plane through the origin parallel to the x--y plane.
+lying in the plane through the origin parallel to\\
+the x--y plane.
 
 Example 4.2.3. Null space of a matrix\\
 For a matrix \(A \in \mathbb{R}^{m \times n}\), the null space
@@ -2046,11 +2172,12 @@ Not every subset is a subspace.
 \begin{itemize}
 \item
   The set \({ (x,y) \in \mathbb{R}^2 \mid x \geq 0 }\) is not a
-  subspace: it is not closed under scalar multiplication (a negative
-  scalar breaks the condition).
+  subspace: it is not closed under scalar multiplication (a\\
+  negative scalar breaks the condition).
 \item
   Any line in \(\mathbb{R}^2\) that does not pass through the origin is
-  not a subspace, because it does not contain \(\mathbf{0}\).
+  not a subspace, because it does not\\
+  contain \(\mathbf{0}\).
 \end{itemize}
 
 \subsubsection{Geometric
@@ -2064,7 +2191,8 @@ Subspaces are the linear structures inside vector spaces.
   through the origin, or the entire plane.
 \item
   In \(\mathbb{R}^3\), the subspaces are: the zero vector, any line
-  through the origin, any plane through the origin, or the entire space.
+  through the origin, any plane through the origin, or\\
+  the entire space.
 \item
   In higher dimensions, the same principle applies: subspaces are the
   flat linear pieces through the origin.
@@ -2073,9 +2201,10 @@ Subspaces are the linear structures inside vector spaces.
 \subsubsection{Why this matters}\label{why-this-matters-13}
 
 Subspaces capture the essential structure of linear problems. Column
-spaces, row spaces, and null spaces are all subspaces. Much of linear
-algebra consists of understanding how these subspaces intersect, span,
-and complement each other.
+spaces, row spaces, and null spaces are all\\
+subspaces. Much of linear algebra consists of understanding how these
+subspaces intersect, span, and complement each\\
+other.
 
 \subsubsection{Exercises 4.2}\label{exercises-42}
 
@@ -2095,23 +2224,32 @@ and complement each other.
   For the matrix
 \end{enumerate}
 
-\[A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix},\]
+\[A = \begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix}\]
 
-describe the null space of \(A\) as a subspace of \(\mathbb{R}^3\).\\
-5. List all possible subspaces of \(\mathbb{R}^2\).
+Describe the null space of \(A\) as a subspace of \(\mathbb{R}^3\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  List all possible subspaces of \(\mathbb{R}^2\).
+\end{enumerate}
 
 \subsection{4.3 Span, Basis, Dimension}\label{43-span-basis-dimension}
 
 The ideas of span, basis, and dimension provide the language for
-describing the size and structure of subspaces. Together, they tell us
-how a vector space is generated, how many building blocks it requires,
-and how those blocks can be chosen.
+describing the size and structure of subspaces.\\
+Together, they tell us how a vector space is generated, how many
+building blocks it requires, and how those blocks can be chosen.
 
 \subsubsection{Span}\label{span}
 
 Given a set of vectors
 \({\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k} \subseteq V\), the
-span is the collection of all linear combinations:
+span is the collection of\\
+all linear combinations:
 
 \[\text{span}\{\mathbf{v}_1, \dots, \mathbf{v}_k\} = \{ c_1\mathbf{v}_1 + \cdots + c_k\mathbf{v}_k \mid c_i \in \mathbb{R} \}.\]
 
@@ -2150,8 +2288,8 @@ form a basis. Every vector \((x,y,z)\) can be uniquely written as
 \subsubsection{Dimension}\label{dimension}
 
 The dimension of a vector space \(V\), written \(\dim(V)\), is the
-number of vectors in any basis of \(V\). This number is well-defined:
-all bases of a vector space have the same cardinality.
+number of vectors in any basis of \(V\). This number is\\
+well-defined: all bases of a vector space have the same cardinality.
 
 Examples 4.3.3.
 
@@ -2184,10 +2322,11 @@ terms of span, basis, and dimension.
 \subsubsection{Why this matters}\label{why-this-matters-14}
 
 These concepts classify vector spaces and subspaces in terms of size and
-structure. Many theorems in linear algebra-such as the Rank--Nullity
-Theorem-are consequences of understanding span, basis, and dimension. In
-practical terms, bases are how we encode data in coordinates, and
-dimension tells us how much freedom a system truly has.
+structure. Many theorems in linear algebra-such\\
+as the Rank--Nullity Theorem-are consequences of understanding span,
+basis, and dimension. In practical terms, bases are\\
+how we encode data in coordinates, and dimension tells us how much
+freedom a system truly has.
 
 \subsubsection{Exercises 4.3}\label{exercises-43}
 
@@ -2213,10 +2352,11 @@ dimension tells us how much freedom a system truly has.
 \subsection{4.4 Coordinates}\label{44-coordinates}
 
 Once a basis for a vector space is chosen, every vector can be expressed
-uniquely as a linear combination of the basis vectors. The coefficients
-in this combination are called the coordinates of the vector relative to
-that basis. Coordinates allow us to move between the abstract world of
-vector spaces and the concrete world of numbers.
+uniquely as a linear combination of the basis\\
+vectors. The coefficients in this combination are called the coordinates
+of the vector relative to that basis.\\
+Coordinates allow us to move between the abstract world of vector spaces
+and the concrete world of numbers.
 
 \subsubsection{Coordinates Relative to a
 Basis}\label{coordinates-relative-to-a-basis}
@@ -2255,7 +2395,8 @@ c_1 + c_2 = 3, \\
 c_1 - c_2 = 1.
 \end{cases}
 
-Adding: \(2c_1 = 4 \implies c_1 = 2\). Then \(c_2 = 1\).
+Adding: \$2c\_1 = 4 \textbackslash implies c\_1 = 2\(. Then \)c\_2 =
+1\$.
 
 So,
 
@@ -2268,7 +2409,8 @@ In \(\mathbb{R}^n\), the standard basis is
 \[\mathbf{e}_1 = (1,0,\dots,0), \quad \mathbf{e}_2 = (0,1,0,\dots,0), \dots, \mathbf{e}_n = (0,\dots,0,1).\]
 
 Relative to this basis, the coordinates of a vector are simply its
-entries. Thus, column vectors are coordinate representations by default.
+entries. Thus, column vectors are coordinate\\
+representations by default.
 
 \subsubsection{Change of Basis}\label{change-of-basis}
 
@@ -2279,7 +2421,7 @@ If \(\mathcal{B} = {\mathbf{v}_1, \dots, \mathbf{v}_n}\) is a basis of
 
 with basis vectors as columns. For any vector \(\mathbf{u}\),
 
-\[\mathbf{u} = P[\mathbf{u}]_{\mathcal{B}}, \qquad [\mathbf{u}]_{\mathcal{B}} = P^{-1}\mathbf{u}.\]
+\[\mathbf{u} = P [\mathbf{u}]_{\mathcal{B}}, \qquad [\mathbf{u}]_{\mathcal{B}} = P^{-1}\mathbf{u}.\]
 
 Thus, switching between bases reduces to matrix multiplication.
 
@@ -2287,18 +2429,18 @@ Thus, switching between bases reduces to matrix multiplication.
 Interpretation}\label{geometric-interpretation-7}
 
 Coordinates are the address of a vector relative to a chosen set of
-directions. Different bases are like different coordinate systems:
-Cartesian, rotated, skewed, or scaled. The same vector may look very
-different numerically depending on the basis, but its geometric identity
-is unchanged.
+directions. Different bases are like different\\
+coordinate systems: Cartesian, rotated, skewed, or scaled. The same
+vector may look very different numerically depending\\
+on the basis, but its geometric identity is unchanged.
 
 \subsubsection{Why this matters}\label{why-this-matters-15}
 
 Coordinates turn abstract vectors into concrete numerical data. Changing
-basis is the algebraic language for rotations of axes, diagonalization
-of matrices, and principal component analysis in data science. Mastery
-of coordinates is essential for moving fluidly between geometry,
-algebra, and computation.
+basis is the algebraic language for rotations\\
+of axes, diagonalization of matrices, and principal component analysis
+in data science. Mastery of coordinates is\\
+essential for moving fluidly between geometry, algebra, and computation.
 
 \subsubsection{Exercises 4.4}\label{exercises-44}
 
@@ -2327,9 +2469,10 @@ Transformations}\label{chapter-5-linear-transformations}
 Linearity}\label{51-functions-that-preserve-linearity}
 
 A central theme of linear algebra is understanding linear
-transformations: functions between vector spaces that preserve their
-algebraic structure. These transformations generalize the idea of matrix
-multiplication and capture the essence of linear behavior.
+transformations: functions between vector spaces that preserve\\
+their algebraic structure. These transformations generalize the idea of
+matrix multiplication and capture the essence of\\
+linear behavior.
 
 \subsubsection{Definition}\label{definition-3}
 
@@ -2338,19 +2481,24 @@ Let \(V\) and \(W\) be vector spaces over \(\mathbb{R}\). A function
 \[T : V \to W\]
 
 is called a linear transformation (or linear map) if for all vectors
-\(\mathbf{u}, \mathbf{v} \in V\) and all scalars \(c \in \mathbb{R}\):
+\(\mathbf{u}, \mathbf{v} \in V\) and all\\
+scalars \(c \in \mathbb{R}\):
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
   Additivity:
+\end{enumerate}
 
-  \[T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}),\]
+\[T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}),\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Homogeneity:
-
-  \[T(c\mathbf{u}) = cT(\mathbf{u}).\]
 \end{enumerate}
+
+\[T(c\mathbf{u}) = cT(\mathbf{u}).\]
 
 If both conditions hold, then \(T\) automatically respects linear
 combinations:
@@ -2367,7 +2515,8 @@ Let \(T:\mathbb{R}^2 \to \mathbb{R}^2\) be defined by
 This doubles the length of every vector, preserving direction. It is
 linear.
 
-Example 5.1.2. Rotation.\\
+Example 5.1.2. Rotation.
+
 Let \(R_\theta: \mathbb{R}^2 \to \mathbb{R}^2\) be
 
 \[R_\theta(x,y) = (x\cos\theta - y\sin\theta, \; x\sin\theta + y\cos\theta).\]
@@ -2375,10 +2524,13 @@ Let \(R_\theta: \mathbb{R}^2 \to \mathbb{R}^2\) be
 This rotates vectors by angle \(\theta\). It satisfies additivity and
 homogeneity, hence is linear.
 
-Example 5.1.3. Differentiation.\\
+Example 5.1.3. Differentiation.
+
 Let \(D: \mathbb{R}[x] \to \mathbb{R}[x]\) be differentiation:
-\(D(p(x)) = p'(x)\). Since derivatives respect addition and scalar
-multiples, differentiation is a linear transformation.
+\(D(p(x)) = p'(x)\).
+
+Since derivatives respect addition and scalar multiples, differentiation
+is a linear transformation.
 
 \subsubsection{Non-Example}\label{non-example}
 
@@ -2394,18 +2546,18 @@ general.
 Interpretation}\label{geometric-interpretation-8}
 
 Linear transformations are exactly those that preserve the origin, lines
-through the origin, and proportions along those lines. They include
-familiar operations: scaling, rotations, reflections, shears, and
-projections. Nonlinear transformations bend or curve space, breaking
-these properties.
+through the origin, and proportions along those\\
+lines. They include familiar operations: scaling, rotations,
+reflections, shears, and projections. Nonlinear\\
+transformations bend or curve space, breaking these properties.
 
 \subsubsection{Why this matters}\label{why-this-matters-16}
 
 Linear transformations unify geometry, algebra, and computation. They
-explain how matrices act on vectors, how data can be rotated or
-projected, and how systems evolve under linear rules. Much of linear
-algebra is devoted to understanding these transformations, their
-representations, and their invariants.
+explain how matrices act on vectors, how data can\\
+be rotated or projected, and how systems evolve under linear rules. Much
+of linear algebra is devoted to understanding\\
+these transformations, their representations, and their invariants.
 
 \subsubsection{Exercises 5.1}\label{exercises-51}
 
@@ -2424,32 +2576,38 @@ representations, and their invariants.
   \(\mathbb{R}^2\).
 \item
   Let \(T:\mathbb{R}[x] \to \mathbb{R}[x]\) be integration:
-
-  \[T(p(x)) = \int_0^x p(t)\,dt.\]
-
-  Prove that \(T\) is a linear transformation.
 \end{enumerate}
+
+\[T(p(x)) = \int_0^x p(t)\\,dt.\]
+
+Prove that \(T\) is a linear transformation.
 
 \subsection{5.2 Matrix Representation of Linear
 Maps}\label{52-matrix-representation-of-linear-maps}
 
 Every linear transformation between finite-dimensional vector spaces can
-be represented by a matrix. This correspondence is one of the central
-insights of linear algebra: it lets us use the tools of matrix
-arithmetic to study abstract transformations.
+be represented by a matrix. This correspondence\\
+is one of the central insights of linear algebra: it lets us use the
+tools of matrix arithmetic to study abstract\\
+transformations.
 
 \subsubsection{From Linear Map to
 Matrix}\label{from-linear-map-to-matrix}
 
 Let \(T: \mathbb{R}^n \to \mathbb{R}^m\) be a linear transformation.
-Choose the standard basis \(\{ \mathbf{e}_1, \dots, \mathbf{e}_n \}\) of
-\(\mathbb{R}^n\), where \(\mathbf{e}_i\) has a 1 in the \(i\)-th
-position and 0 elsewhere.
+Choose the standard\\
+basis \(\{ \mathbf{e}_1, \dots, \mathbf{e}_n \}\) of \(\mathbb{R}^n\),
+where \(\mathbf{e}_i\) has a 1 in the \(i\)-th position\\
+and 0 elsewhere.
 
 The action of \(T\) on each basis vector determines the entire
 transformation:
 
-\[T(\mathbf{e}_j) = \begin{bmatrix} a_{1j} \\ a_{2j} \\ \vdots \\ a_{mj} \end{bmatrix}.\]
+\[T(\mathbf{e}\_j) = \begin{bmatrix}
+a_{1j} \\
+a_{2j} \\
+\vdots \\
+a_{mj} \end{bmatrix}.\]
 
 Placing these outputs as columns gives the matrix of \(T\):
 
@@ -2499,28 +2657,31 @@ The map \(P(x,y) = (x,0)\) corresponds to
 \subsubsection{Change of Basis}\label{change-of-basis-2}
 
 Matrix representations depend on the chosen basis. If \(\mathcal{B}\)
-and \(\mathcal{C}\) are bases of \(\mathbb{R}^n\) and \(\mathbb{R}^m\),
-then the matrix of \(T: \mathbb{R}^n \to \mathbb{R}^m\) with respect to
-these bases is obtained by expressing \(T(\mathbf{v}_j)\) in terms of
-\(\mathcal{C}\) for each \(\mathbf{v}_j \in \mathcal{B}\). Changing
-bases corresponds to conjugating the matrix by the appropriate
-change-of-basis matrices.
+and \(\mathcal{C}\) are bases of \(\mathbb{R}^n\)\\
+and \(\mathbb{R}^m\), then the matrix of
+\(T: \mathbb{R}^n \to \mathbb{R}^m\) with respect to these bases is
+obtained by\\
+expressing \(T(\mathbf{v}_j)\) in terms of \(\mathcal{C}\) for each
+\(\mathbf{v}_j \in \mathcal{B}\). Changing bases\\
+corresponds to conjugating the matrix by the appropriate change-of-basis
+matrices.
 
 \subsubsection{Geometric
 Interpretation}\label{geometric-interpretation-9}
 
 Matrices are not just convenient notation-they \emph{are} linear maps
-once a basis is fixed. Every rotation, reflection, projection, shear, or
-scaling corresponds to multiplying by a specific matrix. Thus, studying
-linear transformations reduces to studying their matrices.
+once a basis is fixed. Every rotation, reflection,\\
+projection, shear, or scaling corresponds to multiplying by a specific
+matrix. Thus, studying linear transformations\\
+reduces to studying their matrices.
 
 \subsubsection{Why this matters}\label{why-this-matters-17}
 
 Matrix representations make linear transformations computable. They
-connect abstract definitions to explicit calculations, enabling
-algorithms for solving systems, finding eigenvalues, and performing
-decompositions. Applications from graphics to machine learning depend on
-this translation.
+connect abstract definitions to explicit\\
+calculations, enabling algorithms for solving systems, finding
+eigenvalues, and performing decompositions. Applications\\
+from graphics to machine learning depend on this translation.
 
 \subsubsection{Exercises 5.2}\label{exercises-52}
 
@@ -2540,26 +2701,29 @@ this translation.
   \(\mathbb{R}^n\) is \(I_n\).
 \item
   For the differentiation map \(D:\mathbb{R}_2[x] \to \mathbb{R}_1[x]\),
-  where \(\mathbb{R}_k[x]\) is the space of polynomials of degree at
-  most \(k\), find the matrix of \(D\) relative to the bases
-  \(\{1,x,x^2\}\) and \(\{1,x\}\).
+  where \(\mathbb{R}_k[x]\) is the space of\\
+  polynomials of degree at most \(k\), find the matrix of \(D\) relative
+  to the bases \(\{1,x,x^2\}\) and \(\{1,x\}\).
 \end{enumerate}
 
 \subsection{5.3 Kernel and Image}\label{53-kernel-and-image}
 
 To understand a linear transformation deeply, we must examine what it
-kills and what it produces. These ideas are captured by the kernel and
-the image, two fundamental subspaces associated with any linear map.
+kills and what it produces. These ideas are\\
+captured by the kernel and the image, two fundamental subspaces
+associated with any linear map.
 
 \subsubsection{The Kernel}\label{the-kernel}
 
 The kernel (or null space) of a linear transformation \(T: V \to W\) is
-the set of all vectors in \(V\) that map to the zero vector in \(W\):
+the set of all vectors in \(V\) that map to the zero\\
+vector in \(W\):
 
 \[\ker(T) = \{ \mathbf{v} \in V \mid T(\mathbf{v}) = \mathbf{0} \}.\]
 
 The kernel is always a subspace of \(V\). It measures the degeneracy of
-the transformation-directions that collapse to nothing.
+the transformation-directions that collapse to\\
+nothing.
 
 Example 5.3.1.\\
 Let \(T:\mathbb{R}^3 \to \mathbb{R}^2\) be defined by
@@ -2640,9 +2804,10 @@ Interpretation}\label{geometric-interpretation-10}
 \subsubsection{Why this matters}\label{why-this-matters-18}
 
 Kernel and image capture the essence of a linear map. They classify
-transformations, explain when systems have unique or infinite solutions,
-and form the backbone of important results like the Rank--Nullity
-Theorem, diagonalization, and spectral theory.
+transformations, explain when systems have unique or\\
+infinite solutions, and form the backbone of important results like the
+Rank--Nullity Theorem, diagonalization, and\\
+spectral theory.
 
 \subsubsection{Exercises 5.3}\label{exercises-53}
 
@@ -2652,8 +2817,15 @@ Theorem, diagonalization, and spectral theory.
   Find the kernel and image of \(T:\mathbb{R}^2 \to \mathbb{R}^2\),
   \(T(x,y) = (x-y, x+y)\).
 \item
-  Let \(A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \end{bmatrix}\). Find
-  bases for \(\ker(A)\) and \(\text{im}(A)\).
+  Let
+\end{enumerate}
+
+\[A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \end{bmatrix}\]
+
+Find bases for \(\ker(A)\) and \(\text{im}(A)\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   For the projection map \(P(x,y,z) = (x,y,0)\), describe the kernel and
   image.
@@ -2667,16 +2839,16 @@ Theorem, diagonalization, and spectral theory.
 \subsection{5.4 Change of Basis}\label{54-change-of-basis}
 
 Linear transformations can look very different depending on the
-coordinate system we use. The process of rewriting vectors and
-transformations relative to a new basis is called a change of basis.
-This concept lies at the heart of diagonalization, orthogonalization,
-and many computational techniques.
+coordinate system we use. The process of rewriting\\
+vectors and transformations relative to a new basis is called a change
+of basis. This concept lies at the heart of\\
+diagonalization, orthogonalization, and many computational techniques.
 
 \subsubsection{Coordinate Change}\label{coordinate-change}
 
 Suppose \(V\) is an \(n\)-dimensional vector space, and let
-\(\mathcal{B} = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}\) be a basis.
-Every vector \(\mathbf{x} \in V\) has a coordinate vector
+\(\mathcal{B} = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}\) be a\\
+basis. Every vector \(\mathbf{x} \in V\) has a coordinate vector
 \([\mathbf{x}]_{\mathcal{B}} \in \mathbb{R}^n\).
 
 If \(P\) is the change-of-basis matrix from \(\mathcal{B}\) to the
@@ -2698,8 +2870,8 @@ Here, \(P\) has the basis vectors of \(\mathcal{B}\) as its columns:
 Matrices}\label{transformation-of-matrices}
 
 Let \(T: V \to V\) be a linear transformation. Suppose its matrix in the
-standard basis is \(A\). In the basis \(\mathcal{B}\), the representing
-matrix becomes
+standard basis is \(A\). In the\\
+basis \(\mathcal{B}\), the representing matrix becomes
 
 \[[T]_{\mathcal{B}} = P^{-1} A P.\]
 
@@ -2747,26 +2919,35 @@ scaled by 4, the other collapsed to 0.
 Interpretation}\label{geometric-interpretation-11}
 
 Change of basis is like rotating or skewing your coordinate grid. The
-underlying transformation does not change, but its description in
-numbers becomes simpler or more complicated depending on the basis.
-Finding a basis that simplifies a transformation (often a diagonal
-basis) is a key theme in linear algebra.
+underlying transformation does not change, but its\\
+description in numbers becomes simpler or more complicated depending on
+the basis. Finding a basis that simplifies a\\
+transformation (often a diagonal basis) is a key theme in linear
+algebra.
 
 \subsubsection{Why this matters}\label{why-this-matters-19}
 
 Change of basis connects the abstract notion of similarity to practical
-computation. It is the tool that allows us to diagonalize matrices,
-compute eigenvalues, and simplify complex transformations. In
-applications, it corresponds to choosing a more natural coordinate
-system-whether in geometry, physics, or machine learning.
+computation. It is the tool that allows us to\\
+diagonalize matrices, compute eigenvalues, and simplify complex
+transformations. In applications, it corresponds to\\
+choosing a more natural coordinate system-whether in geometry, physics,
+or machine learning.
 
 \subsubsection{Exercises 5.4}\label{exercises-54}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Let \(A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}\). Compute its
-  representation in the basis \(\{(1,0),(1,1)\}\).
+  Let
+\end{enumerate}
+
+\[A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}\]
+
+Compute its representation in the basis \(\{(1,0),(1,1)\}\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Find the change-of-basis matrix from the standard basis of
   \(\mathbb{R}^2\) to \(\{(2,1),(1,1)\}\).
@@ -2775,8 +2956,14 @@ system-whether in geometry, physics, or machine learning.
   same linear transformation under different bases.
 \item
   Diagonalize the matrix
-  \(A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}\) in the basis
-  \(\{(1,1),(1,-1)\}\).
+\end{enumerate}
+
+\[A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}\]
+
+in the basis \(\{(1,1),(1,-1)\}\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   In \(\mathbb{R}^3\), let
   \(\mathcal{B} = \{(1,0,0),(1,1,0),(1,1,1)\}\). Construct the
@@ -2789,15 +2976,15 @@ system-whether in geometry, physics, or machine learning.
 Meaning}\label{61-motivation-and-geometric-meaning}
 
 Determinants are numerical values associated with square matrices. At
-first they may appear as a complicated formula, but their importance
-comes from what they measure: determinants encode scaling, orientation,
-and invertibility of linear transformations. They bridge algebra and
-geometry.
+first they may appear as a complicated formula,\\
+but their importance comes from what they measure: determinants encode
+scaling, orientation, and invertibility of linear\\
+transformations. They bridge algebra and geometry.
 
-\subsubsection{\texorpdfstring{Determinants of \(2 \times 2\)
-Matrices}{Determinants of 2 \textbackslash times 2 Matrices}}\label{determinants-of--2-uxd7-2--matrices}
+\subsubsection{Determinants of \$2 \textbackslash times 2\$
+Matrices}\label{determinants-of-ux242-times-2ux24-matrices}
 
-For a \(2 \times 2\) matrix
+For a \$2 \textbackslash times 2\$ matrix
 
 \[A = \begin{bmatrix} a & b \\ c & d \end{bmatrix},\]
 
@@ -2806,12 +2993,13 @@ the determinant is defined as
 \[\det(A) = ad - bc.\]
 
 Geometric meaning: If \(A\) represents a linear transformation of the
-plane, then \(|\det(A)|\) is the area scaling factor. For example, if
-\(\det(A) = 2\), areas of shapes are doubled. If \(\det(A) = 0\), the
-transformation collapses the plane to a line: all area is lost.
+plane, then \(|\det(A)|\) is the area scaling factor.\\
+For example, if \(\det(A) = 2\), areas of shapes are doubled. If
+\(\det(A) = 0\), the transformation collapses the plane to\\
+a line: all area is lost.
 
-\subsubsection{\texorpdfstring{Determinants of \(3 \times 3\)
-Matrices}{Determinants of 3 \textbackslash times 3 Matrices}}\label{determinants-of--3-uxd7-3--matrices}
+\subsubsection{Determinants of \$3 \textbackslash times 3\$
+Matrices}\label{determinants-of-ux243-times-3ux24-matrices}
 
 For
 
@@ -2826,15 +3014,15 @@ the determinant can be computed as
 \[\det(A) = a(ei - fh) - b(di - fg) + c(dh - eg).\]
 
 Geometric meaning: In \(\mathbb{R}^3\), \(|\det(A)|\) is the volume
-scaling factor. If \(\det(A) < 0\), orientation is reversed (a
-handedness flip), such as turning a right-handed coordinate system into
-a left-handed one.
+scaling factor. If \(\det(A) < 0\), orientation is\\
+reversed (a handedness flip), such as turning a right-handed coordinate
+system into a left-handed one.
 
 \subsubsection{General Case}\label{general-case}
 
 For \(A \in \mathbb{R}^{n \times n}\), the determinant is a scalar that
-measures how the linear transformation given by \(A\) scales
-n-dimensional volume.
+measures how the linear transformation given\\
+by \(A\) scales n-dimensional volume.
 
 \begin{itemize}
 \item
@@ -2871,10 +3059,10 @@ n-dimensional volume.
 \subsubsection{Why this matters}\label{why-this-matters-20}
 
 The determinant is not just a formula-it is a measure of transformation.
-It tells us whether a matrix is invertible, how it distorts space, and
-whether it flips orientation. This geometric insight makes the
-determinant indispensable in analysis, geometry, and applied
-mathematics.
+It tells us whether a matrix is invertible, how\\
+it distorts space, and whether it flips orientation. This geometric
+insight makes the determinant indispensable in\\
+analysis, geometry, and applied mathematics.
 
 \subsubsection{Exercises 6.1}\label{exercises-61}
 
@@ -2882,31 +3070,45 @@ mathematics.
 \def\labelenumi{\arabic{enumi}.}
 \item
   Compute the determinant of
-  \(\begin{bmatrix} 2 & 3 \\ 1 & 4 \end{bmatrix}\). What area scaling
-  factor does it represent?
+\end{enumerate}
+
+\begin{bmatrix} 2 & 3 \\ 1 & 4 \end{bmatrix}
+
+What area scaling factor does it represent?
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Find the determinant of the shear matrix
-  \(\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}\). What happens to the
-  area of the unit square?
+\end{enumerate}
+
+\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}
+
+What happens to the area of the unit square?
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
-  For the \(3 \times 3\) matrix\\
-  \(\begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{bmatrix}\),
-  compute the determinant. How does it scale volume in \(\mathbb{R}^3\)?
+  For the \$3 \textbackslash times 3\( matrix
+  \)\(\begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{bmatrix}\)\(
+  Compute the determinant. How does it scale volume in \)\textbackslash mathbb\{R\}\^{}3\$?
 \item
   Show that any rotation matrix in \(\mathbb{R}^2\) has determinant
-  \(1\).
+  \$1\$.
 \item
-  Give an example of a \(2 \times 2\) matrix with determinant \(-1\).
-  What geometric action does it represent?
+  Give an example of a \$2 \textbackslash times
+  2\( matrix with determinant \)-1\$. What geometric action does it
+  represent?
 \end{enumerate}
 
 \subsection{6.2 Properties of
 Determinants}\label{62-properties-of-determinants}
 
 Beyond their geometric meaning, determinants satisfy a collection of
-algebraic rules that make them powerful tools in linear algebra. These
-properties allow us to compute efficiently, test invertibility, and
-understand how determinants behave under matrix operations.
+algebraic rules that make them powerful tools in\\
+linear algebra. These properties allow us to compute efficiently, test
+invertibility, and understand how determinants\\
+behave under matrix operations.
 
 \subsubsection{Basic Properties}\label{basic-properties}
 
@@ -2917,13 +3119,21 @@ Then:
 \def\labelenumi{\arabic{enumi}.}
 \item
   Identity:
+\end{enumerate}
 
-  \[\det(I_n) = 1.\]
+\[\det(I_n) = 1.\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Triangular matrices:\\
   If \(A\) is upper or lower triangular, then
+\end{enumerate}
 
-  \[\det(A) = a_{11} a_{22} \cdots a_{nn}.\]
+\[\det(A) = a_{11} a_{22} \cdots a_{nn}.\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Row/column swap:\\
   Interchanging two rows (or columns) multiplies the determinant by
@@ -2938,12 +3148,20 @@ Then:
   determinant.
 \item
   Transpose:
+\end{enumerate}
 
-  \[\det(A^T) = \det(A).\]
+\[\det(A^T) = \det(A).\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Multiplicativity:
+\end{enumerate}
 
-  \[\det(AB) = \det(A)\det(B).\]
+\[\det(AB) = \det(A)\det(B).\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Invertibility:\\
   \(A\) is invertible if and only if \(\det(A) \neq 0\).
@@ -2954,7 +3172,11 @@ Then:
 Example 6.2.1.\\
 For
 
-\[A = \begin{bmatrix} 2 & 0 & 0 \\ 1 & 3 & 0 \\ -1 & 4 & 5 \end{bmatrix},\]
+\[A = \begin{bmatrix}
+2 & 0 & 0 \\
+1 & 3 & 0 \\
+-1 & 4 & 5
+\end{bmatrix},\]
 
 \(A\) is lower triangular, so
 
@@ -2997,10 +3219,10 @@ geometrically interpretable.
 \subsubsection{Why this matters}\label{why-this-matters-21}
 
 Determinant properties connect computation with geometry and theory.
-They explain why Gaussian elimination works, why invertibility is
-equivalent to nonzero determinant, and why determinants naturally arise
-in areas like volume computation, eigenvalue theory, and differential
-equations.
+They explain why Gaussian elimination works, why\\
+invertibility is equivalent to nonzero determinant, and why determinants
+naturally arise in areas like volume\\
+computation, eigenvalue theory, and differential equations.
 
 \subsubsection{Exercises 6.2}\label{exercises-62}
 
@@ -3008,30 +3230,44 @@ equations.
 \def\labelenumi{\arabic{enumi}.}
 \item
   Compute the determinant of
+\end{enumerate}
 
-  \[A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 2 \end{bmatrix}.\]
+\[A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 2 \end{bmatrix}.\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Show that if two rows of a square matrix are identical, then its
   determinant is zero.
 \item
   Verify \(\det(A^T) = \det(A)\) for
+\end{enumerate}
 
-  \[A = \begin{bmatrix} 2 & -1 \\ 3 & 4 \end{bmatrix}.\]
+\[A = \begin{bmatrix} 2 & -1 \\ 3 & 4 \end{bmatrix}.\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   If \(A\) is invertible, prove that
+\end{enumerate}
 
-  \[\det(A^{-1}) = \frac{1}{\det(A)}.\]
+\[\det(A^{-1}) = \frac{1}{\det(A)}.\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
-  Suppose \(A\) is a \(3\times 3\) matrix with \(\det(A) = 5\). What is
-  \(\det(2A)\)?
+  Suppose \(A\) is a \$3\textbackslash times
+  3\( matrix with \)\textbackslash det(A) =
+  5\(. What is \)\textbackslash det(2A)\$?
 \end{enumerate}
 
 \subsection{6.3 Cofactor Expansion}\label{63-cofactor-expansion}
 
 While determinants of small matrices can be computed directly from
-formulas, larger matrices require a systematic method. The cofactor
-expansion (also known as Laplace expansion) provides a recursive way to
-compute determinants by breaking them into smaller ones.
+formulas, larger matrices require a systematic\\
+method. The cofactor expansion (also known as Laplace expansion)
+provides a recursive way to compute determinants by\\
+breaking them into smaller ones.
 
 \subsubsection{Minors and Cofactors}\label{minors-and-cofactors}
 
@@ -3040,8 +3276,8 @@ For an \(n \times n\) matrix \(A = [a_{ij}]\):
 \begin{itemize}
 \item
   The minor \(M_{ij}\) is the determinant of the \((n-1) \times (n-1)\)
-  matrix obtained by deleting the \(i\)-th row and \(j\)-th column of
-  \(A\).
+  matrix obtained by deleting the \(i\)-th row and \(j\)\\
+  -th column of \(A\).
 \item
   The cofactor \(C_{ij}\) is defined by
 \end{itemize}
@@ -3084,18 +3320,30 @@ Expand along the first row:
 
 \begin{itemize}
 \item
-  For \(C_{11}\):\\
-  \(M_{11} = \det \begin{bmatrix} 4 & 5 \\ 0 & 6 \end{bmatrix} = 24\),
-  so \(C_{11} = (+1)(24) = 24\).
-\item
-  For \(C_{12}\):\\
-  \(M_{12} = \det \begin{bmatrix} 0 & 5 \\ 1 & 6 \end{bmatrix} = 0 - 5 = -5\),
-  so \(C_{12} = (-1)(-5) = 5\).
-\item
-  For \(C_{13}\):\\
-  \(M_{13} = \det \begin{bmatrix} 0 & 4 \\ 1 & 0 \end{bmatrix} = 0 - 4 = -4\),
-  so \(C_{13} = (+1)(-4) = -4\).
+  For \(C_{11}\):
 \end{itemize}
+
+\[M_{11} = \det \begin{bmatrix} 4 & 5 \\ 0 & 6 \end{bmatrix} = 24\]
+
+so \(C_{11} = (+1)(24) = 24\).
+
+\begin{itemize}
+\item
+  For \(C_{12}\):
+\end{itemize}
+
+\[M_{12} = \det \begin{bmatrix} 0 & 5 \\ 1 & 6 \end{bmatrix} = 0 - 5 = -5\]
+
+so \(C_{12} = (-1)(-5) = 5\).
+
+\begin{itemize}
+\item
+  For \(C_{13}\):
+\end{itemize}
+
+\[M_{13} = \det \begin{bmatrix} 0 & 4 \\ 1 & 0 \end{bmatrix} = 0 - 4 = -4\]
+
+so \(C_{13} = (+1)(-4) = -4\).
 
 Thus,
 
@@ -3110,8 +3358,8 @@ Expansion}\label{properties-of-cofactor-expansion}
   Expansion along any row or column yields the same result.
 \item
   The cofactor expansion provides a recursive definition of determinant:
-  a determinant of size \(n\) is expressed in terms of determinants of
-  size \(n-1\).
+  a determinant of size \(n\) is expressed in\\
+  terms of determinants of size \(n-1\).
 \item
   Cofactors are fundamental in constructing the adjugate matrix, which
   gives a formula for inverses:
@@ -3123,16 +3371,17 @@ Expansion}\label{properties-of-cofactor-expansion}
 Interpretation}\label{geometric-interpretation-12}
 
 Cofactor expansion breaks down the determinant into contributions from
-sub-volumes defined by fixing one row or column at a time. Each cofactor
-measures how that row/column influences the overall volume scaling.
+sub-volumes defined by fixing one row or column\\
+at a time. Each cofactor measures how that row/column influences the
+overall volume scaling.
 
 \subsubsection{Why this matters}\label{why-this-matters-22}
 
 Cofactor expansion generalizes the small-matrix formulas and provides a
-conceptual definition of determinants. While not the most efficient way
-to compute determinants for large matrices, it is essential for theory,
-proofs, and connections to adjugates, Cramer's rule, and classical
-geometry.
+conceptual definition of determinants. While not\\
+the most efficient way to compute determinants for large matrices, it is
+essential for theory, proofs, and connections\\
+to adjugates, Cramer's rule, and classical geometry.
 
 \subsubsection{Exercises 6.3}\label{exercises-63}
 
@@ -3140,14 +3389,18 @@ geometry.
 \def\labelenumi{\arabic{enumi}.}
 \item
   Compute the determinant of
+\end{enumerate}
 
-  \begin{bmatrix}
-  2 & 0 & 1 \\
-  3 & -1 & 4 \\
-  1 & 2 & 0
-  \end{bmatrix}
+\begin{bmatrix}
+2 & 0 & 1 \\
+3 & -1 & 4 \\
+1 & 2 & 0
+\end{bmatrix}
 
-  by cofactor expansion along the first column.
+by cofactor expansion along the first column.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Verify that expanding along the second row of Example 6.3.1 gives the
   same determinant.
@@ -3163,8 +3416,9 @@ geometry.
 Test)}\label{64-applications-volume-invertibility-test}
 
 Determinants are not merely algebraic curiosities; they have concrete
-geometric and computational uses. Two of the most important applications
-are measuring volumes and testing invertibility of matrices.
+geometric and computational uses. Two of the most\\
+important applications are measuring volumes and testing invertibility
+of matrices.
 
 \subsubsection{Determinants as Volume
 Scalers}\label{determinants-as-volume-scalers}
@@ -3174,9 +3428,9 @@ Given vectors
 arrange them as columns of a matrix:
 
 \[A = \begin{bmatrix}
-| & | &  & | \\
+| & | & & | \\
 \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n \\
-| & | &  & |
+| & | & & |
 \end{bmatrix}.\]
 
 Then \(|\det(A)|\) equals the volume of the parallelepiped spanned by
@@ -3188,8 +3442,8 @@ these vectors.
   spanned by \(\mathbf{v}_1, \mathbf{v}_2\).
 \item
   In \(\mathbb{R}^3\), \(|\det(A)|\) gives the volume of the
-  parallelepiped spanned by
-  \(\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\).
+  parallelepiped spanned\\
+  by \(\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\).
 \item
   In higher dimensions, it generalizes to \(n\)-dimensional volume
   (hypervolume).
@@ -3208,7 +3462,7 @@ Then
 0 & 0 & 1
 \end{bmatrix}, \quad \det(A) = 1.\]
 
-So the parallelepiped has volume \(1\), even though the vectors are not
+So the parallelepiped has volume \$1\$, even though the vectors are not
 orthogonal.
 
 \subsubsection{Invertibility Test}\label{invertibility-test}
@@ -3231,13 +3485,14 @@ The matrix
 
 has determinant \(\det(B) = 2 \cdot 2 - 4 \cdot 1 = 0\).\\
 Thus, \(B\) is not invertible. Geometrically, the two column vectors are
-collinear, spanning only a line in \(\mathbb{R}^2\).
+collinear, spanning only a line\\
+in \(\mathbb{R}^2\).
 
 \subsubsection{Cramer's Rule}\label{cramers-rule}
 
 Determinants also provide an explicit formula for solving systems of
-linear equations when the matrix is invertible. For
-\(A\mathbf{x} = \mathbf{b}\) with \(A \in \mathbb{R}^{n \times n}\):
+linear equations when the matrix is invertible.\\
+For \(A\mathbf{x} = \mathbf{b}\) with \(A \in \mathbb{R}^{n \times n}\):
 
 \[x_i = \frac{\det(A_i)}{\det(A)},\]
 
@@ -3249,15 +3504,16 @@ determinant's role in solutions and uniqueness.
 \subsubsection{Orientation}\label{orientation}
 
 The sign of \(\det(A)\) indicates whether a transformation preserves or
-reverses orientation. For example, a reflection in the plane has
-determinant \(-1\), flipping handedness.
+reverses orientation. For example, a reflection in\\
+the plane has determinant \(-1\), flipping handedness.
 
 \subsubsection{Why this matters}\label{why-this-matters-23}
 
 Determinants condense key information: they measure scaling, test
-invertibility, and track orientation. These insights are indispensable
-in geometry (areas and volumes), analysis (Jacobian determinants in
-calculus), and computation (solving systems and checking singularity).
+invertibility, and track orientation. These insights\\
+are indispensable in geometry (areas and volumes), analysis (Jacobian
+determinants in calculus), and computation (\\
+solving systems and checking singularity).
 
 \subsubsection{Exercises 6.4}\label{exercises-64}
 
@@ -3271,15 +3527,25 @@ calculus), and computation (solving systems and checking singularity).
   \((1,0,0), (1,1,0), (1,1,1)\).
 \item
   Determine whether the matrix
-  \(\begin{bmatrix} 1 & 2 \\ 3 & 6 \end{bmatrix}\) is invertible.
-  Justify using determinants.
+\end{enumerate}
+
+\begin{bmatrix} 1 & 2 \\ 3 & 6 \end{bmatrix}
+
+is invertible. Justify using determinants.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Use Cramer's rule to solve
+\end{enumerate}
 
-  \begin{cases}
-  x + y = 3, \\
-  2x - y = 0.
-  \end{cases}
+\begin{cases}
+x + y = 3, \\
+2x - y = 0.
+\end{cases}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Explain geometrically why a determinant of zero implies no inverse
   exists.
@@ -3292,10 +3558,11 @@ Spaces}\label{chapter-7-inner-product-spaces}
 Norms}\label{71-inner-products-and-norms}
 
 To extend the geometric ideas of length, distance, and angle beyond
-\(\mathbb{R}^2\) and \(\mathbb{R}^3\), we introduce inner products.
-Inner products provide a way of measuring similarity between vectors,
-while norms derived from them measure length. These concepts are the
-foundation of geometry inside vector spaces.
+\(\mathbb{R}^2\) and \(\mathbb{R}^3\), we introduce\\
+inner products. Inner products provide a way of measuring similarity
+between vectors, while norms derived from them\\
+measure length. These concepts are the foundation of geometry inside
+vector spaces.
 
 \subsubsection{Inner Product}\label{inner-product}
 
@@ -3387,9 +3654,9 @@ These concepts unify algebraic operations with geometric intuition.
 \subsubsection{Why this matters}\label{why-this-matters-24}
 
 Inner products and norms allow us to extend geometry into abstract
-vector spaces. They form the basis of orthogonality, projections,
-Fourier series, least squares approximation, and many applications in
-physics and machine learning.
+vector spaces. They form the basis of orthogonality,\\
+projections, Fourier series, least squares approximation, and many
+applications in physics and machine learning.
 
 \subsubsection{Exercises 7.1}\label{exercises-71}
 
@@ -3416,9 +3683,10 @@ physics and machine learning.
 \subsection{7.2 Orthogonal Projections}\label{72-orthogonal-projections}
 
 One of the most useful applications of inner products is the notion of
-orthogonal projection. Projection allows us to approximate a vector by
-another lying in a subspace, minimizing error in the sense of distance.
-This idea underpins geometry, statistics, and numerical analysis.
+orthogonal projection. Projection allows us to\\
+approximate a vector by another lying in a subspace, minimizing error in
+the sense of distance. This idea underpins\\
+geometry, statistics, and numerical analysis.
 
 \subsubsection{Projection onto a Line}\label{projection-onto-a-line}
 
@@ -3428,8 +3696,9 @@ spanned by \(\mathbf{u}\) is
 \[L = \{ c\mathbf{u} \mid c \in \mathbb{R} \}.\]
 
 Given a vector \(\mathbf{v}\), the projection of \(\mathbf{v}\) onto
-\(\mathbf{u}\) is the vector in \(L\) closest to \(\mathbf{v}\).
-Geometrically, it is the shadow of \(\mathbf{v}\) on the line.
+\(\mathbf{u}\) is the vector in \(L\) closest\\
+to \(\mathbf{v}\). Geometrically, it is the shadow of \(\mathbf{v}\) on
+the line.
 
 The formula is
 
@@ -3442,7 +3711,7 @@ is orthogonal to \(\mathbf{u}\).
 
 Let \(\mathbf{u} = (1,2)\), \(\mathbf{v} = (3,1)\).
 
-\[\langle \mathbf{v}, \mathbf{u} \rangle = 3\cdot 1 + 1\cdot 2 = 5, \quad 
+\[\langle \mathbf{v}, \mathbf{u} \rangle = 3\cdot 1 + 1\cdot 2 = 5, \quad
 \langle \mathbf{u}, \mathbf{u} \rangle = 1^2 + 2^2 = 5.\]
 
 So
@@ -3456,22 +3725,23 @@ The error vector is \((3,1) - (1,2) = (2,-1)\), which is orthogonal to
 Subspace}\label{projection-onto-a-subspace}
 
 Suppose \(W \subseteq \mathbb{R}^n\) is a subspace with orthonormal
-basis \(\{ \mathbf{w}_1, \dots, \mathbf{w}_k \}\). The projection of a
-vector \(\mathbf{v}\) onto \(W\) is
+basis \(\{ \mathbf{w}_1, \dots, \mathbf{w}_k \}\). The\\
+projection of a vector \(\mathbf{v}\) onto \(W\) is
 
 \[\text{proj}_{W}(\mathbf{v}) = \langle \mathbf{v}, \mathbf{w}_1 \rangle \mathbf{w}_1 + \cdots + \langle \mathbf{v}, \mathbf{w}_k \rangle \mathbf{w}_k.\]
 
 This is the unique vector in \(W\) closest to \(\mathbf{v}\). The
-difference \(\mathbf{v} - \text{proj}_{W}(\mathbf{v})\) is orthogonal to
-all of \(W\).
+difference \(\mathbf{v} - \text{proj}_{W}(\mathbf{v})\) is\\
+orthogonal to all of \(W\).
 
 \subsubsection{Least Squares
 Approximation}\label{least-squares-approximation}
 
 Orthogonal projection explains the method of least squares. To solve an
-overdetermined system \(A\mathbf{x} \approx \mathbf{b}\), we seek the
-\(\mathbf{x}\) that makes \(A\mathbf{x}\) the projection of
-\(\mathbf{b}\) onto the column space of \(A\). This gives the normal
+overdetermined\\
+system \(A\mathbf{x} \approx \mathbf{b}\), we seek the \(\mathbf{x}\)
+that makes \(A\mathbf{x}\) the projection\\
+of \(\mathbf{b}\) onto the column space of \(A\). This gives the normal
 equations
 
 \[A^T A \mathbf{x} = A^T \mathbf{b}.\]
@@ -3494,10 +3764,10 @@ Interpretation}\label{geometric-interpretation-14}
 \subsubsection{Why this matters}\label{why-this-matters-25}
 
 Orthogonal projection is central in both pure and applied mathematics.
-It underlies the geometry of subspaces, the theory of Fourier series,
-regression in statistics, and approximation methods in numerical linear
-algebra. Whenever we fit data with a simpler model, projection is at
-work.
+It underlies the geometry of subspaces, the\\
+theory of Fourier series, regression in statistics, and approximation
+methods in numerical linear algebra. Whenever we\\
+fit data with a simpler model, projection is at work.
 
 \subsubsection{Exercises 7.2}\label{exercises-72}
 
@@ -3516,23 +3786,27 @@ work.
   column space of \(A\).
 \item
   Prove that projection onto a subspace \(W\) is unique: there is
-  exactly one closest vector in \(W\) to a given \(\mathbf{v}\).
+  exactly one closest vector in \(W\) to a\\
+  given \(\mathbf{v}\).
 \end{enumerate}
 
 \subsection{7.3 Gram--Schmidt Process}\label{73-gram--schmidt-process}
 
 The Gram--Schmidt process is a systematic way to turn any linearly
-independent set of vectors into an orthonormal basis. This is especially
-useful because orthonormal bases simplify computations: inner products
-become simple coordinate comparisons, and projections take clean forms.
+independent set of vectors into an orthonormal basis.\\
+This is especially useful because orthonormal bases simplify
+computations: inner products become simple coordinate\\
+comparisons, and projections take clean forms.
 
 \subsubsection{The Idea}\label{the-idea}
 
 Given a linearly independent set of vectors
 \(\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}\) in an inner
-product space, we want to construct an orthonormal set
+product\\
+space, we want to construct an orthonormal set
 \(\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}\) that spans the
-same subspace.
+same\\
+subspace.
 
 We proceed step by step:
 
@@ -3542,10 +3816,10 @@ We proceed step by step:
   Start with \(\mathbf{v}_1\), normalize it to get \(\mathbf{u}_1\).
 \item
   Subtract from \(\mathbf{v}_2\) its projection onto \(\mathbf{u}_1\),
-  leaving a vector orthogonal to \(\mathbf{u}_1\). Normalize to get
-  \(\mathbf{u}_2\).
+  leaving a vector orthogonal to \(\mathbf{u}_1\).\\
+  Normalize to get \(\mathbf{u}_2\).
 \item
-  For each \(\mathbf{v}_k\), subtract projections onto all previously
+  For each \(\mathbf{v}_k\), subtract projections onto all previously\\
   constructed \(\mathbf{u}_1, \dots, \mathbf{u}_{k-1}\), then normalize.
 \end{enumerate}
 
@@ -3586,8 +3860,8 @@ in \(\mathbb{R}^3\).
 
 So
 
-\[\mathbf{w}_2 = (1,0,1) - \tfrac{1}{\sqrt{2}}\cdot \tfrac{1}{\sqrt{2}}(1,1,0) 
-= (1,0,1) - \tfrac{1}{2}(1,1,0) 
+\[\mathbf{w}_2 = (1,0,1) - \tfrac{1}{\sqrt{2}}\cdot \tfrac{1}{\sqrt{2}}(1,1,0)
+= (1,0,1) - \tfrac{1}{2}(1,1,0)
 = \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right).\]
 
 Normalize:
@@ -3612,16 +3886,18 @@ The result is an orthonormal basis of the span of
 Interpretation}\label{geometric-interpretation-15}
 
 Gram--Schmidt is like straightening out a set of vectors: you start with
-the original directions and adjust each new vector to be perpendicular
-to all previous ones. Then you scale to unit length. The process ensures
-orthogonality while preserving the span.
+the original directions and adjust each new\\
+vector to be perpendicular to all previous ones. Then you scale to unit
+length. The process ensures orthogonality while\\
+preserving the span.
 
 \subsubsection{Why this matters}\label{why-this-matters-26}
 
 Orthonormal bases simplify inner products, projections, and computations
-in general. They make coordinate systems easier to work with and are
-crucial in numerical methods, QR decomposition, Fourier analysis, and
-statistics (orthogonal polynomials, principal component analysis).
+in general. They make coordinate systems easier\\
+to work with and are crucial in numerical methods, QR decomposition,
+Fourier analysis, and statistics (orthogonal\\
+polynomials, principal component analysis).
 
 \subsubsection{Exercises 7.3}\label{exercises-73}
 
@@ -3643,14 +3919,16 @@ statistics (orthogonal polynomials, principal component analysis).
 \subsection{7.4 Orthonormal Bases}\label{74-orthonormal-bases}
 
 An orthonormal basis is a basis of a vector space in which all vectors
-are both orthogonal to each other and have unit length. Such bases are
-the most convenient possible coordinate systems: computations involving
-inner products, projections, and norms become exceptionally simple.
+are both orthogonal to each other and have unit\\
+length. Such bases are the most convenient possible coordinate systems:
+computations involving inner products,\\
+projections, and norms become exceptionally simple.
 
 \subsubsection{Definition}\label{definition-4}
 
 A set of vectors \(\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}\)
-in an inner product space \(V\) is called an orthonormal basis if
+in an inner product space \(V\) is called an\\
+orthonormal basis if
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3694,8 +3972,8 @@ After normalization, it becomes an orthonormal basis.
 \def\labelenumi{\arabic{enumi}.}
 \item
   Coordinate simplicity: If \(\{\mathbf{u}_1,\dots,\mathbf{u}_n\}\) is
-  an orthonormal basis of \(V\), then any vector \(\mathbf{v}\in V\) has
-  coordinates
+  an orthonormal basis of \(V\), then any\\
+  vector \(\mathbf{v}\in V\) has coordinates
 
   \[[\mathbf{v}] = \begin{bmatrix} \langle \mathbf{v}, \mathbf{u}_1 \rangle \\ \vdots \\ \langle \mathbf{v}, \mathbf{u}_n \rangle \end{bmatrix}.\]
 
@@ -3708,7 +3986,7 @@ After normalization, it becomes an orthonormal basis.
 \item
   Projections:\\
   The orthogonal projection onto the span of
-  \(\{\mathbf{u}_1,\dots,\mathbf{u}_k\}\) is
+  \(\\{\mathbf{u}_1,\dots,\mathbf{u}_k\\}\) is
 
   \[\text{proj}(\mathbf{v}) = \sum_{i=1}^k \langle \mathbf{v}, \mathbf{u}_i \rangle \mathbf{u}_i.\]
 \end{enumerate}
@@ -3719,7 +3997,8 @@ Bases}\label{constructing-orthonormal-bases}
 \begin{itemize}
 \item
   Start with any linearly independent set, then apply the Gram--Schmidt
-  process to obtain an orthonormal set spanning the same subspace.
+  process to obtain an orthonormal set spanning the\\
+  same subspace.
 \item
   In practice, orthonormal bases are often chosen for numerical
   stability and simplicity of computation.
@@ -3729,33 +4008,33 @@ Bases}\label{constructing-orthonormal-bases}
 Interpretation}\label{geometric-interpretation-16}
 
 An orthonormal basis is like a perfectly aligned and equally scaled
-coordinate system. Distances and angles are computed directly using
-coordinates without correction factors. They are the ideal rulers of
-linear algebra.
+coordinate system. Distances and angles are computed\\
+directly using coordinates without correction factors. They are the
+ideal rulers of linear algebra.
 
 \subsubsection{Why this matters}\label{why-this-matters-27}
 
 Orthonormal bases simplify every aspect of linear algebra: solving
-systems, computing projections, expanding functions, diagonalizing
-symmetric matrices, and working with Fourier series. In data science,
-principal component analysis produces orthonormal directions capturing
-maximum variance.
+systems, computing projections, expanding functions,\\
+diagonalizing symmetric matrices, and working with Fourier series. In
+data science, principal component analysis\\
+produces orthonormal directions capturing maximum variance.
 
 \subsubsection{Exercises 7.4}\label{exercises-74}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Verify that \((1/\sqrt{2})(1,1)\) and \((1/\sqrt{2})(1,-1)\) form an
+  Verify that \((1/\\sqrt{2})(1,1)\) and \((1/\\sqrt{2})(1,-1)\) form an
   orthonormal basis of \(\mathbb{R}^2\).
 \item
   Express \((3,4)\) in terms of the orthonormal basis
-  \(\{(1/\sqrt{2})(1,1), (1/\sqrt{2})(1,-1)\}\).
+  \(\{(1/\\sqrt{2})(1,1), (1/\\sqrt{2})(1,-1)\}\).
 \item
-  Prove Parseval's identity for \(\mathbb{R}^n\) with the dot product.
+  Prove Parseval's identity for \(\\mathbb{R}^n\) with the dot product.
 \item
   Find an orthonormal basis for the plane \(x+y+z=0\) in
-  \(\mathbb{R}^3\).
+  \(\\mathbb{R}^3\).
 \item
   Explain why orthonormal bases are numerically more stable than
   arbitrary bases in computations.
@@ -3768,19 +4047,22 @@ eigenvectors}\label{chapter-8-eigenvalues-and-eigenvectors}
 Intuition}\label{81-definitions-and-intuition}
 
 The concepts of eigenvalues and eigenvectors reveal the most fundamental
-behavior of linear transformations. They identify the special directions
-in which a transformation acts by simple stretching or compressing,
-without rotation or distortion.
+behavior of linear transformations. They\\
+identify the special directions in which a transformation acts by simple
+stretching or compressing, without rotation or\\
+distortion.
 
 \subsubsection{Definition}\label{definition-5}
 
 Let \(T: V \to V\) be a linear transformation on a vector space \(V\). A
-nonzero vector \(\mathbf{v} \in V\) is called an eigenvector of \(T\) if
+nonzero vector \(\mathbf{v} \in V\) is called an\\
+eigenvector of \(T\) if
 
 \[T(\mathbf{v}) = \lambda \mathbf{v}\]
 
 for some scalar \(\lambda \in \mathbb{R}\) (or \(\mathbb{C}\)). The
-scalar \(\lambda\) is the eigenvalue corresponding to \(\mathbf{v}\).
+scalar \(\lambda\) is the eigenvalue corresponding\\
+to \(\mathbf{v}\).
 
 Equivalently, if \(A\) is the matrix of \(T\), then eigenvalues and
 eigenvectors satisfy
@@ -3798,8 +4080,8 @@ Then
 
 \[A(1,0)^T = 2(1,0)^T, \quad A(0,1)^T = 3(0,1)^T.\]
 
-So \((1,0)\) is an eigenvector with eigenvalue \(2\), and \((0,1)\) is
-an eigenvector with eigenvalue \(3\).
+So \((1,0)\) is an eigenvector with eigenvalue
+\$2\(, and \)(0,1)\( is an eigenvector with eigenvalue \$3\).
 
 Example 8.1.2.\\
 Rotation matrix in \(\mathbb{R}^2\):
@@ -3807,8 +4089,8 @@ Rotation matrix in \(\mathbb{R}^2\):
 \[R_\theta = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}.\]
 
 If \(\theta \neq 0, \pi\), \(R_\theta\) has no real eigenvalues: every
-vector is rotated, not scaled. Over \(\mathbb{C}\), however, it has
-eigenvalues \(e^{i\theta}, e^{-i\theta}\).
+vector is rotated, not scaled. Over \(\mathbb{C}\),\\
+however, it has eigenvalues \(e^{i\theta}, e^{-i\theta}\).
 
 \subsubsection{Algebraic Formulation}\label{algebraic-formulation}
 
@@ -3850,10 +4132,10 @@ Science}\label{applications-in-geometry-and-science}
 \subsubsection{Why this matters}\label{why-this-matters-28}
 
 Eigenvalues and eigenvectors are a bridge between algebra and geometry.
-They provide a lens for understanding linear transformations in their
-simplest form. Nearly every application of linear algebra-differential
-equations, statistics, physics, computer science-relies on
-eigen-analysis.
+They provide a lens for understanding linear\\
+transformations in their simplest form. Nearly every application of
+linear algebra-differential equations, statistics,\\
+physics, computer science-relies on eigen-analysis.
 
 \subsubsection{Exercises 8.1}\label{exercises-81}
 
@@ -3880,10 +4162,11 @@ eigen-analysis.
 \subsection{8.2 Diagonalization}\label{82-diagonalization}
 
 A central goal in linear algebra is to simplify the action of a matrix
-by choosing a good basis. Diagonalization is the process of rewriting a
-matrix so that it acts by simple scaling along independent directions.
-This makes computations such as powers, exponentials, and solving
-differential equations far easier.
+by choosing a good basis. Diagonalization is the\\
+process of rewriting a matrix so that it acts by simple scaling along
+independent directions. This makes computations\\
+such as powers, exponentials, and solving differential equations far
+easier.
 
 \subsubsection{Definition}\label{definition-6}
 
@@ -3981,22 +4264,23 @@ Not all matrices can be diagonalized.
 \[A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}\]
 
 has only one eigenvalue \(\lambda = 1\), with eigenspace dimension 1.
-Since \(n=2\) but we only have 1 independent eigenvector, \(A\) is not
-diagonalizable.
+Since \(n=2\) but we only have 1 independent\\
+eigenvector, \(A\) is not diagonalizable.
 
 \subsubsection{Geometric
 Interpretation}\label{geometric-interpretation-17}
 
 Diagonalization means we have found a basis of eigenvectors. In this
-basis, the matrix acts by simple scaling along each coordinate axis. It
-transforms complicated motion into independent 1D motions.
+basis, the matrix acts by simple scaling along each\\
+coordinate axis. It transforms complicated motion into independent 1D
+motions.
 
 \subsubsection{Why this matters}\label{why-this-matters-29}
 
 Diagonalization is a cornerstone of linear algebra. It simplifies
-computation, reveals structure, and is the starting point for the
-spectral theorem, Jordan form, and many applications in physics,
-engineering, and data science.
+computation, reveals structure, and is the starting\\
+point for the spectral theorem, Jordan form, and many applications in
+physics, engineering, and data science.
 
 \subsubsection{Exercises 8.2}\label{exercises-82}
 
@@ -4029,8 +4313,9 @@ engineering, and data science.
 Polynomials}\label{83-characteristic-polynomials}
 
 The key to finding eigenvalues is the characteristic polynomial of a
-matrix. This polynomial encodes the values of \(\lambda\) for which the
-matrix \(A - \lambda I\) fails to be invertible.
+matrix. This polynomial encodes the values\\
+of \(\lambda\) for which the matrix \(A - \lambda I\) fails to be
+invertible.
 
 \subsubsection{Definition}\label{definition-7}
 
@@ -4077,7 +4362,7 @@ the determinant is simply the product of diagonal entries minus
 
 \[p_A(\lambda) = (2-\lambda)(3-\lambda)(4-\lambda).\]
 
-So eigenvalues are \(2, 3, 4\).
+So eigenvalues are \$2, 3, 4\$.
 
 \subsubsection{Properties}\label{properties-2}
 
@@ -4104,16 +4389,18 @@ So eigenvalues are \(2, 3, 4\).
 Interpretation}\label{geometric-interpretation-18}
 
 The characteristic polynomial captures when \(A - \lambda I\) collapses
-space: its determinant is zero precisely when the transformation
-\(A - \lambda I\) is singular. Thus, eigenvalues mark the critical
-scalings where the matrix loses invertibility.
+space: its determinant is zero precisely when the\\
+transformation \(A - \lambda I\) is singular. Thus, eigenvalues mark the
+critical scalings where the matrix loses\\
+invertibility.
 
 \subsubsection{Why this matters}\label{why-this-matters-30}
 
 Characteristic polynomials provide the computational tool to extract
-eigenvalues. They connect matrix invariants (trace and determinant) with
-geometry, and form the foundation for diagonalization, spectral
-theorems, and stability analysis in dynamical systems.
+eigenvalues. They connect matrix invariants (trace\\
+and determinant) with geometry, and form the foundation for
+diagonalization, spectral theorems, and stability analysis\\
+in dynamical systems.
 
 \subsubsection{Exercises 8.3}\label{exercises-83}
 
@@ -4142,9 +4429,10 @@ theorems, and stability analysis in dynamical systems.
 Chains)}\label{84-applications-differential-equations-markov-chains}
 
 Eigenvalues and eigenvectors are not only central to the theory of
-linear algebra-they are indispensable tools across mathematics and
-applied science. Two classic applications are solving systems of
-differential equations and analyzing Markov chains.
+linear algebra-they are indispensable tools across\\
+mathematics and applied science. Two classic applications are solving
+systems of differential equations and analyzing\\
+Markov chains.
 
 \subsubsection{Linear Differential
 Equations}\label{linear-differential-equations}
@@ -4183,9 +4471,11 @@ conditions.
 Example 8.4.1.\\
 Let
 
-\[A = \begin{bmatrix} 2 & 0 \\ 0 & -1 \end{bmatrix}.\]
+\[A = \begin{bmatrix}
+2 & 0 \\
+0 & -1 \end{bmatrix}.\]
 
-Then eigenvalues are \(2, -1\) with eigenvectors \((1,0)\), \((0,1)\).
+Then eigenvalues are \$2, -1\( with eigenvectors \)(1,0)\(, \)(0,1)\$.
 Solutions are
 
 \[\mathbf{x}(t) = c_1 e^{2t}(1,0) + c_2 e^{-t}(0,1).\]
@@ -4195,8 +4485,9 @@ Thus one component grows exponentially, the other decays.
 \subsubsection{Markov Chains}\label{markov-chains}
 
 A Markov chain is described by a stochastic matrix \(P\), where each
-column sums to 1 and entries are nonnegative. If \(\mathbf{x}_k\)
-represents the probability distribution after \(k\) steps, then
+column sums to 1 and entries are nonnegative.\\
+If \(\mathbf{x}_k\) represents the probability distribution after \(k\)
+steps, then
 
 \[\mathbf{x}_{k+1} = P \mathbf{x}_k.\]
 
@@ -4218,11 +4509,13 @@ Understanding long-term behavior reduces to analyzing powers of \(P\).
 Example 8.4.2.\\
 Consider
 
-\[P = \begin{bmatrix} 0.9 & 0.5 \\ 0.1 & 0.5 \end{bmatrix}.\]
+\[P = \begin{bmatrix}
+0.9 & 0.5 \\
+0.1 & 0.5 \end{bmatrix}.\]
 
 Eigenvalues are \(\lambda_1 = 1\), \(\lambda_2 = 0.4\). The eigenvector
-for \(\lambda = 1\) is proportional to \((5,1)\). Normalizing gives the
-steady state
+for \(\lambda = 1\) is proportional to \((5,1)\).\\
+Normalizing gives the steady state
 
 \[\pi = \left(\tfrac{5}{6}, \tfrac{1}{6}\right).\]
 
@@ -4244,9 +4537,10 @@ Interpretation}\label{geometric-interpretation-19}
 \subsubsection{Why this matters}\label{why-this-matters-31}
 
 Eigenvalue methods turn complex iterative or dynamical systems into
-tractable problems. In physics, engineering, and finance, they describe
-stability and resonance. In computer science and statistics, they power
-algorithms from Google's PageRank to modern machine learning.
+tractable problems. In physics, engineering, and\\
+finance, they describe stability and resonance. In computer science and
+statistics, they power algorithms from Google's\\
+PageRank to modern machine learning.
 
 \subsubsection{Exercises 8.4}\label{exercises-84}
 
@@ -4257,14 +4551,15 @@ algorithms from Google's PageRank to modern machine learning.
   \(\tfrac{d}{dt}\mathbf{x} = \begin{bmatrix} 3 & 0 \\ 0 & -2 \end{bmatrix}\mathbf{x}\).
 \item
   Show that if \(A\) has a complex eigenvalue \(\alpha \pm i\beta\),
-  then solutions of \(\tfrac{d}{dt}\mathbf{x} = A\mathbf{x}\) involve
-  oscillations of frequency \(\beta\).
+  then solutions\\
+  of \(\tfrac{d}{dt}\mathbf{x} = A\mathbf{x}\) involve oscillations of
+  frequency \(\beta\).
 \item
   Find the steady-state distribution of
 
   \[P = \begin{bmatrix} 0.7 & 0.2 \\ 0.3 & 0.8 \end{bmatrix}.\]
 \item
-  Prove that for any stochastic matrix \(P\), \(1\) is always an
+  Prove that for any stochastic matrix \(P\), \$1\$ is always an
   eigenvalue.
 \item
   Explain why all eigenvalues of a stochastic matrix satisfy
@@ -4277,9 +4572,10 @@ Theorems}\label{chapter-9-quadratic-forms-and-spectral-theorems}
 \subsection{9.1 Quadratic Forms}\label{91-quadratic-forms}
 
 A quadratic form is a polynomial of degree two in several variables,
-expressed neatly using matrices. Quadratic forms appear throughout
-mathematics: in optimization, geometry of conic sections, statistics
-(variance), and physics (energy functions).
+expressed neatly using matrices. Quadratic forms\\
+appear throughout mathematics: in optimization, geometry of conic
+sections, statistics (variance), and physics (energy\\
+functions).
 
 \subsubsection{Definition}\label{definition-8}
 
@@ -4301,11 +4597,19 @@ grouped naturally.
 Example 9.1.1.\\
 For
 
-\[A = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix} x \\ y \end{bmatrix},\]
+\[A = \begin{bmatrix}
+2 & 1 \\
+1 & 3 \end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix}
+x \\
+y \end{bmatrix},\]
 
-\[Q(x,y) = \begin{bmatrix} x & y \end{bmatrix} 
-\begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix} 
-\begin{bmatrix} x \\ y \end{bmatrix}
+\[Q(x,y) = \begin{bmatrix} x & y \end{bmatrix}
+\begin{bmatrix}
+2 & 1 \\
+1 & 3 \end{bmatrix}
+\begin{bmatrix}
+x \\
+y \end{bmatrix}
 = 2x^2 + 2xy + 3y^2.\]
 
 Example 9.1.2.\\
@@ -4324,14 +4628,17 @@ The conic section equation
 is described by the quadratic form \(\mathbf{x}^T A \mathbf{x} = 1\)
 with
 
-\[A = \begin{bmatrix} 4 & 1 \\ 1 & 5 \end{bmatrix}.\]
+\[A = \begin{bmatrix}
+4 & 1 \\
+1 & 5
+\end{bmatrix}.\]
 
 \subsubsection{Diagonalization of Quadratic
 Forms}\label{diagonalization-of-quadratic-forms}
 
 By choosing a new basis consisting of eigenvectors of \(A\), we can
-rewrite the quadratic form without cross terms. If \(A = PDP^{-1}\) with
-\(D\) diagonal, then
+rewrite the quadratic form without cross terms.\\
+If \(A = PDP^{-1}\) with \(D\) diagonal, then
 
 \[Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} = (P^{-1}\mathbf{x})^T D (P^{-1}\mathbf{x}).\]
 
@@ -4362,10 +4669,10 @@ the shape.
 \subsubsection{Why this matters}\label{why-this-matters-32}
 
 Quadratic forms unify geometry and algebra. They are central in
-optimization (minimizing energy functions), statistics (covariance
-matrices and variance), mechanics (kinetic energy), and numerical
-analysis. Understanding quadratic forms leads directly to the spectral
-theorem.
+optimization (minimizing energy functions), statistics (\\
+covariance matrices and variance), mechanics (kinetic energy), and
+numerical analysis. Understanding quadratic forms\\
+leads directly to the spectral theorem.
 
 \subsubsection{Exercises 9.1}\label{exercises-91}
 
@@ -4390,9 +4697,10 @@ theorem.
 Matrices}\label{92-positive-definite-matrices}
 
 Quadratic forms are especially important when their associated matrices
-are positive definite, since these guarantee positivity of energy,
-distance, or variance. Positive definiteness is a cornerstone in
-optimization, numerical analysis, and statistics.
+are positive definite, since these guarantee\\
+positivity of energy, distance, or variance. Positive definiteness is a
+cornerstone in optimization, numerical analysis,\\
+and statistics.
 
 \subsubsection{Definition}\label{definition-9}
 
@@ -4416,7 +4724,9 @@ be both \textless{} 0 and \textgreater{} 0) matrices are defined.
 
 Example 9.2.1.
 
-\[A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}\]
+\[A = \begin{bmatrix}
+2 & 0 \\
+0 & 3 \end{bmatrix}\]
 
 is positive definite, since
 
@@ -4426,7 +4736,9 @@ for all \((x,y) \neq (0,0)\).
 
 Example 9.2.2.
 
-\[A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\]
+\[A = \begin{bmatrix}
+1 & 2 \\
+2 & 1 \end{bmatrix}\]
 
 has quadratic form
 
@@ -4445,8 +4757,8 @@ For a symmetric matrix \(A\):
   eigenvalues of \(A\) are positive.
 \item
   Principal minors test (Sylvester's criterion): \(A\) is positive
-  definite if and only if all leading principal minors (determinants of
-  top-left \(k \times k\) submatrices) are positive.
+  definite if and only if all leading principal minors (\\
+  determinants of top-left \(k \times k\) submatrices) are positive.
 \item
   Cholesky factorization: \(A\) is positive definite if and only if it
   can be written as
@@ -4476,7 +4788,8 @@ Interpretation}\label{geometric-interpretation-21}
 \begin{itemize}
 \item
   Optimization: Hessians of convex functions are positive semidefinite;
-  strict convexity corresponds to positive definite Hessians.
+  strict convexity corresponds to positive\\
+  definite Hessians.
 \item
   Statistics: Covariance matrices are positive semidefinite.
 \item
@@ -4487,9 +4800,9 @@ Interpretation}\label{geometric-interpretation-21}
 \subsubsection{Why this matters}\label{why-this-matters-33}
 
 Positive definiteness provides stability and guarantees in mathematics
-and computation. It ensures energy functions are bounded below,
-optimization problems have unique solutions, and statistical models are
-meaningful.
+and computation. It ensures energy functions are\\
+bounded below, optimization problems have unique solutions, and
+statistical models are meaningful.
 
 \subsubsection{Exercises 9.2}\label{exercises-92}
 
@@ -4524,10 +4837,10 @@ meaningful.
 \subsection{9.3 Spectral Theorem}\label{93-spectral-theorem}
 
 The spectral theorem is one of the most powerful results in linear
-algebra. It states that symmetric matrices can always be diagonalized by
-an orthogonal basis of eigenvectors. This links algebra (eigenvalues),
-geometry (orthogonal directions), and applications (stability,
-optimization, statistics).
+algebra. It states that symmetric matrices can always\\
+be diagonalized by an orthogonal basis of eigenvectors. This links
+algebra (eigenvalues), geometry (orthogonal\\
+directions), and applications (stability, optimization, statistics).
 
 \subsubsection{Statement of the Spectral
 Theorem}\label{statement-of-the-spectral-theorem}
@@ -4558,8 +4871,8 @@ If \(A \in \mathbb{R}^{n \times n}\) is symmetric (\(A^T = A\)), then:
   is numerically stable.
 \item
   Quadratic forms \(\mathbf{x}^T A \mathbf{x}\) can be expressed in
-  terms of eigenvalues and eigenvectors, showing ellipsoids aligned with
-  eigen-directions.
+  terms of eigenvalues and eigenvectors, showing\\
+  ellipsoids aligned with eigen-directions.
 \item
   Positive definiteness can be checked by confirming that all
   eigenvalues are positive.
@@ -4569,7 +4882,9 @@ If \(A \in \mathbb{R}^{n \times n}\) is symmetric (\(A^T = A\)), then:
 
 Let
 
-\[A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}.\]
+\[A = \begin{bmatrix}
+2 & 1 \\
+1 & 2 \end{bmatrix}.\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4608,8 +4923,15 @@ Eigenvalues: \(\lambda_1 = 1, \ \lambda_2 = 3\).
   Then
 \end{enumerate}
 
-\[Q = \begin{bmatrix} \tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \[6pt] -\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \end{bmatrix}, \quad 
-\Lambda = \begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix}.\]
+\[Q =
+\begin{bmatrix}
+\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \[6pt] -\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}}
+\end{bmatrix}, \quad
+\Lambda =
+\begin{bmatrix}
+1 & 0 \\
+0 & 3
+\end{bmatrix}.\]
 
 So
 
@@ -4619,8 +4941,8 @@ So
 Interpretation}\label{geometric-interpretation-22}
 
 The spectral theorem says every symmetric matrix acts like independent
-scaling along orthogonal directions. In geometry, this corresponds to
-stretching space along perpendicular axes.
+scaling along orthogonal directions. In geometry,\\
+this corresponds to stretching space along perpendicular axes.
 
 \begin{itemize}
 \item
@@ -4639,18 +4961,20 @@ stretching space along perpendicular axes.
   critical points via eigenvalues of the Hessian.
 \item
   PCA (Principal Component Analysis): Data covariance matrices are
-  symmetric, and PCA finds orthogonal directions of maximum variance.
+  symmetric, and PCA finds orthogonal directions of\\
+  maximum variance.
 \item
   Differential equations \& physics: Symmetric operators correspond to
-  measurable quantities with real eigenvalues (stability, energy).
+  measurable quantities with real eigenvalues (\\
+  stability, energy).
 \end{itemize}
 
 \subsubsection{Why this matters}\label{why-this-matters-34}
 
 The spectral theorem guarantees that symmetric matrices are as simple as
-possible: they can always be analyzed in terms of real, orthogonal
-eigenvectors. This provides both deep theoretical insight and powerful
-computational tools.
+possible: they can always be analyzed in terms\\
+of real, orthogonal eigenvectors. This provides both deep theoretical
+insight and powerful computational tools.
 
 \subsubsection{Exercises 9.3}\label{exercises-93}
 
@@ -4682,10 +5006,10 @@ computational tools.
 (PCA)}\label{94-principal-component-analysis-pca}
 
 Principal Component Analysis (PCA) is a widely used technique in data
-science, machine learning, and statistics. At its core, PCA is an
-application of the spectral theorem to covariance matrices: it finds
-orthogonal directions (principal components) that capture the maximum
-variance in data.
+science, machine learning, and statistics. At its\\
+core, PCA is an application of the spectral theorem to covariance
+matrices: it finds orthogonal directions (principal\\
+components) that capture the maximum variance in data.
 
 \subsubsection{The Idea}\label{the-idea-2}
 
@@ -4714,16 +5038,22 @@ Given a dataset of vectors
 \end{enumerate}
 
 The first principal component is the eigenvector corresponding to the
-largest eigenvalue; it is the direction of maximum variance.
+largest eigenvalue; it is the direction of maximum\\
+variance.
 
 \subsubsection{Example 9.4.1}\label{example-941}
 
 Suppose we have two-dimensional data points roughly aligned along the
-line \(y = x\). The covariance matrix is approximately
+line \(y = x\). The covariance matrix is\\
+approximately
 
-\[\Sigma = \begin{bmatrix} 2 & 1.9 \\ 1.9 & 2 \end{bmatrix}.\]
+\[\Sigma =
+\begin{bmatrix}
+2 & 1.9 \\
+1.9 & 2
+\end{bmatrix}.\]
 
-Eigenvalues are about \(3.9\) and \(0.1\). The eigenvector for
+Eigenvalues are about \$3.9\( and \$0.1\). The eigenvector for
 \(\lambda = 3.9\) is approximately \((1,1)/\sqrt{2}\).
 
 \begin{itemize}
@@ -4759,16 +5089,18 @@ Thus PCA reduces the data to essentially one dimension.
 Theorem}\label{connection-to-the-spectral-theorem}
 
 The covariance matrix \(\Sigma\) is always symmetric and positive
-semidefinite. Hence by the spectral theorem, it has an orthonormal basis
-of eigenvectors and nonnegative real eigenvalues. PCA is nothing more
-than re-expressing data in this eigenbasis.
+semidefinite. Hence by the spectral theorem, it has an\\
+orthonormal basis of eigenvectors and nonnegative real eigenvalues. PCA
+is nothing more than re-expressing data in this\\
+eigenbasis.
 
 \subsubsection{Why this matters}\label{why-this-matters-35}
 
 PCA demonstrates how abstract linear algebra directly powers modern
-applications. Eigenvalues and eigenvectors give a practical method for
-simplifying data, revealing patterns, and reducing complexity. It is one
-of the most important algorithms derived from the spectral theorem.
+applications. Eigenvalues and eigenvectors give a\\
+practical method for simplifying data, revealing patterns, and reducing
+complexity. It is one of the most important\\
+algorithms derived from the spectral theorem.
 
 \subsubsection{Exercises 9.4}\label{exercises-94}
 
@@ -4798,17 +5130,18 @@ Practice}\label{chapter-10-linear-algebra-in-practice}
 Projections)}\label{101-computer-graphics-rotations-projections}
 
 Linear algebra is the language of modern computer graphics. Every image
-rendered on a screen, every 3D model rotated or projected, is ultimately
-the result of applying matrices to vectors. Rotations, reflections,
-scalings, and projections are all linear transformations, making
-matrices the natural tool for manipulating geometry.
+rendered on a screen, every 3D model rotated or\\
+projected, is ultimately the result of applying matrices to vectors.
+Rotations, reflections, scalings, and projections\\
+are all linear transformations, making matrices the natural tool for
+manipulating geometry.
 
 \subsubsection{Rotations in 2D}\label{rotations-in-2d}
 
 A counterclockwise rotation by an angle \(\theta\) in the plane is
 represented by
 
-\[R_\theta = 
+\[R_\theta =
 \begin{bmatrix}
 \cos\theta & -\sin\theta \\
 \sin\theta & \cos\theta
@@ -4819,15 +5152,16 @@ For any vector \(\mathbf{v} \in \mathbb{R}^2\), the rotated vector is
 \[\mathbf{v}' = R_\theta \mathbf{v}.\]
 
 This preserves lengths and angles, since \(R_\theta\) is orthogonal with
-determinant \(1\).
+determinant \$1\$.
 
 \subsubsection{Rotations in 3D}\label{rotations-in-3d}
 
-In three dimensions, rotations are represented by \(3 \times 3\)
-orthogonal matrices with determinant \(1\). For example, a rotation
-about the \(z\)-axis is
+In three dimensions, rotations are represented by \$3
+\textbackslash times 3\( orthogonal matrices with determinant \$1\). For
+example, a\\
+rotation about the \(z\)-axis is
 
-\[R_z(\theta) = 
+\[R_z(\theta) =
 \begin{bmatrix}
 \cos\theta & -\sin\theta & 0 \\
 \sin\theta & \cos\theta & 0 \\
@@ -4837,8 +5171,8 @@ about the \(z\)-axis is
 Similar formulas exist for rotations about the \(x\)- and \(y\)-axes.
 
 More general 3D rotations can be described by axis--angle representation
-or quaternions, but the underlying idea is still linear transformations
-represented by matrices.
+or quaternions, but the underlying idea is still\\
+linear transformations represented by matrices.
 
 \subsubsection{Projections}\label{projections-2}
 
@@ -4864,15 +5198,17 @@ To display 3D objects on a 2D screen, we use projections:
 \end{enumerate}
 
 These operations are linear (orthogonal projection) or nearly linear
-(perspective projection becomes linear in homogeneous coordinates).
+(perspective projection becomes linear in\\
+homogeneous coordinates).
 
 \subsubsection{Homogeneous Coordinates}\label{homogeneous-coordinates}
 
 To unify translations and projections with linear transformations,
-computer graphics uses homogeneous coordinates. A 3D point \((x,y,z)\)
-is represented as a 4D vector \((x,y,z,1)\). Transformations are then
-\(4 \times 4\) matrices, which can represent rotations, scalings, and
-translations in a single framework.
+computer graphics uses homogeneous coordinates. A 3D\\
+point \((x,y,z)\) is represented as a 4D vector \((x,y,z,1)\).
+Transformations are then \$4 \textbackslash times 4\$ matrices, which
+can\\
+represent rotations, scalings, and translations in a single framework.
 
 Example: Translation by \((a,b,c)\):
 
@@ -4893,16 +5229,16 @@ Interpretation}\label{geometric-interpretation-23}
   Projections reduce dimension: from 3D world space to 2D screen space.
 \item
   Homogeneous coordinates allow us to combine multiple transformations
-  (rotation + translation + projection) into a single matrix
-  multiplication.
+  (rotation + translation + projection) into a\\
+  single matrix multiplication.
 \end{itemize}
 
 \subsubsection{Why this matters}\label{why-this-matters-36}
 
 Linear algebra enables all real-time graphics: video games, simulations,
-CAD software, and movie effects. By chaining simple matrix operations,
-complex transformations are applied efficiently to millions of points
-per second.
+CAD software, and movie effects. By chaining\\
+simple matrix operations, complex transformations are applied
+efficiently to millions of points per second.
 
 \subsubsection{Exercises 10.1}\label{exercises-101}
 
@@ -4927,16 +5263,17 @@ per second.
 Squares)}\label{102-data-science-dimensionality-reduction-least-squares}
 
 Linear algebra provides the foundation for many data science techniques.
-Two of the most important are dimensionality reduction, where
-high-dimensional datasets are compressed while preserving essential
-information, and the least squares method, which underlies regression
-and model fitting.
+Two of the most important are dimensionality\\
+reduction, where high-dimensional datasets are compressed while
+preserving essential information, and the least squares\\
+method, which underlies regression and model fitting.
 
 \subsubsection{Dimensionality Reduction}\label{dimensionality-reduction}
 
 High-dimensional data often contains redundancy: many features are
-correlated, meaning the data essentially lies near a lower-dimensional
-subspace. Dimensionality reduction identifies these subspaces.
+correlated, meaning the data essentially lies near a\\
+lower-dimensional subspace. Dimensionality reduction identifies these
+subspaces.
 
 \begin{itemize}
 \item
@@ -4952,15 +5289,15 @@ subspace. Dimensionality reduction identifies these subspaces.
     Eigenvalues measure how much variance lies along each direction.
   \item
     Keeping only the top \(k\) components reduces data from
-    \(n\)-dimensional space to \(k\)-dimensional space while retaining
-    most variability.
+    \(n\)-dimensional space to \(k\)-dimensional space while\\
+    retaining most variability.
   \end{itemize}
 \end{itemize}
 
 Example 10.2.1. A dataset of 1000 images, each with 1024 pixels, may
-have most variance captured by just 50 eigenvectors of the covariance
-matrix. Projecting onto these components compresses the data while
-preserving essential features.
+have most variance captured by just 50 eigenvectors\\
+of the covariance matrix. Projecting onto these components compresses
+the data while preserving essential features.
 
 \subsubsection{Least Squares}\label{least-squares}
 
@@ -4991,11 +5328,19 @@ x_1 & 1 \\
 x_2 & 1 \\
 \vdots & \vdots \\
 x_m & 1
-\end{bmatrix}, 
-\quad 
-\mathbf{b} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_m \end{bmatrix},
-\quad 
-\mathbf{x} = \begin{bmatrix} m \\ c \end{bmatrix}.\]
+\end{bmatrix},
+\quad
+\mathbf{b} =
+\begin{bmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_m \end{bmatrix},
+\quad
+\mathbf{x} =
+\begin{bmatrix}
+m \\
+c \end{bmatrix}.\]
 
 Solve \(A^T A \mathbf{x} = A^T \mathbf{b}\). This yields the best-fit
 line in the least squares sense.
@@ -5018,9 +5363,10 @@ orthogonality.
 \subsubsection{Why this matters}\label{why-this-matters-37}
 
 Dimensionality reduction makes large datasets tractable, filters noise,
-and reveals structure. Least squares fitting powers regression,
-statistics, and machine learning. Both rely directly on eigenvalues,
-eigenvectors, and projections-core tools of linear algebra.
+and reveals structure. Least squares fitting\\
+powers regression, statistics, and machine learning. Both rely directly
+on eigenvalues, eigenvectors, and\\
+projections-core tools of linear algebra.
 
 \subsubsection{Exercises 10.2}\label{exercises-102}
 
@@ -5047,10 +5393,11 @@ eigenvectors, and projections-core tools of linear algebra.
 Chains}\label{103-networks-and-markov-chains}
 
 Graphs and networks provide a natural setting where linear algebra comes
-to life. From modeling flows and connectivity to predicting long-term
-behavior, matrices translate network structure into algebraic form.
-Markov chains, already introduced in Section 8.4, are a central example
-of networks evolving over time.
+to life. From modeling flows and connectivity\\
+to predicting long-term behavior, matrices translate network structure
+into algebraic form. Markov chains, already\\
+introduced in Section 8.4, are a central example of networks evolving
+over time.
 
 \subsubsection{Adjacency Matrices}\label{adjacency-matrices}
 
@@ -5063,7 +5410,7 @@ matrix \(A \in \mathbb{R}^{n \times n}\):
 0 & \text{otherwise.}
 \end{cases}\]
 
-For weighted graphs, entries may be positive weights instead of \(0/1\).
+For weighted graphs, entries may be positive weights instead of \$0/1\$.
 
 \begin{itemize}
 \item
@@ -5079,17 +5426,17 @@ Another important matrix is the graph Laplacian:
 
 \[L = D - A,\]
 
-where \(D\) is the diagonal degree matrix
-(\(D_{ii} = \text{degree}(i)\)).
+where \(D\) is the diagonal degree matrix (
+\(D_{ii} = \text{degree}(i)\) ).
 
 \begin{itemize}
 \item
   \(L\) is symmetric and positive semidefinite.
 \item
-  The smallest eigenvalue is always \(0\), with eigenvector
-  \((1,1,\dots,1)\).
+  The smallest eigenvalue is always
+  \$0\(, with eigenvector \)(1,1,\textbackslash dots,1)\$.
 \item
-  The multiplicity of eigenvalue \(0\) equals the number of connected
+  The multiplicity of eigenvalue \$0\$ equals the number of connected
   components in the graph.
 \end{itemize}
 
@@ -5099,8 +5446,8 @@ spectral graph theory.
 \subsubsection{Markov Chains on Graphs}\label{markov-chains-on-graphs}
 
 A Markov chain can be viewed as a random walk on a graph. If \(P\) is
-the transition matrix where \(P_{ij}\) is the probability of moving from
-node \(i\) to node \(j\), then
+the transition matrix where \(P_{ij}\) is the\\
+probability of moving from node \(i\) to node \(j\), then
 
 \[\mathbf{x}_{k+1} = P \mathbf{x}_k\]
 
@@ -5109,10 +5456,11 @@ describes the distribution of positions after \(k\) steps.
 \begin{itemize}
 \item
   The steady-state distribution is given by the eigenvector of \(P\)
-  with eigenvalue \(1\).
+  with eigenvalue \$1\$.
 \item
   The speed of convergence depends on the gap between the largest
-  eigenvalue (which is always \(1\)) and the second largest eigenvalue.
+  eigenvalue (which is always \$1\$) and the second\\
+  largest eigenvalue.
 \end{itemize}
 
 \subsubsection{Example 10.3.1}\label{example-1031}
@@ -5126,8 +5474,10 @@ Consider a simple 3-node cycle graph:
 \end{bmatrix}.\]
 
 This Markov chain cycles deterministically among the nodes. Eigenvalues
-are the cube roots of unity: \(1, e^{2\pi i/3}, e^{4\pi i/3}\). The
-eigenvalue \(1\) corresponds to the steady state, which is the uniform
+are the cube roots of\\
+unity: \$1, e\^{}\{2\textbackslash pi i/3\}, e\^{}\{4\textbackslash pi
+i/3\}\(. The eigenvalue \$1\) corresponds to the steady state, which is
+the uniform\\
 distribution \((1/3,1/3,1/3)\).
 
 \subsubsection{Applications}\label{applications-3}
@@ -5135,7 +5485,8 @@ distribution \((1/3,1/3,1/3)\).
 \begin{itemize}
 \item
   Search engines: Google's PageRank algorithm models the web as a Markov
-  chain, where steady-state probabilities rank pages.
+  chain, where steady-state probabilities rank\\
+  pages.
 \item
   Network analysis: Eigenvalues of adjacency or Laplacian matrices
   reveal communities, bottlenecks, and robustness.
@@ -5147,9 +5498,10 @@ distribution \((1/3,1/3,1/3)\).
 \subsubsection{Why this matters}\label{why-this-matters-38}
 
 Linear algebra transforms network problems into matrix problems.
-Eigenvalues and eigenvectors reveal connectivity, flow, stability, and
-long-term dynamics. Networks are everywhere-social media, biology,
-finance, and the internet-so these tools are indispensable.
+Eigenvalues and eigenvectors reveal connectivity, flow,\\
+stability, and long-term dynamics. Networks are everywhere-social media,
+biology, finance, and the internet-so these\\
+tools are indispensable.
 
 \subsubsection{Exercises 10.3}\label{exercises-103}
 
@@ -5177,38 +5529,39 @@ finance, and the internet-so these tools are indispensable.
 Connections}\label{104-machine-learning-connections}
 
 Modern machine learning is built on linear algebra. From the
-representation of data as matrices to the optimization of large-scale
-models, nearly every step relies on concepts such as vector spaces,
-projections, eigenvalues, and matrix decompositions.
+representation of data as matrices to the optimization of\\
+large-scale models, nearly every step relies on concepts such as vector
+spaces, projections, eigenvalues, and matrix\\
+decompositions.
 
 \subsubsection{Data as Matrices}\label{data-as-matrices}
 
 A dataset with \(m\) examples and \(n\) features is represented as a
 matrix \(X \in \mathbb{R}^{m \times n}\):
 
-\[X = 
+\[X =
 \begin{bmatrix}
-- & \mathbf{x}_1^T & - \\
-- & \mathbf{x}_2^T & - \\
-  & \vdots &  \\
-- & \mathbf{x}_m^T & -
+\- & \mathbf{x}_1^T & - \\
+\- & \mathbf{x}_2^T & - \\
+  & \vdots & \\
+\- & \mathbf{x}_m^T & -
 \end{bmatrix},\]
 
 where each row \(\mathbf{x}_i \in \mathbb{R}^n\) is a feature vector.
-Linear algebra provides tools to analyze, compress, and transform this
-data.
+Linear algebra provides tools to analyze, compress,\\
+and transform this data.
 
 \subsubsection{Linear Models}\label{linear-models}
 
 At the heart of machine learning are linear predictors:
 
-\[\hat{y} = X\mathbf{w},\]
+\(\hat{y} = X\mathbf{w},\)
 
 where \(\mathbf{w}\) is the weight vector. Training often involves
-solving a least squares problem or a regularized variant such as ridge
-regression:
+solving a least squares problem or a regularized\\
+variant such as ridge regression:
 
-\[\min_{\mathbf{w}} \|X\mathbf{w} - \mathbf{y}\|^2 + \lambda \|\mathbf{w}\|^2.\]
+\(\min_{\mathbf{w}} \|X\mathbf{w} - \mathbf{y}\|^2 + \lambda \|\mathbf{w}\|^2.\)
 
 This is solved efficiently using matrix factorizations.
 
@@ -5217,7 +5570,7 @@ This is solved efficiently using matrix factorizations.
 
 The SVD of a matrix \(X\) is
 
-\[X = U \Sigma V^T,\]
+\(X = U \Sigma V^T,\)
 
 where \(U, V\) are orthogonal and \(\Sigma\) is diagonal with
 nonnegative entries (singular values).
@@ -5236,7 +5589,8 @@ Learning}\label{eigenvalues-in-machine-learning}
 \begin{itemize}
 \item
   PCA (Principal Component Analysis): diagonalization of the covariance
-  matrix identifies directions of maximal variance.
+  matrix identifies directions of maximal\\
+  variance.
 \item
   Spectral clustering: uses eigenvectors of the Laplacian to group data
   points into clusters.
@@ -5264,9 +5618,10 @@ Even deep learning, though nonlinear, uses linear algebra at its core:
 \subsubsection{Why this matters}\label{why-this-matters-39}
 
 Machine learning models often involve datasets with millions of features
-and parameters. Linear algebra provides the algorithms and abstractions
-that make training and inference possible. Without it, large-scale
-computation in AI would be intractable.
+and parameters. Linear algebra provides the\\
+algorithms and abstractions that make training and inference possible.
+Without it, large-scale computation in AI would\\
+be intractable.
 
 \subsubsection{Exercises 10.4}\label{exercises-104}
 
@@ -5274,8 +5629,12 @@ computation in AI would be intractable.
 \def\labelenumi{\arabic{enumi}.}
 \item
   Show that ridge regression leads to the normal equations
+\end{enumerate}
 
-  \[(X^T X + \lambda I)\mathbf{w} = X^T \mathbf{y}.\]
+\[(X^T X + \lambda I)\mathbf{w} = X^T \mathbf{y}.\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Explain how SVD can be used to compress an image represented as a
   matrix of pixel intensities.
