@@ -31,14 +31,14 @@ Example 1.1.1.
 
 - A 2-dimensional vector: $(3, -1) \in \mathbb{R}^2$.
 - A 3-dimensional vector: $(2, 0, 5) \in \mathbb{R}^3$.
-- A 1-dimensional vector: $(7) \in \mathbb{R}^1$, which corresponds to the scalar $7$ itself.
+- A 1-dimensional vector: $(7) \in \mathbb{R}^1$, which corresponds to the scalar \$7$ itself.
 
 Vectors are often written vertically in column form, which emphasizes their role in matrix multiplication:
 
 $$
 \mathbf{v} = \begin{bmatrix}
 2 \\
-0 \\ 
+0 \\
 5 \end{bmatrix} \in \mathbb{R}^3.
 $$
 
@@ -178,7 +178,7 @@ rules.
 ### Exercises 1.2
 
 1. Compute $\mathbf{u} + \mathbf{v}$ where $\mathbf{u} = (1,2,3)$ and $\mathbf{v} = (4, -1, 0)$.
-2. Find $3\mathbf{v}$ where $\mathbf{v} = (-2,5)$. Sketch both vectors to illustrate the scaling.
+2. Find \$3\mathbf{v}$ where $\mathbf{v} = (-2,5)$. Sketch both vectors to illustrate the scaling.
 3. Show that $(5,7)$ can be written as a linear combination of $(1,0)$ and $(0,1)$.
 4. Write $(4,4)$ as a linear combination of $(1,1)$ and $(1,-1)$.
 5. Prove that if $\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$,
@@ -394,8 +394,9 @@ science (QR decomposition, least squares regression, PCA) rely on orthogonality.
 2. Find the projection of $(3,4)$ onto $(1,1)$.
 3. Show that any two distinct standard basis vectors in $\mathbb{R}^n$ are orthogonal.
 4. Decompose $(5,2)$ into components parallel and orthogonal to $(2,1)$.
-5. Prove that if $\mathbf{u}, \mathbf{v}$ are orthogonal and nonzero,
-   then $(\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v}) = 0$.
+5. Let $\mathbf{u}, \mathbf{v}$ be orthogonal nonzero vectors.
+   (a) Show that $(\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=\lVert \mathbf{u}\rVert^2-\lVert \mathbf{v}\rVert^2.$
+   (b) For what condition on $\mathbf{u}$ and $\mathbf{v}$ does $(\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=0$?
 
 # Chapter 2. Matrices
 
@@ -430,7 +431,7 @@ Thus, vectors are simply special cases of matrices.
 
 ### Examples
 
-Example 2.1.1. A $2 \times 3$ matrix:
+Example 2.1.1. A \$2 \times 3$ matrix:
 
 $$
 A = \begin{bmatrix}
@@ -441,7 +442,7 @@ $$
 
 Here, $a_{12} = -2$, $a_{23} = 5$, and the matrix has 2 rows, 3 columns.
 
-Example 2.1.2. A $3 \times 3$ square matrix:
+Example 2.1.2. A \$3 \times 3$ square matrix:
 
 $$
 B = \begin{bmatrix}
@@ -470,13 +471,21 @@ single compact object can represent both numerical data and functional rules.
 
 ### Exercises 2.1
 
-1. Write a $3 \times 2$ matrix of your choice and identify its entries $a_{ij}$.
+1. Write a \$3 \times 2$ matrix of your choice and identify its entries $a_{ij}$.
 2. Is every vector a matrix? Is every matrix a vector? Explain.
 3. Which of the following are square
    matrices: $A \in \mathbb{R}^{4\times4}$, $B \in \mathbb{R}^{3\times5}$, $C \in \mathbb{R}^{1\times1}$?
-4. Let $D = \begin{bmatrix} 1 & 0 \\\\ 0 & 1 \end{bmatrix}$. What kind of matrix is this?
-5. Consider the matrix $E = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$. Express $e_{11}, e_{12}, e_{21}, e_{22}$
-   explicitly.
+4. Let
+
+$$
+D = \begin{bmatrix} 1 & 0 \\\\ 0 & 1 \end{bmatrix}
+$$
+What kind of matrix is this?
+5. Consider the matrix
+$$
+E = \begin{bmatrix} a & b \\ c & d \end{bmatrix}
+$$
+Express $e_{11}, e_{12}, e_{21}, e_{22}$ explicitly.
 
 ## 2.2 Matrix Addition and Multiplication
 
@@ -634,7 +643,7 @@ B = \begin{bmatrix} 4 & -2 \\
 5 & 7 \end{bmatrix}.
 $$
 
-2. Find $3A$ where
+2. Find \$3A$ where
 
 $$
 A = \begin{bmatrix} 1 & -4 \\
@@ -787,7 +796,7 @@ $$
 A = \begin{bmatrix}
 1 & 2 \\
 0 & 1 \end{bmatrix}, \quad
-B = \begin{bmatrix} 
+B = \begin{bmatrix}
 3 & 4 \\
 5 & 6 \end{bmatrix}.
 $$
@@ -866,7 +875,7 @@ $$
 D = \begin{bmatrix} 2 & 0 & 0 \\
 0 & 3 & 0 \\
 0 & 0 & -1 \end{bmatrix}, \quad
-\mathbf{x} = \begin{bmatrix} 
+\mathbf{x} = \begin{bmatrix}
 1 \\
 4 \\
 -2 \end{bmatrix}.
@@ -875,7 +884,7 @@ $$
 Then
 
 $$
-D\mathbf{x} = \begin{bmatrix} 
+D\mathbf{x} = \begin{bmatrix}
 2 \\
 12 \\
 2 \end{bmatrix}.
@@ -900,7 +909,7 @@ $$
 Then
 
 $$
-P\begin{bmatrix} 
+P\begin{bmatrix}
 a \\
 b \\
 c \end{bmatrix} =
@@ -922,11 +931,6 @@ A^T = A,
 $$
 
 and skew-symmetric if
-
-$$
-A^T = -A.
-$$
-
 Symmetric matrices appear in quadratic forms and optimization, while skew-symmetric matrices describe rotations and
 cross products in geometry.
 
@@ -972,7 +976,7 @@ these simple forms.
 4. Verify that
 
 $$
-Q = \begin{bmatrix} 
+Q = \begin{bmatrix}
 0 & 1 \\
 -1 & 0 \end{bmatrix}
 $$
@@ -1045,7 +1049,8 @@ can be written as
 
 $$
 \begin{bmatrix} 1 & 2 \\ 3 & -1 \end{bmatrix}
-\begin{bmatrix} x \\ y \end{bmatrix} =
+\begin{bmatrix} x \\ y \end{bmatrix}
+=
 \begin{bmatrix} 5 \\ 4 \end{bmatrix}.
 $$
 
@@ -1053,26 +1058,32 @@ $$
 
 A linear system may have:
 
-1. No solution (inconsistent): The equations conflict.
-   Example:
-   $
-   \begin{cases}
-   x + y = 1 \\
-   x + y = 2
-   \end{cases}
-   $
-   has no solution.
+1. No solution (inconsistent): The equations conflict. Example:
 
-2. Exactly one solution (unique): The system’s equations intersect at a single point.
-   Example: The above system with coefficient matrix $
-   \begin{bmatrix} 1 & 2 \\ 3 & -1 \end{bmatrix}
-   $ has a unique solution.
+$$
+\begin{cases}
+x + y = 1 \\
+x + y = 2
+\end{cases}
+$$
 
-3. Infinitely many solutions: The equations describe overlapping constraints (e.g., multiple equations representing the
-   same line or plane).
+This system has no solution.
 
-The nature of the solution depends on the rank of $A$ and its relation to the augmented matrix $(A|\mathbf{b})$, which
-we will study later.
+2. Exactly one solution (unique): The system’s equations intersect at a single point.  
+   Example: The following coefficient matrix:
+
+$$
+\begin{bmatrix}
+1 & 2 \\
+3 & -1
+\end{bmatrix}
+$$
+
+has a unique solution.
+
+3. Infinitely many solutions: The equations describe overlapping constraints (e.g., multiple equations representing the same line or plane).
+
+The nature of the solution depends on the rank of $A$ and its relation to the augmented matrix $(A|\mathbf{b})$, which we will study later.
 
 ### Geometric Interpretation
 
@@ -1091,49 +1102,58 @@ their solutions is the first step toward systematic solution methods like Gaussi
 ### Exercises 3.1
 
 1. Write the following system in matrix form:
-   $
-   \begin{cases}
-   2x + 3y - z = 7, \\
-   x - y + 4z = 1, \\
-   3x + 2y + z = 5
-   \end{cases}
-   $
+
+$$
+\begin{cases}
+2x + 3y - z = 7, \\
+x - y + 4z = 1, \\
+3x + 2y + z = 5
+\end{cases}
+$$
 
 2. Determine whether the system
-   $
-   \begin{cases}
-   x + y = 1, \\
-   2x + 2y = 2
-   \end{cases}
-   $
-   has no solution, one solution, or infinitely many solutions.
+
+$$
+\begin{cases}
+x + y = 1, \\
+2x + 2y = 2
+\end{cases}
+$$
+
+has no solution, one solution, or infinitely many solutions.
 
 3. Geometrically interpret the system
-   $
-   \begin{cases}
-   x + y = 3, \\
-   x - y = 1
-   \end{cases}
-   $
-   in the plane.
+
+$$
+\begin{cases}
+x + y = 3, \\
+x - y = 1
+\end{cases}
+$$
+
+in the plane.
 
 4. Solve the system
-   $
-   \begin{cases}
-   2x + y = 1, \\
-   x - y = 4
-   \end{cases}
-   $
-   and check your solution.
+
+$$
+\begin{cases}
+2x + y = 1, \\
+x - y = 4
+\end{cases}
+$$
+
+and check your solution.
 
 5. In $\mathbb{R}^3$, describe the solution set of
-   $
-   \begin{cases}
-   x + y + z = 0, \\
-   2x + 2y + 2z = 0
-   \end{cases}
-   $.
-   What geometric object does it represent?
+
+$$
+\begin{cases}
+x + y + z = 0, \\
+2x + 2y + 2z = 0
+\end{cases}
+$$
+
+What geometric object does it represent?
 
 ## 3.2 Gaussian Elimination
 
@@ -1243,29 +1263,34 @@ $$
 Step 5. Back substitution
 
 From the last row:
-$
+
+$$
 z = \tfrac{11}{3}.
-$
+$$
 
 Second row:
-$
+
+$$
 y - z = -\tfrac{1}{3} \implies y = -\tfrac{1}{3} + \tfrac{11}{3} = \tfrac{10}{3}.
-$
+$$
 
 First row:
-$
+
+$$
 x + 2y - z = 3 \implies x + 2\cdot\tfrac{10}{3} - \tfrac{11}{3} = 3.
-$
+$$
 
 So
-$
+
+$$
 x + \tfrac{20}{3} - \tfrac{11}{3} = 3 \implies x + 3 = 3 \implies x = 0.
-$
+$$
 
 Solution:
-$
+
+$$
 (x,y,z) = \big(0, \tfrac{10}{3}, \tfrac{11}{3}\big).
-$
+$$
 
 ### Why this matters
 
@@ -1276,35 +1301,38 @@ machine learning.
 ### Exercises 3.2
 
 1. Solve by Gaussian elimination:
-   $
-   \begin{cases}
-   x + y = 2, \\
-   2x - y = 0.
-   \end{cases}
-   $
+
+$$
+\begin{cases}
+x + y = 2, \\
+2x - y = 0.
+\end{cases}
+$$
 
 2. Reduce the following augmented matrix to REF:
-   $
-   \left[\begin{array}{ccc|c}
-   1 & 1 & 1 & 6 \\
-   2 & -1 & 3 & 14 \\
-   1 & 4 & -2 & -2
-   \end{array}\right].
-   $
+
+$$
+\left[\begin{array}{ccc|c}
+1 & 1 & 1 & 6 \\
+2 & -1 & 3 & 14 \\
+1 & 4 & -2 & -2
+\end{array}\right].
+$$
 
 3. Show that Gaussian elimination always produces either:
 
-    - a unique solution,
-    - infinitely many solutions, or
-    - a contradiction (no solution).
+- a unique solution,
+- infinitely many solutions, or
+- a contradiction (no solution).
 
 4. Use Gaussian elimination to find all solutions of
-   $
-   \begin{cases}
-   x + y + z = 0, \\
-   2x + y + z = 1.
-   \end{cases}
-   $
+
+$$
+\begin{cases}
+x + y + z = 0, \\
+2x + y + z = 1.
+\end{cases}
+$$
 
 5. Explain why pivoting (choosing the largest available pivot element) is useful in numerical computation.
 
@@ -1598,7 +1626,7 @@ $$
 
 3. Show that the solution set of any homogeneous system is a subspace of $\mathbb{R}^n$.
 
-4. Suppose $A$ is a $3 \times 3$ matrix with $\text{rank}(A) = 2$. What is the dimension of the null space of $A$?
+4. Suppose $A$ is a \$3 \times 3$ matrix with $\text{rank}(A) = 2$. What is the dimension of the null space of $A$?
 
 5. For
 
@@ -1634,7 +1662,7 @@ scalars $a,b \in \mathbb{R}$):
 4. Additive inverses: For each $\mathbf{v} \in V$, there exists $(-\mathbf{v} \in V$ such
    that $\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$.
 5. Compatibility of scalar multiplication: $a(b\mathbf{v}) = (ab)\mathbf{v}$.
-6. Identity element of scalars: $1 \cdot \mathbf{v} = \mathbf{v}$.
+6. Identity element of scalars: \$1 \cdot \mathbf{v} = \mathbf{v}$.
 7. Distributivity over vector addition: $a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}$.
 8. Distributivity over scalar addition: $(a+b)\mathbf{v} = a\mathbf{v} + b\mathbf{v}$.
 
@@ -1760,17 +1788,20 @@ other.
 4. For the matrix
 
 $$
-A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix},
+A = \begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix}
 $$
 
-describe the null space of $A$ as a subspace of $\mathbb{R}^3$.
-5\. List all possible subspaces of $\mathbb{R}^2$.
+Describe the null space of $A$ as a subspace of $\mathbb{R}^3$.
+
+5. List all possible subspaces of $\mathbb{R}^2$.
 
 ## 4.3 Span, Basis, Dimension
 
 The ideas of span, basis, and dimension provide the language for describing the size and structure of subspaces.
-Together, they tell us how a vector space is generated, how many building blocks it requires, and how those blocks can
-be chosen.
+Together, they tell us how a vector space is generated, how many building blocks it requires, and how those blocks can be chosen.
 
 ### Span
 
@@ -1892,7 +1923,7 @@ c_1 - c_2 = 1.
 \end{cases}
 $$
 
-Adding: $2c_1 = 4 \implies c_1 = 2$. Then $c_2 = 1$.
+Adding: \$2c_1 = 4 \implies c_1 = 2$. Then $c_2 = 1$.
 
 So,
 
@@ -1922,7 +1953,7 @@ $$
 with basis vectors as columns. For any vector $\mathbf{u}$,
 
 $$
-\mathbf{u} = P[\mathbf{u}]_{\mathcal{B}}, \qquad [\mathbf{u}]_{\mathcal{B}} = P^{-1}\mathbf{u}.
+\mathbf{u} = P [\mathbf{u}]_{\mathcal{B}}, \qquad [\mathbf{u}]_{\mathcal{B}} = P^{-1}\mathbf{u}.
 $$
 
 Thus, switching between bases reduces to matrix multiplication.
@@ -1968,14 +1999,15 @@ scalars $c \in \mathbb{R}$:
 
 1. Additivity:
 
-   $$
-   T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}),
-   $$
+$$
+T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}),
+$$
+
 2. Homogeneity:
 
-   $$
-   T(c\mathbf{u}) = cT(\mathbf{u}).
-   $$
+$$
+T(c\mathbf{u}) = cT(\mathbf{u}).
+$$
 
 If both conditions hold, then $T$ automatically respects linear combinations:
 
@@ -1995,6 +2027,7 @@ $$
 This doubles the length of every vector, preserving direction. It is linear.
 
 Example 5.1.2. Rotation.
+
 Let $R_\theta: \mathbb{R}^2 \to \mathbb{R}^2$ be
 
 $$
@@ -2004,8 +2037,10 @@ $$
 This rotates vectors by angle $\theta$. It satisfies additivity and homogeneity, hence is linear.
 
 Example 5.1.3. Differentiation.
-Let $D: \mathbb{R}[x] \to \mathbb{R}[x]$ be differentiation: $D(p(x)) = p'(x)$. Since derivatives respect addition and
-scalar multiples, differentiation is a linear transformation.
+
+Let $D: \mathbb{R}[x] \to \mathbb{R}[x]$ be differentiation: $D(p(x)) = p'(x)$.
+
+Since derivatives respect addition and scalar multiples, differentiation is a linear transformation.
 
 ### Non-Example
 
@@ -2037,11 +2072,11 @@ these transformations, their representations, and their invariants.
 4. Give an example of a linear transformation from $\mathbb{R}^3$ to $\mathbb{R}^2$.
 5. Let $T:\mathbb{R}[x] \to \mathbb{R}[x]$ be integration:
 
-   $$
-   T(p(x)) = \int_0^x p(t)\\,dt.
-   $$
+$$
+T(p(x)) = \int_0^x p(t)\\,dt.
+$$
 
-   Prove that $T$ is a linear transformation.
+Prove that $T$ is a linear transformation.
 
 ## 5.2 Matrix Representation of Linear Maps
 
@@ -2058,10 +2093,10 @@ and 0 elsewhere.
 The action of $T$ on each basis vector determines the entire transformation:
 
 $$
-T(\mathbf{e}\_j) = \begin{bmatrix} 
-a_{1j} \\ 
-a_{2j} \\ 
-\vdots \\ 
+T(\mathbf{e}\_j) = \begin{bmatrix}
+a_{1j} \\
+a_{2j} \\
+\vdots \\
 a_{mj} \end{bmatrix}.
 $$
 
@@ -2251,7 +2286,13 @@ spectral theory.
 ### Exercises 5.3
 
 1. Find the kernel and image of $T:\mathbb{R}^2 \to \mathbb{R}^2$, $T(x,y) = (x-y, x+y)$.
-2. Let $A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \end{bmatrix}$. Find bases for $\ker(A)$ and $\text{im}(A)$.
+2. Let
+
+$$
+A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \end{bmatrix}
+$$
+
+Find bases for $\ker(A)$ and $\text{im}(A)$.
 3. For the projection map $P(x,y,z) = (x,y,0)$, describe the kernel and image.
 4. Prove that $\ker(T)$ and $\text{im}(T)$ are always subspaces.
 5. Verify the Rank–Nullity Theorem for the transformation in Example 5.3.1.
@@ -2357,12 +2398,23 @@ choosing a more natural coordinate system-whether in geometry, physics, or machi
 
 ### Exercises 5.4
 
-1. Let $A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}$. Compute its representation in the basis $\{(1,0),(1,1)\}$.
+1. Let
+
+$$
+A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}
+$$
+
+Compute its representation in the basis $\{(1,0),(1,1)\}$.
 2. Find the change-of-basis matrix from the standard basis of $\mathbb{R}^2$ to $\{(2,1),(1,1)\}$.
 3. Prove that similar matrices (related by $P^{-1}AP$) represent the same linear transformation under different bases.
-4. Diagonalize the matrix $A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ in the basis $\{(1,1),(1,-1)\}$.
-5. In $\mathbb{R}^3$, let $\mathcal{B} = \{(1,0,0),(1,1,0),(1,1,1)\}$. Construct the change-of-basis matrix $P$ and
-   compute $P^{-1}$.
+4. Diagonalize the matrix
+
+$$
+A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}
+$$
+
+in the basis $\{(1,1),(1,-1)\}$.
+5. In $\mathbb{R}^3$, let $\mathcal{B} = \{(1,0,0),(1,1,0),(1,1,1)\}$. Construct the change-of-basis matrix $P$ and compute $P^{-1}$.
 
 # Chapter 6. Determinants
 
@@ -2372,9 +2424,9 @@ Determinants are numerical values associated with square matrices. At first they
 but their importance comes from what they measure: determinants encode scaling, orientation, and invertibility of linear
 transformations. They bridge algebra and geometry.
 
-### Determinants of $2 \times 2$ Matrices
+### Determinants of \$2 \times 2$ Matrices
 
-For a $2 \times 2$ matrix
+For a \$2 \times 2$ matrix
 
 $$
 A = \begin{bmatrix} a & b \\ c & d \end{bmatrix},
@@ -2390,7 +2442,7 @@ Geometric meaning: If $A$ represents a linear transformation of the plane, then 
 For example, if $\det(A) = 2$, areas of shapes are doubled. If $\det(A) = 0$, the transformation collapses the plane to
 a line: all area is lost.
 
-### Determinants of $3 \times 3$ Matrices
+### Determinants of \$3 \times 3$ Matrices
 
 For
 
@@ -2442,15 +2494,22 @@ analysis, geometry, and applied mathematics.
 
 ### Exercises 6.1
 
-1. Compute the determinant of $\begin{bmatrix} 2 & 3 \\ 1 & 4 \end{bmatrix}$. What area scaling factor does it
-   represent?
-2. Find the determinant of the shear matrix $\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}$. What happens to the area of
-   the unit square?
-3. For the $3 \times 3$ matrix
-   $\begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{bmatrix}$, compute the determinant. How does it scale
-   volume in $\mathbb{R}^3$?
-4. Show that any rotation matrix in $\mathbb{R}^2$ has determinant $1$.
-5. Give an example of a $2 \times 2$ matrix with determinant $-1$. What geometric action does it represent?
+1. Compute the determinant of
+
+$$
+\begin{bmatrix} 2 & 3 \\ 1 & 4 \end{bmatrix}
+$$
+What area scaling factor does it represent?
+2. Find the determinant of the shear matrix
+$$
+\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}
+$$
+What happens to the area of the unit square?
+3. For the \$3 \times 3$ matrix
+$$\begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{bmatrix}$$
+Compute the determinant. How does it scale volume in $\mathbb{R}^3$?
+4. Show that any rotation matrix in $\mathbb{R}^2$ has determinant \$1$.
+5. Give an example of a \$2 \times 2$ matrix with determinant $-1$. What geometric action does it represent?
 
 ## 6.2 Properties of Determinants
 
@@ -2464,16 +2523,16 @@ Let $A, B \in \mathbb{R}^{n \times n}$, and let $c \in \mathbb{R}$. Then:
 
 1. Identity:
 
-   $$
-   \det(I_n) = 1.
-   $$
+$$
+\det(I_n) = 1.
+$$
 
 2. Triangular matrices:
    If $A$ is upper or lower triangular, then
 
-   $$
-   \det(A) = a_{11} a_{22} \cdots a_{nn}.
-   $$
+$$
+\det(A) = a_{11} a_{22} \cdots a_{nn}.
+$$
 
 3. Row/column swap:
    Interchanging two rows (or columns) multiplies the determinant by $-1$.
@@ -2486,15 +2545,15 @@ Let $A, B \in \mathbb{R}^{n \times n}$, and let $c \in \mathbb{R}$. Then:
 
 6. Transpose:
 
-   $$
-   \det(A^T) = \det(A).
-   $$
+$$
+\det(A^T) = \det(A).
+$$
 
 7. Multiplicativity:
 
-   $$
-   \det(AB) = \det(A)\det(B).
-   $$
+$$
+\det(AB) = \det(A)\det(B).
+$$
 
 8. Invertibility:
    $A$ is invertible if and only if $\det(A) \neq 0$.
@@ -2505,7 +2564,11 @@ Example 6.2.1.
 For
 
 $$
-A = \begin{bmatrix} 2 & 0 & 0 \\ 1 & 3 & 0 \\ -1 & 4 & 5 \end{bmatrix},
+A = \begin{bmatrix}
+2 & 0 & 0 \\
+1 & 3 & 0 \\
+-1 & 4 & 5
+\end{bmatrix},
 $$
 
 $A$ is lower triangular, so
@@ -2555,25 +2618,25 @@ computation, eigenvalue theory, and differential equations.
 
 1. Compute the determinant of
 
-   $$
-   A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 2 \end{bmatrix}.
-   $$
+$$
+A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 2 \end{bmatrix}.
+$$
 
 2. Show that if two rows of a square matrix are identical, then its determinant is zero.
 
 3. Verify $\det(A^T) = \det(A)$ for
 
-   $$
-   A = \begin{bmatrix} 2 & -1 \\ 3 & 4 \end{bmatrix}.
-   $$
+$$
+A = \begin{bmatrix} 2 & -1 \\ 3 & 4 \end{bmatrix}.
+$$
 
 4. If $A$ is invertible, prove that
 
-   $$
-   \det(A^{-1}) = \frac{1}{\det(A)}.
-   $$
+$$
+\det(A^{-1}) = \frac{1}{\det(A)}.
+$$
 
-5. Suppose $A$ is a $3\times 3$ matrix with $\det(A) = 5$. What is $\det(2A)$?
+5. Suppose $A$ is a \$3\times 3$ matrix with $\det(A) = 5$. What is $\det(2A)$?
 
 ## 6.3 Cofactor Expansion
 
@@ -2597,15 +2660,12 @@ The sign factor $(-1)^{i+j}$ alternates in a checkerboard pattern:
 
 $$
 \begin{bmatrix}
-
 + & - & + & - & \cdots \\
-
 - & + & - & + & \cdots \\
-
 + & - & + & - & \cdots \\
-  \vdots & \vdots & \vdots & \vdots & \ddots
-  \end{bmatrix}.
-  $$
+\vdots & \vdots & \vdots & \vdots & \ddots
+\end{bmatrix}.
+$$
 
 ### Cofactor Expansion Formula
 
@@ -2639,11 +2699,28 @@ $$
 $$
 
 - For $C_{11}$:
-  $M_{11} = \det \begin{bmatrix} 4 & 5 \\ 0 & 6 \end{bmatrix} = 24$, so $C_{11} = (+1)(24) = 24$.
+
+$$
+M_{11} = \det \begin{bmatrix} 4 & 5 \\ 0 & 6 \end{bmatrix} = 24
+$$
+
+so $C_{11} = (+1)(24) = 24$.
+
 - For $C_{12}$:
-  $M_{12} = \det \begin{bmatrix} 0 & 5 \\ 1 & 6 \end{bmatrix} = 0 - 5 = -5$, so $C_{12} = (-1)(-5) = 5$.
+
+$$
+M_{12} = \det \begin{bmatrix} 0 & 5 \\ 1 & 6 \end{bmatrix} = 0 - 5 = -5
+$$
+
+so $C_{12} = (-1)(-5) = 5$.
+
 - For $C_{13}$:
-  $M_{13} = \det \begin{bmatrix} 0 & 4 \\ 1 & 0 \end{bmatrix} = 0 - 4 = -4$, so $C_{13} = (+1)(-4) = -4$.
+
+$$
+M_{13} = \det \begin{bmatrix} 0 & 4 \\ 1 & 0 \end{bmatrix} = 0 - 4 = -4
+$$
+
+so $C_{13} = (+1)(-4) = -4$.
 
 Thus,
 
@@ -2677,15 +2754,15 @@ to adjugates, Cramer’s rule, and classical geometry.
 
 1. Compute the determinant of
 
-   $$
-   \begin{bmatrix}
-   2 & 0 & 1 \\
-   3 & -1 & 4 \\
-   1 & 2 & 0
-   \end{bmatrix}
-   $$
+$$
+\begin{bmatrix}
+2 & 0 & 1 \\
+3 & -1 & 4 \\
+1 & 2 & 0
+\end{bmatrix}
+$$
 
-   by cofactor expansion along the first column.
+by cofactor expansion along the first column.
 
 2. Verify that expanding along the second row of Example 6.3.1 gives the same determinant.
 
@@ -2736,7 +2813,7 @@ A = \begin{bmatrix}
 \end{bmatrix}, \quad \det(A) = 1.
 $$
 
-So the parallelepiped has volume $1$, even though the vectors are not orthogonal.
+So the parallelepiped has volume \$1$, even though the vectors are not orthogonal.
 
 ### Invertibility Test
 
@@ -2783,16 +2860,23 @@ solving systems and checking singularity).
 
 1. Compute the area of the parallelogram spanned by $(2,1)$ and $(1,3)$.
 2. Find the volume of the parallelepiped spanned by $(1,0,0), (1,1,0), (1,1,1)$.
-3. Determine whether the matrix $\begin{bmatrix} 1 & 2 \\ 3 & 6 \end{bmatrix}$ is invertible. Justify using
-   determinants.
+
+3. Determine whether the matrix
+
+$$
+\begin{bmatrix} 1 & 2 \\ 3 & 6 \end{bmatrix}
+$$
+
+is invertible. Justify using determinants.
 4. Use Cramer’s rule to solve
 
-   $$
-   \begin{cases}
-   x + y = 3, \\
-   2x - y = 0.
-   \end{cases}
-   $$
+$$
+\begin{cases}
+x + y = 3, \\
+2x - y = 0.
+\end{cases}
+$$
+
 5. Explain geometrically why a determinant of zero implies no inverse exists.
 
 # Chapter 7. Inner Product Spaces
@@ -3235,7 +3319,7 @@ $$
 A(1,0)^T = 2(1,0)^T, \quad A(0,1)^T = 3(0,1)^T.
 $$
 
-So $(1,0)$ is an eigenvector with eigenvalue $2$, and $(0,1)$ is an eigenvector with eigenvalue $3$.
+So $(1,0)$ is an eigenvector with eigenvalue \$2$, and $(0,1)$ is an eigenvector with eigenvalue \$3$.
 
 Example 8.1.2.
 Rotation matrix in $\mathbb{R}^2$:
@@ -3469,7 +3553,7 @@ $$
 p_A(\lambda) = (2-\lambda)(3-\lambda)(4-\lambda).
 $$
 
-So eigenvalues are $2, 3, 4$.
+So eigenvalues are \$2, 3, 4$.
 
 ### Properties
 
@@ -3558,7 +3642,7 @@ A = \begin{bmatrix}
 0 & -1 \end{bmatrix}.
 $$
 
-Then eigenvalues are $2, -1$ with eigenvectors $(1,0)$, $(0,1)$. Solutions are
+Then eigenvalues are \$2, -1$ with eigenvectors $(1,0)$, $(0,1)$. Solutions are
 
 $$
 \mathbf{x}(t) = c_1 e^{2t}(1,0) + c_2 e^{-t}(0,1).
@@ -3625,7 +3709,7 @@ PageRank to modern machine learning.
    $$
    P = \begin{bmatrix} 0.7 & 0.2 \\ 0.3 & 0.8 \end{bmatrix}.
    $$
-4. Prove that for any stochastic matrix $P$, $1$ is always an eigenvalue.
+4. Prove that for any stochastic matrix $P$, \$1$ is always an eigenvalue.
 5. Explain why all eigenvalues of a stochastic matrix satisfy $|\lambda| \leq 1$.
 
 # Chapter 9. Quadratic Forms and Spectral Theorems
@@ -3921,11 +4005,11 @@ $$
 4. Then
 
 $$
-Q = 
+Q =
 \begin{bmatrix}
-\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \[6pt] -\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} 
+\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \[6pt] -\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}}
 \end{bmatrix}, \quad
-\Lambda = 
+\Lambda =
 \begin{bmatrix}
 1 & 0 \\
 0 & 3
@@ -4013,14 +4097,14 @@ Suppose we have two-dimensional data points roughly aligned along the line $y = 
 approximately
 
 $$
-\Sigma = 
+\Sigma =
 \begin{bmatrix}
 2 & 1.9 \\
 1.9 & 2
 \end{bmatrix}.
 $$
 
-Eigenvalues are about $3.9$ and $0.1$. The eigenvector for $\lambda = 3.9$ is approximately $(1,1)/\sqrt{2}$.
+Eigenvalues are about \$3.9$ and \$0.1$. The eigenvector for $\lambda = 3.9$ is approximately $(1,1)/\sqrt{2}$.
 
 - First principal component: the line $y = x$.
 - Most variance lies along this direction.
@@ -4081,11 +4165,11 @@ $$
 \mathbf{v}' = R_\theta \mathbf{v}.
 $$
 
-This preserves lengths and angles, since $R_\theta$ is orthogonal with determinant $1$.
+This preserves lengths and angles, since $R_\theta$ is orthogonal with determinant \$1$.
 
 ### Rotations in 3D
 
-In three dimensions, rotations are represented by $3 \times 3$ orthogonal matrices with determinant $1$. For example, a
+In three dimensions, rotations are represented by \$3 \times 3$ orthogonal matrices with determinant \$1$. For example, a
 rotation about the $z$-axis is
 
 $$
@@ -4129,7 +4213,7 @@ homogeneous coordinates).
 ### Homogeneous Coordinates
 
 To unify translations and projections with linear transformations, computer graphics uses homogeneous coordinates. A 3D
-point $(x,y,z)$ is represented as a 4D vector $(x,y,z,1)$. Transformations are then $4 \times 4$ matrices, which can
+point $(x,y,z)$ is represented as a 4D vector $(x,y,z,1)$. Transformations are then \$4 \times 4$ matrices, which can
 represent rotations, scalings, and translations in a single framework.
 
 Example: Translation by $(a,b,c)$:
@@ -4221,10 +4305,10 @@ x_2 & 1 \\
 x_m & 1
 \end{bmatrix},
 \quad
-\mathbf{b} = 
+\mathbf{b} =
 \begin{bmatrix}
-y_1 \\ 
-y_2 \\ 
+y_1 \\
+y_2 \\
 \vdots \\
 y_m \end{bmatrix},
 \quad
@@ -4275,7 +4359,7 @@ A_{ij} =
 \end{cases}
 $$
 
-For weighted graphs, entries may be positive weights instead of $0/1$.
+For weighted graphs, entries may be positive weights instead of \$0/1$.
 
 - The number of walks of length $k$ from node $i$ to node $j$ is given by the entry $(A^k)_{ij}$.
 - Powers of adjacency matrices thus encode connectivity over time.
@@ -4291,8 +4375,8 @@ $$
 where $D$ is the diagonal degree matrix ( $D_{ii} = \text{degree}(i)$ ).
 
 - $L$ is symmetric and positive semidefinite.
-- The smallest eigenvalue is always $0$, with eigenvector $(1,1,\dots,1)$.
-- The multiplicity of eigenvalue $0$ equals the number of connected components in the graph.
+- The smallest eigenvalue is always \$0$, with eigenvector $(1,1,\dots,1)$.
+- The multiplicity of eigenvalue \$0$ equals the number of connected components in the graph.
 
 This connection between eigenvalues and connectivity forms the basis of spectral graph theory.
 
@@ -4307,8 +4391,8 @@ $$
 
 describes the distribution of positions after $k$ steps.
 
-- The steady-state distribution is given by the eigenvector of $P$ with eigenvalue $1$.
-- The speed of convergence depends on the gap between the largest eigenvalue (which is always $1$) and the second
+- The steady-state distribution is given by the eigenvector of $P$ with eigenvalue \$1$.
+- The speed of convergence depends on the gap between the largest eigenvalue (which is always \$1$) and the second
   largest eigenvalue.
 
 ### Example 10.3.1
@@ -4324,7 +4408,7 @@ P = \begin{bmatrix}
 $$
 
 This Markov chain cycles deterministically among the nodes. Eigenvalues are the cube roots of
-unity: $1, e^{2\pi i/3}, e^{4\pi i/3}$. The eigenvalue $1$ corresponds to the steady state, which is the uniform
+unity: \$1, e^{2\pi i/3}, e^{4\pi i/3}$. The eigenvalue \$1$ corresponds to the steady state, which is the uniform
 distribution $(1/3,1/3,1/3)$.
 
 ### Applications
