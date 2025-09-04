@@ -1,4437 +1,2995 @@
-# The Little Book of Linear Algebra
+# 선형대수학 소책자
 
-A concise, beginner-friendly introduction to the core ideas of linear algebra.
+선형대수학의 핵심 아이디어를 간결하고 초보자 친화적으로 소개합니다.
 
-## Formats
+## 포맷
 
-- [Download PDF](book.pdf) – print-ready version
-- [Download EPUB](book.epub) – e-reader friendly
-- [View LaTeX](book.tex) – Latex source
+- [PDF 다운로드](book.pdf) – 인쇄용 버전
+- [EPUB 다운로드](book.epub) – 전자책 리더용
+- [LaTeX 소스 보기](book.tex) – LaTeX 소스
 
-# Chapter 1. Vectors
+# 제1장. 벡터
 
-## 1.1 Scalars and Vectors
+## 1.1 스칼라와 벡터
 
-A scalar is a single numerical quantity, most often taken from the real numbers, denoted by $\mathbb{R}$. Scalars are
-the fundamental building blocks of arithmetic: they can be added, subtracted, multiplied, and, except in the case of
-zero, divided. In linear algebra, scalars play the role of coefficients, scaling factors, and entries of larger
-structures such as vectors and matrices. They provide the weights by which more complex objects are measured and
-combined. A vector is an ordered collection of scalars, arranged either in a row or a column. When the scalars are real
-numbers, the vector is said to belong to *real* $n$-dimensional space, written
+스칼라는 단일 숫자 양으로, 대부분 실수 집합에서 가져오며 \(\mathbb{R}\)로 표기됩니다. 스칼라는 산술의 기본 구성 요소입니다. 즉, 더하고, 빼고, 곱하고, 0이 아닌 경우 나눌 수 있습니다. 선형대수학에서 스칼라는 계수, 스케일링 인수, 그리고 벡터 및 행렬과 같은 더 큰 구조의 항목 역할을 합니다. 스칼라는 더 복잡한 객체를 측정하고 결합하는 가중치를 제공합니다. 벡터는 스칼라의 순서 있는 모음으로, 행이나 열로 배열됩니다. 스칼라가 실수일 때, 벡터는 \emph{실수} \(n\)차원 공간에 속한다고 하며, 다음과 같이 씁니다.
 
-$$
-\mathbb{R}^n = \{ (x_1, x_2, \dots, x_n) \mid x_i \in \mathbb{R} \}.
-$$
+\[\mathbb{R}^n = \{ (x_1, x_2, \dots, x_n) \mid x_i \in \mathbb{R} \}.\]
 
-An element of $\mathbb{R}^n$ is called a vector of dimension $n$ or an *n*-vector. The number $n$ is called the
-dimension of the vector space. Thus $\mathbb{R}^2$ is the space of all ordered pairs of real numbers, $\mathbb{R}^3$ the
-space of all ordered triples, and so on.
+\(\mathbb{R}^n\)의 원소는 차원 \(n\)의 벡터 또는 \emph{n}-벡터라고 합니다. 숫자 \(n\)은 벡터 공간의 차원이라고 합니다. 따라서 \(\mathbb{R}^2\)는 모든 순서 있는 실수 쌍의 공간이고, \(\mathbb{R}^3\)는 모든 순서 있는 실수 삼중항의 공간입니다.
 
-Example 1.1.1.
+예제 1.1.1.
 
-- A 2-dimensional vector: $(3, -1) \in \mathbb{R}^2$.
-- A 3-dimensional vector: $(2, 0, 5) \in \mathbb{R}^3$.
-- A 1-dimensional vector: $(7) \in \mathbb{R}^1$, which corresponds to the scalar $7$ itself.
+-   2차원 벡터: \((3, -1) \in \mathbb{R}^2\).
+-   3차원 벡터: \((2, 0, 5) \in \mathbb{R}^3\).
+-   1차원 벡터: \((7) \in \mathbb{R}^1\), 이는 스칼라 \(7\) 자체에 해당합니다.
 
-Vectors are often written vertically in column form, which emphasizes their role in matrix multiplication:
+벡터는 종종 행렬 곱셈에서의 역할을 강조하기 위해 세로 열 형태로 작성됩니다.
 
-$$
-\mathbf{v} = \begin{bmatrix}
-2 \\
-0 \\ 
-5 \end{bmatrix} \in \mathbb{R}^3.
-$$
+\[\mathbf{v} = \begin{bmatrix} 2 \\ 0 \\ 5 \end{bmatrix} \in \mathbb{R}^3.\]
 
-The vertical layout makes the structure clearer when we consider linear combinations or multiply matrices by vectors.
+세로 레이아웃은 선형 조합을 고려하거나 행렬에 벡터를 곱할 때 구조를 더 명확하게 만듭니다.
 
-### Geometric Interpretation
+### 기하학적 해석
 
-In $\mathbb{R}^2$, a vector $(x_1, x_2)$ can be visualized as an arrow starting at the origin $(0,0)$ and ending at the
-point $(x_1, x_2)$. Its length corresponds to the distance from the origin, and its orientation gives a direction in the
-plane. In $\mathbb{R}^3$, the same picture extends into three dimensions: a vector is an arrow from the origin
-to $(x_1, x_2, x_3)$. Beyond three dimensions, direct visualization is no longer possible, but the algebraic rules of
-vectors remain identical. Even though we cannot draw a vector in $\mathbb{R}^{10}$, it behaves under addition, scaling,
-and transformation exactly as a 2- or 3-dimensional vector does. This abstract point of view is what allows linear
-algebra to apply to data science, physics, and machine learning, where data often lives in very high-dimensional spaces.
-Thus a vector may be regarded in three complementary ways:
+\(\mathbb{R}^2\)에서 벡터 \((x_1, x_2)\)는 원점 \((0,0)\)에서 시작하여 점 \((x_1, x_2)\)에서 끝나는 화살표로 시각화할 수 있습니다. 길이는 원점으로부터의 거리에 해당하며, 방향은 평면에서의 방향을 나타냅니다. \(\mathbb{R}^3\)에서는 동일한 그림이 3차원으로 확장됩니다. 즉, 벡터는 원점에서 \((x_1, x_2, x_3)\)까지의 화살표입니다. 3차원을 넘어서면 직접적인 시각화는 더 이상 불가능하지만, 벡터의 대수적 규칙은 동일하게 유지됩니다. \(\mathbb{R}^{10}\)에서 벡터를 그릴 수는 없지만, 2차원 또는 3차원 벡터와 마찬가지로 덧셈, 스케일링, 변환에서 정확하게 동일하게 동작합니다. 이러한 추상적인 관점은 선형대수학이 데이터 과학, 물리학, 기계 학습에 적용될 수 있도록 하며, 여기서 데이터는 종종 매우 고차원 공간에 존재합니다. 따라서 벡터는 세 가지 보완적인 방식으로 간주될 수 있습니다.
 
-1. As a point in space, described by its coordinates.
-2. As a displacement or arrow, described by a direction and a length.
-3. As an abstract element of a vector space, whose properties follow algebraic rules independent of geometry.
+1.  좌표로 설명되는 공간의 한 점.
+2.  방향과 길이로 설명되는 변위 또는 화살표.
+3.  기하학과 무관한 대수적 규칙을 따르는 속성을 가진 벡터 공간의 추상적 요소.
 
-### Notation
+### 표기법
 
-- Vectors are written in boldface lowercase letters: $\mathbf{v}, \mathbf{w}, \mathbf{x}$.
-- The *i*-th entry of a vector $\mathbf{v}$ is written $v_i$, where indices begin at 1.
-- The set of all *n*-dimensional vectors over $\mathbb{R}$ is denoted $\mathbb{R}^n$.
-- Column vectors will be the default form unless otherwise stated.
+-   벡터는 굵은 소문자로 씁니다: \(\mathbf{v}, \mathbf{w}, \mathbf{x}\).
+-   벡터 \(\mathbf{v}\)의 \emph{i}번째 항목은 \(v_i\)로 쓰며, 인덱스는 1에서 시작합니다.
+-   \(\mathbb{R}\) 상의 모든 \emph{n}차원 벡터 집합은 \(\mathbb{R}^n\)으로 표기합니다.
+-   달리 명시되지 않는 한 열 벡터가 기본 형식입니다.
 
-### Why begin here?
+### 왜 여기서 시작하는가?
 
-Scalars and vectors form the atoms of linear algebra. Every structure we will build-vector spaces, linear
-transformations, matrices, eigenvalues-relies on the basic notions of number and ordered collection of numbers. Once
-vectors are understood, we can define operations such as addition and scalar multiplication, then generalize to
-subspaces, bases, and coordinate systems. Eventually, this framework grows into the full theory of linear algebra, with
-powerful applications to geometry, computation, and data.
+스칼라와 벡터는 선형대수학의 원자를 형성합니다. 우리가 만들 모든 구조(벡터 공간, 선형 변환, 행렬, 고유값)는 숫자와 순서 있는 숫자 모음의 기본 개념에 의존합니다. 벡터를 이해하면 덧셈 및 스칼라 곱셈과 같은 연산을 정의한 다음, 부분 공간, 기저, 좌표계로 일반화할 수 있습니다. 결국 이 프레임워크는 기하학, 계산 및 데이터에 대한 강력한 응용을 갖춘 완전한 선형대수학 이론으로 성장합니다.
 
-### Exercises 1.1
+### 연습문제 1.1
 
-1. Write three different vectors in $\mathbb{R}^2$ and sketch them as arrows from the origin. Identify their coordinates
-   explicitly.
-2. Give an example of a vector in $\mathbb{R}^4$. Can you visualize it directly? Explain why high-dimensional
-   visualization is challenging.
-3. Let $\mathbf{v} = (4, -3, 2)$. Write $\mathbf{v}$ in column form and state $v_1, v_2, v_3$.
-4. In what sense is the set $\mathbb{R}^1$ both a line and a vector space? Illustrate with examples.
-5. Consider the vector $\mathbf{u} = (1,1,\dots,1) \in \mathbb{R}^n$. What is special about this vector when $n$ is
-   large? What might it represent in applications?
+1.  \(\mathbb{R}^2\)에서 세 개의 다른 벡터를 쓰고 원점에서 화살표로 스케치하십시오. 좌표를 명시적으로 식별하십시오.
+2.  \(\mathbb{R}^4\)의 벡터 예를 드십시오. 직접 시각화할 수 있습니까? 고차원 시각화가 어려운 이유를 설명하십시오.
+3.  \(\mathbf{v} = (4, -3, 2)\)라고 가정합니다. \(\mathbf{v}\)를 열 형식으로 쓰고 \(v_1, v_2, v_3\)를 명시하십시오.
+4.  어떤 의미에서 집합 \(\mathbb{R}^1\)은 선과 벡터 공간 둘 다입니까? 예제로 설명하십시오.
+5.  벡터 \(\mathbf{u} = (1,1,\dots,1) \in \mathbb{R}^n\)을 고려하십시오. \(n\)이 클 때 이 벡터의 특별한 점은 무엇입니까? 응용 분야에서 무엇을 나타낼 수 있습니까?
 
-## 1.2 Vector Addition and Scalar Multiplication
+## 1.2 벡터 덧셈과 스칼라 곱셈
 
-Vectors in linear algebra are not static objects; their power comes from the operations we can perform on them. Two
-fundamental operations define the structure of vector spaces: addition and scalar multiplication. These operations
-satisfy simple but far-reaching rules that underpin the entire subject.
+선형대수학의 벡터는 정적인 객체가 아닙니다. 그들의 힘은 우리가 수행할 수 있는 연산에서 나옵니다. 두 가지 기본 연산이 벡터 공간의 구조를 정의합니다. 즉, 덧셈과 스칼라 곱셈입니다. 이러한 연산은 전체 주제를 뒷받침하는 간단하지만 광범위한 규칙을 만족합니다.
 
-### Vector Addition
+### 벡터 덧셈
 
-Given two vectors of the same dimension, their sum is obtained by adding corresponding entries. Formally, if
+동일한 차원의 두 벡터가 주어지면, 그 합은 해당 항목을 더하여 얻습니다. 공식적으로, 만약
 
-$$
-\mathbf{u} = (u_1, u_2, \dots, u_n), \quad
-\mathbf{v} = (v_1, v_2, \dots, v_n),
-$$
+\[\mathbf{u} = (u_1, u_2, \dots, u_n), \quad \mathbf{v} = (v_1, v_2, \dots, v_n),\]
 
-then their sum is
+이면, 그 합은
 
-$$
-\mathbf{u} + \mathbf{v} = (u_1+v_1, u_2+v_2, \dots, u_n+v_n).
-$$
+\[\mathbf{u} + \mathbf{v} = (u_1+v_1, u_2+v_2, \dots, u_n+v_n).\]
 
-Example 1.2.1.
-Let $\mathbf{u} = (2, -1, 3)$ and $\mathbf{v} = (4, 0, -5)$. Then
+예제 1.2.1.
+\(\mathbf{u} = (2, -1, 3)\)이고 \(\mathbf{v} = (4, 0, -5)\)라고 가정합니다. 그러면
 
-$$
-\mathbf{u} + \mathbf{v} = (2+4, -1+0, 3+(-5)) = (6, -1, -2).
-$$
+\[\mathbf{u} + \mathbf{v} = (2+4, -1+0, 3+(-5)) = (6, -1, -2).\]
 
-Geometrically, vector addition corresponds to the *parallelogram rule*. If we draw both vectors as arrows from the
-origin, then placing the tail of one vector at the head of the other produces the sum. The diagonal of the parallelogram
-they form represents the resulting vector.
+기하학적으로 벡터 덧셈은 \emph{평행사변형 규칙}에 해당합니다. 두 벡터를 모두 원점에서 화살표로 그리면, 한 벡터의 꼬리를 다른 벡터의 머리에 놓으면 합이 생성됩니다. 그들이 형성하는 평행사변형의 대각선은 결과 벡터를 나타냅니다.
 
-### Scalar Multiplication
+### 스칼라 곱셈
 
-Multiplying a vector by a scalar stretches or shrinks the vector while preserving its direction, unless the scalar is
-negative, in which case the vector is also reversed. If $c \in \mathbb{R}$ and
+벡터에 스칼라를 곱하면 벡터의 방향을 유지하면서 벡터를 늘리거나 줄입니다. 단, 스칼라가 음수이면 벡터도 반전됩니다. 만약 \(c \in \mathbb{R}\)이고
 
-$$
-\mathbf{v} = (v_1, v_2, \dots, v_n),
-$$
+\[\mathbf{v} = (v_1, v_2, \dots, v_n),\]
 
-then
+이면,
 
-$$
-c \mathbf{v} = (c v_1, c v_2, \dots, c v_n).
-$$
+\[c \mathbf{v} = (c v_1, c v_2, \dots, c v_n).\]
 
-Example 1.2.2.
-Let $\mathbf{v} = (3, -2)$ and $c = -2$. Then
+예제 1.2.2.
+\(\mathbf{v} = (3, -2)\)이고 \(c = -2\)라고 가정합니다. 그러면
 
-$$
-c\mathbf{v} = -2(3, -2) = (-6, 4).
-$$
+\[c\mathbf{v} = -2(3, -2) = (-6, 4).\]
 
-This corresponds to flipping the vector through the origin and doubling its length.
+이는 벡터를 원점을 통해 뒤집고 길이를 두 배로 하는 것에 해당합니다.
 
-### Linear Combinations
+### 선형 조합
 
-The interaction of addition and scalar multiplication allows us to form *linear combinations*. A linear combination of
-vectors $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k$ is any vector of the form
+덧셈과 스칼라 곱셈의 상호 작용을 통해 \emph{선형 조합}을 형성할 수 있습니다. 벡터 \(\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\)의 선형 조합은 다음과 같은 형태의 벡터입니다.
 
-$$
-c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_k \mathbf{v}_k, \quad c_i \in \mathbb{R}.
-$$
+\[c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_k \mathbf{v}_k, \quad c_i \in \mathbb{R}.\]
 
-Linear combinations are the mechanism by which we generate new vectors from existing ones. The span of a set of
-vectors-the collection of all their linear combinations-will later lead us to the idea of a subspace.
+선형 조합은 기존 벡터에서 새 벡터를 생성하는 메커니즘입니다. 벡터 집합의 스팬(모든 선형 조합의 모음)은 나중에 부분 공간의 아이디어로 이어집니다.
 
-Example 1.2.3.
-Let $\mathbf{v}_1 = (1,0)$ and $\mathbf{v}_2 = (0,1)$. Then any vector $(a,b)\in\mathbb{R}^2$ can be expressed as
+예제 1.2.3.
+\(\mathbf{v}_1 = (1,0)\)이고 \(\mathbf{v}_2 = (0,1)\)이라고 가정합니다. 그러면 \(\mathbb{R}^2\)의 모든 벡터 \((a,b)\)는 다음과 같이 표현될 수 있습니다.
 
-$$
-a\mathbf{v}_1 + b\mathbf{v}_2.
-$$
+\[a\mathbf{v}_1 + b\mathbf{v}_2.\]
 
-Thus $(1,0)$ and $(0,1)$ form the basic building blocks of the plane.
+따라서 \((1,0)\)과 \((0,1)\)은 평면의 기본 구성 요소를 형성합니다.
 
-### Notation
+### 표기법
 
-- Addition: $\mathbf{u} + \mathbf{v}$ means component-wise addition.
-- Scalar multiplication: $c\mathbf{v}$ scales each entry of $\mathbf{v}$ by $c$.
-- Linear combination: a sum of the form $c_1 \mathbf{v}_1 + \cdots + c_k \mathbf{v}_k$.
+-   덧셈: \(\mathbf{u} + \mathbf{v}\)는 성분별 덧셈을 의미합니다.
+-   스칼라 곱셈: \(c\mathbf{v}\)는 \(\mathbf{v}\)의 각 항목에 \(c\)를 곱합니다.
+-   선형 조합: \(c_1 \mathbf{v}_1 + \cdots + c_k \mathbf{v}_k\) 형태의 합.
 
-### Why this matters
+### 이것이 중요한 이유
 
-Vector addition and scalar multiplication are the defining operations of linear algebra. They give structure to vector
-spaces, allow us to describe geometric phenomena like translation and scaling, and provide the foundation for solving
-systems of equations. Everything that follows-basis, dimension, transformations-builds on these simple but profound
-rules.
+벡터 덧셈과 스칼라 곱셈은 선형대수학의 정의적인 연산입니다. 그들은 벡터 공간에 구조를 부여하고, 변환 및 스케일링과 같은 기하학적 현상을 설명하고, 방정식 시스템을 푸는 기초를 제공합니다. 다음에 나오는 모든 것(기저, 차원, 변환)은 이러한 간단하지만 심오한 규칙 위에 구축됩니다.
 
-### Exercises 1.2
+### 연습문제 1.2
 
-1. Compute $\mathbf{u} + \mathbf{v}$ where $\mathbf{u} = (1,2,3)$ and $\mathbf{v} = (4, -1, 0)$.
-2. Find $3\mathbf{v}$ where $\mathbf{v} = (-2,5)$. Sketch both vectors to illustrate the scaling.
-3. Show that $(5,7)$ can be written as a linear combination of $(1,0)$ and $(0,1)$.
-4. Write $(4,4)$ as a linear combination of $(1,1)$ and $(1,-1)$.
-5. Prove that if $\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$,
-   then $(c+d)(\mathbf{u}+\mathbf{v}) = c\mathbf{u} + c\mathbf{v} + d\mathbf{u} + d\mathbf{v}$ for
-   scalars $c,d \in \mathbb{R}$.
+1.  \(\mathbf{u} = (1,2,3)\)이고 \(\mathbf{v} = (4, -1, 0)\)일 때 \(\mathbf{u} + \mathbf{v}\)를 계산하십시오.
+2.  \(\mathbf{v} = (-2,5)\)일 때 \(3\mathbf{v}\)를 찾으십시오. 스케일링을 설명하기 위해 두 벡터를 모두 스케치하십시오.
+3.  \((5,7)\)이 \((1,0)\)과 \((0,1)\)의 선형 조합으로 쓰여질 수 있음을 보이십시오.
+4.  \((4,4)\)를 \((1,1)\)과 \((1,-1)\)의 선형 조합으로 쓰십시오.
+5.  \(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\)이면, 스칼라 \(c,d \in \mathbb{R}\)에 대해 \((c+d)(\mathbf{u}+\mathbf{v}) = c\mathbf{u} + c\mathbf{v} + d\mathbf{u} + d\mathbf{v}\)임을 증명하십시오.
 
-## 1.3 Dot Product, Norms, and Angles
+## 1.3 내적, 노름, 각도
 
-The dot product is the fundamental operation that links algebra and geometry in vector spaces. It allows us to measure
-lengths, compute angles, and determine orthogonality. From this single definition flow the notions of *norm* and
-*angle*, which give geometry to abstract vector spaces.
+내적은 벡터 공간에서 대수와 기하학을 연결하는 기본 연산입니다. 길이를 측정하고, 각도를 계산하고, 직교성을 결정할 수 있습니다. 이 단일 정의에서 \emph{노름}과 \emph{각도}의 개념이 나오며, 이는 추상 벡터 공간에 기하학을 부여합니다.
 
-### The Dot Product
+### 내적
 
-For two vectors in $\mathbb{R}^n$, the dot product (also called the inner product) is defined by
+\(\mathbb{R}^n\)의 두 벡터에 대한 내적(내부 곱이라고도 함)은 다음과 같이 정의됩니다.
 
-$$
-\mathbf{u} \cdot \mathbf{v} = u_1 v_1 + u_2 v_2 + \cdots + u_n v_n.
-$$
+\[\mathbf{u} \cdot \mathbf{v} = u_1 v_1 + u_2 v_2 + \cdots + u_n v_n.\]
 
-Equivalently, in matrix notation:
+행렬 표기법에서는 다음과 같습니다.
 
-$$
-\mathbf{u} \cdot \mathbf{v} = \mathbf{u}^T \mathbf{v}.
-$$
+\[\mathbf{u} \cdot \mathbf{v} = \mathbf{u}^T \mathbf{v}.\]
 
-Example 1.3.1.
-Let $\mathbf{u} = (2, -1, 3)$ and $\mathbf{v} = (4, 0, -2)$. Then
+예제 1.3.1.
+\(\mathbf{u} = (2, -1, 3)\)이고 \(\mathbf{v} = (4, 0, -2)\)라고 가정합니다. 그러면
 
-$$
-\mathbf{u} \cdot \mathbf{v} = 2\cdot 4 + (-1)\cdot 0 + 3\cdot (-2) = 8 - 6 = 2.
-$$
+\[\mathbf{u} \cdot \mathbf{v} = 2\cdot 4 + (-1)\cdot 0 + 3\cdot (-2) = 8 - 6 = 2.\]
 
-The dot product outputs a single scalar, not another vector.
+내적은 다른 벡터가 아닌 단일 스칼라를 출력합니다.
 
-### Norms (Length of a Vector)
+### 노름 (벡터의 길이)
 
-The *Euclidean norm* of a vector is the square root of its dot product with itself:
+벡터의 \emph{유클리드 노름}은 자신과의 내적의 제곱근입니다.
 
-$$
-\|\mathbf{v}\| = \sqrt{\mathbf{v} \cdot \mathbf{v}} = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2}.
-$$
+\[\|\mathbf{v}\| = \sqrt{\mathbf{v} \cdot \mathbf{v}} = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2}.\]
 
-This generalizes the Pythagorean theorem to arbitrary dimensions.
+이는 피타고라스 정리를 임의의 차원으로 일반화합니다.
 
-Example 1.3.2.
-For $\mathbf{v} = (3, 4)$,
+예제 1.3.2.
+\(\mathbf{v} = (3, 4)\)에 대해,
 
-$$
-\|\mathbf{v}\| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5.
-$$
+\[\|\mathbf{v}\| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5.\]
 
-This is exactly the length of the vector as an arrow in the plane.
+이것은 평면에서 화살표로서의 벡터의 길이와 정확히 같습니다.
 
-### Angles Between Vectors
+### 벡터 간의 각도
 
-The dot product also encodes the angle between two vectors. For nonzero vectors $\mathbf{u}, \mathbf{v}$,
+내적은 또한 두 벡터 사이의 각도를 인코딩합니다. 0이 아닌 벡터 \(\mathbf{u}, \mathbf{v}\)에 대해,
 
-$$
-\mathbf{u} \cdot \mathbf{v} = \|\mathbf{u}\| \, \|\mathbf{v}\| \cos \theta,
-$$
+\[\mathbf{u} \cdot \mathbf{v} = \|\mathbf{u}\| \, \|\mathbf{v}\| \cos \theta,\]
 
-where $\theta$ is the angle between them. Thus,
+여기서 \(\theta\)는 두 벡터 사이의 각도입니다. 따라서,
 
-$$
-\cos \theta = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|\|\mathbf{v}\|}.
-$$
+\[\cos \theta = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|\|\mathbf{v}\|}.\]
 
-Example 1.3.3.
-Let $\mathbf{u} = (1,0)$ and $\mathbf{v} = (0,1)$. Then
+예제 1.3.3.
+\(\mathbf{u} = (1,0)\)이고 \(\mathbf{v} = (0,1)\)이라고 가정합니다. 그러면
 
-$$
-\mathbf{u} \cdot \mathbf{v} = 0, \quad \|\mathbf{u}\| = 1, \quad \|\mathbf{v}\| = 1.
-$$
+\[\mathbf{u} \cdot \mathbf{v} = 0, \quad \|\mathbf{u}\| = 1, \quad \|\mathbf{v}\| = 1.\]
 
-Hence
+따라서
 
-$$
-\cos \theta = \frac{0}{1\cdot 1} = 0 \quad \Rightarrow \quad \theta = \frac{\pi}{2}.
-$$
+\[\cos \theta = \frac{0}{1\cdot 1} = 0 \quad \Rightarrow \quad \theta = \frac{\pi}{2}.\]
 
-The vectors are perpendicular.
+벡터는 수직입니다.
 
-### Orthogonality
+### 직교성
 
-Two vectors are said to be orthogonal if their dot product is zero:
+두 벡터의 내적이 0이면 직교한다고 합니다.
 
-$$
-\mathbf{u} \cdot \mathbf{v} = 0.
-$$
+\[\mathbf{u} \cdot \mathbf{v} = 0.\]
 
-Orthogonality generalizes the idea of perpendicularity from geometry to higher dimensions.
+직교성은 기하학에서 수직성의 개념을 고차원으로 일반화합니다.
 
-### Notation
+### 표기법
 
-- Dot product: $\mathbf{u} \cdot \mathbf{v}$.
-- Norm (length): $|\mathbf{v}|$.
-- Orthogonality: $\mathbf{u} \perp \mathbf{v}$ if $\mathbf{u} \cdot \mathbf{v} = 0$.
+-   내적: \(\mathbf{u} \cdot \mathbf{v}\).
+-   노름 (길이): \(|\mathbf{v}|\).
+-   직교성: \(\mathbf{u} \cdot \mathbf{v} = 0\)이면 \(\mathbf{u} \perp \mathbf{v}\).
 
-### Why this matters
+### 이것이 중요한 이유
 
-The dot product turns vector spaces into geometric objects: vectors gain lengths, angles, and notions of
-perpendicularity. This foundation will later support the study of orthogonal projections, Gram–Schmidt
-orthogonalization, eigenvectors, and least squares problems.
+내적은 벡터 공간을 기하학적 객체로 바꿉니다. 벡터는 길이, 각도, 수직성의 개념을 얻습니다. 이 기초는 나중에 직교 투영, 그람-슈미트 직교화, 고유 벡터 및 최소 제곱 문제 연구를 지원합니다.
 
-### Exercises 1.3
+### 연습문제 1.3
 
-1. Compute $\mathbf{u} \cdot \mathbf{v}$ for $\mathbf{u} = (1,2,3)$, $\mathbf{v} = (4,5,6)$.
-2. Find the norm of $\mathbf{v} = (2, -2, 1)$.
-3. Determine whether $\mathbf{u} = (1,1,0)$ and $\mathbf{v} = (1,-1,2)$ are orthogonal.
-4. Let $\mathbf{u} = (3,4)$, $\mathbf{v} = (4,3)$. Compute the angle between them.
-5. Prove that $|\mathbf{u} + \mathbf{v}|^2 = |\mathbf{u}|^2 + |\mathbf{v}|^2 + 2\mathbf{u}\cdot \mathbf{v}$. This
-   identity is the algebraic version of the Law of Cosines.
+1.  \(\mathbf{u} = (1,2,3)\), \(\mathbf{v} = (4,5,6)\)에 대해 \(\mathbf{u} \cdot \mathbf{v}\)를 계산하십시오.
+2.  \(\mathbf{v} = (2, -2, 1)\)의 노름을 찾으십시오.
+3.  \(\mathbf{u} = (1,1,0)\)과 \(\mathbf{v} = (1,-1,2)\)가 직교하는지 확인하십시오.
+4.  \(\mathbf{u} = (3,4)\), \(\mathbf{v} = (4,3)\)이라고 가정합니다. 두 벡터 사이의 각도를 계산하십시오.
+5.  \(|\mathbf{u} + \mathbf{v}|^2 = |\mathbf{u}|^2 + |\mathbf{v}|^2 + 2\mathbf{u}\cdot \mathbf{v}\)임을 증명하십시오. 이 항등식은 코사인 법칙의 대수적 버전입니다.
 
-## 1.4 Orthogonality
+## 1.4 직교성
 
-Orthogonality captures the notion of perpendicularity in vector spaces. It is one of the most important geometric ideas
-in linear algebra, allowing us to decompose vectors, define projections, and construct special bases with elegant
-properties.
+직교성은 벡터 공간에서 수직성의 개념을 포착합니다. 선형대수학에서 가장 중요한 기하학적 아이디어 중 하나로, 벡터를 분해하고, 투영을 정의하고, 우아한 속성을 가진 특별한 기저를 구성할 수 있습니다.
 
-### Definition
+### 정의
 
-Two vectors $\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$ are said to be orthogonal if their dot product is zero:
+두 벡터 \(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\)는 내적이 0이면 직교한다고 합니다.
 
-$$
-\mathbf{u} \cdot \mathbf{v} = 0.
-$$
+\[\mathbf{u} \cdot \mathbf{v} = 0.\]
 
-This condition ensures that the angle between them is $\pi/2$ radians (90 degrees).
+이 조건은 두 벡터 사이의 각도가 \(\pi/2\) 라디안(90도)임을 보장합니다.
 
-Example 1.4.1.
-In $\mathbb{R}^2$, the vectors $(1,2)$ and $(2,-1)$ are orthogonal since
+예제 1.4.1.
+\(\mathbb{R}^2\)에서 벡터 \((1,2)\)와 \((2,-1)\)은 직교합니다.
 
-$$
-(1,2) \cdot (2,-1) = 1\cdot 2 + 2\cdot (-1) = 0.
-$$
+\[(1,2) \cdot (2,-1) = 1\cdot 2 + 2\cdot (-1) = 0.\]
 
-### Orthogonal Sets
+### 직교 집합
 
-A collection of vectors is called orthogonal if every distinct pair of vectors in the set is orthogonal. If, in
-addition, each vector has norm 1, the set is called orthonormal.
+벡터 모음은 집합의 모든 서로 다른 벡터 쌍이 직교하면 직교 집합이라고 합니다. 또한 각 벡터의 노름이 1이면, 그 집합은 정규직교 집합이라고 합니다.
 
-Example 1.4.2.
-In $\mathbb{R}^3$, the standard basis vectors
+예제 1.4.2.
+\(\mathbb{R}^3\)에서 표준 기저 벡터
 
-$$
-\mathbf{e}_1 = (1,0,0), \quad \mathbf{e}_2 = (0,1,0), \quad \mathbf{e}_3 = (0,0,1)
-$$
+\[\mathbf{e}_1 = (1,0,0), \quad \mathbf{e}_2 = (0,1,0), \quad \mathbf{e}_3 = (0,0,1)\]
 
-form an orthonormal set: each has length 1, and their dot products vanish when the indices differ.
+는 정규직교 집합을 형성합니다. 각 벡터의 길이는 1이고, 인덱스가 다를 때 내적은 0이 됩니다.
 
-### Projections
+### 투영
 
-Orthogonality makes possible the decomposition of a vector into two components: one parallel to another vector, and one
-orthogonal to it. Given a nonzero vector $\mathbf{u}$ and any vector $\mathbf{v}$, the projection of $\mathbf{v}$
-onto $\mathbf{u}$ is
+직교성을 사용하면 벡터를 두 구성 요소로 분해할 수 있습니다. 하나는 다른 벡터에 평행하고 다른 하나는 직교합니다. 0이 아닌 벡터 \(\mathbf{u}\)와 임의의 벡터 \(\mathbf{v}\)가 주어지면, \(\mathbf{v}\)의 \(\mathbf{u}\)에 대한 투영은 다음과 같습니다.
 
-$$
-\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\mathbf{u} \cdot \mathbf{u}} \mathbf{u}.
-$$
+\[\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\mathbf{u} \cdot \mathbf{u}} \mathbf{u}.\]
 
-The difference
+차이
 
-$$
-\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})
-$$
+\[\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})\]
 
-is orthogonal to $\mathbf{u}$. Thus every vector can be decomposed uniquely into a parallel and perpendicular part with
-respect to another vector.
+는 \(\mathbf{u}\)에 직교합니다. 따라서 모든 벡터는 다른 벡터에 대해 평행하고 수직인 부분으로 고유하게 분해될 수 있습니다.
 
-Example 1.4.3.
-Let $\mathbf{u} = (1,0)$, $\mathbf{v} = (2,3)$. Then
+예제 1.4.3.
+\(\mathbf{u} = (1,0)\), \(\mathbf{v} = (2,3)\)이라고 가정합니다. 그러면
 
-$$
-\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{(1,0)\cdot(2,3)}{(1,0)\cdot(1,0)} (1,0)
-= \frac{2}{1}(1,0) = (2,0).
-$$
+\[\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{(1,0)\cdot(2,3)}{(1,0)\cdot(1,0)} (1,0) = \frac{2}{1}(1,0) = (2,0).\]
 
-Thus
+따라서
 
-$$
-\mathbf{v} = (2,3) = (2,0) + (0,3),
-$$
+\[\mathbf{v} = (2,3) = (2,0) + (0,3),\]
 
-where $(2,0)$ is parallel to $(1,0)$ and $(0,3)$ is orthogonal to it.
+여기서 \((2,0)\)은 \((1,0)\)에 평행하고 \((0,3)\)은 직교합니다.
 
-### Orthogonal Decomposition
+### 직교 분해
 
-In general, if $\mathbf{u} \neq \mathbf{0}$ and $\mathbf{v} \in \mathbb{R}^n$, then
+일반적으로, \(\mathbf{u} \neq \mathbf{0}\)이고 \(\mathbf{v} \in \mathbb{R}^n\)이면,
 
-$$
-\mathbf{v} = \text{proj}\_{\mathbf{u}}(\mathbf{v}) + \big(\mathbf{v} - \text{proj}\_{\mathbf{u}}(\mathbf{v})\big),
-$$
+\[\mathbf{v} = \text{proj}_{\mathbf{u}}(\mathbf{v}) + \big(\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})\big),\]
 
-where the first term is parallel to $\mathbf{u}$ and the second term is orthogonal. This decomposition underlies methods
-such as least squares approximation and the Gram–Schmidt process.
+여기서 첫 번째 항은 \(\mathbf{u}\)에 평행하고 두 번째 항은 직교합니다. 이 분해는 최소 제곱 근사 및 그람-슈미트 과정과 같은 방법의 기초가 됩니다.
 
-### Notation
+### 표기법
 
-- $\mathbf{u} \perp \mathbf{v}$: vectors $\mathbf{u}$ and $\mathbf{v}$ are orthogonal.
-- An orthogonal set: vectors pairwise orthogonal.
-- An orthonormal set: pairwise orthogonal, each of norm 1.
+-   \(\mathbf{u} \perp \mathbf{v}\): 벡터 \(\mathbf{u}\)와 \(\mathbf{v}\)는 직교합니다.
+-   직교 집합: 벡터들이 쌍으로 직교합니다.
+-   정규직교 집합: 쌍으로 직교하고, 각 벡터의 노름이 1입니다.
 
-### Why this matters
+### 이것이 중요한 이유
 
-Orthogonality gives structure to vector spaces. It provides a way to separate independent directions cleanly, simplify
-computations, and minimize errors in approximations. Many powerful algorithms in numerical linear algebra and data
-science (QR decomposition, least squares regression, PCA) rely on orthogonality.
+직교성은 벡터 공간에 구조를 부여합니다. 독립적인 방향을 깔끔하게 분리하고, 계산을 단순화하고, 근사 오차를 최소화하는 방법을 제공합니다. 수치 선형대수학 및 데이터 과학의 많은 강력한 알고리즘(QR 분해, 최소 제곱 회귀, PCA)은 직교성에 의존합니다.
 
-### Exercises 1.4
+### 연습문제 1.4
 
-1. Verify that the vectors $(1,2,2)$ and $(2,0,-1)$ are orthogonal.
-2. Find the projection of $(3,4)$ onto $(1,1)$.
-3. Show that any two distinct standard basis vectors in $\mathbb{R}^n$ are orthogonal.
-4. Decompose $(5,2)$ into components parallel and orthogonal to $(2,1)$.
-5. Prove that if $\mathbf{u}, \mathbf{v}$ are orthogonal and nonzero,
-   then $(\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v}) = 0$.
+1.  벡터 \((1,2,2)\)와 \((2,0,-1)\)이 직교하는지 확인하십시오.
+2.  \((3,4)\)를 \((1,1)\)에 투영하십시오.
+3.  \(\mathbb{R}^n\)의 두 개의 서로 다른 표준 기저 벡터가 직교함을 보이십시오.
+4.  \((5,2)\)를 \((2,1)\)에 평행하고 직교하는 구성 요소로 분해하십시오.
+5.  \(\mathbf{u}, \mathbf{v}\)가 직교하고 0이 아니면, \((\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v}) = 0\)임을 증명하십시오.
 
-# Chapter 2. Matrices
+# 제2장. 행렬
 
-## 2.1 Definition and Notation
+## 2.1 정의와 표기법
 
-Matrices are the central objects of linear algebra, providing a compact way to represent and manipulate linear
-transformations, systems of equations, and structured data. A matrix is a rectangular array of numbers arranged in rows
-and columns.
+행렬은 선형대수학의 중심 객체로, 선형 변환, 방정식 시스템, 구조화된 데이터를 간결하게 표현하고 조작하는 방법을 제공합니다. 행렬은 행과 열로 배열된 숫자의 직사각형 배열입니다.
 
-### Formal Definition
+### 공식 정의
 
-An $m \times n$ matrix is an array with $m$ rows and $n$ columns, written
+\(m \times n\) 행렬은 \(m\)개의 행과 \(n\)개의 열을 가진 배열로, 다음과 같이 씁니다.
 
-$$
-A =
-\begin{bmatrix}
-a_{11} & a_{12} & \cdots & a_{1n} \\
-a_{21} & a_{22} & \cdots & a_{2n} \\
-\vdots & \vdots & \ddots & \vdots \\
-a_{m1} & a_{m2} & \cdots & a_{mn}
-\end{bmatrix}.
-$$
+\[A = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{bmatrix}.\]
 
-Each entry $a_{ij}$ is a scalar, located in the *i*-th row and *j*-th column. The size (or dimension) of the matrix is
-denoted by $m \times n$.
+각 항목 \(a_{ij}\)는 \emph{i}번째 행과 \emph{j}번째 열에 위치한 스칼라입니다. 행렬의 크기(또는 차원)는 \(m \times n\)으로 표시됩니다.
 
-- If $m = n$, the matrix is square.
-- If $m = 1$, the matrix is a row vector.
-- If $n = 1$, the matrix is a column vector.
+-   \(m = n\)이면, 행렬은 정사각 행렬입니다.
+-   \(m = 1\)이면, 행렬은 행 벡터입니다.
+-   \(n = 1\)이면, 행렬은 열 벡터입니다.
 
-Thus, vectors are simply special cases of matrices.
+따라서 벡터는 단순히 행렬의 특별한 경우입니다.
 
-### Examples
+### 예제
 
-Example 2.1.1. A $2 \times 3$ matrix:
+예제 2.1.1. \(2 \times 3\) 행렬:
 
-$$
-A = \begin{bmatrix}
-1 & -2 & 4 \\
-0 & 3 & 5
-\end{bmatrix}.
-$$
+\[A = \begin{bmatrix} 1 & -2 & 4 \\ 0 & 3 & 5 \end{bmatrix}.\]
 
-Here, $a_{12} = -2$, $a_{23} = 5$, and the matrix has 2 rows, 3 columns.
+여기서, \(a_{12} = -2\), \(a_{23} = 5\)이고, 행렬은 2개의 행과 3개의 열을 가집니다.
 
-Example 2.1.2. A $3 \times 3$ square matrix:
+예제 2.1.2. \(3 \times 3\) 정사각 행렬:
 
-$$
-B = \begin{bmatrix}
-2 & 0 & 1 \\
--1 & 3 & 4 \\
-0 & 5 & -2
-\end{bmatrix}.
-$$
+\[B = \begin{bmatrix} 2 & 0 & 1 \\ -1 & 3 & 4 \\ 0 & 5 & -2 \end{bmatrix}.\]
 
-This will later serve as the representation of a linear transformation on $\mathbb{R}^3$.
+이것은 나중에 \(\mathbb{R}^3\)에 대한 선형 변환의 표현으로 사용됩니다.
 
-### Indexing and Notation
+### 인덱싱 및 표기법
 
-- Matrices are denoted by uppercase bold letters: $A, B, C$.
-- Entries are written as $a_{ij}$, with the row index first, column index second.
-- The set of all real $m \times n$ matrices is denoted $\mathbb{R}^{m \times n}$.
+-   행렬은 대문자 굵은 글자로 표시됩니다: \(A, B, C\).
+-   항목은 \(a_{ij}\)로 쓰며, 행 인덱스가 먼저, 열 인덱스가 두 번째입니다.
+-   모든 실수 \(m \times n\) 행렬의 집합은 \(\mathbb{R}^{m \times n}\)으로 표시됩니다.
 
-Thus, a matrix is a function $A: {1,\dots,m} \times {1,\dots,n} \to \mathbb{R}$, assigning a scalar to each row-column
-position.
+따라서 행렬은 각 행-열 위치에 스칼라를 할당하는 함수 \(A: {1,\dots,m} \times {1,\dots,n} \to \mathbb{R}\)입니다.
 
-### Why this matters
+### 이것이 중요한 이유
 
-Matrices generalize vectors and give us a language for describing linear operations systematically. They encode systems
-of equations, rotations, projections, and transformations of data. With matrices, algebra and geometry come together: a
-single compact object can represent both numerical data and functional rules.
+행렬은 벡터를 일반화하고 선형 연산을 체계적으로 설명하는 언어를 제공합니다. 방정식 시스템, 회전, 투영, 데이터 변환을 인코딩합니다. 행렬을 사용하면 대수와 기하학이 함께 모입니다. 단일의 간결한 객체가 숫자 데이터와 함수 규칙을 모두 나타낼 수 있습니다.
 
-### Exercises 2.1
+### 연습문제 2.1
 
-1. Write a $3 \times 2$ matrix of your choice and identify its entries $a_{ij}$.
-2. Is every vector a matrix? Is every matrix a vector? Explain.
-3. Which of the following are square
-   matrices: $A \in \mathbb{R}^{4\times4}$, $B \in \mathbb{R}^{3\times5}$, $C \in \mathbb{R}^{1\times1}$?
-4. Let $D = \begin{bmatrix} 1 & 0 \\\\ 0 & 1 \end{bmatrix}$. What kind of matrix is this?
-5. Consider the matrix $E = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$. Express $e_{11}, e_{12}, e_{21}, e_{22}$
-   explicitly.
+1.  선택한 \(3 \times 2\) 행렬을 쓰고 항목 \(a_{ij}\)를 식별하십시오.
+2.  모든 벡터는 행렬입니까? 모든 행렬은 벡터입니까? 설명하십시오.
+3.  다음 중 어느 것이 정사각 행렬입니까: \(A \in \mathbb{R}^{4\times4}\), \(B \in \mathbb{R}^{3\times5}\), \(C \in \mathbb{R}^{1\times1}\)?
+4.  \(D = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}\)라고 가정합니다. 이것은 어떤 종류의 행렬입니까?
+5.  행렬 \(E = \begin{bmatrix} a & b \\ c & d \end{bmatrix}\)를 고려하십시오. \(e_{11}, e_{12}, e_{21}, e_{22}\)를 명시적으로 표현하십시오.
 
-## 2.2 Matrix Addition and Multiplication
+## 2.2 행렬 덧셈과 곱셈
 
-Once matrices are defined, the next step is to understand how they combine. Just as vectors gain meaning through
-addition and scalar multiplication, matrices become powerful through two operations: addition and multiplication.
+행렬이 정의되면, 다음 단계는 행렬이 어떻게 결합하는지 이해하는 것입니다. 벡터가 덧셈과 스칼라 곱셈을 통해 의미를 얻는 것처럼, 행렬은 덧셈과 곱셈이라는 두 가지 연산을 통해 강력해집니다.
 
-### Matrix Addition
+### 행렬 덧셈
 
-Two matrices of the same size are added by adding corresponding entries. If
+같은 크기의 두 행렬은 해당 항목을 더하여 더합니다. 만약
 
-$$
-A = [a_{ij}] \in \mathbb{R}^{m \times n}, \quad
-B = [b_{ij}] \in \mathbb{R}^{m \times n},
-$$
+\[A = [a_{ij}] \in \mathbb{R}^{m \times n}, \quad B = [b_{ij}] \in \mathbb{R}^{m \times n},\]
 
-then
+이면,
 
-$$
-A + B = [a_{ij} + b_{ij}] \in \mathbb{R}^{m \times n}.
-$$
+\[A + B = [a_{ij} + b_{ij}] \in \mathbb{R}^{m \times n}.\]
 
-Example 2.2.1.
-Let
+예제 2.2.1.
+다음과 같이 가정합니다.
 
-$$
-A = \begin{bmatrix}
-1 & 2 \\
-3 & 4
-\end{bmatrix}, \quad
-B = \begin{bmatrix}
--1 & 0 \\
-5 & 2
-\end{bmatrix}.
-$$
+\[A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, \quad B = \begin{bmatrix} -1 & 0 \\ 5 & 2 \end{bmatrix}.\]
 
-Then
+그러면
 
-$$
-A + B = \begin{bmatrix}
-1 + (-1) & 2 + 0 \\
-3 + 5 & 4 + 2
-\end{bmatrix} =
-\begin{bmatrix}
-0 & 2 \\
-8 & 6
-\end{bmatrix}.
-$$
+\[A + B = \begin{bmatrix} 1 + (-1) & 2 + 0 \\ 3 + 5 & 4 + 2 \end{bmatrix} = \begin{bmatrix} 0 & 2 \\ 8 & 6 \end{bmatrix}.\]
 
-Matrix addition is commutative ($A+B = B+A$) and associative ($(A+B)+C = A+(B+C)$). The zero matrix, with all entries 0,
-acts as the additive identity.
+행렬 덧셈은 교환 법칙(\(A+B = B+A\))과 결합 법칙(\((A+B)+C = A+(B+C)\))을 따릅니다. 모든 항목이 0인 영행렬은 덧셈의 항등원 역할을 합니다.
 
-### Scalar Multiplication
+### 스칼라 곱셈
 
-For a scalar $c \in \mathbb{R}$ and a matrix $A = [[a_{ij}]$, we define
+스칼라 \(c \in \mathbb{R}\)와 행렬 \(A = [[a_{ij}]\)에 대해, 다음과 같이 정의합니다.
 
-$$
-cA = [c \cdot a_{ij}].
-$$
+\[cA = [c \cdot a_{ij}].\]
 
-This stretches or shrinks all entries of the matrix uniformly.
+이것은 행렬의 모든 항목을 균일하게 늘리거나 줄입니다.
 
-Example 2.2.2.
-If
+예제 2.2.2.
+만약
 
-$$
-A = \begin{bmatrix}
-2 & -1 \\
-0 & 3
-\end{bmatrix}, \quad c = -2,
-$$
+\[A = \begin{bmatrix} 2 & -1 \\ 0 & 3 \end{bmatrix}, \quad c = -2,\]
 
-then
+이면,
 
-$$
-cA = \begin{bmatrix}
--4 & 2 \\
-0 & -6
-\end{bmatrix}.
-$$
+\[cA = \begin{bmatrix} -4 & 2 \\ 0 & -6 \end{bmatrix}.\]
 
-### Matrix Multiplication
+### 행렬 곱셈
 
-The defining operation of matrices is multiplication. If
+행렬의 정의적인 연산은 곱셈입니다. 만약
 
-$$
-A \in \mathbb{R}^{m \times n}, \quad B \in \mathbb{R}^{n \times p},
-$$
+\[A \in \mathbb{R}^{m \times n}, \quad B \in \mathbb{R}^{n \times p},\]
 
-then their product is the $m \times p$ matrix
+이면, 그 곱은 \(m \times p\) 행렬입니다.
 
-$$
-AB = C = [c_{ij}], \quad c_{ij} = \sum_{k=1}^n a_{ik} b_{kj}.
-$$
+\[AB = C = [c_{ij}], \quad c_{ij} = \sum_{k=1}^n a_{ik} b_{kj}.\]
 
-Thus, the entry in the $i$-th row and $j$-th column of $AB$ is the dot product of the $i$-th row of $A$ with the $j$-th
-column of $B$.
+따라서 \(AB\)의 \(i\)번째 행과 \(j\)번째 열의 항목은 \(A\)의 \(i\)번째 행과 \(B\)의 \(j\)번째 열의 내적입니다.
 
-Example 2.2.3.
-Let
+예제 2.2.3.
+다음과 같이 가정합니다.
 
-$$
-A = \begin{bmatrix}
-1 & 2 \\
-0 & 3
-\end{bmatrix}, \quad
-B = \begin{bmatrix}
-4 & -1 \\
-2 & 5
-\end{bmatrix}.
-$$
+\[A = \begin{bmatrix} 1 & 2 \\ 0 & 3 \end{bmatrix}, \quad B = \begin{bmatrix} 4 & -1 \\ 2 & 5 \end{bmatrix}.\]
 
-Then
+그러면
 
-$$
-AB = \begin{bmatrix}
-1\cdot4 + 2\cdot2 & 1\cdot(-1) + 2\cdot5 \\
-0\cdot4 + 3\cdot2 & 0\cdot(-1) + 3\cdot5
-\end{bmatrix} =
-\begin{bmatrix}
-8 & 9 \\
-6 & 15
-\end{bmatrix}.
-$$
+\[AB = \begin{bmatrix} 1\cdot4 + 2\cdot2 & 1\cdot(-1) + 2\cdot5 \\ 0\cdot4 + 3\cdot2 & 0\cdot(-1) + 3\cdot5 \end{bmatrix} = \begin{bmatrix} 8 & 9 \\ 6 & 15 \end{bmatrix}.\]
 
-Notice that matrix multiplication is not commutative in general: $AB \neq BA$. Sometimes $BA$ may not even be defined if
-dimensions do not align.
+행렬 곱셈은 일반적으로 교환 법칙을 따르지 않습니다: \(AB \neq BA\). 때로는 차원이 맞지 않으면 \(BA\)가 정의되지 않을 수도 있습니다.
 
-### Geometric Meaning
+### 기하학적 의미
 
-Matrix multiplication corresponds to the composition of linear transformations. If $A$ transforms vectors
-in $\mathbb{R}^n$ and $B$ transforms vectors in $\mathbb{R}^p$, then $AB$ represents applying $B$ first, then $A$. This
-makes matrices the algebraic language of transformations.
+행렬 곱셈은 선형 변환의 합성에 해당합니다. 만약 \(A\)가 \(\mathbb{R}^n\)의 벡터를 변환하고 \(B\)가 \(\mathbb{R}^p\)의 벡터를 변환한다면, \(AB\)는 먼저 \(B\)를 적용한 다음 \(A\)를 적용하는 것을 나타냅니다. 이것이 행렬을 변환의 대수적 언어로 만드는 이유입니다.
 
-### Notation
+### 표기법
 
-- Matrix sum: $A+B$.
-- Scalar multiple: $cA$.
-- Product: $AB$, defined only when the number of columns of $A$ equals the number of rows of $B$.
+-   행렬 합: \(A+B\).
+-   스칼라 곱: \(cA\).
+-   곱: \(AB\), \(A\)의 열 수와 \(B\)의 행 수가 같을 때만 정의됩니다.
 
-### Why this matters
+### 이것이 중요한 이유
 
-Matrix multiplication is the core mechanism of linear algebra: it encodes how transformations combine, how systems of
-equations are solved, and how data flows in modern algorithms. Addition and scalar multiplication make matrices into a
-vector space, while multiplication gives them an algebraic structure rich enough to model geometry, computation, and
-networks.
+행렬 곱셈은 선형대수학의 핵심 메커니즘입니다. 변환이 어떻게 결합하는지, 방정식 시스템이 어떻게 해결되는지, 최신 알고리즘에서 데이터가 어떻게 흐르는지를 인코딩합니다. 덧셈과 스칼라 곱셈은 행렬을 벡터 공간으로 만들고, 곱셈은 기하학, 계산, 네트워크를 모델링할 만큼 풍부한 대수적 구조를 부여합니다.
 
-### Exercises 2.2
+### 연습문제 2.2
 
-1. Compute $A+B$ for
+1.  다음에 대해 \(A+B\)를 계산하십시오.
 
-$$
-A = \begin{bmatrix} 2 & 3 \\
--1 & 0 \end{bmatrix}, \quad
-B = \begin{bmatrix} 4 & -2 \\
-5 & 7 \end{bmatrix}.
-$$
+    \[A = \begin{bmatrix} 2 & 3 \\ -1 & 0 \end{bmatrix}, \quad B = \begin{bmatrix} 4 & -2 \\ 5 & 7 \end{bmatrix}.\]
+2.  다음에 대해 \(3A\)를 찾으십시오.
 
-2. Find $3A$ where
+    \[A = \begin{bmatrix} 1 & -4 \\ 2 & 6 \end{bmatrix}.\]
+3.  다음을 곱하십시오.
 
-$$
-A = \begin{bmatrix} 1 & -4 \\
-2 & 6 \end{bmatrix}.
-$$
+    \[A = \begin{bmatrix} 1 & 0 & 2 \\ -1 & 3 & 1 \end{bmatrix}, \quad B = \begin{bmatrix} 2 & 1 \\ 0 & -1 \\ 3 & 4 \end{bmatrix}.\]
+4.  명시적인 예제를 통해 \(AB \neq BA\)임을 확인하십시오.
+5.  행렬 곱셈이 분배 법칙을 따름을 증명하십시오: \(A(B+C) = AB + AC\).
 
-3. Multiply
+## 2.3 전치와 역행렬
 
-$$
-A = \begin{bmatrix} 1 & 0 & 2 \\
--1 & 3 & 1 \end{bmatrix}, \quad
-B = \begin{bmatrix} 2 & 1 \\
-0 & -1 \\
-3 & 4 \end{bmatrix}.
-$$
+행렬에 대한 두 가지 특별한 연산, 즉 전치와 역행렬은 깊은 대수적 및 기하학적 속성을 낳습니다. 전치는 행렬을 주 대각선을 기준으로 뒤집어 재배열하고, 역행렬은 존재할 경우 행렬 곱셈에 대한 되돌리기 연산 역할을 합니다.
 
-4. Verify with an explicit example that $AB \neq BA$.
-5. Prove that matrix multiplication is distributive: $A(B+C) = AB + AC$.
+### 전치
 
-## 2.3 Transpose and Inverse
+\(m \times n\) 행렬 \(A = [a_{ij}]\)의 전치는 행과 열을 바꿔 얻은 \(n \times m\) 행렬 \(A^T = [a_{ji}]\)입니다.
 
-Two special operations on matrices-the transpose and the inverse-give rise to deep algebraic and geometric properties.
-The transpose rearranges a matrix by flipping it across its main diagonal, while the inverse, when it exists, acts as
-the undo operation for matrix multiplication.
+공식적으로,
 
-### The Transpose
+\[(A^T)_{ij} = a_{ji}.\]
 
-The transpose of an $m \times n$ matrix $A = [a_{ij}]$ is the $n \times m$ matrix $A^T = [a_{ji}]$, obtained by swapping
-rows and columns.
+예제 2.3.1.
+만약
 
-Formally,
+\[A = \begin{bmatrix} 1 & 4 & -2 \\ 0 & 3 & 5 \end{bmatrix},\]
 
-$$
-(A^T)\_{ij} = a\_{ji}.
-$$
+이면,
 
-Example 2.3.1.
-If
+\[A^T = \begin{bmatrix} 1 & 0 \\ 4 & 3 \\ -2 & 5 \end{bmatrix}.\]
 
-$$
-A = \begin{bmatrix}
-1 & 4 & -2 \\
-0 & 3 & 5
-\end{bmatrix},
-$$
+전치의 속성.
 
-then
+1.  \((A^T)^T = A\).
+2.  \((A+B)^T = A^T + B^T\).
+3.  \((cA)^T = cA^T\), 스칼라 \(c\)에 대해.
+4.  \((AB)^T = B^T A^T\).
 
-$$
-A^T = \begin{bmatrix}
-1 & 0 \\
-4 & 3 \\
--2 & 5
-\end{bmatrix}.
-$$
+마지막 규칙은 중요합니다: 순서가 바뀝니다.
 
-Properties of the Transpose.
+### 역행렬
 
-1. $(A^T)^T = A$.
-2. $(A+B)^T = A^T + B^T$.
-3. $(cA)^T = cA^T$, for scalar $c$.
-4. $(AB)^T = B^T A^T$.
+정사각 행렬 \(A \in \mathbb{R}^{n \times n}\)는 다음을 만족하는 다른 행렬 \(A^{-1}\)이 존재할 경우 가역(또는 비특이)이라고 합니다.
 
-The last rule is crucial: the order reverses.
+\[AA^{-1} = A^{-1}A = I_n,\]
 
-### The Inverse
+여기서 \(I_n\)은 \(n \times n\) 항등 행렬입니다. 이 경우, \(A^{-1}\)을 \(A\)의 역행렬이라고 합니다.
 
-A square matrix $A \in \mathbb{R}^{n \times n}$ is said to be invertible (or nonsingular) if there exists another
-matrix $A^{-1}$ such that
+모든 행렬이 가역인 것은 아닙니다. 필요한 조건은 \(\det(A) \neq 0\)이며, 이는 제6장에서 다룰 것입니다.
 
-$$
-AA^{-1} = A^{-1}A = I_n,
-$$
+예제 2.3.2.
+다음과 같이 가정합니다.
 
-where $I_n$ is the $n \times n$ identity matrix. In this case, $A^{-1}$ is called the inverse of $A$.
+\[A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}.\]
 
-Not every matrix is invertible. A necessary condition is that $\det(A) \neq 0$, a fact that will be developed in Chapter
-6.
+행렬식은 \(\det(A) = (1)(4) - (2)(3) = -2 \neq 0\)입니다. 역행렬은
 
-Example 2.3.2.
-Let
+\[A^{-1} = \frac{1}{\det(A)} \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix} = \begin{bmatrix} -2 & 1 \\ 1.5 & -0.5 \end{bmatrix}.\]
 
-$$
-A = \begin{bmatrix}
-1 & 2 \\
-3 & 4
-\end{bmatrix}.
-$$
+검증:
 
-Its determinant is $\det(A) = (1)(4) - (2)(3) = -2 \neq 0$. The inverse is
+\[AA^{-1} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \begin{bmatrix} -2 & 1 \\ 1.5 & -0.5 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}.\]
 
-$$
-A^{-1} = \frac{1}{\det(A)} \begin{bmatrix}
-4 & -2 \\
--3 & 1
-\end{bmatrix} =
-\begin{bmatrix}
--2 & 1 \\
-1.5 & -0.5
-\end{bmatrix}.
-$$
+### 기하학적 의미
 
-Verification:
+-   전치는 선형 변환을 대각선을 기준으로 반사하는 것에 해당합니다. 벡터의 경우, 행과 열 형식을 전환합니다.
+-   역행렬은 존재할 경우 선형 변환을 되돌리는 것에 해당합니다. 예를 들어, \(A\)가 벡터를 스케일링하고 회전하면, \(A^{-1}\)는 다시 스케일링하고 회전하여 원래대로 되돌립니다.
 
-$$
-AA^{-1} = \begin{bmatrix}
-1 & 2 \\
-3 & 4
-\end{bmatrix}
-\begin{bmatrix}
--2 & 1 \\
-1.5 & -0.5
-\end{bmatrix} =
-\begin{bmatrix}
-1 & 0 \\
-0 & 1
-\end{bmatrix}.
-$$
+### 표기법
 
-### Geometric Meaning
+-   전치: \(A^T\).
+-   역행렬: \(A^{-1}\), 가역 정사각 행렬에 대해서만 정의됩니다.
+-   항등 행렬: \(I_n\), 곱셈의 항등원 역할을 합니다.
 
-- The transpose corresponds to reflecting a linear transformation across the diagonal. For vectors, it switches between
-  row and column forms.
-- The inverse, when it exists, corresponds to reversing a linear transformation. For example, if $A$ scales and rotates
-  vectors, $A^{-1}$ rescales and rotates them back.
+### 이것이 중요한 이유
 
-### Notation
+전치는 대칭 행렬과 직교 행렬을 정의할 수 있게 해주며, 이는 기하학과 수치 방법에 중심적입니다. 역행렬은 선형 시스템의 해의 기초가 되며, 변환을 되돌리는 아이디어를 인코딩합니다. 이러한 연산들은 함께 행렬식, 고유값, 직교화의 무대를 마련합니다.
 
-- Transpose: $A^T$.
-- Inverse: $A^{-1}$, defined only for invertible square matrices.
-- Identity: $I_n$, acts as the multiplicative identity.
+### 연습문제 2.3
 
-### Why this matters
+1.  다음 행렬의 전치를 계산하십시오.
 
-The transpose allows us to define symmetric and orthogonal matrices, central to geometry and numerical methods. The
-inverse underlies the solution of linear systems, encoding the idea of undoing a transformation. Together, these
-operations set the stage for determinants, eigenvalues, and orthogonalization.
+    \[A = \begin{bmatrix} 2 & -1 & 3 \\ 0 & 4 & 5 \end{bmatrix}.\]
+2.  다음에 대해 \((AB)^T = B^T A^T\)임을 확인하십시오.
 
-### Exercises 2.3
+    \[A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}, \quad B = \begin{bmatrix} 3 & 4 \\ 5 & 6 \end{bmatrix}.\]
+3.  다음 행렬이 가역인지 확인하십시오.
 
-1. Compute the transpose of
+    \[C = \begin{bmatrix} 2 & 1 \\ 4 & 2 \end{bmatrix}\]
 
-$$
-A = \begin{bmatrix} 2 & -1 & 3 \\ 0 & 4 & 5 \end{bmatrix}.
-$$
+    가역이라면, \(C^{-1}\)을 찾으십시오.
+4.  다음 행렬의 역행렬을 찾으십시오.
 
-2. Verify that $(AB)^T = B^T A^T$ for
+    \[D = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix},\]
 
-$$
-A = \begin{bmatrix}
-1 & 2 \\
-0 & 1 \end{bmatrix}, \quad
-B = \begin{bmatrix} 
-3 & 4 \\
-5 & 6 \end{bmatrix}.
-$$
+    그리고 평면에서 벡터에 대한 기하학적 작용을 설명하십시오.
+5.  \(A\)가 가역이면, \(A^T\)도 가역이고 \((A^T)^{-1} = (A^{-1})^T\)임을 증명하십시오.
 
-3. Determine whether
+## 2.4 특수 행렬
 
-$$
-C = \begin{bmatrix}
-2 & 1 \\
-4 & 2 \end{bmatrix}
-$$
+이론과 응용에서 자주 등장하는 특정 행렬에는 특별한 이름이 주어집니다. 그 속성을 인식하면 계산을 단순화하고 선형 변환의 구조를 더 명확하게 이해할 수 있습니다.
 
-is invertible. If so, find $C^{-1}$.
+### 항등 행렬
 
-4. Find the inverse of
+항등 행렬 \(I_n\)은 대각선에 1이 있고 다른 곳에는 0이 있는 \(n \times n\) 행렬입니다.
 
-$$
-D = \begin{bmatrix}
-0 & 1 \\
--1 & 0 \end{bmatrix},
-$$
+\[I_n = \begin{bmatrix} 1 & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 1 \end{bmatrix}.\]
 
-and explain its geometric action on vectors in the plane.
+곱셈의 항등원 역할을 합니다.
 
-5. Prove that if $A$ is invertible, then so is $A^T$, and $(A^T)^{-1} = (A^{-1})^T$.
+\[AI_n = I_nA = A, \quad \text{for all } A \in \mathbb{R}^{n \times n}.\]
 
-## 2.4 Special Matrices
+기하학적으로 \(I_n\)은 모든 벡터를 변경하지 않는 변환을 나타냅니다.
 
-Certain matrices occur so frequently in theory and applications that they are given special names. Recognizing their
-properties allows us to simplify computations and understand the structure of linear transformations more clearly.
+### 대각 행렬
 
-### The Identity Matrix
+대각 행렬은 대각선 이외의 모든 항목이 0입니다.
 
-The identity matrix $I_n$ is the $n \times n$ matrix with ones on the diagonal and zeros elsewhere:
+\[D = \begin{bmatrix} d_{11} & 0 & \cdots & 0 \\ 0 & d_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & d_{nn} \end{bmatrix}.\]
 
-$$
-I_n = \begin{bmatrix}
-1 & 0 & \cdots & 0 \\
-0 & 1 & \cdots & 0 \\
-\vdots & \vdots & \ddots & \vdots \\
-0 & 0 & \cdots & 1
-\end{bmatrix}.
-$$
+대각 행렬에 의한 곱셈은 각 좌표를 독립적으로 스케일링합니다.
 
-It acts as the multiplicative identity:
+\[D\mathbf{x} = (d_{11}x_1, d_{22}x_2, \dots, d_{nn}x_n).\]
 
-$$
-AI_n = I_nA = A, \quad \text{for all } A \in \mathbb{R}^{n \times n}.
-$$
+예제 2.4.1.
+다음과 같이 가정합니다.
 
-Geometrically, $I_n$ represents the transformation that leaves every vector unchanged.
+\[D = \begin{bmatrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & -1 \end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix} 1 \\ 4 \\ -2 \end{bmatrix}.\]
 
-### Diagonal Matrices
+그러면
 
-A diagonal matrix has all off-diagonal entries zero:
+\[D\mathbf{x} = \begin{bmatrix} 2 \\ 12 \\ 2 \end{bmatrix}.\]
 
-$$
-D = \begin{bmatrix}
-d_{11} & 0 & \cdots & 0 \\
-0 & d_{22} & \cdots & 0 \\
-\vdots & \vdots & \ddots & \vdots \\
-0 & 0 & \cdots & d_{nn}
-\end{bmatrix}.
-$$
+### 순열 행렬
 
-Multiplication by a diagonal matrix scales each coordinate independently:
+순열 행렬은 항등 행렬의 행을 순열하여 얻습니다. 벡터에 순열 행렬을 곱하면 좌표가 재정렬됩니다.
 
-$$
-D\mathbf{x} = (d_{11}x_1, d_{22}x_2, \dots, d_{nn}x_n).
-$$
+예제 2.4.2.
+다음과 같이 가정합니다.
 
-Example 2.4.1.
-Let
+\[P = \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{bmatrix}.\]
 
-$$
-D = \begin{bmatrix} 2 & 0 & 0 \\
-0 & 3 & 0 \\
-0 & 0 & -1 \end{bmatrix}, \quad
-\mathbf{x} = \begin{bmatrix} 
-1 \\
-4 \\
--2 \end{bmatrix}.
-$$
+그러면
 
-Then
+\[P\begin{bmatrix} a \\ b \\ c \end{bmatrix} = \begin{bmatrix} b \\ a \\ c \end{bmatrix}.\]
 
-$$
-D\mathbf{x} = \begin{bmatrix} 
-2 \\
-12 \\
-2 \end{bmatrix}.
-$$
+따라서 \(P\)는 첫 두 좌표를 바꿉니다.
 
-### Permutation Matrices
+순열 행렬은 항상 가역이며, 그 역행렬은 단순히 전치입니다.
 
-A permutation matrix is obtained by permuting the rows of the identity matrix. Multiplying a vector by a permutation
-matrix reorders its coordinates.
+### 대칭 행렬과 반대칭 행렬
 
-Example 2.4.2.
-Let
+행렬이 다음과 같으면 대칭입니다.
 
-$$
-P = \begin{bmatrix}
-0 & 1 & 0 \\
-1 & 0 & 0 \\
-0 & 0 & 1
-\end{bmatrix}.
-$$
+\[A^T = A,\]
 
-Then
+그리고 다음과 같으면 반대칭입니다.
 
-$$
-P\begin{bmatrix} 
-a \\
-b \\
-c \end{bmatrix} =
-\begin{bmatrix} b \\
-a \\
-c \end{bmatrix}.
-$$
+\[A^T = -A.\]
 
-Thus, $P$ swaps the first two coordinates.
+대칭 행렬은 이차 형식과 최적화에 나타나고, 반대칭 행렬은 기하학에서 회전과 외적을 설명합니다.
 
-Permutation matrices are always invertible; their inverses are simply their transposes.
+### 직교 행렬
 
-### Symmetric and Skew-Symmetric Matrices
+정사각 행렬 \(Q\)가 다음과 같으면 직교입니다.
 
-A matrix is symmetric if
+\[Q^T Q = QQ^T = I.\]
 
-$$
-A^T = A,
-$$
+동등하게, \(Q\)의 행(및 열)은 정규직교 집합을 형성합니다. 직교 행렬은 길이와 각도를 보존하며, 회전과 반사를 나타냅니다.
 
-and skew-symmetric if
+예제 2.4.3.
+평면에서의 회전 행렬:
 
-$$
-A^T = -A.
-$$
+\[R(\theta) = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}\]
 
-Symmetric matrices appear in quadratic forms and optimization, while skew-symmetric matrices describe rotations and
-cross products in geometry.
+는 직교입니다.
 
-### Orthogonal Matrices
+\[R(\theta)^T R(\theta) = I_2.\]
 
-A square matrix $Q$ is orthogonal if
+### 이것이 중요한 이유
 
-$$
-Q^T Q = QQ^T = I.
-$$
+특수 행렬은 선형대수학의 구성 요소 역할을 합니다. 항등 행렬은 중립 요소를 정의하고, 대각 행렬은 계산을 단순화하며, 순열 행렬은 데이터를 재정렬하고, 대칭 및 직교 행렬은 기본 기하학적 구조를 설명합니다. 현대 응용 수학의 대부분은 복잡한 문제를 이러한 간단한 형태를 포함하는 연산으로 축소합니다.
 
-Equivalently, the rows (and columns) of $Q$ form an orthonormal set. Orthogonal matrices preserve lengths and angles;
-they represent rotations and reflections.
+### 연습문제 2.4
 
-Example 2.4.3.
-The rotation matrix in the plane:
+1.  두 대각 행렬의 곱이 대각 행렬임을 보이고 예제를 계산하십시오.
+2.  \((a,b,c)\)를 \((b,c,a)\)로 순환시키는 순열 행렬을 찾으십시오.
+3.  모든 순열 행렬이 가역이며 그 역행렬이 전치임을 증명하십시오.
+4.  다음 행렬이 직교인지 확인하십시오.
 
-$$
-R(\theta) = \begin{bmatrix}
-\cos\theta & -\sin\theta \\
-\sin\theta & \cos\theta
-\end{bmatrix}
-$$
+    \[Q = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}\]
 
-is orthogonal, since
+    어떤 기하학적 변환을 나타냅니까?\\
+5.  다음 행렬이 대칭, 반대칭 또는 둘 다 아닌지 확인하십시오.
 
-$$
-R(\theta)^T R(\theta) = I_2.
-$$
+    \[A = \begin{bmatrix} 2 & 3 \\ 3 & 2 \end{bmatrix}, \quad B = \begin{bmatrix} 0 & 5 \\ -5 & 0 \end{bmatrix}\]
 
-### Why this matters
+# 제3장. 선형 방정식 시스템
 
-Special matrices serve as the building blocks of linear algebra. Identity matrices define the neutral element, diagonal
-matrices simplify computations, permutation matrices reorder data, symmetric and orthogonal matrices describe
-fundamental geometric structures. Much of modern applied mathematics reduces complex problems to operations involving
-these simple forms.
+## 3.1 선형 시스템과 해
 
-### Exercises 2.4
+선형대수학의 중심 동기 중 하나는 선형 방정식 시스템을 푸는 것입니다. 이러한 시스템은 여러 제약 조건이 상호 작용할 때 과학, 공학, 데이터 분석에서 자연스럽게 발생합니다. 행렬은 이를 표현하고 해결하는 간결한 언어를 제공합니다.
 
-1. Show that the product of two diagonal matrices is diagonal, and compute an example.
-2. Find the permutation matrix that cycles $(a,b,c)$ into $(b,c,a)$.
-3. Prove that every permutation matrix is invertible and its inverse is its transpose.
-4. Verify that
+### 선형 시스템
 
-$$
-Q = \begin{bmatrix} 
-0 & 1 \\
--1 & 0 \end{bmatrix}
-$$
+선형 시스템은 각 미지수가 1차로만 나타나고 변수 간의 곱이 없는 방정식으로 구성됩니다. \(m\)개의 방정식과 \(n\)개의 미지수로 구성된 일반적인 시스템은 다음과 같이 쓸 수 있습니다.
 
-is orthogonal. What geometric transformation does it represent?
-5\. Determine whether
+\begin{aligned} a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= b_1, \\ a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= b_2, \\ &\vdots \\ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= b_m. \end{aligned}
 
-$$
-A = \begin{bmatrix}
-2 & 3 \\
-3 & 2 \end{bmatrix}, \quad
-B = \begin{bmatrix}
-0 & 5 \\
--5 & 0 \end{bmatrix}
-$$
+여기서 계수 \(a_{ij}\)와 상수 \(b_i\)는 스칼라이고, 미지수는 \(x_1, x_2, \dots, x_n\)입니다.
 
-are symmetric, skew-symmetric, or neither.
+### 행렬 형식
 
-# Chapter 3. Systems of Linear Equations
+시스템은 다음과 같이 간결하게 표현할 수 있습니다.
 
-## 3.1 Linear Systems and Solutions
+\[A\mathbf{x} = \mathbf{b},\]
 
-One of the central motivations for linear algebra is solving systems of linear equations. These systems arise naturally
-in science, engineering, and data analysis whenever multiple constraints interact. Matrices provide a compact language
-for expressing and solving them.
+여기서
 
-### Linear Systems
+-   \(A \in \mathbb{R}^{m \times n}\)는 계수 행렬 \([a_{ij}]\)입니다.
+-   \(\mathbf{x} \in \mathbb{R}^n\)는 미지수의 열 벡터입니다.
+-   \(\mathbf{b} \in \mathbb{R}^m\)는 상수의 열 벡터입니다.
 
-A linear system consists of equations where each unknown appears only to the first power and with no products between
-variables. A general system of $m$ equations in $n$ unknowns can be written as:
+이 공식은 방정식을 푸는 문제를 행렬의 작용을 분석하는 문제로 바꿉니다.
 
-$$
-\begin{aligned}
-a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= b_1, \\
-a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= b_2, \\
-&\vdots \\
-a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= b_m.
-\end{aligned}
-$$
+예제 3.1.1.
+시스템
 
-Here the coefficients $a_{ij}$ and constants $b_i$ are scalars, and the unknowns are $x_1, x_2, \dots, x_n$.
+\begin{cases} x + 2y = 5, \\ 3x - y = 4 \end{cases}
 
-### Matrix Form
+은 다음과 같이 쓸 수 있습니다.
 
-The system can be expressed compactly as:
+\begin{bmatrix} 1 & 2 \\ 3 & -1 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 5 \\ 4 \end{bmatrix}.
 
-$$
-A\mathbf{x} = \mathbf{b},
-$$
+### 해의 종류
 
-where
+선형 시스템은 다음을 가질 수 있습니다.
 
-- $A \in \mathbb{R}^{m \times n}$ is the coefficient matrix $[a_{ij}]$,
-- $\mathbf{x} \in \mathbb{R}^n$ is the column vector of unknowns,
-- $\mathbf{b} \in \mathbb{R}^m$ is the column vector of constants.
+1.  해가 없음 (모순): 방정식이 충돌합니다.
+    예:
+    \(\begin{cases} x + y = 1 \\ x + y = 2 \end{cases}\)
+    는 해가 없습니다.
 
-This formulation turns the problem of solving equations into analyzing the action of a matrix.
+2.  정확히 하나의 해 (고유): 시스템의 방정식이 단일 지점에서 교차합니다.
+    예: 계수 행렬이 \(\begin{bmatrix} 1 & 2 \\ 3 & -1 \end{bmatrix}\)인 위 시스템은 고유한 해를 가집니다.
 
-Example 3.1.1.
-The system
+3.  무한히 많은 해: 방정식이 겹치는 제약 조건을 설명합니다 (예: 동일한 선 또는 평면을 나타내는 여러 방정식).
 
-$$
-\begin{cases}
-x + 2y = 5, \\
-3x - y = 4
-\end{cases}
-$$
+해의 성격은 \(A\)의 랭크와 증강 행렬 \((A|\mathbf{b})\)와의 관계에 따라 달라지며, 이는 나중에 연구할 것입니다.
 
-can be written as
+### 기하학적 해석
 
-$$
-\begin{bmatrix} 1 & 2 \\ 3 & -1 \end{bmatrix}
-\begin{bmatrix} x \\ y \end{bmatrix} =
-\begin{bmatrix} 5 \\ 4 \end{bmatrix}.
-$$
+-   \(\mathbb{R}^2\)에서 각 선형 방정식은 선을 나타냅니다. 시스템을 푸는 것은 선의 교차점을 찾는 것을 의미합니다.
+-   \(\mathbb{R}^3\)에서 각 방정식은 평면을 나타냅니다. 시스템은 해가 없거나(평행 평면), 하나의 해(고유한 교차점) 또는 무한히 많은 해(교차선)를 가질 수 있습니다.
+-   고차원에서는 그림이 일반화됩니다. 해는 초평면의 교차점을 형성합니다.
 
-### Types of Solutions
+### 이것이 중요한 이유
 
-A linear system may have:
+선형 시스템은 선형대수학의 실용적인 기초입니다. 화학 반응 균형, 회로 분석, 최소 제곱 회귀, 최적화, 컴퓨터 그래픽스에 나타납니다. 해를 표현하고 분류하는 방법을 이해하는 것은 가우스 소거법과 같은 체계적인 해결 방법의 첫 걸음입니다.
 
-1. No solution (inconsistent): The equations conflict.
-   Example:
-   $
-   \begin{cases}
-   x + y = 1 \\
-   x + y = 2
-   \end{cases}
-   $
-   has no solution.
+### 연습문제 3.1
 
-2. Exactly one solution (unique): The system’s equations intersect at a single point.
-   Example: The above system with coefficient matrix $
-   \begin{bmatrix} 1 & 2 \\ 3 & -1 \end{bmatrix}
-   $ has a unique solution.
+1.  다음 시스템을 행렬 형식으로 쓰십시오.
+    \(\begin{cases} 2x + 3y - z = 7, \\ x - y + 4z = 1, \\ 3x + 2y + z = 5 \end{cases}\)
 
-3. Infinitely many solutions: The equations describe overlapping constraints (e.g., multiple equations representing the
-   same line or plane).
+2.  시스템
+    \(\begin{cases} x + y = 1, \\ 2x + 2y = 2 \end{cases}\)
+    이 해가 없는지, 하나의 해를 갖는지, 또는 무한히 많은 해를 갖는지 확인하십시오.
 
-The nature of the solution depends on the rank of $A$ and its relation to the augmented matrix $(A|\mathbf{b})$, which
-we will study later.
+3.  시스템
+    \(\begin{cases} x + y = 3, \\ x - y = 1 \end{cases}\)
+    을 평면에서 기하학적으로 해석하십시오.
 
-### Geometric Interpretation
+4.  시스템
+    \(\begin{cases} 2x + y = 1, \\ x - y = 4 \end{cases}\)
+    을 풀고 해를 확인하십시오.
 
-- In $\mathbb{R}^2$, each linear equation represents a line. Solving a system means finding intersection points of
-  lines.
-- In $\mathbb{R}^3$, each equation represents a plane. A system may have no solution (parallel planes), one solution (a
-  unique intersection point), or infinitely many (a line of intersection).
-- In higher dimensions, the picture generalizes: solutions form intersections of hyperplanes.
+5.  \(\mathbb{R}^3\)에서
+    \(\begin{cases} x + y + z = 0, \\ 2x + 2y + 2z = 0 \end{cases}\)
+    의 해 집합을 설명하십시오.
+    어떤 기하학적 객체를 나타냅니까?
 
-### Why this matters
+## 3.2 가우스 소거법
 
-Linear systems are the practical foundation of linear algebra. They appear in balancing chemical reactions, circuit
-analysis, least-squares regression, optimization, and computer graphics. Understanding how to represent and classify
-their solutions is the first step toward systematic solution methods like Gaussian elimination.
+선형 시스템을 효율적으로 풀기 위해 가우스 소거법을 사용합니다. 이는 시스템을 해를 더 쉽게 볼 수 있는 더 간단한 동등한 시스템으로 변환하는 체계적인 방법입니다. 이 방법은 해 집합을 보존하는 기본 행 연산에 의존합니다.
 
-### Exercises 3.1
+### 기본 행 연산
 
-1. Write the following system in matrix form:
-   $
-   \begin{cases}
-   2x + 3y - z = 7, \\
-   x - y + 4z = 1, \\
-   3x + 2y + z = 5
-   \end{cases}
-   $
+증강 행렬 \((A|\mathbf{b})\)에 대해 세 가지 연산이 허용됩니다.
 
-2. Determine whether the system
-   $
-   \begin{cases}
-   x + y = 1, \\
-   2x + 2y = 2
-   \end{cases}
-   $
-   has no solution, one solution, or infinitely many solutions.
+1.  행 교환: 두 행을 교환합니다.
+2.  행 스케일링: 행에 0이 아닌 스칼라를 곱합니다.
+3.  행 교체: 한 행을 자신과 다른 행의 배수를 더한 것으로 교체합니다.
 
-3. Geometrically interpret the system
-   $
-   \begin{cases}
-   x + y = 3, \\
-   x - y = 1
-   \end{cases}
-   $
-   in the plane.
+이러한 연산은 방정식을 다르지만 동등한 형태로 다시 표현하는 것에 해당합니다.
 
-4. Solve the system
-   $
-   \begin{cases}
-   2x + y = 1, \\
-   x - y = 4
-   \end{cases}
-   $
-   and check your solution.
+### 행 사다리꼴 형식
 
-5. In $\mathbb{R}^3$, describe the solution set of
-   $
-   \begin{cases}
-   x + y + z = 0, \\
-   2x + 2y + 2z = 0
-   \end{cases}
-   $.
-   What geometric object does it represent?
+행렬이 행 사다리꼴 형식(REF)에 있으려면 다음을 만족해야 합니다.
 
-## 3.2 Gaussian Elimination
+1.  모든 0이 아닌 행은 0인 행 위에 있습니다.
+2.  각 선행 항목(행에서 왼쪽에서 첫 번째 0이 아닌 숫자)은 위 행의 선행 항목보다 오른쪽에 있습니다.
+3.  선행 항목 아래의 모든 항목은 0입니다.
 
-To solve linear systems efficiently, we use Gaussian elimination: a systematic method of transforming a system into a
-simpler equivalent one whose solutions are easier to see. The method relies on elementary row operations that preserve
-the solution set.
+또한, 각 선행 항목이 1이고 해당 열에서 유일한 0이 아닌 항목이면 행렬은 기약 행 사다리꼴 형식(RREF)에 있습니다.
 
-### Elementary Row Operations
+### 가우스 소거법 알고리즘
 
-On an augmented matrix $(A|\mathbf{b})$, we are allowed three operations:
+1.  시스템의 증강 행렬을 씁니다.
+2.  행 연산을 사용하여 각 피벗(행의 선행 항목) 아래에 0을 만듭니다.
+3.  행렬이 사다리꼴 형식이 될 때까지 열별로 계속합니다.
+4.  후방 대입으로 풉니다. 마지막 피벗 방정식에서 시작하여 위로 작업합니다.
 
-1. Row swapping: interchange two rows.
-2. Row scaling: multiply a row by a nonzero scalar.
-3. Row replacement: replace one row by itself plus a multiple of another row.
+RREF로 계속하면 해를 직접 읽을 수 있습니다.
 
-These operations correspond to re-expressing equations in different but equivalent forms.
+### 예제
 
-### Row Echelon Form
+예제 3.2.1. 다음을 푸십시오.
 
-A matrix is in row echelon form (REF) if:
+\[\begin{cases} x + 2y - z = 3, \\ 2x + y + z = 7, \\ 3x - y + 2z = 4. \end{cases}\]
 
-1. All nonzero rows are above any zero rows.
-2. Each leading entry (the first nonzero number from the left in a row) is to the right of the leading entry in the row
-   above.
-3. All entries below a leading entry are zero.
+1단계. 증강 행렬
 
-Further, if each leading entry is 1 and is the only nonzero entry in its column, the matrix is in reduced row echelon
-form (RREF).
+\[\left[\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 2 & 1 & 1 & 7 \\ 3 & -1 & 2 & 4 \end{array}\right].\]
 
-### Algorithm of Gaussian Elimination
+2단계. 첫 번째 피벗 아래 소거
 
-1. Write the augmented matrix for the system.
-2. Use row operations to create zeros below each pivot (the leading entry in a row).
-3. Continue column by column until the matrix is in echelon form.
-4. Solve by back substitution: starting from the last pivot equation and working upward.
+행 1의 2배를 행 2에서 빼고, 행 1의 3배를 행 3에서 뺍니다.
 
-If we continue to RREF, the solution can be read off directly.
+\[\left[\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & -3 & 3 & 1 \\ 0 & -7 & 5 & -5 \end{array}\right].\]
 
-### Example
+3단계. 2열의 피벗
 
-Example 3.2.1. Solve
+행 2를 -3으로 나눕니다.
 
-$$
-\begin{cases}
-x + 2y - z = 3, \\
-2x + y + z = 7, \\
-3x - y + 2z = 4.
-\end{cases}
-$$
+\[\left[\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & 1 & -1 & -\tfrac{1}{3} \\ 0 & -7 & 5 & -5 \end{array}\right].\]
 
-Step 1. Augmented matrix
+행 2의 7배를 행 3에 더합니다.
 
-$$
-\left[\begin{array}{ccc|c}
-1 & 2 & -1 & 3 \\
-2 & 1 & 1 & 7 \\
-3 & -1 & 2 & 4
-\end{array}\right].
-$$
+\[\left[\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & 1 & -1 & -\tfrac{1}{3} \\ 0 & 0 & -2 & -\tfrac{22}{3} \end{array}\right].\]
 
-Step 2. Eliminate below the first pivot
+4단계. 3열의 피벗
 
-Subtract 2 times row 1 from row 2, and 3 times row 1 from row 3:
+행 3을 -2로 나눕니다.
 
-$$
-\left[\begin{array}{ccc|c}
-1 & 2 & -1 & 3 \\
-0 & -3 & 3 & 1 \\
-0 & -7 & 5 & -5
-\end{array}\right].
-$$
+\[\left[\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & 1 & -1 & -\tfrac{1}{3} \\ 0 & 0 & 1 & \tfrac{11}{3} \end{array}\right].\]
 
-Step 3. Pivot in column 2
+5단계. 후방 대입
 
-Divide row 2 by -3:
+마지막 행에서:
+\(z = \tfrac{11}{3}.\)
 
-$$
-\left[\begin{array}{ccc|c}
-1 & 2 & -1 & 3 \\
-0 & 1 & -1 & -\tfrac{1}{3} \\
-0 & -7 & 5 & -5
-\end{array}\right].
-$$
+두 번째 행:
+\(y - z = -\tfrac{1}{3} \implies y = -\tfrac{1}{3} + \tfrac{11}{3} = \tfrac{10}{3}.\)
 
-Add 7 times row 2 to row 3:
+첫 번째 행:
+\(x + 2y - z = 3 \implies x + 2\cdot\tfrac{10}{3} - \tfrac{11}{3} = 3.\)
 
-$$
-\left[\begin{array}{ccc|c}
-1 & 2 & -1 & 3 \\
-0 & 1 & -1 & -\tfrac{1}{3} \\
-0 & 0 & -2 & -\tfrac{22}{3}
-\end{array}\right].
-$$
+그래서
+\(x + \tfrac{20}{3} - \tfrac{11}{3} = 3 \implies x + 3 = 3 \implies x = 0.\)
 
-Step 4. Pivot in column 3
+해:
+\((x,y,z) = \big(0, \tfrac{10}{3}, \tfrac{11}{3}\big).\)
 
-Divide row 3 by -2:
+### 이것이 중요한 이유
 
-$$
-\left[\begin{array}{ccc|c}
-1 & 2 & -1 & 3 \\
-0 & 1 & -1 & -\tfrac{1}{3} \\
-0 & 0 & 1 & \tfrac{11}{3}
-\end{array}\right].
-$$
+가우스 소거법은 계산 선형대수학의 기초입니다. 복잡한 시스템을 해가 보이는 형태로 축소하고, 수치 해석, 과학 계산, 기계 학습에 사용되는 알고리즘의 기초를 형성합니다.
 
-Step 5. Back substitution
+### 연습문제 3.2
 
-From the last row:
-$
-z = \tfrac{11}{3}.
-$
+1.  가우스 소거법으로 푸십시오.
+    \(\begin{cases} x + y = 2, \\ 2x - y = 0. \end{cases}\)
 
-Second row:
-$
-y - z = -\tfrac{1}{3} \implies y = -\tfrac{1}{3} + \tfrac{11}{3} = \tfrac{10}{3}.
-$
+2.  다음 증강 행렬을 REF로 축소하십시오.
+    \(\left[\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 2 & -1 & 3 & 14 \\ 1 & 4 & -2 & -2 \end{array}\right].\)
 
-First row:
-$
-x + 2y - z = 3 \implies x + 2\cdot\tfrac{10}{3} - \tfrac{11}{3} = 3.
-$
+3.  가우스 소거법이 항상 다음 중 하나를 생성함을 보이십시오.
 
-So
-$
-x + \tfrac{20}{3} - \tfrac{11}{3} = 3 \implies x + 3 = 3 \implies x = 0.
-$
+    -   고유한 해,
+    -   무한히 많은 해, 또는
+    -   모순 (해가 없음).
 
-Solution:
-$
-(x,y,z) = \big(0, \tfrac{10}{3}, \tfrac{11}{3}\big).
-$
+4.  가우스 소거법을 사용하여
+    \(\begin{cases} x + y + z = 0, \\ 2x + y + z = 1. \end{cases}\)
+    의 모든 해를 찾으십시오.
 
-### Why this matters
+5.  수치 계산에서 피벗팅(가장 큰 사용 가능한 피벗 요소를 선택하는 것)이 유용한 이유를 설명하십시오.
 
-Gaussian elimination is the foundation of computational linear algebra. It reduces complex systems to a form where
-solutions are visible, and it forms the basis for algorithms used in numerical analysis, scientific computing, and
-machine learning.
+## 3.3 랭크와 일관성
 
-### Exercises 3.2
+가우스 소거법은 해를 제공할 뿐만 아니라 선형 시스템의 구조를 드러냅니다. 두 가지 핵심 아이디어는 행렬의 랭크와 시스템의 일관성입니다. 랭크는 방정식의 독립적인 정보의 양을 측정하고, 일관성은 시스템에 적어도 하나의 해가 있는지 여부를 결정합니다.
 
-1. Solve by Gaussian elimination:
-   $
-   \begin{cases}
-   x + y = 2, \\
-   2x - y = 0.
-   \end{cases}
-   $
+### 행렬의 랭크
 
-2. Reduce the following augmented matrix to REF:
-   $
-   \left[\begin{array}{ccc|c}
-   1 & 1 & 1 & 6 \\
-   2 & -1 & 3 & 14 \\
-   1 & 4 & -2 & -2
-   \end{array}\right].
-   $
+행렬의 랭크는 행 사다리꼴 형식의 선행 피벗 수입니다. 동등하게, 선형 독립적인 행 또는 열의 최대 수입니다.
 
-3. Show that Gaussian elimination always produces either:
+공식적으로,
 
-    - a unique solution,
-    - infinitely many solutions, or
-    - a contradiction (no solution).
+\[\text{rank}(A) = \dim(\text{row space of } A) = \dim(\text{column space of } A).\]
 
-4. Use Gaussian elimination to find all solutions of
-   $
-   \begin{cases}
-   x + y + z = 0, \\
-   2x + y + z = 1.
-   \end{cases}
-   $
+랭크는 행(또는 열)에 의해 생성된 공간의 유효 차원을 알려줍니다.
 
-5. Explain why pivoting (choosing the largest available pivot element) is useful in numerical computation.
+예제 3.3.1.
+다음에 대해
 
-## 3.3 Rank and Consistency
+\[A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 3 & 6 & 9 \end{bmatrix},\]
 
-Gaussian elimination not only provides solutions but also reveals the structure of a linear system. Two key ideas are
-the rank of a matrix and the consistency of a system. Rank measures the amount of independent information in the
-equations, while consistency determines whether the system has at least one solution.
+행 축소는 다음을 제공합니다.
 
-### Rank of a Matrix
+\[\begin{bmatrix} 1 & 2 & 3 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}.\]
 
-The rank of a matrix is the number of leading pivots in its row echelon form. Equivalently, it is the maximum number of
-linearly independent rows or columns.
+따라서, 모든 행이 첫 번째 행의 배수이므로 \(\text{rank}(A) = 1\)입니다.
 
-Formally,
+### 선형 시스템의 일관성
 
-$$
-\text{rank}(A) = \dim(\text{row space of } A) = \dim(\text{column space of } A).
-$$
+시스템 \(A\mathbf{x} = \mathbf{b}\)를 고려하십시오.
+시스템은 다음과 같은 경우에만 일관됩니다(적어도 하나의 해를 가짐).
 
-The rank tells us the effective dimension of the space spanned by the rows (or columns).
+\[\text{rank}(A) = \text{rank}(A|\mathbf{b}),\]
 
-Example 3.3.1.
-For
+여기서 \((A|\mathbf{b})\)는 증강 행렬입니다.
+랭크가 다르면 시스템은 일관되지 않습니다.
 
-$$
-A = \begin{bmatrix}
-1 & 2 & 3 \\
-2 & 4 & 6 \\
-3 & 6 & 9
-\end{bmatrix},
-$$
+-   \(\text{rank}(A) = \text{rank}(A|\mathbf{b}) = n\) (미지수의 수)이면, 시스템은 고유한 해를 가집니다.
+-   \(\text{rank}(A) = \text{rank}(A|\mathbf{b}) < n\)이면, 시스템은 무한히 많은 해를 가집니다.
 
-row reduction gives
+### 예제
 
-$$
-\begin{bmatrix}
-1 & 2 & 3 \\
-0 & 0 & 0 \\
-0 & 0 & 0
-\end{bmatrix}.
-$$
+예제 3.3.2.
+다음을 고려하십시오.
 
-Thus, $\text{rank}(A) = 1$, since all rows are multiples of the first.
+\[\begin{cases} x + y + z = 1, \\ 2x + 2y + 2z = 2, \\ x + y + z = 3. \end{cases}\]
 
-### Consistency of Linear Systems
+증강 행렬은 다음과 같습니다.
 
-Consider the system $A\mathbf{x} = \mathbf{b}$.
-The system is consistent (has at least one solution) if and only if
+\[\left[\begin{array}{ccc|c} 1 & 1 & 1 & 1 \\ 2 & 2 & 2 & 2 \\ 1 & 1 & 1 & 3 \end{array}\right].\]
 
-$$
-\text{rank}(A) = \text{rank}(A|\mathbf{b}),
-$$
+행 축소는 다음을 제공합니다.
 
-where $(A|\mathbf{b})$ is the augmented matrix.
-If the ranks differ, the system is inconsistent.
+\[\left[\begin{array}{ccc|c} 1 & 1 & 1 & 1 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 2 \end{array}\right].\]
 
-- If $\text{rank}(A) = \text{rank}(A|\mathbf{b}) = n$ (number of unknowns), the system has a unique solution.
-- If $\text{rank}(A) = \text{rank}(A|\mathbf{b}) < n$, the system has infinitely many solutions.
+여기서, \(\text{rank}(A) = 1\)이지만, \(\text{rank}(A|\mathbf{b}) = 2\)입니다. 랭크가 다르므로 시스템은 일관되지 않습니다. 해가 존재하지 않습니다.
 
-### Example
+### 무한한 해를 갖는 예제
 
-Example 3.3.2.
-Consider
+예제 3.3.3.
+다음에 대해
 
-$$
-\begin{cases}
-x + y + z = 1, \\
-2x + 2y + 2z = 2, \\
-x + y + z = 3.
-\end{cases}
-$$
+\[\begin{cases} x + y = 2, \\ 2x + 2y = 4, \end{cases}\]
 
-The augmented matrix is
+증강 행렬은 다음으로 축소됩니다.
 
-$$
-\left[\begin{array}{ccc|c}
-1 & 1 & 1 & 1 \\
-2 & 2 & 2 & 2 \\
-1 & 1 & 1 & 3
-\end{array}\right].
-$$
+\[\left[\begin{array}{cc|c} 1 & 1 & 2 \\ 0 & 0 & 0 \end{array}\right].\]
 
-Row reduction gives
+여기서, \(\text{rank}(A) = \text{rank}(A|\mathbf{b}) = 1 < 2\)입니다. 따라서, 무한히 많은 해가 존재하며, 선을 형성합니다.
 
-$$
-\left[\begin{array}{ccc|c}
-1 & 1 & 1 & 1 \\
-0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 2
-\end{array}\right].
-$$
+### 이것이 중요한 이유
 
-Here, $\text{rank}(A) = 1$, but $\text{rank}(A|\mathbf{b}) = 2$. Since the ranks differ, the system is inconsistent: no
-solution exists.
+랭크는 독립성의 척도입니다. 얼마나 많은 진정으로 구별되는 방정식이나 방향이 있는지를 알려줍니다. 일관성은 방정식이 언제 정렬되고 언제 모순되는지를 설명합니다. 이러한 개념은 선형 시스템을 벡터 공간과 연결하고 차원, 기저, 랭크-널리티 정리의 아이디어를 준비합니다.
 
-### Example with Infinite Solutions
+### 연습문제 3.3
 
-Example 3.3.3.
-For
+1.  다음 행렬의 랭크를 계산하십시오.
 
-$$
-\begin{cases}
-x + y = 2, \\
-2x + 2y = 4,
-\end{cases}
-$$
+    \[A = \begin{bmatrix} 1 & 2 & 1 \\ 0 & 1 & -1 \\ 2 & 5 & -1 \end{bmatrix}.\]
+2.  다음 시스템이 일관되는지 확인하십시오.
 
-the augmented matrix reduces to
+    \[\begin{cases} x + y + z = 1, \\ 2x + 3y + z = 2, \\ 3x + 5y + 2z = 3 \end{cases}\]
+3.  항등 행렬 \(I_n\)의 랭크가 \(n\)임을 보이십시오.
+4.  \(\mathbb{R}^3\)에서 무한히 많은 해를 갖는 시스템의 예를 들고, 랭크 조건을 만족하는 이유를 설명하십시오.
+5.  임의의 행렬 \(A \in \mathbb{R}^{m \times n}\)에 대해, \(\text{rank}(A) \leq \min(m,n)\)임을 증명하십시오.
 
-$$
-\left[\begin{array}{cc|c}
-1 & 1 & 2 \\
-0 & 0 & 0
-\end{array}\right].
-$$
+## 3.4 동차 시스템
 
-Here, $\text{rank}(A) = \text{rank}(A|\mathbf{b}) = 1 < 2$. Thus, infinitely many solutions exist, forming a line.
+동차 시스템은 모든 상수 항이 0인 선형 시스템입니다.
 
-### Why this matters
+\[A\mathbf{x} = \mathbf{0},\]
 
-Rank is a measure of independence: it tells us how many truly distinct equations or directions are present. Consistency
-explains when equations align versus when they contradict. These concepts connect linear systems to vector spaces and
-prepare for the ideas of dimension, basis, and the Rank–Nullity Theorem.
+여기서 \(A \in \mathbb{R}^{m \times n}\)이고, \(\mathbf{0}\)는 \(\mathbb{R}^m\)의 영 벡터입니다.
 
-### Exercises 3.3
+### 자명한 해
 
-1. Compute the rank of
+모든 동차 시스템은 적어도 하나의 해를 가집니다.
 
-$$
-A = \begin{bmatrix}
-1 & 2 & 1 \\
-0 & 1 & -1 \\
-2 & 5 & -1
-\end{bmatrix}.
-$$
+\[\mathbf{x} = \mathbf{0}.\]
 
-2. Determine whether the system
+이것을 자명한 해라고 합니다. 흥미로운 질문은 \emph{비자명한 해}(0이 아닌 벡터)가 존재하는지 여부입니다.
 
-$$
-\begin{cases}
-x + y + z = 1, \\
-2x + 3y + z = 2, \\
-3x + 5y + 2z = 3
-\end{cases}
-$$
+### 비자명한 해의 존재
 
-is consistent.
+비자명한 해는 미지수의 수가 계수 행렬의 랭크를 초과할 때 정확히 존재합니다.
 
-3. Show that the rank of the identity matrix $I_n$ is $n$.
+\[\text{rank}(A) < n.\]
 
-4. Give an example of a system in $\mathbb{R}^3$ with infinitely many solutions, and explain why it satisfies the rank
-   condition.
+이 경우, 무한히 많은 해가 존재하며, \(\mathbb{R}^n\)의 부분 공간을 형성합니다. 이 해 공간의 차원은
 
-5. Prove that for any matrix $A \in \mathbb{R}^{m \times n}$,
-   $
-   \text{rank}(A) \leq \min(m,n).
-   $
+\[\dim(\text{null}(A)) = n - \text{rank}(A),\]
 
-## 3.4 Homogeneous Systems
+여기서 null(A)는 \(A\mathbf{x} = 0\)의 모든 해의 집합입니다. 이 집합을 영 공간 또는 커널이라고 합니다.
 
-A homogeneous system is a linear system in which all constant terms are zero:
+### 예제
 
-$$
-A\mathbf{x} = \mathbf{0},
-$$
+예제 3.4.1.
+다음을 고려하십시오.
 
-where $A \in \mathbb{R}^{m \times n}$, and $\mathbf{0}$ is the zero vector in $\mathbb{R}^m$.
+\[\begin{cases} x + y + z = 0, \\ 2x + y - z = 0. \end{cases}\]
 
-### The Trivial Solution
+증강 행렬은 다음과 같습니다.
 
-Every homogeneous system has at least one solution:
+\[\left[\begin{array}{ccc|c} 1 & 1 & 1 & 0 \\ 2 & 1 & -1 & 0 \end{array}\right].\]
 
-$$
-\mathbf{x} = \mathbf{0}.
-$$
+행 축소:
 
-This is called the trivial solution. The interesting question is whether *nontrivial solutions* (nonzero vectors) exist.
+\[\left[\begin{array}{ccc|c} 1 & 1 & 1 & 0 \\ 0 & -1 & -3 & 0 \end{array}\right] \quad\to\quad \left[\begin{array}{ccc|c} 1 & 1 & 1 & 0 \\ 0 & 1 & 3 & 0 \end{array}\right].\]
 
-### Existence of Nontrivial Solutions
+따라서 시스템은 다음과 같습니다.
 
-Nontrivial solutions exist precisely when the number of unknowns exceeds the rank of the coefficient matrix:
+\[\begin{cases} x + y + z = 0, \\ y + 3z = 0. \end{cases}\]
 
-$$
-\text{rank}(A) < n.
-$$
+두 번째 방정식에서, \(y = -3z\). 첫 번째 방정식에 대입:
+\(x - 3z + z = 0 \implies x = 2z.\)
 
-In this case, there are infinitely many solutions, forming a subspace of $\mathbb{R}^n$. The dimension of this solution
-space is
+따라서 해는 다음과 같습니다.
 
-$$
-\dim(\text{null}(A)) = n - \text{rank}(A),
-$$
+\[(x,y,z) = z(2, -3, 1), \quad z \in \mathbb{R}.\]
 
-where null(A) is the set of all solutions to $A\mathbf{x} = 0$. This set is called the null space or kernel of $A$.
+영 공간은 벡터 \((2, -3, 1)\)에 의해 생성된 선입니다.
 
-### Example
+### 기하학적 해석
 
-Example 3.4.1.
-Consider
+동차 시스템의 해 집합은 항상 \(\mathbb{R}^n\)의 부분 공간입니다.
 
-$$
-\begin{cases}
-x + y + z = 0, \\
-2x + y - z = 0.
-\end{cases}
-$$
+-   \(\text{rank}(A) = n\)이면, 유일한 해는 영 벡터입니다.
+-   \(\text{rank}(A) = n-1\)이면, 해 집합은 원점을 통과하는 선입니다.
+-   \(\text{rank}(A) = n-2\)이면, 해 집합은 원점을 통과하는 평면입니다.
 
-The augmented matrix is
+더 일반적으로, 영 공간은 차원 \(n - \text{rank}(A)\)를 가지며, 이를 널리티라고 합니다.
 
-$$
-\left[\begin{array}{ccc|c}
-1 & 1 & 1 & 0 \\
-2 & 1 & -1 & 0
-\end{array}\right].
-$$
+### 이것이 중요한 이유
 
-Row reduction:
+동차 시스템은 벡터 공간, 부분 공간, 차원을 이해하는 데 중심적입니다. 커널, 영 공간, 선형 종속성의 개념으로 직접 이어집니다. 응용 분야에서 동차 시스템은 평형 문제, 고유값 방정식, 컴퓨터 그래픽 변환에 나타납니다.
 
-$$
-\left[\begin{array}{ccc|c}
-1 & 1 & 1 & 0 \\
-0 & -1 & -3 & 0
-\end{array}\right]
-\quad\to\quad
-\left[\begin{array}{ccc|c}
-1 & 1 & 1 & 0 \\
-0 & 1 & 3 & 0
-\end{array}\right].
-$$
+### 연습문제 3.4
 
-So the system is equivalent to:
+1.  동차 시스템을 푸십시오.
 
-$$
-\begin{cases}
-x + y + z = 0, \\
-y + 3z = 0.
-\end{cases}
-$$
+    \[\begin{cases} x + 2y - z = 0, \\ 2x + 4y - 2z = 0. \end{cases}\]
 
-From the second equation, $y = -3z$. Substituting into the first:
-$
-x - 3z + z = 0 \implies x = 2z.
-$
+    해 공간의 차원은 얼마입니까?
+2.  다음의 모든 해를 찾으십시오.
 
-Thus solutions are:
+    \[\begin{cases} x - y + z = 0, \\ 2x + y - z = 0. \end{cases}\]
+3.  임의의 동차 시스템의 해 집합이 \(\mathbb{R}^n\)의 부분 공간임을 보이십시오.
+4.  \(A\)가 \(\text{rank}(A) = 2\)인 \(3 \times 3\) 행렬이라고 가정합니다. \(A\)의 영 공간의 차원은 얼마입니까?
+5.  다음에 대해
 
-$$
-(x,y,z) = z(2, -3, 1), \quad z \in \mathbb{R}.
-$$
+    \[A = \begin{bmatrix} 1 & 2 & -1 \\ 0 & 1 & 3 \end{bmatrix},\]
 
-The null space is the line spanned by the vector $(2, -3, 1)$.
+    \(A\)의 영 공간에 대한 기저를 계산하십시오.
 
-### Geometric Interpretation
+# 제4장. 벡터 공간
 
-The solution set of a homogeneous system is always a subspace of $\mathbb{R}^n$.
+## 4.1 벡터 공간의 정의
 
-- If $\text{rank}(A) = n$, the only solution is the zero vector.
-- If $\text{rank}(A) = n-1$, the solution set is a line through the origin.
-- If $\text{rank}(A) = n-2$, the solution set is a plane through the origin.
+지금까지 우리는 \(\mathbb{R}^n\)에서 구체적으로 벡터와 행렬을 연구했습니다. 다음 단계는 좌표를 넘어 벡터 공간을 완전한 일반성으로 정의하는 것입니다. 벡터 공간은 덧셈과 스칼라 곱셈의 익숙한 규칙이 요소가 기하학적 벡터, 다항식, 함수 또는 다른 객체인지 여부에 관계없이 적용되는 추상적인 설정입니다.
 
-More generally, the null space has dimension $n - \text{rank}(A)$, known as the nullity.
+### 공식 정의
 
-### Why this matters
+실수 \(\mathbb{R}\)에 대한 벡터 공간은 두 가지 연산이 장착된 집합 \(V\)입니다.
 
-Homogeneous systems are central to understanding vector spaces, subspaces, and dimension. They lead directly to the
-concepts of kernel, null space, and linear dependence. In applications, homogeneous systems appear in equilibrium
-problems, eigenvalue equations, and computer graphics transformations.
+1.  벡터 덧셈: 임의의 \(\mathbf{u}, \mathbf{v} \in V\)에 대해, 벡터 \(\mathbf{u} + \mathbf{v} \in V\)가 있습니다.
+2.  스칼라 곱셈: 임의의 스칼라 \(c \in \mathbb{R}\)와 임의의 \(\mathbf{v} \in V\)에 대해, 벡터 \(c\mathbf{v} \in V\)가 있습니다.
 
-### Exercises 3.4
+이러한 연산은 다음 공리(모든 \(\mathbf{u}, \mathbf{v}, \mathbf{w} \in V\)와 모든 스칼라 \(a,b \in \mathbb{R}\)에 대해)를 만족해야 합니다.
 
-1. Solve the homogeneous system
+1.  덧셈의 교환 법칙: \(\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}\).
+2.  덧셈의 결합 법칙: \((\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})\).
+3.  덧셈 항등원: \(\mathbf{v} + \mathbf{0} = \mathbf{v}\)를 만족하는 영 벡터 \(\mathbf{0} \in V\)가 존재합니다.
+4.  덧셈 역원: 각 \(\mathbf{v} \in V\)에 대해, \(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\)를 만족하는 \((-\mathbf{v} \in V\)가 존재합니다.
+5.  스칼라 곱셈의 호환성: \(a(b\mathbf{v}) = (ab)\mathbf{v}\).
+6.  스칼라의 항등원: \(1 \cdot \mathbf{v} = \mathbf{v}\).
+7.  벡터 덧셈에 대한 분배 법칙: \(a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}\).
+8.  스칼라 덧셈에 대한 분배 법칙: \((a+b)\mathbf{v} = a\mathbf{v} + b\mathbf{v}\).
 
-$$
-\begin{cases}
-x + 2y - z = 0, \\
-2x + 4y - 2z = 0.
-\end{cases}
-$$
+연산을 가진 집합 \(V\)가 모든 8가지 공리를 만족하면, 우리는 그것을 벡터 공간이라고 부릅니다.
 
-What is the dimension of its solution space?
+### 예제
 
-2. Find all solutions of
+예제 4.1.1. 표준 유클리드 공간
+일반적인 덧셈과 스칼라 곱셈을 가진 \(\mathbb{R}^n\)은 벡터 공간입니다. 이것은 공리가 추상화된 모델 사례입니다.
 
-$$
-\begin{cases}
-x - y + z = 0, \\
-2x + y - z = 0.
-\end{cases}
-$$
+예제 4.1.2. 다항식
+실수 계수를 가진 모든 다항식의 집합(\(\mathbb{R}[x]\)로 표기)은 벡터 공간을 형성합니다. 덧셈과 스칼라 곱셈은 항별로 정의됩니다.
 
-3. Show that the solution set of any homogeneous system is a subspace of $\mathbb{R}^n$.
+예제 4.1.3. 함수
+구간에 대한 모든 실수 값 함수의 집합(예: \(f: [0,1] \to \mathbb{R}\))은 함수를 점별로 더하고 스케일링할 수 있으므로 벡터 공간을 형성합니다.
 
-4. Suppose $A$ is a $3 \times 3$ matrix with $\text{rank}(A) = 2$. What is the dimension of the null space of $A$?
+### 비-예제
 
-5. For
+모든 연산을 가진 집합이 자격이 있는 것은 아닙니다. 예를 들어, 일반적인 덧셈 하에서의 양의 실수 집합은 덧셈 역원(음수)이 없기 때문에 벡터 공간이 아닙니다. 모든 공리가 성립해야 합니다.
 
-$$
-A = \begin{bmatrix} 1 & 2 & -1 \\ 0 & 1 & 3 \end{bmatrix},
-$$
+### 기하학적 해석
 
-compute a basis for the null space of $A$.
+\(\mathbb{R}^2\) 또는 \(\mathbb{R}^3\)과 같은 익숙한 경우에, 벡터 공간은 기하학의 무대를 제공합니다. 벡터는 더하고, 스케일링하고, 결합하여 선, 평면, 고차원 구조를 형성할 수 있습니다. 함수 공간과 같은 추상적인 설정에서, 동일한 대수적 규칙은 우리가 기하학적 직관을 무한 차원 문제에 적용할 수 있게 합니다.
 
-# Chapter 4. Vector Spaces
+### 이것이 중요한 이유
 
-## 4.1 Definition of a Vector Space
+벡터 공간의 개념은 겉보기에 다른 수학적 객체를 단일 프레임워크 아래에서 통합합니다. 물리학의 힘, 공학의 신호 또는 기계 학습의 데이터를 다루든, 벡터 공간의 공통 언어는 우리가 어디서나 동일한 기술을 사용할 수 있게 합니다.
 
-Up to now we have studied vectors and matrices concretely in $\mathbb{R}^n$. The next step is to move beyond coordinates
-and define vector spaces in full generality. A vector space is an abstract setting where the familiar rules of addition
-and scalar multiplication hold, regardless of whether the elements are geometric vectors, polynomials, functions, or
-other objects.
+### 연습문제 4.1
 
-### Formal Definition
+1.  표준 덧셈과 스칼라 곱셈을 가진 \(\mathbb{R}^2\)가 모든 8가지 벡터 공간 공리를 만족하는지 확인하십시오.
+2.  일반적인 연산을 가진 정수 집합 \(\mathbb{Z}\)가 \(\mathbb{R}\)에 대한 벡터 공간이 아님을 보이십시오. 어떤 공리가 실패합니까?
+3.  최대 3차 다항식의 모든 집합을 고려하십시오. \(\mathbb{R}\)에 대한 벡터 공간을 형성함을 보이십시오. 차원은 얼마입니까?
+4.  벡터가 기하학적 객체가 아닌 벡터 공간의 예를 드십시오.
+5.  임의의 벡터 공간에서 영 벡터가 고유함을 증명하십시오.
 
-A vector space over the real numbers $\mathbb{R}$ is a set $V$ equipped with two operations:
+## 4.2 부분 공간
 
-1. Vector addition: For any $\mathbf{u}, \mathbf{v} \in V$, there is a vector $\mathbf{u} + \mathbf{v} \in V$.
-2. Scalar multiplication: For any scalar $c \in \mathbb{R}$ and any $\mathbf{v} \in V$, there is a
-   vector $c\mathbf{v} \in V$.
+부분 공간은 더 큰 벡터 공간 안에 사는 더 작은 벡터 공간입니다. 선과 평면이 3차원 공간 안에 자연스럽게 자리 잡는 것처럼, 부분 공간은 이러한 아이디어를 고차원 및 더 추상적인 설정으로 일반화합니다.
 
-These operations must satisfy the following axioms (for all $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$ and all
-scalars $a,b \in \mathbb{R}$):
+### 정의
 
-1. Commutativity of addition: $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$.
-2. Associativity of addition: $(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$.
-3. Additive identity: There exists a zero vector $\mathbf{0} \in V$ such that $\mathbf{v} + \mathbf{0} = \mathbf{v}$.
-4. Additive inverses: For each $\mathbf{v} \in V$, there exists $(-\mathbf{v} \in V$ such
-   that $\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$.
-5. Compatibility of scalar multiplication: $a(b\mathbf{v}) = (ab)\mathbf{v}$.
-6. Identity element of scalars: $1 \cdot \mathbf{v} = \mathbf{v}$.
-7. Distributivity over vector addition: $a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}$.
-8. Distributivity over scalar addition: $(a+b)\mathbf{v} = a\mathbf{v} + b\mathbf{v}$.
+\(V\)를 벡터 공간이라고 가정합니다. 부분 집합 \(W \subseteq V\)는 다음과 같은 경우 \(V\)의 부분 공간이라고 합니다.
 
-If a set $V$ with operations satisfies all eight axioms, we call it a vector space.
+1.  \(\mathbf{0} \in W\) (영 벡터를 포함),
+2.  모든 \(\mathbf{u}, \mathbf{v} \in W\)에 대해, 합 \(\mathbf{u} + \mathbf{v} \in W\) (덧셈에 대해 닫혀 있음),
+3.  모든 스칼라 \(c \in \mathbb{R}\)와 벡터 \(\mathbf{v} \in W\)에 대해, 곱 \(c\mathbf{v} \in W\) (스칼라 곱셈에 대해 닫혀 있음).
 
-### Examples
+이것이 성립하면, \(W\)는 상속된 연산을 가진 벡터 공간 자체입니다.
 
-Example 4.1.1. Standard Euclidean space
-$\mathbb{R}^n$ with ordinary addition and scalar multiplication is a vector space. This is the model case from which the
-axioms are abstracted.
+### 예제
 
-Example 4.1.2. Polynomials
-The set of all polynomials with real coefficients, denoted $\mathbb{R}[x]$, forms a vector space. Addition and scalar
-multiplication are defined term by term.
+예제 4.2.1. \(\mathbb{R}^2\)에서 원점을 통과하는 선
+집합
 
-Example 4.1.3. Functions
-The set of all real-valued functions on an interval, e.g. $f: [0,1] \to \mathbb{R}$, forms a vector space, since
-functions can be added and scaled pointwise.
+\[W = \{ (t, 2t) \mid t \in \mathbb{R} \}\]
 
-### Non-Examples
+는 \(\mathbb{R}^2\)의 부분 공간입니다. 영 벡터를 포함하고, 덧셈에 대해 닫혀 있으며, 스칼라 곱셈에 대해 닫혀 있습니다.
 
-Not every set with operations qualifies. For instance, the set of positive real numbers under usual addition is not a
-vector space, because additive inverses (negative numbers) are missing. The axioms must all hold.
+예제 4.2.2. \(\mathbb{R}^3\)의 x-y 평면
+집합
 
-### Geometric Interpretation
+\[W = \{ (x, y, 0) \mid x,y \in \mathbb{R} \}\]
 
-In familiar cases like $\mathbb{R}^2$ or $\mathbb{R}^3$, vector spaces provide the stage for geometry: vectors can be
-added, scaled, and combined to form lines, planes, and higher-dimensional structures. In abstract settings like function
-spaces, the same algebraic rules let us apply geometric intuition to infinite-dimensional problems.
+는 \(\mathbb{R}^3\)의 부분 공간입니다. 원점을 통과하고 x-y 평면에 평행한 평면에 있는 모든 벡터의 모음입니다.
 
-### Why this matters
+예제 4.2.3. 행렬의 영 공간
+행렬 \(A \in \mathbb{R}^{m \times n}\)에 대해, 영 공간
 
-The concept of vector space unifies seemingly different mathematical objects under a single framework. Whether dealing
-with forces in physics, signals in engineering, or data in machine learning, the common language of vector spaces allows
-us to use the same techniques everywhere.
+\[\{ \mathbf{x} \in \mathbb{R}^n \mid A\mathbf{x} = \mathbf{0} \}\]
 
-### Exercises 4.1
+는 \(\mathbb{R}^n\)의 부분 공간입니다. 이 부분 공간은 동차 시스템의 모든 해를 나타냅니다.
 
-1. Verify that $\mathbb{R}^2$ with standard addition and scalar multiplication satisfies all eight vector space axioms.
-2. Show that the set of integers $\mathbb{Z}$ with ordinary operations is not a vector space over $\mathbb{R}$. Which
-   axiom fails?
-3. Consider the set of all polynomials of degree at most 3. Show it forms a vector space over $\mathbb{R}$. What is its
-   dimension?
-4. Give an example of a vector space where the vectors are not geometric objects.
-5. Prove that in any vector space, the zero vector is unique.
+### 비-예제
 
-## 4.2 Subspaces
+모든 부분 집합이 부분 공간인 것은 아닙니다.
 
-A subspace is a smaller vector space living inside a larger one. Just as lines and planes naturally sit inside
-three-dimensional space, subspaces generalize these ideas to higher dimensions and more abstract settings.
+-   집합 \({ (x,y) \in \mathbb{R}^2 \mid x \geq 0 }\)은 부분 공간이 아닙니다. 스칼라 곱셈에 대해 닫혀 있지 않습니다 (음수 스칼라는 조건을 위반합니다).
+-   원점을 통과하지 않는 \(\mathbb{R}^2\)의 모든 선은 \(\mathbf{0}\)을 포함하지 않기 때문에 부분 공간이 아닙니다.
 
-### Definition
+### 기하학적 해석
 
-Let $V$ be a vector space. A subset $W \subseteq V$ is called a subspace of $V$ if:
+부분 공간은 벡터 공간 내부의 선형 구조입니다.
 
-1. $\mathbf{0} \in W$ (contains the zero vector),
-2. For all $\mathbf{u}, \mathbf{v} \in W$, the sum $\mathbf{u} + \mathbf{v} \in W$ (closed under addition),
-3. For all scalars $c \in \mathbb{R}$ and vectors $\mathbf{v} \in W$, the product $c\mathbf{v} \in W$ (closed under
-   scalar multiplication).
+-   \(\mathbb{R}^2\)에서 부분 공간은 영 벡터, 원점을 통과하는 모든 선 또는 전체 평면입니다.
+-   \(\mathbb{R}^3\)에서 부분 공간은 영 벡터, 원점을 통과하는 모든 선, 원점을 통과하는 모든 평면 또는 전체 공간입니다.
+-   고차원에서는 동일한 원칙이 적용됩니다. 부분 공간은 원점을 통과하는 평평한 선형 조각입니다.
 
-If these hold, then $W$ is itself a vector space with the inherited operations.
+### 이것이 중요한 이유
 
-### Examples
+부분 공간은 선형 문제의 본질적인 구조를 포착합니다. 열 공간, 행 공간, 영 공간은 모두 부분 공간입니다. 선형대수학의 많은 부분은 이러한 부분 공간이 어떻게 교차하고, 생성하고, 서로를 보완하는지 이해하는 것으로 구성됩니다.
 
-Example 4.2.1. Line through the origin in $\mathbb{R}^2$
-The set
+### 연습문제 4.2
 
-$$
-W = \{ (t, 2t) \mid t \in \mathbb{R} \}
-$$
+1.  집합 \(W = { (x,0) \mid x \in \mathbb{R} } \subseteq \mathbb{R}^2\)가 부분 공간임을 증명하십시오.
+2.  선 \({ (1+t, 2t) \mid t \in \mathbb{R} }\)이 \(\mathbb{R}^2\)의 부분 공간이 아님을 보이십시오. 어떤 조건이 실패합니까?
+3.  \(x+y+z=0\)을 만족하는 모든 벡터 \((x,y,z) \in \mathbb{R}^3\)의 집합이 부분 공간인지 확인하십시오.
+4.  행렬
 
-is a subspace of $\mathbb{R}^2$. It contains the zero vector, is closed under addition, and is closed under scalar
-multiplication.
+    \[A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix},\]
 
-Example 4.2.2. The x–y plane in $\mathbb{R}^3$
-The set
+    에 대해, \(A\)의 영 공간을 \(\mathbb{R}^3\)의 부분 공간으로 설명하십시오.
+5.  \(\mathbb{R}^2\)의 모든 가능한 부분 공간을 나열하십시오.
 
-$$
-W = \{ (x, y, 0) \mid x,y \in \mathbb{R} \}
-$$
+## 4.3 스팬, 기저, 차원
 
-is a subspace of $\mathbb{R}^3$. It is the collection of all vectors lying in the plane through the origin parallel to
-the x–y plane.
+스팬, 기저, 차원의 아이디어는 부분 공간의 크기와 구조를 설명하는 언어를 제공합니다. 함께, 그들은 벡터 공간이 어떻게 생성되는지, 얼마나 많은 구성 요소가 필요한지, 그리고 그 구성 요소를 어떻게 선택할 수 있는지를 알려줍니다.
 
-Example 4.2.3. Null space of a matrix
-For a matrix $A \in \mathbb{R}^{m \times n}$, the null space
+### 스팬
 
-$$
-\{ \mathbf{x} \in \mathbb{R}^n \mid A\mathbf{x} = \mathbf{0} \}
-$$
+벡터 집합 \({\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k} \subseteq V\)가 주어지면, 스팬은 모든 선형 조합의 모음입니다.
 
-is a subspace of $\mathbb{R}^n$. This subspace represents all solutions to the homogeneous system.
+\[\text{span}\{\mathbf{v}_1, \dots, \mathbf{v}_k\} = \{ c_1\mathbf{v}_1 + \cdots + c_k\mathbf{v}_k \mid c_i \in \mathbb{R} \}.\]
 
-### Non-Examples
+스팬은 항상 \(V\)의 부분 공간이며, 즉 해당 벡터를 포함하는 가장 작은 부분 공간입니다.
 
-Not every subset is a subspace.
+예제 4.3.1.
+\(\mathbb{R}^2\)에서, \(\text{span}{(1,0)} = \{(x,0) \mid x \in \mathbb{R}\},\) x축입니다.
+마찬가지로, \(\text{span}\{(1,0),(0,1)\} = \mathbb{R}^2.\)
 
-- The set ${ (x,y) \in \mathbb{R}^2 \mid x \geq 0 }$ is not a subspace: it is not closed under scalar multiplication (a
-  negative scalar breaks the condition).
-- Any line in $\mathbb{R}^2$ that does not pass through the origin is not a subspace, because it does not
-  contain $\mathbf{0}$.
+### 기저
 
-### Geometric Interpretation
+벡터 공간 \(V\)의 기저는 다음을 만족하는 벡터 집합입니다.
 
-Subspaces are the linear structures inside vector spaces.
+1.  \(V\)를 생성합니다.
+2.  선형 독립입니다 (집합의 어떤 벡터도 다른 벡터의 선형 조합이 아닙니다).
 
-- In $\mathbb{R}^2$, the subspaces are: the zero vector, any line through the origin, or the entire plane.
-- In $\mathbb{R}^3$, the subspaces are: the zero vector, any line through the origin, any plane through the origin, or
-  the entire space.
-- In higher dimensions, the same principle applies: subspaces are the flat linear pieces through the origin.
+어느 조건이든 실패하면, 그 집합은 기저가 아닙니다.
 
-### Why this matters
+예제 4.3.2.
+\(\mathbb{R}^3\)에서, 표준 단위 벡터
 
-Subspaces capture the essential structure of linear problems. Column spaces, row spaces, and null spaces are all
-subspaces. Much of linear algebra consists of understanding how these subspaces intersect, span, and complement each
-other.
+\[\mathbf{e}_1 = (1,0,0), \quad \mathbf{e}_2 = (0,1,0), \quad \mathbf{e}_3 = (0,0,1)\]
 
-### Exercises 4.2
+는 기저를 형성합니다. 모든 벡터 \((x,y,z)\)는 다음과 같이 고유하게 쓸 수 있습니다.
 
-1. Prove that the set $W = { (x,0) \mid x \in \mathbb{R} } \subseteq \mathbb{R}^2$ is a subspace.
-2. Show that the line ${ (1+t, 2t) \mid t \in \mathbb{R} }$ is not a subspace of $\mathbb{R}^2$. Which condition fails?
-3. Determine whether the set of all vectors $(x,y,z) \in \mathbb{R}^3$ satisfying $x+y+z=0$ is a subspace.
-4. For the matrix
+\[x\mathbf{e}_1 + y\mathbf{e}_2 + z\mathbf{e}_3.\]
 
-$$
-A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix},
-$$
+### 차원
 
-describe the null space of $A$ as a subspace of $\mathbb{R}^3$.
-5\. List all possible subspaces of $\mathbb{R}^2$.
+벡터 공간 \(V\)의 차원(\(\dim(V)\)로 씀)은 \(V\)의 임의의 기저에 있는 벡터의 수입니다. 이 숫자는 잘 정의되어 있습니다. 벡터 공간의 모든 기저는 동일한 카디널리티를 가집니다.
 
-## 4.3 Span, Basis, Dimension
+예제 4.3.3.
 
-The ideas of span, basis, and dimension provide the language for describing the size and structure of subspaces.
-Together, they tell us how a vector space is generated, how many building blocks it requires, and how those blocks can
-be chosen.
+-   \(\dim(\mathbb{R}^2) = 2\), 기저 \((1,0), (0,1)\).
+-   \(\dim(\mathbb{R}^3) = 3\), 기저 \((1,0,0), (0,1,0), (0,0,1)\).
+-   최대 3차 다항식 집합의 차원은 4이며, 기저 \((1, x, x^2, x^3)\)를 가집니다.
 
-### Span
+### 기하학적 해석
 
-Given a set of vectors ${\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k} \subseteq V$, the span is the collection of
-all linear combinations:
+-   스팬은 벡터 집합의 도달 범위와 같습니다.
+-   기저는 공간의 모든 것에 도달하는 데 필요한 최소한의 방향 집합입니다.
+-   차원은 이러한 독립적인 방향의 수입니다.
 
-$$
-\text{span}\{\mathbf{v}_1, \dots, \mathbf{v}_k\} = \{ c_1\mathbf{v}_1 + \cdots + c_k\mathbf{v}_k \mid c_i \in \mathbb{R} \}.
-$$
+선, 평면, 고차원 평면은 모두 스팬, 기저, 차원의 관점에서 설명될 수 있습니다.
 
-The span is always a subspace of $V$, namely the smallest subspace containing those vectors.
+### 이것이 중요한 이유
 
-Example 4.3.1.
-In $\mathbb{R}^2$, $ \text{span}{(1,0)} = \{(x,0) \mid x \in \mathbb{R}\},$ the x-axis.
-Similarly, $\text{span}\{(1,0),(0,1)\} = \mathbb{R}^2.$
+이러한 개념은 벡터 공간과 부분 공간을 크기와 구조의 관점에서 분류합니다. 선형대수학의 많은 정리(예: 랭크-널리티 정리)는 스팬, 기저, 차원을 이해한 결과입니다. 실용적인 용어로, 기저는 우리가 좌표로 데이터를 인코딩하는 방법이고, 차원은 시스템이 실제로 얼마나 많은 자유를 가지고 있는지 알려줍니다.
 
-### Basis
+### 연습문제 4.3
 
-A basis of a vector space $V$ is a set of vectors that:
+1.  \((1,0,0)\), \((0,1,0)\), \((1,1,0)\)이 \(\mathbb{R}^3\)의 \(xy\)-평면을 생성함을 보이십시오. 기저입니까?
+2.  \(\mathbb{R}^3\)의 선 \(\{(2t,-3t,t) : t \in \mathbb{R}\}\)에 대한 기저를 찾으십시오.
+3.  \(x+y+z=0\)으로 정의된 \(\mathbb{R}^3\)의 부분 공간의 차원을 결정하십시오.
+4.  \(\mathbb{R}^n\)의 두 개의 다른 기저는 정확히 \(n\)개의 벡터를 포함해야 함을 증명하십시오.
+5.  최대 2차 다항식 집합에 대한 기저를 제공하십시오. 차원은 얼마입니까?
 
-1. Span $V$.
-2. Are linearly independent (no vector in the set is a linear combination of the others).
+## 4.4 좌표
 
-If either condition fails, the set is not a basis.
+벡터 공간에 대한 기저가 선택되면, 모든 벡터는 기저 벡터의 선형 조합으로 고유하게 표현될 수 있습니다. 이 조합의 계수를 해당 기저에 대한 벡터의 좌표라고 합니다. 좌표는 우리가 벡터 공간의 추상 세계와 숫자의 구체적인 세계 사이를 이동할 수 있게 합니다.
 
-Example 4.3.2.
-In $\mathbb{R}^3$, the standard unit vectors
+### 기저에 대한 좌표
 
-$$
-\mathbf{e}_1 = (1,0,0), \quad \mathbf{e}_2 = (0,1,0), \quad \mathbf{e}_3 = (0,0,1)
-$$
+\(V\)를 벡터 공간이라고 하고,
 
-form a basis. Every vector $(x,y,z)$ can be uniquely written as
+\[\mathcal{B} = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}\]
 
-$$
-x\mathbf{e}_1 + y\mathbf{e}_2 + z\mathbf{e}_3.
-$$
+를 \(V\)에 대한 순서 있는 기저라고 가정합니다. 모든 벡터 \(\mathbf{u} \in V\)는 다음과 같이 고유하게 쓸 수 있습니다.
 
-### Dimension
+\[\mathbf{u} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n.\]
 
-The dimension of a vector space $V$, written $\dim(V)$, is the number of vectors in any basis of $V$. This number is
-well-defined: all bases of a vector space have the same cardinality.
+스칼라 \((c_1, c_2, \dots, c_n)\)는 \(\mathcal{B}\)에 대한 \(\mathbf{u}\)의 좌표이며, 다음과 같이 씁니다.
 
-Examples 4.3.3.
+\[[\mathbf{u}]_{\mathcal{B}} = \begin{bmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \end{bmatrix}.\]
 
-- $\dim(\mathbb{R}^2) = 2$, with basis $(1,0), (0,1)$.
-- $\dim(\mathbb{R}^3) = 3$, with basis $(1,0,0), (0,1,0), (0,0,1)$.
-- The set of polynomials of degree at most 3 has dimension 4, with basis $(1, x, x^2, x^3)$.
+### \(\mathbb{R}^2\)에서의 예제
 
-### Geometric Interpretation
+예제 4.4.1.
+기저를 다음과 같이 가정합니다.
 
-- The span is like the reach of a set of vectors.
-- A basis is the minimal set of directions needed to reach everything in the space.
-- The dimension is the count of those independent directions.
+\[\mathcal{B} = \{ (1,1), (1,-1) \}.\]
 
-Lines, planes, and higher-dimensional flats can all be described in terms of span, basis, and dimension.
+\(\mathcal{B}\)에 대한 \(\mathbf{u} = (3,1)\)의 좌표를 찾으려면, 다음을 풉니다.
 
-### Why this matters
+\[(3,1) = c_1(1,1) + c_2(1,-1).\]
 
-These concepts classify vector spaces and subspaces in terms of size and structure. Many theorems in linear algebra-such
-as the Rank–Nullity Theorem-are consequences of understanding span, basis, and dimension. In practical terms, bases are
-how we encode data in coordinates, and dimension tells us how much freedom a system truly has.
+이것은 다음 시스템을 제공합니다.
 
-### Exercises 4.3
+\[\begin{cases} c_1 + c_2 = 3, \\ c_1 - c_2 = 1. \end{cases}\]
 
-1. Show that $(1,0,0)$, $(0,1,0)$, $(1,1,0)$ span the $xy$-plane in $\mathbb{R}^3$. Are they a basis?
-2. Find a basis for the line $\{(2t,-3t,t) : t \in \mathbb{R}\}$ in $\mathbb{R}^3$.
-3. Determine the dimension of the subspace of $\mathbb{R}^3$ defined by $x+y+z=0$.
-4. Prove that any two different bases of $\mathbb{R}^n$ must contain exactly $n$ vectors.
-5. Give a basis for the set of polynomials of degree $\leq 2$. What is its dimension?
+더하기: \(2c_1 = 4 \implies c_1 = 2\). 그러면 \(c_2 = 1\).
 
-## 4.4 Coordinates
+그래서,
 
-Once a basis for a vector space is chosen, every vector can be expressed uniquely as a linear combination of the basis
-vectors. The coefficients in this combination are called the coordinates of the vector relative to that basis.
-Coordinates allow us to move between the abstract world of vector spaces and the concrete world of numbers.
+\[[\mathbf{u}]_{\mathcal{B}} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}.\]
 
-### Coordinates Relative to a Basis
+### 표준 좌표
 
-Let $V$ be a vector space, and let
+\(\mathbb{R}^n\)에서 표준 기저는
 
-$$
-\mathcal{B} = \{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}
-$$
+\[\mathbf{e}_1 = (1,0,\dots,0), \quad \mathbf{e}_2 = (0,1,0,\dots,0), \dots, \mathbf{e}_n = (0,\dots,0,1).\]
 
-be an ordered basis for $V$. Every vector $\mathbf{u} \in V$ can be written uniquely as
+이 기저에 대해, 벡터의 좌표는 단순히 해당 항목입니다. 따라서 열 벡터는 기본적으로 좌표 표현입니다.
 
-$$
-\mathbf{u} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n.
-$$
+### 기저 변경
 
-The scalars $(c_1, c_2, \dots, c_n)$ are the coordinates of $\mathbf{u}$ relative to $\mathcal{B}$, written
+\(\mathcal{B} = {\mathbf{v}_1, \dots, \mathbf{v}_n}\)가 \(\mathbb{R}^n\)의 기저이면, 기저 변경 행렬은
 
-$$
-[\mathbf{u}]_{\mathcal{B}} = \begin{bmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \end{bmatrix}.
-$$
+\[P = \begin{bmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n \end{bmatrix},\]
 
-### Example in $\mathbb{R}^2$
+기저 벡터를 열로 가집니다. 임의의 벡터 \(\mathbf{u}\)에 대해,
 
-Example 4.4.1.
-Let the basis be
+\[\mathbf{u} = P[\mathbf{u}]_{\mathcal{B}}, \qquad [\mathbf{u}]_{\mathcal{B}} = P^{-1}\mathbf{u}.\]
 
-$$
-\mathcal{B} = \{ (1,1), (1,-1) \}.
-$$
+따라서 기저 간 전환은 행렬 곱셈으로 축소됩니다.
 
-To find the coordinates of $\mathbf{u} = (3,1)$ relative to $\mathcal{B}$, solve
+### 기하학적 해석
 
-$$
-(3,1) = c_1(1,1) + c_2(1,-1).
-$$
+좌표는 선택된 방향 집합에 대한 벡터의 주소입니다. 다른 기저는 데카르트, 회전, 기울어짐 또는 스케일링된 다른 좌표계와 같습니다. 동일한 벡터는 기저에 따라 숫자적으로 매우 다르게 보일 수 있지만, 기하학적 정체성은 변경되지 않습니다.
 
-This gives the system
+### 이것이 중요한 이유
 
-$$
-\begin{cases}
-c_1 + c_2 = 3, \\
-c_1 - c_2 = 1.
-\end{cases}
-$$
+좌표는 추상적인 벡터를 구체적인 숫자 데이터로 바꿉니다. 기저 변경은 축 회전, 행렬 대각화, 데이터 과학의 주성분 분석에 대한 대수적 언어입니다. 좌표의 숙달은 기하학, 대수학, 계산 사이를 유동적으로 이동하는 데 필수적입니다.
 
-Adding: $2c_1 = 4 \implies c_1 = 2$. Then $c_2 = 1$.
+### 연습문제 4.4
 
-So,
+1.  \((4,2)\)를 기저 \((1,1), (1,-1)\)로 표현하십시오.
+2.  \(\mathbb{R}^3\)의 표준 기저에 대한 \((1,2,3)\)의 좌표를 찾으십시오.
+3.  \(\mathcal{B} = \{(2,0), (0,3)\}\)이면, \([(4,6)]_{\mathcal{B}}\)를 계산하십시오.
+4.  \(\mathbb{R}^2\)의 표준 기저에서 \(\mathcal{B} = \{(1,1), (1,-1)\}\)으로의 기저 변경 행렬을 구성하십시오.
+5.  기저에 대한 좌표 표현이 고유함을 증명하십시오.
 
-$$
-[\mathbf{u}]_{\mathcal{B}} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}.
-$$
+# 제5장. 선형 변환
 
-### Standard Coordinates
+## 5.1 선형성을 보존하는 함수
 
-In $\mathbb{R}^n$, the standard basis is
+선형대수학의 중심 주제는 대수적 구조를 보존하는 벡터 공간 간의 함수인 선형 변환을 이해하는 것입니다. 이러한 변환은 행렬 곱셈의 아이디어를 일반화하고 선형 동작의 본질을 포착합니다.
 
-$$
-\mathbf{e}_1 = (1,0,\dots,0), \quad \mathbf{e}_2 = (0,1,0,\dots,0), \dots, \mathbf{e}_n = (0,\dots,0,1).
-$$
+### 정의
 
-Relative to this basis, the coordinates of a vector are simply its entries. Thus, column vectors are coordinate
-representations by default.
+\(V\)와 \(W\)를 \(\mathbb{R}\)에 대한 벡터 공간이라고 가정합니다. 함수
 
-### Change of Basis
+\[T : V \to W\]
 
-If $\mathcal{B} = {\mathbf{v}_1, \dots, \mathbf{v}_n}$ is a basis of $\mathbb{R}^n$, the change of basis matrix is
+는 모든 벡터 \(\mathbf{u}, \mathbf{v} \in V\)와 모든 스칼라 \(c \in \mathbb{R}\)에 대해 다음과 같은 경우 선형 변환(또는 선형 맵)이라고 합니다.
 
-$$
-P = \begin{bmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n \end{bmatrix},
-$$
+1.  덧셈성:
 
-with basis vectors as columns. For any vector $\mathbf{u}$,
+    \[T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}),\]
+2.  동차성:
 
-$$
-\mathbf{u} = P[\mathbf{u}]_{\mathcal{B}}, \qquad [\mathbf{u}]_{\mathcal{B}} = P^{-1}\mathbf{u}.
-$$
+    \[T(c\mathbf{u}) = cT(\mathbf{u}).\]
 
-Thus, switching between bases reduces to matrix multiplication.
+두 조건이 모두 성립하면, \(T\)는 자동으로 선형 조합을 존중합니다.
 
-### Geometric Interpretation
+\[T(c_1\mathbf{v}_1 + \cdots + c_k\mathbf{v}_k) = c_1 T(\mathbf{v}_1) + \cdots + c_k T(\mathbf{v}_k).\]
 
-Coordinates are the address of a vector relative to a chosen set of directions. Different bases are like different
-coordinate systems: Cartesian, rotated, skewed, or scaled. The same vector may look very different numerically depending
-on the basis, but its geometric identity is unchanged.
+### 예제
 
-### Why this matters
+예제 5.1.1. \(\mathbb{R}^2\)에서의 스케일링.
+\(T:\mathbb{R}^2 \to \mathbb{R}^2\)를 다음과 같이 정의합니다.
 
-Coordinates turn abstract vectors into concrete numerical data. Changing basis is the algebraic language for rotations
-of axes, diagonalization of matrices, and principal component analysis in data science. Mastery of coordinates is
-essential for moving fluidly between geometry, algebra, and computation.
+\[T(x,y) = (2x, 2y).\]
 
-### Exercises 4.4
+이것은 모든 벡터의 길이를 두 배로 늘리고 방향을 보존합니다. 선형입니다.
 
-1. Express $(4,2)$ in terms of the basis $(1,1), (1,-1)$.
-2. Find the coordinates of $(1,2,3)$ relative to the standard basis of $\mathbb{R}^3$.
-3. If $\mathcal{B} = \{(2,0), (0,3)\}$, compute $[ (4,6) ]_{\mathcal{B}}$.
-4. Construct the change of basis matrix from the standard basis of $\mathbb{R}^2$ to $\mathcal{B} = \{(1,1), (1,-1)\}$.
-5. Prove that coordinate representation with respect to a basis is unique.
+예제 5.1.2. 회전.
+\(R_\theta: \mathbb{R}^2 \to \mathbb{R}^2\)를 다음과 같이 가정합니다.
 
-# Chapter 5. Linear Transformations
+\[R_\theta(x,y) = (x\cos\theta - y\sin\theta, \; x\sin\theta + y\cos\theta).\]
 
-## 5.1 Functions that Preserve Linearity
+이것은 벡터를 \(\theta\) 각도만큼 회전시킵니다. 덧셈성과 동차성을 만족하므로 선형입니다.
 
-A central theme of linear algebra is understanding linear transformations: functions between vector spaces that preserve
-their algebraic structure. These transformations generalize the idea of matrix multiplication and capture the essence of
-linear behavior.
+예제 5.1.3. 미분.
+\(D: \mathbb{R}[x] \to \mathbb{R}[x]\)를 미분이라고 가정합니다: \(D(p(x)) = p'(x)\). 도함수는 덧셈과 스칼라 곱을 존중하므로, 미분은 선형 변환입니다.
 
-### Definition
+### 비-예제
 
-Let $V$ and $W$ be vector spaces over $\mathbb{R}$. A function
+맵 \(S:\mathbb{R}^2 \to \mathbb{R}^2\)는 다음과 같이 정의됩니다.
 
-$$
-T : V \to W
-$$
+\[S(x,y) = (x^2, y^2)\]
 
-is called a linear transformation (or linear map) if for all vectors $\mathbf{u}, \mathbf{v} \in V$ and all
-scalars $c \in \mathbb{R}$:
+는 일반적으로 \(S(\mathbf{u} + \mathbf{v}) \neq S(\mathbf{u}) + S(\mathbf{v})\)이므로 선형이 아닙니다.
 
-1. Additivity:
+### 기하학적 해석
 
-   $$
-   T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}),
-   $$
-2. Homogeneity:
+선형 변환은 원점, 원점을 통과하는 선, 그리고 그 선을 따른 비율을 정확하게 보존하는 변환입니다. 스케일링, 회전, 반사, 전단, 투영과 같은 익숙한 연산을 포함합니다. 비선형 변환은 공간을 구부리거나 휘게 하여 이러한 속성을 깨뜨립니다.
 
-   $$
-   T(c\mathbf{u}) = cT(\mathbf{u}).
-   $$
+### 이것이 중요한 이유
 
-If both conditions hold, then $T$ automatically respects linear combinations:
+선형 변환은 기하학, 대수학, 계산을 통합합니다. 행렬이 벡터에 어떻게 작용하는지, 데이터가 어떻게 회전되거나 투영될 수 있는지, 시스템이 선형 규칙에 따라 어떻게 진화하는지를 설명합니다. 선형대수학의 많은 부분은 이러한 변환, 그 표현, 그리고 그 불변량을 이해하는 데 전념합니다.
 
-$$
-T(c_1\mathbf{v}_1 + \cdots + c_k\mathbf{v}_k) = c_1 T(\mathbf{v}_1) + \cdots + c_k T(\mathbf{v}_k).
-$$
+### 연습문제 5.1
 
-### Examples
+1.  \(T(x,y) = (3x-y, 2y)\)가 \(\mathbb{R}^2\)에 대한 선형 변환임을 확인하십시오.
+2.  \(T(x,y) = (x+1, y)\)가 선형이 아님을 보이십시오. 어떤 공리가 실패합니까?
+3.  \(T\)와 \(S\)가 선형 변환이면, \(T+S\)도 선형 변환임을 증명하십시오.
+4.  \(\mathbb{R}^3\)에서 \(\mathbb{R}^2\)로의 선형 변환의 예를 드십시오.
+5.  \(T:\mathbb{R}[x] \to \mathbb{R}[x]\)를 적분이라고 가정합니다.
 
-Example 5.1.1. Scaling in $\mathbb{R}^2$.
-Let $T:\mathbb{R}^2 \to \mathbb{R}^2$ be defined by
+    \[T(p(x)) = \int_0^x p(t)\\,dt.\]
 
-$$
-T(x,y) = (2x, 2y).
-$$
+    \(T\)가 선형 변환임을 증명하십시오.
 
-This doubles the length of every vector, preserving direction. It is linear.
+## 5.2 선형 맵의 행렬 표현
 
-Example 5.1.2. Rotation.
-Let $R_\theta: \mathbb{R}^2 \to \mathbb{R}^2$ be
+유한 차원 벡터 공간 간의 모든 선형 변환은 행렬로 표현될 수 있습니다. 이 대응 관계는 선형대수학의 중심 통찰력 중 하나입니다. 추상적인 변환을 연구하기 위해 행렬 산술 도구를 사용할 수 있게 합니다.
 
-$$
-R_\theta(x,y) = (x\cos\theta - y\sin\theta, \; x\sin\theta + y\cos\theta).
-$$
+### 선형 맵에서 행렬로
 
-This rotates vectors by angle $\theta$. It satisfies additivity and homogeneity, hence is linear.
+\(T: \mathbb{R}^n \to \mathbb{R}^m\)를 선형 변환이라고 가정합니다. \(\mathbb{R}^n\)의 표준 기저 \(\{ \mathbf{e}_1, \dots, \mathbf{e}_n \}\)를 선택합니다. 여기서 \(\mathbf{e}_i\)는 \(i\)번째 위치에 1이 있고 다른 곳에는 0이 있습니다.
 
-Example 5.1.3. Differentiation.
-Let $D: \mathbb{R}[x] \to \mathbb{R}[x]$ be differentiation: $D(p(x)) = p'(x)$. Since derivatives respect addition and
-scalar multiples, differentiation is a linear transformation.
+각 기저 벡터에 대한 \(T\)의 작용은 전체 변환을 결정합니다.
 
-### Non-Example
+\[T(\mathbf{e}_j) = \begin{bmatrix} a_{1j} \\ a_{2j} \\ \vdots \\ a_{mj} \end{bmatrix}.\]
 
-The map $S:\mathbb{R}^2 \to \mathbb{R}^2$ defined by
+이러한 출력을 열로 배치하면 \(T\)의 행렬이 됩니다.
 
-$$
-S(x,y) = (x^2, y^2)
-$$
+\[[T] = A = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{bmatrix}.\]
 
-is not linear, because $S(\mathbf{u} + \mathbf{v}) \neq S(\mathbf{u}) + S(\mathbf{v})$ in general.
+그러면 임의의 벡터 \(\mathbf{x} \in \mathbb{R}^n\)에 대해:
 
-### Geometric Interpretation
+\[T(\mathbf{x}) = A\mathbf{x}.\]
 
-Linear transformations are exactly those that preserve the origin, lines through the origin, and proportions along those
-lines. They include familiar operations: scaling, rotations, reflections, shears, and projections. Nonlinear
-transformations bend or curve space, breaking these properties.
+### 예제
 
-### Why this matters
+예제 5.2.1. \(\mathbb{R}^2\)에서의 스케일링.
+\(T(x,y) = (2x, 3y)\)라고 가정합니다. 그러면
 
-Linear transformations unify geometry, algebra, and computation. They explain how matrices act on vectors, how data can
-be rotated or projected, and how systems evolve under linear rules. Much of linear algebra is devoted to understanding
-these transformations, their representations, and their invariants.
+\[T(\mathbf{e}_1) = (2,0), \quad T(\mathbf{e}_2) = (0,3).\]
 
-### Exercises 5.1
+따라서 행렬은
 
-1. Verify that $T(x,y) = (3x-y, 2y)$ is a linear transformation on $\mathbb{R}^2$.
-2. Show that $T(x,y) = (x+1, y)$ is not linear. Which axiom fails?
-3. Prove that if $T$ and $S$ are linear transformations, then so is $T+S$.
-4. Give an example of a linear transformation from $\mathbb{R}^3$ to $\mathbb{R}^2$.
-5. Let $T:\mathbb{R}[x] \to \mathbb{R}[x]$ be integration:
+\[[T] = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}.\]
 
-   $$
-   T(p(x)) = \int_0^x p(t)\\,dt.
-   $$
+예제 5.2.2. 평면에서의 회전.
+회전 변환 \(R_\theta(x,y) = (x\cos\theta - y\sin\theta, \; x\sin\theta + y\cos\theta)\)는 행렬을 가집니다.
 
-   Prove that $T$ is a linear transformation.
+\[[R_\theta] = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}.\]
 
-## 5.2 Matrix Representation of Linear Maps
+예제 5.2.3. x축으로의 투영.
+맵 \(P(x,y) = (x,0)\)은 다음에 해당합니다.
 
-Every linear transformation between finite-dimensional vector spaces can be represented by a matrix. This correspondence
-is one of the central insights of linear algebra: it lets us use the tools of matrix arithmetic to study abstract
-transformations.
+\[[P] = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}.\]
 
-### From Linear Map to Matrix
+### 기저 변경
 
-Let $T: \mathbb{R}^n \to \mathbb{R}^m$ be a linear transformation. Choose the standard
-basis $\{ \mathbf{e}_1, \dots, \mathbf{e}_n \}$ of $\mathbb{R}^n$, where $\mathbf{e}_i$ has a 1 in the $i$-th position
-and 0 elsewhere.
+행렬 표현은 선택한 기저에 따라 다릅니다. \(\mathcal{B}\)와 \(\mathcal{C}\)가 \(\mathbb{R}^n\)과 \(\mathbb{R}^m\)의 기저이면, 이러한 기저에 대한 \(T: \mathbb{R}^n \to \mathbb{R}^m\)의 행렬은 각 \(\mathbf{v}_j \in \mathcal{B}\)에 대해 \(T(\mathbf{v}_j)\)를 \(\mathcal{C}\)로 표현하여 얻습니다. 기저 변경은 적절한 기저 변경 행렬로 행렬을 켤레 변환하는 것에 해당합니다.
 
-The action of $T$ on each basis vector determines the entire transformation:
+### 기하학적 해석
 
-$$
-T(\mathbf{e}\_j) = \begin{bmatrix} 
-a_{1j} \\ 
-a_{2j} \\ 
-\vdots \\ 
-a_{mj} \end{bmatrix}.
-$$
+행렬은 편리한 표기법일 뿐만 아니라, 기저가 고정되면 선형 맵 \emph{자체}입니다. 모든 회전, 반사, 투영, 전단 또는 스케일링은 특정 행렬을 곱하는 것에 해당합니다. 따라서 선형 변환을 연구하는 것은 그 행렬을 연구하는 것으로 축소됩니다.
 
-Placing these outputs as columns gives the matrix of $T$:
+### 이것이 중요한 이유
 
-$$
-[T] = A = \begin{bmatrix}
-a_{11} & a_{12} & \cdots & a_{1n} \\
-a_{21} & a_{22} & \cdots & a_{2n} \\
-\vdots & \vdots & \ddots & \vdots \\
-a_{m1} & a_{m2} & \cdots & a_{mn}
-\end{bmatrix}.
-$$
+행렬 표현은 선형 변환을 계산 가능하게 만듭니다. 추상적인 정의를 명시적인 계산과 연결하여 시스템 해결, 고유값 찾기, 분해 수행을 위한 알고리즘을 가능하게 합니다. 그래픽스에서 기계 학습에 이르기까지 응용 프로그램은 이 변환에 의존합니다.
 
-Then for any vector $\mathbf{x} \in \mathbb{R}^n$:
+### 연습문제 5.2
 
-$$
-T(\mathbf{x}) = A\mathbf{x}.
-$$
+1.  \(T:\mathbb{R}^2 \to \mathbb{R}^2\), \(T(x,y) = (x+y, x-y)\)의 행렬 표현을 찾으십시오.
+2.  선형 변환 \(T:\mathbb{R}^3 \to \mathbb{R}^2\), \(T(x,y,z) = (x+z, y-2z)\)의 행렬을 결정하십시오.
+3.  \(\mathbb{R}^2\)에서 선 \(y=x\)에 대한 반사를 나타내는 행렬은 무엇입니까?
+4.  \(\mathbb{R}^n\)에 대한 항등 변환의 행렬이 \(I_n\)임을 보이십시오.
+5.  미분 맵 \(D:\mathbb{R}_2[x] \to \mathbb{R}_1[x]\)에 대해, 여기서 \(\mathbb{R}_k[x]\)는 최대 \(k\)차 다항식의 공간이며, 기저 \(\{1,x,x^2\}\)와 \(\{1,x\}\)에 대한 \(D\)의 행렬을 찾으십시오.
 
-### Examples
+## 5.3 커널과 이미지
 
-Example 5.2.1. Scaling in $\mathbb{R}^2$.
-Let $T(x,y) = (2x, 3y)$. Then
+선형 변환을 깊이 이해하려면, 그것이 무엇을 죽이고 무엇을 생성하는지 검토해야 합니다. 이러한 아이디어는 커널과 이미지에 의해 포착되며, 이는 모든 선형 맵과 관련된 두 개의 기본 부분 공간입니다.
 
-$$
-T(\mathbf{e}_1) = (2,0), \quad T(\mathbf{e}_2) = (0,3).
-$$
+### 커널
 
-So the matrix is
+선형 변환 \(T: V \to W\)의 커널(또는 영 공간)은 \(W\)의 영 벡터에 매핑되는 \(V\)의 모든 벡터 집합입니다.
 
-$$
-[T] = \begin{bmatrix}
-2 & 0 \\
-0 & 3
-\end{bmatrix}.
-$$
+\[\ker(T) = \{ \mathbf{v} \in V \mid T(\mathbf{v}) = \mathbf{0} \}.\]
 
-Example 5.2.2. Rotation in the plane.
-The rotation transformation $R_\theta(x,y) = (x\cos\theta - y\sin\theta, \; x\sin\theta + y\cos\theta)$ has matrix
+커널은 항상 \(V\)의 부분 공간입니다. 변환의 퇴화, 즉 아무것도 아닌 것으로 붕괴되는 방향을 측정합니다.
 
-$$
-[R_\theta] = \begin{bmatrix}
-\cos\theta & -\sin\theta \\
-\sin\theta & \cos\theta
-\end{bmatrix}.
-$$
+예제 5.3.1.
+\(T:\mathbb{R}^3 \to \mathbb{R}^2\)를 다음과 같이 정의합니다.
 
-Example 5.2.3. Projection onto the x-axis.
-The map $P(x,y) = (x,0)$ corresponds to
+\[T(x,y,z) = (x+y, y+z).\]
 
-$$
-[P] = \begin{bmatrix}
-1 & 0 \\
-0 & 0
-\end{bmatrix}.
-$$
+행렬 형식으로,
 
-### Change of Basis
+\[[T] = \begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{bmatrix}.\]
 
-Matrix representations depend on the chosen basis. If $\mathcal{B}$ and $\mathcal{C}$ are bases of $\mathbb{R}^n$
-and $\mathbb{R}^m$, then the matrix of $T: \mathbb{R}^n \to \mathbb{R}^m$ with respect to these bases is obtained by
-expressing $T(\mathbf{v}_j)$ in terms of $\mathcal{C}$ for each $\mathbf{v}_j \in \mathcal{B}$. Changing bases
-corresponds to conjugating the matrix by the appropriate change-of-basis matrices.
+커널을 찾으려면, 다음을 풉니다.
 
-### Geometric Interpretation
+\[\begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}.\]
 
-Matrices are not just convenient notation-they *are* linear maps once a basis is fixed. Every rotation, reflection,
-projection, shear, or scaling corresponds to multiplying by a specific matrix. Thus, studying linear transformations
-reduces to studying their matrices.
+이것은 방정식 \(x + y = 0\), \(y + z = 0\)을 제공합니다. 따라서 \(x = -y, z = -y\). 커널은
 
-### Why this matters
+\[\ker(T) = \{ (-t, t, -t) \mid t \in \mathbb{R} \},\]
 
-Matrix representations make linear transformations computable. They connect abstract definitions to explicit
-calculations, enabling algorithms for solving systems, finding eigenvalues, and performing decompositions. Applications
-from graphics to machine learning depend on this translation.
+\(\mathbb{R}^3\)의 선입니다.
 
-### Exercises 5.2
+### 이미지
 
-1. Find the matrix representation of $T:\mathbb{R}^2 \to \mathbb{R}^2$, $T(x,y) = (x+y, x-y)$.
-2. Determine the matrix of the linear transformation $T:\mathbb{R}^3 \to \mathbb{R}^2$, $T(x,y,z) = (x+z, y-2z)$.
-3. What matrix represents reflection across the line $y=x$ in $\mathbb{R}^2$?
-4. Show that the matrix of the identity transformation on $\mathbb{R}^n$ is $I_n$.
-5. For the differentiation map $D:\mathbb{R}_2[x] \to \mathbb{R}_1[x]$, where $\mathbb{R}_k[x]$ is the space of
-   polynomials of degree at most $k$, find the matrix of $D$ relative to the bases $\{1,x,x^2\}$ and $\{1,x\}$.
+선형 변환 \(T: V \to W\)의 이미지(또는 범위)는 모든 출력 집합입니다.
 
-## 5.3 Kernel and Image
+\[\text{im}(T) = \{ T(\mathbf{v}) \mid \mathbf{v} \in V \} \subseteq W.\]
 
-To understand a linear transformation deeply, we must examine what it kills and what it produces. These ideas are
-captured by the kernel and the image, two fundamental subspaces associated with any linear map.
+동등하게, 표현 행렬의 열의 스팬입니다. 이미지는 항상 \(W\)의 부분 공간입니다.
 
-### The Kernel
+예제 5.3.2.
+위와 동일한 변환에 대해,
 
-The kernel (or null space) of a linear transformation $T: V \to W$ is the set of all vectors in $V$ that map to the zero
-vector in $W$:
+\[[T] = \begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \end{bmatrix},\]
 
-$$
-\ker(T) = \{ \mathbf{v} \in V \mid T(\mathbf{v}) = \mathbf{0} \}.
-$$
+열은 \((1,0)\), \((1,1)\), \((0,1)\)입니다. \((1,1) = (1,0) + (0,1)\)이므로, 이미지는
 
-The kernel is always a subspace of $V$. It measures the degeneracy of the transformation-directions that collapse to
-nothing.
+\[\text{im}(T) = \text{span}\{ (1,0), (0,1) \} = \mathbb{R}^2.\]
 
-Example 5.3.1.
-Let $T:\mathbb{R}^3 \to \mathbb{R}^2$ be defined by
+### 차원 공식 (랭크-널리티 정리)
 
-$$
-T(x,y,z) = (x+y, y+z).
-$$
+유한 차원 \(V\)를 가진 선형 변환 \(T: V \to W\)에 대해,
 
-In matrix form,
+\[\dim(\ker(T)) + \dim(\text{im}(T)) = \dim(V).\]
 
-$$
-[T] = \begin{bmatrix}
-1 & 1 & 0 \\
-0 & 1 & 1
-\end{bmatrix}.
-$$
+이 기본 결과는 잃어버린 방향(커널)과 달성된 방향(이미지)을 연결합니다.
 
-To find the kernel, solve
+### 기하학적 해석
 
-$$
-\begin{bmatrix}
-1 & 1 & 0 \\
-0 & 1 & 1
-\end{bmatrix}
-\begin{bmatrix} x \\ y \\ z \end{bmatrix}
-= \begin{bmatrix} 0 \\ 0 \end{bmatrix}.
-$$
+-   커널은 변환이 공간을 어떻게 평평하게 만드는지 설명합니다 (예: 3D 객체를 평면에 투영).
+-   이미지는 변환에 의해 도달된 대상 부분 공간을 설명합니다.
+-   랭크-널리티 정리는 트레이드오프를 정량화합니다. 더 많은 차원이 붕괴될수록 이미지에 남는 차원이 줄어듭니다.
 
-This gives the equations $x + y = 0$, $y + z = 0$. Hence $x = -y, z = -y$. The kernel is
+### 이것이 중요한 이유
 
-$$
-\ker(T) = \{ (-t, t, -t) \mid t \in \mathbb{R} \},
-$$
+커널과 이미지는 선형 맵의 본질을 포착합니다. 변환을 분류하고, 시스템이 고유하거나 무한한 해를 가질 때를 설명하며, 랭크-널리티 정리, 대각화, 스펙트럼 이론과 같은 중요한 결과의 중추를 형성합니다.
 
-a line in $\mathbb{R}^3$.
+### 연습문제 5.3
 
-### The Image
+1.  \(T:\mathbb{R}^2 \to \mathbb{R}^2\), \(T(x,y) = (x-y, x+y)\)의 커널과 이미지를 찾으십시오.
+2.  \(A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \end{bmatrix}\)라고 가정합니다. \(\ker(A)\)와 \(\text{im}(A)\)에 대한 기저를 찾으십시오.
+3.  투영 맵 \(P(x,y,z) = (x,y,0)\)에 대해, 커널과 이미지를 설명하십시오.
+4.  \(\ker(T)\)와 \(\text{im}(T)\)가 항상 부분 공간임을 증명하십시오.
+5.  예제 5.3.1의 변환에 대해 랭크-널리티 정리를 확인하십시오.
 
-The image (or range) of a linear transformation $T: V \to W$ is the set of all outputs:
+## 5.4 기저 변경
 
-$$
-\text{im}(T) = \{ T(\mathbf{v}) \mid \mathbf{v} \in V \} \subseteq W.
-$$
+선형 변환은 우리가 사용하는 좌표계에 따라 매우 다르게 보일 수 있습니다. 벡터와 변환을 새 기저에 대해 다시 쓰는 과정을 기저 변경이라고 합니다. 이 개념은 대각화, 직교화, 많은 계산 기술의 핵심에 있습니다.
 
-Equivalently, it is the span of the columns of the representing matrix. The image is always a subspace of $W$.
+### 좌표 변경
 
-Example 5.3.2.
-For the same transformation as above,
+\(V\)가 \(n\)차원 벡터 공간이고, \(\mathcal{B} = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}\)가 기저라고 가정합니다. 모든 벡터 \(\mathbf{x} \in V\)는 좌표 벡터 \([\mathbf{x}]_{\mathcal{B}} \in \mathbb{R}^n\)를 가집니다.
 
-$$
-[T] = \begin{bmatrix}
-1 & 1 & 0 \\
-0 & 1 & 1
-\end{bmatrix},
-$$
+\(P\)가 \(\mathcal{B}\)에서 표준 기저로의 기저 변경 행렬이면,
 
-the columns are $(1,0)$, $(1,1)$, and $(0,1)$. Since $(1,1) = (1,0) + (0,1)$, the image is
+\[\mathbf{x} = P [\mathbf{x}]_{\mathcal{B}}.\]
 
-$$
-\text{im}(T) = \text{span}\{ (1,0), (0,1) \} = \mathbb{R}^2.
-$$
+동등하게,
 
-### Dimension Formula (Rank–Nullity Theorem)
+\[[\mathbf{x}]_{\mathcal{B}} = P^{-1} \mathbf{x}.\]
 
-For a linear transformation $T: V \to W$ with $V$ finite-dimensional,
+여기서, \(P\)는 \(\mathcal{B}\)의 기저 벡터를 열로 가집니다.
 
-$$
-\dim(\ker(T)) + \dim(\text{im}(T)) = \dim(V).
-$$
+\[P = \begin{bmatrix} \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n \end{bmatrix}.\]
 
-This fundamental result connects the lost directions (kernel) with the achieved directions (image).
+### 행렬 변환
 
-### Geometric Interpretation
+\(T: V \to V\)를 선형 변환이라고 가정합니다. 표준 기저에서의 행렬이 \(A\)라고 가정합니다. 기저 \(\mathcal{B}\)에서, 표현 행렬은 다음과 같습니다.
 
-- The kernel describes how the transformation flattens space (e.g., projecting a 3D object onto a plane).
-- The image describes the target subspace reached by the transformation.
-- The rank–nullity theorem quantifies the tradeoff: the more dimensions collapse, the fewer remain in the image.
+\[[T]_{\mathcal{B}} = P^{-1} A P.\]
 
-### Why this matters
+따라서 기저 변경은 행렬의 유사 변환에 해당합니다.
 
-Kernel and image capture the essence of a linear map. They classify transformations, explain when systems have unique or
-infinite solutions, and form the backbone of important results like the Rank–Nullity Theorem, diagonalization, and
-spectral theory.
+### 예제
 
-### Exercises 5.3
+예제 5.4.1.
+\(T:\mathbb{R}^2 \to \mathbb{R}^2\)를 다음과 같이 가정합니다.
 
-1. Find the kernel and image of $T:\mathbb{R}^2 \to \mathbb{R}^2$, $T(x,y) = (x-y, x+y)$.
-2. Let $A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \end{bmatrix}$. Find bases for $\ker(A)$ and $\text{im}(A)$.
-3. For the projection map $P(x,y,z) = (x,y,0)$, describe the kernel and image.
-4. Prove that $\ker(T)$ and $\text{im}(T)$ are always subspaces.
-5. Verify the Rank–Nullity Theorem for the transformation in Example 5.3.1.
+\[T(x,y) = (3x + y, x + y).\]
 
-## 5.4 Change of Basis
+표준 기저에서, 행렬은
 
-Linear transformations can look very different depending on the coordinate system we use. The process of rewriting
-vectors and transformations relative to a new basis is called a change of basis. This concept lies at the heart of
-diagonalization, orthogonalization, and many computational techniques.
+\[A = \begin{bmatrix} 3 & 1 \\ 1 & 1 \end{bmatrix}.\]
 
-### Coordinate Change
+이제 기저 \(\mathcal{B} = \{ (1,1), (1,-1) \}\)를 고려하십시오. 기저 변경 행렬은
 
-Suppose $V$ is an $n$-dimensional vector space, and let $\mathcal{B} = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}$ be a
-basis. Every vector $\mathbf{x} \in V$ has a coordinate vector $[\mathbf{x}]_{\mathcal{B}} \in \mathbb{R}^n$.
+\[P = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}.\]
 
-If $P$ is the change-of-basis matrix from $\mathcal{B}$ to the standard basis, then
+그러면
 
-$$
-\mathbf{x} = P [\mathbf{x}]_{\mathcal{B}}.
-$$
+\[[T]_{\mathcal{B}} = P^{-1} A P.\]
 
-Equivalently,
+계산하면 다음과 같습니다.
 
-$$
-[\mathbf{x}]_{\mathcal{B}} = P^{-1} \mathbf{x}.
-$$
+\[[T]_{\mathcal{B}} = \begin{bmatrix} 4 & 0 \\ 0 & 0 \end{bmatrix}.\]
 
-Here, $P$ has the basis vectors of $\mathcal{B}$ as its columns:
+이 새 기저에서, 변환은 대각선입니다. 한 방향은 4로 스케일링되고, 다른 방향은 0으로 붕괴됩니다.
 
-$$
-P = \begin{bmatrix}
-\mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n
-\end{bmatrix}.
-$$
+### 기하학적 해석
 
-### Transformation of Matrices
+기저 변경은 좌표 격자를 회전하거나 기울이는 것과 같습니다. 기본 변환은 변경되지 않지만, 숫자로 된 설명은 기저에 따라 더 간단해지거나 더 복잡해집니다. 변환을 단순화하는 기저(종종 대각 기저)를 찾는 것은 선형대수학의 핵심 주제입니다.
 
-Let $T: V \to V$ be a linear transformation. Suppose its matrix in the standard basis is $A$. In the
-basis $\mathcal{B}$, the representing matrix becomes
+### 이것이 중요한 이유
 
-$$
-[T]_{\mathcal{B}} = P^{-1} A P.
-$$
+기저 변경은 유사성의 추상적 개념을 실용적인 계산과 연결합니다. 행렬을 대각화하고, 고유값을 계산하고, 복잡한 변환을 단순화할 수 있는 도구입니다. 응용 분야에서는 기하학, 물리학 또는 기계 학습에서 더 자연스러운 좌표계를 선택하는 것에 해당합니다.
 
-Thus, changing basis corresponds to a similarity transformation of the matrix.
+### 연습문제 5.4
 
-### Example
+1.  \(A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}\)라고 가정합니다. 기저 \(\{(1,0),(1,1)\}\)에서의 표현을 계산하십시오.
+2.  \(\mathbb{R}^2\)의 표준 기저에서 \(\{(2,1),(1,1)\}\)으로의 기저 변경 행렬을 찾으십시오.
+3.  유사 행렬(\(P^{-1}AP\)로 관련됨)이 다른 기저 하에서 동일한 선형 변환을 나타냄을 증명하십시오.
+4.  기저 \(\{(1,1),(1,-1)\}\)에서 행렬 \(A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}\)를 대각화하십시오.
+5.  \(\mathbb{R}^3\)에서, \(\mathcal{B} = \{(1,0,0),(1,1,0),(1,1,1)\}\)라고 가정합니다. 기저 변경 행렬 \(P\)를 구성하고 \(P^{-1}\)를 계산하십시오.
 
-Example 5.4.1.
-Let $T:\mathbb{R}^2 \to \mathbb{R}^2$ be given by
+# 제6장. 행렬식
 
-$$
-T(x,y) = (3x + y, x + y).
-$$
+## 6.1 동기와 기하학적 의미
 
-In the standard basis, its matrix is
+행렬식은 정사각 행렬과 관련된 숫자 값입니다. 처음에는 복잡한 공식으로 보일 수 있지만, 그 중요성은 측정하는 것에서 비롯됩니다. 행렬식은 선형 변환의 스케일링, 방향, 가역성을 인코딩합니다. 대수와 기하학을 연결합니다.
 
-$$
-A = \begin{bmatrix}
-3 & 1 \\
-1 & 1
-\end{bmatrix}.
-$$
+### \(2 \times 2\) 행렬의 행렬식
 
-Now consider the basis $\mathcal{B} = \{ (1,1), (1,-1) \}$. The change-of-basis matrix is
+\(2 \times 2\) 행렬에 대해
 
-$$
-P = \begin{bmatrix}
-1 & 1 \\
-1 & -1
-\end{bmatrix}.
-$$
+\[A = \begin{bmatrix} a & b \\ c & d \end{bmatrix},\]
 
-Then
+행렬식은 다음과 같이 정의됩니다.
 
-$$
-[T]_{\mathcal{B}} = P^{-1} A P.
-$$
+\[\det(A) = ad - bc.\]
 
-Computing gives
+기하학적 의미: \(A\)가 평면의 선형 변환을 나타내는 경우, \(|\det(A)|\)는 면적 스케일링 인수입니다. 예를 들어, \(\det(A) = 2\)이면, 모양의 면적이 두 배가 됩니다. \(\det(A) = 0\)이면, 변환은 평면을 선으로 붕괴시킵니다. 모든 면적이 사라집니다.
 
-$$
-[T]_{\mathcal{B}} =
-\begin{bmatrix}
-4 & 0 \\
-0 & 0
-\end{bmatrix}.
-$$
+### \(3 \times 3\) 행렬의 행렬식
 
-In this new basis, the transformation is diagonal: one direction is scaled by 4, the other collapsed to 0.
+다음에 대해
 
-### Geometric Interpretation
+\[A = \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix},\]
 
-Change of basis is like rotating or skewing your coordinate grid. The underlying transformation does not change, but its
-description in numbers becomes simpler or more complicated depending on the basis. Finding a basis that simplifies a
-transformation (often a diagonal basis) is a key theme in linear algebra.
+행렬식은 다음과 같이 계산할 수 있습니다.
 
-### Why this matters
+\[\det(A) = a(ei - fh) - b(di - fg) + c(dh - eg).\]
 
-Change of basis connects the abstract notion of similarity to practical computation. It is the tool that allows us to
-diagonalize matrices, compute eigenvalues, and simplify complex transformations. In applications, it corresponds to
-choosing a more natural coordinate system-whether in geometry, physics, or machine learning.
+기하학적 의미: \(\mathbb{R}^3\)에서, \(|\det(A)|\)는 부피 스케일링 인수입니다. \(\det(A) < 0\)이면, 방향이 반전됩니다(손잡이 뒤집기), 예를 들어 오른손 좌표계를 왼손 좌표계로 바꾸는 것과 같습니다.
 
-### Exercises 5.4
+### 일반적인 경우
 
-1. Let $A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}$. Compute its representation in the basis $\{(1,0),(1,1)\}$.
-2. Find the change-of-basis matrix from the standard basis of $\mathbb{R}^2$ to $\{(2,1),(1,1)\}$.
-3. Prove that similar matrices (related by $P^{-1}AP$) represent the same linear transformation under different bases.
-4. Diagonalize the matrix $A = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ in the basis $\{(1,1),(1,-1)\}$.
-5. In $\mathbb{R}^3$, let $\mathcal{B} = \{(1,0,0),(1,1,0),(1,1,1)\}$. Construct the change-of-basis matrix $P$ and
-   compute $P^{-1}$.
+\(A \in \mathbb{R}^{n \times n}\)에 대해, 행렬식은 \(A\)에 의해 주어진 선형 변환이 n차원 부피를 어떻게 스케일링하는지를 측정하는 스칼라입니다.
 
-# Chapter 6. Determinants
+-   \(\det(A) = 0\)이면: 변환은 공간을 더 낮은 차원으로 압축하므로, \(A\)는 가역이 아닙니다.
+-   \(\det(A) > 0\)이면: 부피는 \(\det(A)\)만큼 스케일링되고, 방향은 보존됩니다.
+-   \(\det(A) < 0\)이면: 부피는 \(|\det(A)|\)만큼 스케일링되고, 방향은 반전됩니다.
 
-## 6.1 Motivation and Geometric Meaning
+### 시각적 예제
 
-Determinants are numerical values associated with square matrices. At first they may appear as a complicated formula,
-but their importance comes from what they measure: determinants encode scaling, orientation, and invertibility of linear
-transformations. They bridge algebra and geometry.
+1.  \(\mathbb{R}^2\)에서의 전단:
+    \(A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}\).
+    그러면 \(\det(A) = 1\). 변환은 단위 정사각형을 평행사변형으로 기울이지만 면적을 보존합니다.
 
-### Determinants of $2 \times 2$ Matrices
+2.  \(\mathbb{R}^2\)에서의 투영:
+    \(A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}\).
+    그러면 \(\det(A) = 0\). 단위 정사각형은 선분으로 붕괴됩니다. 면적이 사라집니다.
 
-For a $2 \times 2$ matrix
+3.  \(\mathbb{R}^2\)에서의 회전:
+    \(R_\theta = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}\).
+    그러면 \(\det(R_\theta) = 1\). 회전은 면적과 방향을 보존합니다.
 
-$$
-A = \begin{bmatrix} a & b \\ c & d \end{bmatrix},
-$$
+### 이것이 중요한 이유
 
-the determinant is defined as
+행렬식은 공식일 뿐만 아니라 변환의 척도입니다. 행렬이 가역인지 여부, 공간을 어떻게 왜곡하는지, 방향을 뒤집는지 여부를 알려줍니다. 이 기하학적 통찰력은 분석, 기하학, 응용 수학에서 행렬식을 필수 불가결하게 만듭니다.
 
-$$
-\det(A) = ad - bc.
-$$
+### 연습문제 6.1
 
-Geometric meaning: If $A$ represents a linear transformation of the plane, then $|\det(A)|$ is the area scaling factor.
-For example, if $\det(A) = 2$, areas of shapes are doubled. If $\det(A) = 0$, the transformation collapses the plane to
-a line: all area is lost.
+1.  \(\begin{bmatrix} 2 & 3 \\ 1 & 4 \end{bmatrix}\)의 행렬식을 계산하십시오. 어떤 면적 스케일링 인수를 나타냅니까?
+2.  전단 행렬 \(\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}\)의 행렬식을 찾으십시오. 단위 정사각형의 면적에 어떤 일이 발생합니까?
+3.  \(3 \times 3\) 행렬
+    \(\begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{bmatrix}\)에 대해, 행렬식을 계산하십시오. \(\mathbb{R}^3\)에서 부피를 어떻게 스케일링합니까?
+4.  \(\mathbb{R}^2\)의 모든 회전 행렬의 행렬식이 \(1\)임을 보이십시오.
+5.  행렬식이 \(-1\)인 \(2 \times 2\) 행렬의 예를 드십시오. 어떤 기하학적 작용을 나타냅니까?
 
-### Determinants of $3 \times 3$ Matrices
+## 6.2 행렬식의 속성
 
-For
+기하학적 의미 외에도, 행렬식은 선형대수학에서 강력한 도구로 만드는 대수적 규칙 모음을 만족합니다. 이러한 속성은 효율적으로 계산하고, 가역성을 테스트하고, 행렬 연산 하에서 행렬식이 어떻게 동작하는지 이해할 수 있게 합니다.
 
-$$
-A = \begin{bmatrix}
-a & b & c \\
-d & e & f \\
-g & h & i
-\end{bmatrix},
-$$
+### 기본 속성
 
-the determinant can be computed as
+\(A, B \in \mathbb{R}^{n \times n}\)이고, \(c \in \mathbb{R}\)이라고 가정합니다. 그러면:
 
-$$
-\det(A) = a(ei - fh) - b(di - fg) + c(dh - eg).
-$$
+1.  항등:
 
-Geometric meaning: In $\mathbb{R}^3$, $|\det(A)|$ is the volume scaling factor. If $\det(A) < 0$, orientation is
-reversed (a handedness flip), such as turning a right-handed coordinate system into a left-handed one.
+    \[\det(I_n) = 1.\]
+2.  삼각 행렬:
+    \(A\)가 상삼각 또는 하삼각 행렬이면,
 
-### General Case
+    \[\det(A) = a_{11} a_{22} \cdots a_{nn}.\]
+3.  행/열 교환:
+    두 행(또는 열)을 교환하면 행렬식에 \(-1\)을 곱합니다.
+4.  행/열 스케일링:
+    행(또는 열)에 스칼라 \(c\)를 곱하면 행렬식에 \(c\)를 곱합니다.
+5.  행/열 덧셈:
+    한 행의 배수를 다른 행에 더해도 행렬식은 변경되지 않습니다.
+6.  전치:
 
-For $A \in \mathbb{R}^{n \times n}$, the determinant is a scalar that measures how the linear transformation given
-by $A$ scales n-dimensional volume.
+    \[\det(A^T) = \det(A).\]
+7.  곱셈성:
 
-- If $\det(A) = 0$: the transformation squashes space into a lower dimension, so $A$ is not invertible.
-- If $\det(A) > 0$: volume is scaled by $\det(A)$, orientation preserved.
-- If $\det(A) < 0$: volume is scaled by $|\det(A)|$, orientation reversed.
+    \[\det(AB) = \det(A)\det(B).\]
+8.  가역성:
+    \(A\)는 \(\det(A) \neq 0\)인 경우에만 가역입니다.
 
-### Visual Examples
+### 예제 계산
 
-1. Shear in $\mathbb{R}^2$:
-   $A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$.
-   Then $\det(A) = 1$. The transformation slants the unit square into a parallelogram but preserves area.
+예제 6.2.1.
+다음에 대해
 
-2. Projection in $\mathbb{R}^2$:
-   $A = \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$.
-   Then $\det(A) = 0$. The unit square collapses into a line segment: area vanishes.
+\[A = \begin{bmatrix} 2 & 0 & 0 \\ 1 & 3 & 0 \\ -1 & 4 & 5 \end{bmatrix},\]
 
-3. Rotation in $\mathbb{R}^2$:
-   $R_\theta = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}$.
-   Then $\det(R_\theta) = 1$. Rotations preserve area and orientation.
+\(A\)는 하삼각 행렬이므로,
 
-### Why this matters
+\[\det(A) = 2 \cdot 3 \cdot 5 = 30.\]
 
-The determinant is not just a formula-it is a measure of transformation. It tells us whether a matrix is invertible, how
-it distorts space, and whether it flips orientation. This geometric insight makes the determinant indispensable in
-analysis, geometry, and applied mathematics.
+예제 6.2.2.
+다음과 같이 가정합니다.
 
-### Exercises 6.1
+\[B = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, \quad C = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}.\]
 
-1. Compute the determinant of $\begin{bmatrix} 2 & 3 \\ 1 & 4 \end{bmatrix}$. What area scaling factor does it
-   represent?
-2. Find the determinant of the shear matrix $\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}$. What happens to the area of
-   the unit square?
-3. For the $3 \times 3$ matrix
-   $\begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{bmatrix}$, compute the determinant. How does it scale
-   volume in $\mathbb{R}^3$?
-4. Show that any rotation matrix in $\mathbb{R}^2$ has determinant $1$.
-5. Give an example of a $2 \times 2$ matrix with determinant $-1$. What geometric action does it represent?
+그러면
 
-## 6.2 Properties of Determinants
+\[\det(B) = 1\cdot 4 - 2\cdot 3 = -2, \quad \det(C) = -1.\]
 
-Beyond their geometric meaning, determinants satisfy a collection of algebraic rules that make them powerful tools in
-linear algebra. These properties allow us to compute efficiently, test invertibility, and understand how determinants
-behave under matrix operations.
+\(CB\)는 \(B\)의 행을 교환하여 얻으므로,
 
-### Basic Properties
+\[\det(CB) = -\det(B) = 2.\]
 
-Let $A, B \in \mathbb{R}^{n \times n}$, and let $c \in \mathbb{R}$. Then:
+이것은 곱셈성 규칙과 일치합니다: \(\det(CB) = \det(C)\det(B) = (-1)(-2) = 2.\)
 
-1. Identity:
+### 기하학적 통찰
 
-   $$
-   \det(I_n) = 1.
-   $$
+-   행 교환: 공간의 방향을 뒤집습니다.
+-   행 스케일링: 한 방향으로 공간을 늘립니다.
+-   행 교체: 부피를 변경하지 않고 초평면을 슬라이딩합니다.
+-   곱셈성: 두 변환을 수행하면 스케일링 인수가 곱해집니다.
 
-2. Triangular matrices:
-   If $A$ is upper or lower triangular, then
+이러한 속성은 행렬식을 계산적으로 관리 가능하고 기하학적으로 해석 가능하게 만듭니다.
 
-   $$
-   \det(A) = a_{11} a_{22} \cdots a_{nn}.
-   $$
+### 이것이 중요한 이유
 
-3. Row/column swap:
-   Interchanging two rows (or columns) multiplies the determinant by $-1$.
+행렬식 속성은 계산을 기하학과 이론과 연결합니다. 가우스 소거법이 작동하는 이유, 가역성이 0이 아닌 행렬식과 동등한 이유, 그리고 행렬식이 부피 계산, 고유값 이론, 미분 방정식과 같은 영역에서 자연스럽게 발생하는 이유를 설명합니다.
 
-4. Row/column scaling:
-   Multiplying a row (or column) by a scalar $c$ multiplies the determinant by $c$.
+### 연습문제 6.2
 
-5. Row/column addition:
-   Adding a multiple of one row to another does not change the determinant.
+1.  다음 행렬의 행렬식을 계산하십시오.
 
-6. Transpose:
+    \[A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 2 \end{bmatrix}.\]
+2.  정사각 행렬의 두 행이 동일하면, 그 행렬식이 0임을 보이십시오.
+3.  다음에 대해 \(\det(A^T) = \det(A)\)임을 확인하십시오.
 
-   $$
-   \det(A^T) = \det(A).
-   $$
+    \[A = \begin{bmatrix} 2 & -1 \\ 3 & 4 \end{bmatrix}.\]
+4.  \(A\)가 가역이면, 다음을 증명하십시오.
 
-7. Multiplicativity:
+    \[\det(A^{-1}) = \frac{1}{\det(A)}.\]
+5.  \(A\)가 \(\det(A) = 5\)인 \(3\times 3\) 행렬이라고 가정합니다. \(\det(2A)\)는 얼마입니까?
 
-   $$
-   \det(AB) = \det(A)\det(B).
-   $$
+## 6.3 여인수 전개
 
-8. Invertibility:
-   $A$ is invertible if and only if $\det(A) \neq 0$.
+작은 행렬의 행렬식은 공식에서 직접 계산할 수 있지만, 큰 행렬은 체계적인 방법이 필요합니다. 여인수 전개(라플라스 전개라고도 함)는 행렬식을 더 작은 행렬식으로 분해하여 재귀적으로 계산하는 방법을 제공합니다.
 
-### Example Computations
+### 소행렬식과 여인수
 
-Example 6.2.1.
-For
+\(n \times n\) 행렬 \(A = [a_{ij}]\)에 대해:
 
-$$
-A = \begin{bmatrix} 2 & 0 & 0 \\ 1 & 3 & 0 \\ -1 & 4 & 5 \end{bmatrix},
-$$
+-   소행렬식 \(M_{ij}\)는 \(A\)의 \(i\)번째 행과 \(j\)번째 열을 삭제하여 얻은 \((n-1) \times (n-1)\) 행렬의 행렬식입니다.
+-   여인수 \(C_{ij}\)는 다음과 같이 정의됩니다.
 
-$A$ is lower triangular, so
+\[C_{ij} = (-1)^{i+j} M_{ij}.\]
 
-$$
-\det(A) = 2 \cdot 3 \cdot 5 = 30.
-$$
+부호 인자 \((-1)^{i+j}\)는 체커보드 패턴으로 번갈아 나타납니다.
 
-Example 6.2.2.
-Let
+\[\begin{bmatrix} + & - & + & - & \cdots \\ - & + & - & + & \cdots \\ + & - & + & - & \cdots \\ \vdots & \vdots & \vdots & \vdots & \ddots \end{bmatrix}.\]
 
-$$
-B = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, \quad
-C = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}.
-$$
+### 여인수 전개 공식
 
-Then
+\(A\)의 행렬식은 임의의 행 또는 임의의 열을 따라 전개하여 계산할 수 있습니다.
 
-$$
-\det(B) = 1\cdot 4 - 2\cdot 3 = -2, \quad \det(C) = -1.
-$$
+\[\det(A) = \sum_{j=1}^n a_{ij} C_{ij} \quad \text{(행 \(i\)를 따른 전개)},\]
 
-Since $CB$ is obtained by swapping rows of $B$,
+\[\det(A) = \sum_{i=1}^n a_{ij} C_{ij} \quad \text{(열 \(j\)를 따른 전개)}.\]
 
-$$
-\det(CB) = -\det(B) = 2.
-$$
+### 예제
 
-This matches the multiplicativity rule: $\det(CB) = \det(C)\det(B) = (-1)(-2) = 2.$
+예제 6.3.1.
+다음을 계산하십시오.
 
-### Geometric Insights
+\[A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 4 & 5 \\ 1 & 0 & 6 \end{bmatrix}.\]
 
-- Row swaps: flipping orientation of space.
-- Scaling a row: stretching space in one direction.
-- Row replacement: sliding hyperplanes without altering volume.
-- Multiplicativity: performing two transformations multiplies their scaling factors.
+첫 번째 행을 따라 전개:
 
-These properties make determinants both computationally manageable and geometrically interpretable.
+\[\det(A) = 1 \cdot C_{11} + 2 \cdot C_{12} + 3 \cdot C_{13}.\]
 
-### Why this matters
+-   \(C_{11}\)에 대해:
+    \(M_{11} = \det \begin{bmatrix} 4 & 5 \\ 0 & 6 \end{bmatrix} = 24\), 그래서 \(C_{11} = (+1)(24) = 24\).
+-   \(C_{12}\)에 대해:
+    \(M_{12} = \det \begin{bmatrix} 0 & 5 \\ 1 & 6 \end{bmatrix} = 0 - 5 = -5\), 그래서 \(C_{12} = (-1)(-5) = 5\).
+-   \(C_{13}\)에 대해:
+    \(M_{13} = \det \begin{bmatrix} 0 & 4 \\ 1 & 0 \end{bmatrix} = 0 - 4 = -4\), 그래서 \(C_{13} = (+1)(-4) = -4\).
 
-Determinant properties connect computation with geometry and theory. They explain why Gaussian elimination works, why
-invertibility is equivalent to nonzero determinant, and why determinants naturally arise in areas like volume
-computation, eigenvalue theory, and differential equations.
+따라서,
 
-### Exercises 6.2
+\[\det(A) = 1(24) + 2(5) + 3(-4) = 24 + 10 - 12 = 22.\]
 
-1. Compute the determinant of
+### 여인수 전개의 속성
 
-   $$
-   A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 2 \end{bmatrix}.
-   $$
+1.  임의의 행 또는 열을 따른 전개는 동일한 결과를 낳습니다.
+2.  여인수 전개는 행렬식의 재귀적 정의를 제공합니다. 크기 \(n\)의 행렬식은 크기 \(n-1\)의 행렬식으로 표현됩니다.
+3.  여인수는 역행렬에 대한 공식을 제공하는 수반 행렬을 구성하는 데 기본적입니다.
 
-2. Show that if two rows of a square matrix are identical, then its determinant is zero.
+\[A^{-1} = \frac{1}{\det(A)} \, \text{adj}(A), \quad \text{where adj}(A) = [C_{ji}].\]
 
-3. Verify $\det(A^T) = \det(A)$ for
+### 기하학적 해석
 
-   $$
-   A = \begin{bmatrix} 2 & -1 \\ 3 & 4 \end{bmatrix}.
-   $$
+여인수 전개는 행렬식을 한 번에 한 행 또는 열을 고정하여 정의된 하위 부피의 기여도로 분해합니다. 각 여인수는 해당 행/열이 전체 부피 스케일링에 어떻게 영향을 미치는지 측정합니다.
 
-4. If $A$ is invertible, prove that
+### 이것이 중요한 이유
 
-   $$
-   \det(A^{-1}) = \frac{1}{\det(A)}.
-   $$
+여인수 전개는 작은 행렬 공식을 일반화하고 행렬식의 개념적 정의를 제공합니다. 큰 행렬에 대한 행렬식을 계산하는 가장 효율적인 방법은 아니지만, 이론, 증명, 수반 행렬, 크라메르의 법칙, 고전 기하학과의 연결에 필수적입니다.
 
-5. Suppose $A$ is a $3\times 3$ matrix with $\det(A) = 5$. What is $\det(2A)$?
+### 연습문제 6.3
 
-## 6.3 Cofactor Expansion
+1.  다음 행렬의 행렬식을 첫 번째 열을 따라 여인수 전개하여 계산하십시오.
 
-While determinants of small matrices can be computed directly from formulas, larger matrices require a systematic
-method. The cofactor expansion (also known as Laplace expansion) provides a recursive way to compute determinants by
-breaking them into smaller ones.
+    \[\begin{bmatrix} 2 & 0 & 1 \\ 3 & -1 & 4 \\ 1 & 2 & 0 \end{bmatrix}\]
+2.  예제 6.3.1의 두 번째 행을 따라 전개하면 동일한 행렬식이 나옴을 확인하십시오.
+3.  임의의 행을 따른 전개가 동일한 값을 제공함을 증명하십시오.
+4.  행렬의 한 행이 0이면, 그 행렬식이 0임을 보이십시오.
+5.  여인수 전개를 사용하여 \(\det(A) = \det(A^T)\)임을 증명하십시오.
 
-### Minors and Cofactors
+## 6.4 응용 (부피, 가역성 테스트)
 
-For an $n \times n$ matrix $A = [a_{ij}]$:
+행렬식은 단순한 대수적 호기심이 아닙니다. 구체적인 기하학적 및 계산적 용도를 가집니다. 가장 중요한 두 가지 응용은 부피 측정과 행렬의 가역성 테스트입니다.
 
-- The minor $M_{ij}$ is the determinant of the $(n-1) \times (n-1)$ matrix obtained by deleting the $i$-th row and $j$
-  -th column of $A$.
-- The cofactor $C_{ij}$ is defined by
+### 부피 스케일러로서의 행렬식
 
-$$
-C_{ij} = (-1)^{i+j} M_{ij}.
-$$
+벡터 \(\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n \in \mathbb{R}^n\)가 주어지면, 행렬의 열로 배열합니다.
 
-The sign factor $(-1)^{i+j}$ alternates in a checkerboard pattern:
+\[A = \begin{bmatrix} | & | & & | \\ \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n \\ | & | & & | \end{bmatrix}.\]
 
-$$
-\begin{bmatrix}
+그러면 \(|\det(A)|\)는 이러한 벡터에 의해 생성된 평행육면체의 부피와 같습니다.
 
-+ & - & + & - & \cdots \\
+-   \(\mathbb{R}^2\)에서, \(|\det(A)|\)는 \(\mathbf{v}_1, \mathbf{v}_2\)에 의해 생성된 평행사변형의 면적을 제공합니다.
+-   \(\mathbb{R}^3\)에서, \(|\det(A)|\)는 \(\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3\)에 의해 생성된 평행육면체의 부피를 제공합니다.
+-   고차원에서는, \(n\)차원 부피(초부피)로 일반화됩니다.
 
-- & + & - & + & \cdots \\
+예제 6.4.1.
+다음과 같이 가정합니다.
 
-+ & - & + & - & \cdots \\
-  \vdots & \vdots & \vdots & \vdots & \ddots
-  \end{bmatrix}.
-  $$
+\[\mathbf{v}_1 = (1,0,0), \quad \mathbf{v}_2 = (1,1,0), \quad \mathbf{v}_3 = (1,1,1).\]
 
-### Cofactor Expansion Formula
+그러면
 
-The determinant of $A$ can be computed by expanding along any row or any column:
+\[A = \begin{bmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{bmatrix}, \quad \det(A) = 1.\]
 
-$$
-\det(A) = \sum_{j=1}^n a_{ij} C_{ij} \quad \text{(expansion along row \(i\))},
-$$
+따라서 평행육면체는 벡터가 직교하지 않더라도 부피가 \(1\)입니다.
 
-$$
-\det(A) = \sum_{i=1}^n a_{ij} C_{ij} \quad \text{(expansion along column \(j\))}.
-$$
+### 가역성 테스트
 
-### Example
+정사각 행렬 \(A\)는 \(\det(A) \neq 0\)인 경우에만 가역입니다.
 
-Example 6.3.1.
-Compute
+-   \(\det(A) = 0\)이면: 변환은 공간을 더 낮은 차원으로 붕괴시킵니다(면적/부피가 0). 역행렬이 존재하지 않습니다.
+-   \(\det(A) \neq 0\)이면: 변환은 부피를 \(|\det(A)|\)만큼 스케일링하고, 가역입니다.
 
-$$
-A = \begin{bmatrix}
-1 & 2 & 3 \\
-0 & 4 & 5 \\
-1 & 0 & 6
-\end{bmatrix}.
-$$
+예제 6.4.2.
+행렬
 
-Expand along the first row:
+\[B = \begin{bmatrix} 2 & 4 \\ 1 & 2 \end{bmatrix}\]
 
-$$
-\det(A) = 1 \cdot C_{11} + 2 \cdot C_{12} + 3 \cdot C_{13}.
-$$
+는 행렬식 \(\det(B) = 2 \cdot 2 - 4 \cdot 1 = 0\)을 가집니다.
+따라서 \(B\)는 가역이 아닙니다. 기하학적으로, 두 열 벡터는 공선상이며, \(\mathbb{R}^2\)에서 선만 생성합니다.
 
-- For $C_{11}$:
-  $M_{11} = \det \begin{bmatrix} 4 & 5 \\ 0 & 6 \end{bmatrix} = 24$, so $C_{11} = (+1)(24) = 24$.
-- For $C_{12}$:
-  $M_{12} = \det \begin{bmatrix} 0 & 5 \\ 1 & 6 \end{bmatrix} = 0 - 5 = -5$, so $C_{12} = (-1)(-5) = 5$.
-- For $C_{13}$:
-  $M_{13} = \det \begin{bmatrix} 0 & 4 \\ 1 & 0 \end{bmatrix} = 0 - 4 = -4$, so $C_{13} = (+1)(-4) = -4$.
+### 크라메르의 법칙
 
-Thus,
+행렬식은 행렬이 가역일 때 선형 방정식 시스템을 푸는 명시적인 공식도 제공합니다. \(A\mathbf{x} = \mathbf{b}\)이고 \(A \in \mathbb{R}^{n \times n}\)인 경우:
 
-$$
-\det(A) = 1(24) + 2(5) + 3(-4) = 24 + 10 - 12 = 22.
-$$
+\[x_i = \frac{\det(A_i)}{\det(A)},\]
 
-### Properties of Cofactor Expansion
+여기서 \(A_i\)는 \(A\)의 \(i\)번째 열을 \(\mathbf{b}\)로 교체하여 얻습니다.
+계산적으로 비효율적이지만, 크라메르의 법칙은 해와 고유성에서 행렬식의 역할을 강조합니다.
 
-1. Expansion along any row or column yields the same result.
-2. The cofactor expansion provides a recursive definition of determinant: a determinant of size $n$ is expressed in
-   terms of determinants of size $n-1$.
-3. Cofactors are fundamental in constructing the adjugate matrix, which gives a formula for inverses:
+### 방향
 
-$$
-A^{-1} = \frac{1}{\det(A)} \, \text{adj}(A), \quad \text{where adj}(A) = [C_{ji}].
-$$
+\(\det(A)\)의 부호는 변환이 방향을 보존하는지 또는 반전시키는지를 나타냅니다. 예를 들어, 평면에서의 반사는 행렬식이 \(-1\)이며, 손잡이를 뒤집습니다.
 
-### Geometric Interpretation
+### 이것이 중요한 이유
 
-Cofactor expansion breaks down the determinant into contributions from sub-volumes defined by fixing one row or column
-at a time. Each cofactor measures how that row/column influences the overall volume scaling.
+행렬식은 핵심 정보를 압축합니다. 스케일링을 측정하고, 가역성을 테스트하고, 방향을 추적합니다. 이러한 통찰력은 기하학(면적 및 부피), 분석(미적분학의 야코비 행렬식), 계산(시스템 해결 및 특이성 확인)에서 필수 불가결합니다.
 
-### Why this matters
+### 연습문제 6.4
 
-Cofactor expansion generalizes the small-matrix formulas and provides a conceptual definition of determinants. While not
-the most efficient way to compute determinants for large matrices, it is essential for theory, proofs, and connections
-to adjugates, Cramer’s rule, and classical geometry.
+1.  \((2,1)\)과 \((1,3)\)에 의해 생성된 평행사변형의 면적을 계산하십시오.
+2.  \((1,0,0), (1,1,0), (1,1,1)\)에 의해 생성된 평행육면체의 부피를 찾으십시오.
+3.  행렬 \(\begin{bmatrix} 1 & 2 \\ 3 & 6 \end{bmatrix}\)이 가역인지 확인하십시오. 행렬식을 사용하여 정당화하십시오.
+4.  크라메르의 법칙을 사용하여 다음을 푸십시오.
 
-### Exercises 6.3
+    \[\begin{cases} x + y = 3, \\ 2x - y = 0. \end{cases}\]
+5.  행렬식이 0이면 역행렬이 존재하지 않는 이유를 기하학적으로 설명하십시오.
 
-1. Compute the determinant of
+# 제7장. 내적 공간
 
-   $$
-   \begin{bmatrix}
-   2 & 0 & 1 \\
-   3 & -1 & 4 \\
-   1 & 2 & 0
-   \end{bmatrix}
-   $$
+## 7.1 내적과 노름
 
-   by cofactor expansion along the first column.
+\(\mathbb{R}^2\)와 \(\mathbb{R}^3\)을 넘어 길이, 거리, 각도의 기하학적 아이디어를 확장하기 위해, 우리는 내적을 도입합니다. 내적은 벡터 간의 유사성을 측정하는 방법을 제공하고, 이로부터 파생된 노름은 길이를 측정합니다. 이러한 개념은 벡터 공간 내부의 기하학의 기초입니다.
 
-2. Verify that expanding along the second row of Example 6.3.1 gives the same determinant.
+### 내적
 
-3. Prove that expansion along any row gives the same value.
+실수 벡터 공간 \(V\)에 대한 내적은 다음과 같은 함수입니다.
 
-4. Show that if a row of a matrix is zero, then its determinant is zero.
+\[\langle \cdot, \cdot \rangle : V \times V \to \mathbb{R}\]
 
-5. Use cofactor expansion to prove that $\det(A) = \det(A^T)$.
+는 각 벡터 쌍 \((\mathbf{u}, \mathbf{v})\)에 실수 값을 할당하며, 다음 속성을 따릅니다.
 
-## 6.4 Applications (Volume, Invertibility Test)
+1.  대칭성:
+    \(\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle.\)
 
-Determinants are not merely algebraic curiosities; they have concrete geometric and computational uses. Two of the most
-important applications are measuring volumes and testing invertibility of matrices.
+2.  첫 번째 인수의 선형성:
+    \(\langle a\mathbf{u} + b\mathbf{w}, \mathbf{v} \rangle = a \langle \mathbf{u}, \mathbf{v} \rangle + b \langle \mathbf{w}, \mathbf{v} \rangle.\)
 
-### Determinants as Volume Scalers
+3.  양의 정부호성:
+    \(\langle \mathbf{v}, \mathbf{v} \rangle \geq 0\), 등호는 \(\mathbf{v} = \mathbf{0}\)인 경우에만 성립합니다.
 
-Given vectors $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n \in \mathbb{R}^n$, arrange them as columns of a matrix:
+\(\mathbb{R}^n\)에 대한 표준 내적은 내적입니다.
 
-$$
-A = \begin{bmatrix}
-| & | & & | \\
-\mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n \\
-| & | & & |
-\end{bmatrix}.
-$$
+\[\langle \mathbf{u}, \mathbf{v} \rangle = u_1 v_1 + u_2 v_2 + \cdots + u_n v_n.\]
 
-Then $|\det(A)|$ equals the volume of the parallelepiped spanned by these vectors.
+### 노름
 
-- In $\mathbb{R}^2$, $|\det(A)|$ gives the area of the parallelogram spanned by $\mathbf{v}_1, \mathbf{v}_2$.
-- In $\mathbb{R}^3$, $|\det(A)|$ gives the volume of the parallelepiped spanned
-  by $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$.
-- In higher dimensions, it generalizes to $n$-dimensional volume (hypervolume).
+벡터의 노름은 내적으로 정의된 길이입니다.
 
-Example 6.4.1.
-Let
+\[\|\mathbf{v}\| = \sqrt{\langle \mathbf{v}, \mathbf{v} \rangle}.\]
 
-$$
-\mathbf{v}_1 = (1,0,0), \quad \mathbf{v}_2 = (1,1,0), \quad \mathbf{v}_3 = (1,1,1).
-$$
+\(\mathbb{R}^n\)의 내적에 대해:
 
-Then
+\[\|(x_1, x_2, \dots, x_n)\| = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}.\]
 
-$$
-A = \begin{bmatrix}
-1 & 1 & 1 \\
-0 & 1 & 1 \\
-0 & 0 & 1
-\end{bmatrix}, \quad \det(A) = 1.
-$$
+### 벡터 간의 각도
 
-So the parallelepiped has volume $1$, even though the vectors are not orthogonal.
+내적은 0이 아닌 두 벡터 \(\mathbf{u}, \mathbf{v}\) 사이의 각도 \(\theta\)를 다음과 같이 정의할 수 있게 합니다.
 
-### Invertibility Test
+\[\cos \theta = \frac{\langle \mathbf{u}, \mathbf{v} \rangle}{\|\mathbf{u}\| \, \|\mathbf{v}\|}.\]
 
-A square matrix $A$ is invertible if and only if $\det(A) \neq 0$.
+따라서 두 벡터는 \(\langle \mathbf{u}, \mathbf{v} \rangle = 0\)이면 직교합니다.
 
-- If $\det(A) = 0$: the transformation collapses space into a lower dimension (area/volume is zero). No inverse exists.
-- If $\det(A) \neq 0$: the transformation scales volume by $|\det(A)|$, and is reversible.
+### 예제
 
-Example 6.4.2.
-The matrix
+예제 7.1.1.
+\(\mathbb{R}^2\)에서, \(\mathbf{u} = (1,2)\), \(\mathbf{v} = (3,4)\)에 대해:
 
-$$
-B = \begin{bmatrix} 2 & 4 \\ 1 & 2 \end{bmatrix}
-$$
+\[\langle \mathbf{u}, \mathbf{v} \rangle = 1\cdot 3 + 2\cdot 4 = 11.\]
 
-has determinant $\det(B) = 2 \cdot 2 - 4 \cdot 1 = 0$.
-Thus, $B$ is not invertible. Geometrically, the two column vectors are collinear, spanning only a line
-in $\mathbb{R}^2$.
+\[\|\mathbf{u}\| = \sqrt{1^2 + 2^2} = \sqrt{5}, \quad \|\mathbf{v}\| = \sqrt{3^2 + 4^2} = 5.\]
 
-### Cramer’s Rule
+그래서,
 
-Determinants also provide an explicit formula for solving systems of linear equations when the matrix is invertible.
-For $A\mathbf{x} = \mathbf{b}$ with $A \in \mathbb{R}^{n \times n}$:
+\[\cos \theta = \frac{11}{\sqrt{5}\cdot 5}.\]
 
-$$
-x_i = \frac{\det(A_i)}{\det(A)},
-$$
+예제 7.1.2.
+함수 공간 \(C[0,1]\)에서, 내적
 
-where $A_i$ is obtained by replacing the $i$-th column of $A$ with $\mathbf{b}$.
-While inefficient computationally, Cramer’s rule highlights the determinant’s role in solutions and uniqueness.
+\[\langle f, g \rangle = \int_0^1 f(x) g(x)\, dx\]
 
-### Orientation
+는 길이를 정의합니다.
 
-The sign of $\det(A)$ indicates whether a transformation preserves or reverses orientation. For example, a reflection in
-the plane has determinant $-1$, flipping handedness.
+\[\|f\| = \sqrt{\int_0^1 f(x)^2 dx}.\]
 
-### Why this matters
+이것은 기하학을 무한 차원 공간으로 일반화합니다.
 
-Determinants condense key information: they measure scaling, test invertibility, and track orientation. These insights
-are indispensable in geometry (areas and volumes), analysis (Jacobian determinants in calculus), and computation (
-solving systems and checking singularity).
+### 기하학적 해석
 
-### Exercises 6.4
+-   내적: 벡터 간의 유사성을 측정합니다.
+-   노름: 벡터의 길이입니다.
+-   각도: 두 방향 간의 정렬 척도입니다.
 
-1. Compute the area of the parallelogram spanned by $(2,1)$ and $(1,3)$.
-2. Find the volume of the parallelepiped spanned by $(1,0,0), (1,1,0), (1,1,1)$.
-3. Determine whether the matrix $\begin{bmatrix} 1 & 2 \\ 3 & 6 \end{bmatrix}$ is invertible. Justify using
-   determinants.
-4. Use Cramer’s rule to solve
+이러한 개념은 대수적 연산을 기하학적 직관과 통합합니다.
 
-   $$
-   \begin{cases}
-   x + y = 3, \\
-   2x - y = 0.
-   \end{cases}
-   $$
-5. Explain geometrically why a determinant of zero implies no inverse exists.
+### 이것이 중요한 이유
 
-# Chapter 7. Inner Product Spaces
+내적과 노름은 기하학을 추상 벡터 공간으로 확장할 수 있게 합니다. 직교성, 투영, 푸리에 급수, 최소 제곱 근사, 그리고 물리학 및 기계 학습의 많은 응용 분야의 기초를 형성합니다.
 
-## 7.1 Inner Products and Norms
+### 연습문제 7.1
 
-To extend the geometric ideas of length, distance, and angle beyond $\mathbb{R}^2$ and $\mathbb{R}^3$, we introduce
-inner products. Inner products provide a way of measuring similarity between vectors, while norms derived from them
-measure length. These concepts are the foundation of geometry inside vector spaces.
+1.  \(\langle (2,-1,3), (1,4,0) \rangle\)를 계산하십시오. 그런 다음 두 벡터 사이의 각도를 찾으십시오.
+2.  \(\|(x,y)\| = \sqrt{x^2+y^2}\)가 노름의 속성을 만족함을 보이십시오.
+3.  \(\mathbb{R}^3\)에서, \((1,1,0)\)과 \((1,-1,0)\)이 직교하는지 확인하십시오.
+4.  \(C[0,1]\)에서, \(f(x)=x\), \(g(x)=1\)에 대해 \(\langle f,g \rangle\)를 계산하십시오.
+5.  코시-슈바르츠 부등식을 증명하십시오.
 
-### Inner Product
+    \[|\langle \mathbf{u}, \mathbf{v} \rangle| \leq \|\mathbf{u}\| \, \|\mathbf{v}\|.\]
 
-An inner product on a real vector space $V$ is a function
+## 7.2 직교 투영
 
-$$
-\langle \cdot, \cdot \rangle : V \times V \to \mathbb{R}
-$$
+내적의 가장 유용한 응용 중 하나는 직교 투영의 개념입니다. 투영은 벡터를 부분 공간에 있는 다른 벡터로 근사하여 거리의 의미에서 오차를 최소화할 수 있게 합니다. 이 아이디어는 기하학, 통계학, 수치 해석을 뒷받침합니다.
 
-that assigns to each pair of vectors $(\mathbf{u}, \mathbf{v})$ a real number, subject to the following properties:
+### 선으로의 투영
 
-1. Symmetry:
-   $\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle.$
+\(\mathbf{u} \in \mathbb{R}^n\)를 0이 아닌 벡터라고 가정합니다. \(\mathbf{u}\)에 의해 생성된 선은
 
-2. Linearity in the first argument:
-   $\langle a\mathbf{u} + b\mathbf{w}, \mathbf{v} \rangle = a \langle \mathbf{u}, \mathbf{v} \rangle + b \langle \mathbf{w}, \mathbf{v} \rangle.$
+\[L = \{ c\mathbf{u} \mid c \in \mathbb{R} \}.\]
 
-3. Positive-definiteness:
-   $\langle \mathbf{v}, \mathbf{v} \rangle \geq 0$, and equality holds if and only if $\mathbf{v} = \mathbf{0}$.
+벡터 \(\mathbf{v}\)가 주어지면, \(\mathbf{v}\)의 \(\mathbf{u}\)에 대한 투영은 \(L\)에서 \(\mathbf{v}\)에 가장 가까운 벡터입니다. 기하학적으로, 선 위의 \(\mathbf{v}\)의 그림자입니다.
 
-The standard inner product on $\mathbb{R}^n$ is the dot product:
+공식은 다음과 같습니다.
 
-$$
-\langle \mathbf{u}, \mathbf{v} \rangle = u_1 v_1 + u_2 v_2 + \cdots + u_n v_n.
-$$
+\[\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{\langle \mathbf{v}, \mathbf{u} \rangle}{\langle \mathbf{u}, \mathbf{u} \rangle} \, \mathbf{u}.\]
 
-### Norms
+오차 벡터 \(\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})\)는 \(\mathbf{u}\)에 직교합니다.
 
-The norm of a vector is its length, defined in terms of the inner product:
+### 예제 7.2.1
 
-$$
-\|\mathbf{v}\| = \sqrt{\langle \mathbf{v}, \mathbf{v} \rangle}.
-$$
+\(\mathbf{u} = (1,2)\), \(\mathbf{v} = (3,1)\)이라고 가정합니다.
 
-For the dot product in $\mathbb{R}^n$:
+\[\langle \mathbf{v}, \mathbf{u} \rangle = 3\cdot 1 + 1\cdot 2 = 5, \quad \langle \mathbf{u}, \mathbf{u} \rangle = 1^2 + 2^2 = 5.\]
 
-$$
-\|(x_1, x_2, \dots, x_n)\| = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}.
-$$
+그래서
 
-### Angles Between Vectors
+\[\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{5}{5}(1,2) = (1,2).\]
 
-The inner product allows us to define the angle $\theta$ between two nonzero vectors $\mathbf{u}, \mathbf{v}$ by
+오차 벡터는 \((3,1) - (1,2) = (2,-1)\)이며, 이는 \((1,2)\)에 직교합니다.
 
-$$
-\cos \theta = \frac{\langle \mathbf{u}, \mathbf{v} \rangle}{\|\mathbf{u}\| \, \|\mathbf{v}\|}.
-$$
+### 부분 공간으로의 투영
 
-Thus, two vectors are orthogonal if $\langle \mathbf{u}, \mathbf{v} \rangle = 0$.
+\(W \subseteq \mathbb{R}^n\)가 정규직교 기저 \(\{ \mathbf{w}_1, \dots, \mathbf{w}_k \}\)를 가진 부분 공간이라고 가정합니다. 벡터 \(\mathbf{v}\)의 \(W\)에 대한 투영은
 
-### Examples
+\[\text{proj}_{W}(\mathbf{v}) = \langle \mathbf{v}, \mathbf{w}_1 \rangle \mathbf{w}_1 + \cdots + \langle \mathbf{v}, \mathbf{w}_k \rangle \mathbf{w}_k.\]
 
-Example 7.1.1.
-In $\mathbb{R}^2$, with $\mathbf{u} = (1,2)$, $\mathbf{v} = (3,4)$:
+이것은 \(W\)에서 \(\mathbf{v}\)에 가장 가까운 고유한 벡터입니다. 차이 \(\mathbf{v} - \text{proj}_{W}(\mathbf{v})\)는 모든 \(W\)에 직교합니다.
 
-$$
-\langle \mathbf{u}, \mathbf{v} \rangle = 1\cdot 3 + 2\cdot 4 = 11.
-$$
+### 최소 제곱 근사
 
-$$
-\|\mathbf{u}\| = \sqrt{1^2 + 2^2} = \sqrt{5}, \quad \|\mathbf{v}\| = \sqrt{3^2 + 4^2} = 5.
-$$
+직교 투영은 최소 제곱 방법을 설명합니다. 과결정 시스템 \(A\mathbf{x} \approx \mathbf{b}\)를 풀기 위해, 우리는 \(A\mathbf{x}\)를 \(A\)의 열 공간에 대한 \(\mathbf{b}\)의 투영으로 만드는 \(\mathbf{x}\)를 찾습니다. 이것은 정규 방정식을 제공합니다.
 
-So,
+\[A^T A \mathbf{x} = A^T \mathbf{b}.\]
 
-$$
-\cos \theta = \frac{11}{\sqrt{5}\cdot 5}.
-$$
+따라서 최소 제곱은 단지 투영의 변장입니다.
 
-Example 7.1.2.
-In the function space $C[0,1]$, the inner product
+### 기하학적 해석
 
-$$
-\langle f, g \rangle = \int_0^1 f(x) g(x)\, dx
-$$
+-   투영은 주어진 벡터에 대한 부분 공간에서 가장 가까운 점을 찾습니다.
+-   유클리드 노름의 의미에서 거리(오차)를 최소화합니다.
+-   직교성은 오차 벡터가 부분 공간에서 직접 멀어지는 것을 보장합니다.
 
-defines a length
+### 이것이 중요한 이유
 
-$$
-\|f\| = \sqrt{\int_0^1 f(x)^2 dx}.
-$$
+직교 투영은 순수 및 응용 수학 모두에서 중심적입니다. 부분 공간의 기하학, 푸리에 급수 이론, 통계학의 회귀, 수치 선형대수학의 근사 방법의 기초가 됩니다. 더 간단한 모델로 데이터를 맞출 때마다 투영이 작동합니다.
 
-This generalizes geometry to infinite-dimensional spaces.
+### 연습문제 7.2
 
-### Geometric Interpretation
+1.  \((2,3)\)을 벡터 \((1,1)\)에 투영하십시오.
+2.  \(\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})\)가 \(\mathbf{u}\)에 직교함을 보이십시오.
+3.  \(W = \text{span}\{(1,0,0), (0,1,0)\} \subseteq \mathbb{R}^3\)라고 가정합니다. \((1,2,3)\)을 \(W\)에 투영하십시오.
+4.  최소 제곱 피팅이 \(A\)의 열 공간에 대한 투영에 해당하는 이유를 설명하십시오.
+5.  부분 공간 \(W\)에 대한 투영이 고유함을 증명하십시오. 주어진 \(\mathbf{v}\)에 대해 \(W\)에 가장 가까운 벡터는 정확히 하나입니다.
 
-- Inner product: measures similarity between vectors.
-- Norm: length of a vector.
-- Angle: measure of alignment between two directions.
+## 7.3 그람-슈미트 과정
 
-These concepts unify algebraic operations with geometric intuition.
+그람-슈미트 과정은 임의의 선형 독립적인 벡터 집합을 정규직교 기저로 바꾸는 체계적인 방법입니다. 정규직교 기저는 계산을 단순화하기 때문에 특히 유용합니다. 내적은 간단한 좌표 비교가 되고, 투영은 깔끔한 형태를 취합니다.
 
-### Why this matters
+### 아이디어
 
-Inner products and norms allow us to extend geometry into abstract vector spaces. They form the basis of orthogonality,
-projections, Fourier series, least squares approximation, and many applications in physics and machine learning.
+내적 공간에서 선형 독립적인 벡터 집합 \(\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}\)이 주어지면, 동일한 부분 공간을 생성하는 정규직교 집합 \(\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}\)을 구성하고 싶습니다.
 
-### Exercises 7.1
+단계별로 진행합니다.
 
-1. Compute $\langle (2,-1,3), (1,4,0) \rangle$. Then find the angle between them.
-2. Show that $\|(x,y)\| = \sqrt{x^2+y^2}$ satisfies the properties of a norm.
-3. In $\mathbb{R}^3$, verify that $(1,1,0)$ and $(1,-1,0)$ are orthogonal.
-4. In $C[0,1]$, compute $\langle f,g \rangle$ for $f(x)=x$, $g(x)=1$.
-5. Prove the Cauchy–Schwarz inequality:
+1.  \(\mathbf{v}_1\)으로 시작하여, 정규화하여 \(\mathbf{u}_1\)을 얻습니다.
+2.  \(\mathbf{v}_2\)에서 \(\mathbf{u}_1\)에 대한 투영을 빼서, \(\mathbf{u}_1\)에 직교하는 벡터를 남깁니다. 정규화하여 \(\mathbf{u}_2\)를 얻습니다.
+3.  각 \(\mathbf{v}_k\)에 대해, 이전에 구성된 모든 \(\mathbf{u}_1, \dots, \mathbf{u}_{k-1}\)에 대한 투영을 뺀 다음, 정규화합니다.
 
-   $$
-   |\langle \mathbf{u}, \mathbf{v} \rangle| \leq \|\mathbf{u}\| \, \|\mathbf{v}\|.
-   $$
+### 알고리즘
 
-## 7.2 Orthogonal Projections
+\(k = 1, 2, \dots, n\)에 대해:
 
-One of the most useful applications of inner products is the notion of orthogonal projection. Projection allows us to
-approximate a vector by another lying in a subspace, minimizing error in the sense of distance. This idea underpins
-geometry, statistics, and numerical analysis.
+\[\mathbf{w}_k = \mathbf{v}_k - \sum_{j=1}^{k-1} \langle \mathbf{v}_k, \mathbf{u}_j \rangle \mathbf{u}_j,\]
 
-### Projection onto a Line
+\[\mathbf{u}_k = \frac{\mathbf{w}_k}{\|\mathbf{w}_k\|}.\]
 
-Let $\mathbf{u} \in \mathbb{R}^n$ be a nonzero vector. The line spanned by $\mathbf{u}$ is
+결과 \(\{\mathbf{u}_1, \dots, \mathbf{u}_n\}\)는 원래 벡터의 스팬의 정규직교 기저입니다.
 
-$$
-L = \{ c\mathbf{u} \mid c \in \mathbb{R} \}.
-$$
+### 예제 7.3.1
 
-Given a vector $\mathbf{v}$, the projection of $\mathbf{v}$ onto $\mathbf{u}$ is the vector in $L$ closest
-to $\mathbf{v}$. Geometrically, it is the shadow of $\mathbf{v}$ on the line.
+\(\mathbb{R}^3\)에서 \(\mathbf{v}_1 = (1,1,0), \ \mathbf{v}_2 = (1,0,1), \ \mathbf{v}_3 = (0,1,1)\)을 취합니다.
 
-The formula is
+1.  \(\mathbf{v}_1\)을 정규화합니다.
 
-$$
-\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{\langle \mathbf{v}, \mathbf{u} \rangle}{\langle \mathbf{u}, \mathbf{u} \rangle} \, \mathbf{u}.
-$$
+    \[\mathbf{u}_1 = \frac{1}{\sqrt{2}}(1,1,0).\]
+2.  \(\mathbf{v}_2\)의 \(\mathbf{u}_1\)에 대한 투영을 뺍니다.
 
-The error vector $\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})$ is orthogonal to $\mathbf{u}$.
+    \[\mathbf{w}_2 = \mathbf{v}_2 - \langle \mathbf{v}_2,\mathbf{u}_1 \rangle \mathbf{u}_1.\]
 
-### Example 7.2.1
+    \[\langle \mathbf{v}_2,\mathbf{u}_1 \rangle = \frac{1}{\sqrt{2}}(1\cdot 1 + 0\cdot 1 + 1\cdot 0) = \tfrac{1}{\sqrt{2}}.\]
 
-Let $\mathbf{u} = (1,2)$, $\mathbf{v} = (3,1)$.
+    그래서
 
-$$
-\langle \mathbf{v}, \mathbf{u} \rangle = 3\cdot 1 + 1\cdot 2 = 5, \quad
-\langle \mathbf{u}, \mathbf{u} \rangle = 1^2 + 2^2 = 5.
-$$
+    \[\mathbf{w}_2 = (1,0,1) - \tfrac{1}{\sqrt{2}}\cdot \tfrac{1}{\sqrt{2}}(1,1,0) = (1,0,1) - \tfrac{1}{2}(1,1,0) = \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right).\]
 
-So
+    정규화:
 
-$$
-\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{5}{5}(1,2) = (1,2).
-$$
+    \[\mathbf{u}_2 = \frac{1}{\sqrt{\tfrac{1}{4}+\tfrac{1}{4}+1}} \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right) = \frac{1}{\sqrt{\tfrac{3}{2}}}\left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right).\]
+3.  \(\mathbf{v}_3\)에서 투영을 뺍니다.
 
-The error vector is $(3,1) - (1,2) = (2,-1)$, which is orthogonal to $(1,2)$.
+    \[\mathbf{w}_3 = \mathbf{v}_3 - \langle \mathbf{v}_3,\mathbf{u}_1 \rangle \mathbf{u}_1 - \langle \mathbf{v}_3,\mathbf{u}_2 \rangle \mathbf{u}_2.\]
 
-### Projection onto a Subspace
+    계산 후, 정규화하여 \(\mathbf{u}_3\)을 얻습니다.
 
-Suppose $W \subseteq \mathbb{R}^n$ is a subspace with orthonormal basis $\{ \mathbf{w}_1, \dots, \mathbf{w}_k \}$. The
-projection of a vector $\mathbf{v}$ onto $W$ is
+결과는 \(\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}\)의 스팬의 정규직교 기저입니다.
 
-$$
-\text{proj}_{W}(\mathbf{v}) = \langle \mathbf{v}, \mathbf{w}_1 \rangle \mathbf{w}_1 + \cdots + \langle \mathbf{v}, \mathbf{w}_k \rangle \mathbf{w}_k.
-$$
+### 기하학적 해석
 
-This is the unique vector in $W$ closest to $\mathbf{v}$. The difference $\mathbf{v} - \text{proj}_{W}(\mathbf{v})$ is
-orthogonal to all of $W$.
+그람-슈미트는 벡터 집합을 곧게 펴는 것과 같습니다. 원래 방향으로 시작하여 각 새 벡터를 이전의 모든 벡터에 수직이 되도록 조정합니다. 그런 다음 단위 길이로 스케일링합니다. 이 과정은 스팬을 보존하면서 직교성을 보장합니다.
 
-### Least Squares Approximation
+### 이것이 중요한 이유
 
-Orthogonal projection explains the method of least squares. To solve an overdetermined
-system $A\mathbf{x} \approx \mathbf{b}$, we seek the $\mathbf{x}$ that makes $A\mathbf{x}$ the projection
-of $\mathbf{b}$ onto the column space of $A$. This gives the normal equations
+정규직교 기저는 일반적으로 내적, 투영, 계산을 단순화합니다. 좌표계를 다루기 쉽게 만들고, 수치 방법, QR 분해, 푸리에 분석, 통계학(직교 다항식, 주성분 분석)에서 중요합니다.
 
-$$
-A^T A \mathbf{x} = A^T \mathbf{b}.
-$$
+### 연습문제 7.3
 
-Thus, least squares is just projection in disguise.
+1.  \(\mathbb{R}^2\)에서 \((1,0), (1,1)\)에 그람-슈미트를 적용하십시오.
+2.  \(\mathbb{R}^3\)에서 \((1,1,1), (1,0,1)\)을 직교화하십시오.
+3.  그람-슈미트의 각 단계가 이전의 모든 벡터에 직교하는 벡터를 생성함을 증명하십시오.
+4.  그람-슈미트가 원래 벡터의 스팬을 보존함을 보이십시오.
+5.  그람-슈미트가 행렬의 QR 분해로 이어지는 방법을 설명하십시오.
 
-### Geometric Interpretation
+## 7.4 정규직교 기저
 
-- Projection finds the closest point in a subspace to a given vector.
-- It minimizes distance (error) in the sense of Euclidean norm.
-- Orthogonality ensures the error vector points directly away from the subspace.
+정규직교 기저는 모든 벡터가 서로 직교하고 단위 길이를 갖는 벡터 공간의 기저입니다. 이러한 기저는 가장 편리한 좌표계입니다. 내적, 투영, 노름을 포함하는 계산이 매우 간단해집니다.
 
-### Why this matters
+### 정의
 
-Orthogonal projection is central in both pure and applied mathematics. It underlies the geometry of subspaces, the
-theory of Fourier series, regression in statistics, and approximation methods in numerical linear algebra. Whenever we
-fit data with a simpler model, projection is at work.
+내적 공간 \(V\)의 벡터 집합 \(\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}\)는 다음과 같은 경우 정규직교 기저라고 합니다.
 
-### Exercises 7.2
+1.  \(i \neq j\)일 때 \(\langle \mathbf{u}_i, \mathbf{u}_j \rangle = 0\) (직교성),
+2.  모든 \(i\)에 대해 \(\|\mathbf{u}_i\| = 1\) (정규화),
+3.  집합이 \(V\)를 생성합니다.
 
-1. Compute the projection of $(2,3)$ onto the vector $(1,1)$.
-2. Show that $\mathbf{v} - \text{proj}_{\mathbf{u}}(\mathbf{v})$ is orthogonal to $\mathbf{u}$.
-3. Let $W = \text{span}\{(1,0,0), (0,1,0)\} \subseteq \mathbb{R}^3$. Find the projection of $(1,2,3)$ onto $W$.
-4. Explain why least squares fitting corresponds to projection onto the column space of $A$.
-5. Prove that projection onto a subspace $W$ is unique: there is exactly one closest vector in $W$ to a
-   given $\mathbf{v}$.
+### 예제
 
-## 7.3 Gram–Schmidt Process
+예제 7.4.1. \(\mathbb{R}^2\)에서, 표준 기저
 
-The Gram–Schmidt process is a systematic way to turn any linearly independent set of vectors into an orthonormal basis.
-This is especially useful because orthonormal bases simplify computations: inner products become simple coordinate
-comparisons, and projections take clean forms.
+\[\mathbf{e}_1 = (1,0), \quad \mathbf{e}_2 = (0,1)\]
 
-### The Idea
+는 내적 하에서 정규직교입니다.
 
-Given a linearly independent set of vectors $\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}$ in an inner product
-space, we want to construct an orthonormal set $\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}$ that spans the same
-subspace.
+예제 7.4.2. \(\mathbb{R}^3\)에서, 표준 기저
 
-We proceed step by step:
+\[\mathbf{e}_1 = (1,0,0), \quad \mathbf{e}_2 = (0,1,0), \quad \mathbf{e}_3 = (0,0,1)\]
 
-1. Start with $\mathbf{v}_1$, normalize it to get $\mathbf{u}_1$.
-2. Subtract from $\mathbf{v}_2$ its projection onto $\mathbf{u}_1$, leaving a vector orthogonal to $\mathbf{u}_1$.
-   Normalize to get $\mathbf{u}_2$.
-3. For each $\mathbf{v}_k$, subtract projections onto all previously
-   constructed $\mathbf{u}_1, \dots, \mathbf{u}_{k-1}$, then normalize.
+는 정규직교입니다.
 
-### The Algorithm
+예제 7.4.3. 함수에 대한 푸리에 기저:
 
-For $k = 1, 2, \dots, n$:
+\[\{1, \cos x, \sin x, \cos 2x, \sin 2x, \dots\}\]
 
-$$
-\mathbf{w}_k = \mathbf{v}_k - \sum_{j=1}^{k-1} \langle \mathbf{v}_k, \mathbf{u}_j \rangle \mathbf{u}_j,
-$$
+는 내적
 
-$$
-\mathbf{u}_k = \frac{\mathbf{w}_k}{\|\mathbf{w}_k\|}.
-$$
+\[\langle f,g \rangle = \int_{-\pi}^{\pi} f(x) g(x)\, dx.\]
 
-The result $\{\mathbf{u}_1, \dots, \mathbf{u}_n\}$ is an orthonormal basis of the span of the original vectors.
+을 가진 \([-\pi,\pi]\)에 대한 제곱 적분 가능 함수의 공간에서 직교 집합입니다.
+정규화 후, 정규직교 기저가 됩니다.
 
-### Example 7.3.1
+### 속성
 
-Take $\mathbf{v}_1 = (1,1,0), \ \mathbf{v}_2 = (1,0,1), \ \mathbf{v}_3 = (0,1,1)$ in $\mathbb{R}^3$.
+1.  좌표 단순성: \(\{\mathbf{u}_1,\dots,\mathbf{u}_n\}\)가 \(V\)의 정규직교 기저이면, 임의의 벡터 \(\mathbf{v}\in V\)는 좌표를 가집니다.
 
-1. Normalize $\mathbf{v}_1$:
+    \[[\mathbf{v}] = \begin{bmatrix} \langle \mathbf{v}, \mathbf{u}_1 \rangle \\ \vdots \\ \langle \mathbf{v}, \mathbf{u}_n \rangle \end{bmatrix}.\]
 
-$$
-\mathbf{u}_1 = \frac{1}{\sqrt{2}}(1,1,0).
-$$
+    즉, 좌표는 단지 내적입니다.
 
-2. Subtract projection of $\mathbf{v}_2$ on $\mathbf{u}_1$:
+2.  파르세발의 항등식:
+    임의의 \(\mathbf{v} \in V\)에 대해,
 
-$$
-\mathbf{w}_2 = \mathbf{v}_2 - \langle \mathbf{v}_2,\mathbf{u}_1 \rangle \mathbf{u}_1.
-$$
+    \[\|\mathbf{v}\|^2 = \sum_{i=1}^n |\langle \mathbf{v}, \mathbf{u}_i \rangle|^2.\]
+3.  투영:
+    \(\{\mathbf{u}_1,\dots,\mathbf{u}_k\}\)의 스팬에 대한 직교 투영은
 
-$$
-\langle \mathbf{v}_2,\mathbf{u}_1 \rangle = \frac{1}{\sqrt{2}}(1\cdot 1 + 0\cdot 1 + 1\cdot 0) = \tfrac{1}{\sqrt{2}}.
-$$
+    \[\text{proj}(\mathbf{v}) = \sum_{i=1}^k \langle \mathbf{v}, \mathbf{u}_i \rangle \mathbf{u}_i.\]
 
-So
+### 정규직교 기저 구성
 
-$$
-\mathbf{w}_2 = (1,0,1) - \tfrac{1}{\sqrt{2}}\cdot \tfrac{1}{\sqrt{2}}(1,1,0)
-= (1,0,1) - \tfrac{1}{2}(1,1,0)
-= \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right).
-$$
+-   임의의 선형 독립적인 집합으로 시작하여, 그람-슈미트 과정을 적용하여 동일한 부분 공간을 생성하는 정규직교 집합을 얻습니다.
+-   실제로, 정규직교 기저는 수치적 안정성과 계산의 단순성을 위해 종종 선택됩니다.
 
-Normalize:
+### 기하학적 해석
 
-$$
-\mathbf{u}_2 = \frac{1}{\sqrt{\tfrac{1}{4}+\tfrac{1}{4}+1}} \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right)
-= \frac{1}{\sqrt{\tfrac{3}{2}}}\left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right).
-$$
+정규직교 기저는 완벽하게 정렬되고 동일하게 스케일링된 좌표계와 같습니다. 거리와 각도는 보정 계수 없이 좌표를 사용하여 직접 계산됩니다. 선형대수학의 이상적인 자입니다.
 
-3. Subtract projections from $\mathbf{v}_3$:
+### 이것이 중요한 이유
 
-$$
-\mathbf{w}_3 = \mathbf{v}_3 - \langle \mathbf{v}_3,\mathbf{u}_1 \rangle \mathbf{u}_1 - \langle \mathbf{v}_3,\mathbf{u}_2 \rangle \mathbf{u}_2.
-$$
+정규직교 기저는 선형대수학의 모든 측면을 단순화합니다. 시스템 해결, 투영 계산, 함수 확장, 대칭 행렬 대각화, 푸리에 급수 작업. 데이터 과학에서, 주성분 분석은 최대 분산을 포착하는 정규직교 방향을 생성합니다.
 
-After computing, normalize to obtain $\mathbf{u}_3$.
+### 연습문제 7.4
 
-The result is an orthonormal basis of the span of $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$.
+1.  \((1/\sqrt{2})(1,1)\)과 \((1/\sqrt{2})(1,-1)\)이 \(\mathbb{R}^2\)의 정규직교 기저를 형성하는지 확인하십시오.
+2.  \((3,4)\)를 정규직교 기저 \(\{(1/\sqrt{2})(1,1), (1/\sqrt{2})(1,-1)\}\)로 표현하십시오.
+3.  내적을 가진 \(\mathbb{R}^n\)에 대한 파르세발의 항등식을 증명하십시오.
+4.  \(\mathbb{R}^3\)에서 평면 \(x+y+z=0\)에 대한 정규직교 기저를 찾으십시오.
+5.  계산에서 정규직교 기저가 임의의 기저보다 수치적으로 더 안정적인 이유를 설명하십시오.
 
-### Geometric Interpretation
+# 제8장. 고유값과 고유 벡터
 
-Gram–Schmidt is like straightening out a set of vectors: you start with the original directions and adjust each new
-vector to be perpendicular to all previous ones. Then you scale to unit length. The process ensures orthogonality while
-preserving the span.
+## 8.1 정의와 직관
 
-### Why this matters
+고유값과 고유 벡터의 개념은 선형 변환의 가장 기본적인 동작을 드러냅니다. 회전이나 왜곡 없이 단순한 늘리기나 압축으로 변환이 작용하는 특별한 방향을 식별합니다.
 
-Orthonormal bases simplify inner products, projections, and computations in general. They make coordinate systems easier
-to work with and are crucial in numerical methods, QR decomposition, Fourier analysis, and statistics (orthogonal
-polynomials, principal component analysis).
+### 정의
 
-### Exercises 7.3
+\(T: V \to V\)를 벡터 공간 \(V\)에 대한 선형 변환이라고 가정합니다. 0이 아닌 벡터 \(\mathbf{v} \in V\)는 다음과 같은 경우 \(T\)의 고유 벡터라고 합니다.
 
-1. Apply Gram–Schmidt to $(1,0), (1,1)$ in $\mathbb{R}^2$.
-2. Orthogonalize $(1,1,1), (1,0,1)$ in $\mathbb{R}^3$.
-3. Prove that each step of Gram–Schmidt yields a vector orthogonal to all previous ones.
-4. Show that Gram–Schmidt preserves the span of the original vectors.
-5. Explain how Gram–Schmidt leads to the QR decomposition of a matrix.
+\[T(\mathbf{v}) = \lambda \mathbf{v}\]
 
-## 7.4 Orthonormal Bases
+어떤 스칼라 \(\lambda \in \mathbb{R}\) (또는 \(\mathbb{C}\))에 대해. 스칼라 \(\lambda\)는 \(\mathbf{v}\)에 해당하는 고유값입니다.
 
-An orthonormal basis is a basis of a vector space in which all vectors are both orthogonal to each other and have unit
-length. Such bases are the most convenient possible coordinate systems: computations involving inner products,
-projections, and norms become exceptionally simple.
+동등하게, \(A\)가 \(T\)의 행렬이면, 고유값과 고유 벡터는 다음을 만족합니다.
 
-### Definition
+\[A\mathbf{v} = \lambda \mathbf{v}.\]
 
-A set of vectors $\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_n\}$ in an inner product space $V$ is called an
-orthonormal basis if
+### 기본 예제
 
-1. $\langle \mathbf{u}_i, \mathbf{u}_j \rangle = 0$ whenever $i \neq j$ (orthogonality),
-2. $\|\mathbf{u}_i\| = 1$ for all $i$ (normalization),
-3. The set spans $V$.
+예제 8.1.1.
+다음과 같이 가정합니다.
 
-### Examples
+\[A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}.\]
 
-Example 7.4.1. In $\mathbb{R}^2$, the standard basis
+그러면
 
-$$
-\mathbf{e}_1 = (1,0), \quad \mathbf{e}_2 = (0,1)
-$$
+\[A(1,0)^T = 2(1,0)^T, \quad A(0,1)^T = 3(0,1)^T.\]
 
-is orthonormal under the dot product.
+따라서 \((1,0)\)은 고유값 \(2\)를 가진 고유 벡터이고, \((0,1)\)은 고유값 \(3\)을 가진 고유 벡터입니다.
 
-Example 7.4.2. In $\mathbb{R}^3$, the standard basis
+예제 8.1.2.
+\(\mathbb{R}^2\)에서의 회전 행렬:
 
-$$
-\mathbf{e}_1 = (1,0,0), \quad \mathbf{e}_2 = (0,1,0), \quad \mathbf{e}_3 = (0,0,1)
-$$
+\[R_\theta = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}.\]
 
-is orthonormal.
+\(\theta \neq 0, \pi\)이면, \(R_\theta\)는 실수 고유값을 갖지 않습니다. 모든 벡터가 회전되고 스케일링되지 않습니다. 그러나 \(\mathbb{C}\)에 대해서는, 고유값 \(e^{i\theta}, e^{-i\theta}\)를 가집니다.
 
-Example 7.4.3. Fourier basis on functions:
+### 대수적 공식
 
-$$
-\{1, \cos x, \sin x, \cos 2x, \sin 2x, \dots\}
-$$
+고유값은 특성 방정식을 풀어서 발생합니다.
 
-is an orthogonal set in the space of square-integrable functions on $[-\pi,\pi]$ with inner product
+\[\det(A - \lambda I) = 0.\]
 
-$$
-\langle f,g \rangle = \int_{-\pi}^{\pi} f(x) g(x)\, dx.
-$$
+\(\lambda\)에 대한 이 다항식은 특성 다항식입니다. 그 근이 고유값입니다.
 
-After normalization, it becomes an orthonormal basis.
+### 기하학적 직관
 
-### Properties
+-   고유 벡터는 변환 하에서 방향이 변하지 않는 방향입니다. 길이만 스케일링됩니다.
+-   고유값은 해당 방향을 따른 스케일링 인수를 알려줍니다.
+-   행렬에 많은 독립적인 고유 벡터가 있으면, 기저를 변경하여 종종 단순화(대각화)할 수 있습니다.
 
-1. Coordinate simplicity: If $\{\mathbf{u}_1,\dots,\mathbf{u}_n\}$ is an orthonormal basis of $V$, then any
-   vector $\mathbf{v}\in V$ has coordinates
+### 기하학과 과학에서의 응용
 
-   $$
-   [\mathbf{v}] = \begin{bmatrix} \langle \mathbf{v}, \mathbf{u}_1 \rangle \\ \vdots \\ \langle \mathbf{v}, \mathbf{u}_n \rangle \end{bmatrix}.
-   $$
+-   타원의 주축을 따른 늘리기 (이차 형식).
+-   동적 시스템의 안정적인 방향.
+-   통계 및 기계 학습의 주성분.
+-   양자 역학, 여기서 관측량은 고유값을 가진 연산자에 해당합니다.
 
-   That is, coordinates are just inner products.
+### 이것이 중요한 이유
 
-2. Parseval’s identity:
-   For any $\mathbf{v} \in V$,
+고유값과 고유 벡터는 대수와 기하학 사이의 다리입니다. 선형 변환을 가장 간단한 형태로 이해하는 렌즈를 제공합니다. 미분 방정식, 통계학, 물리학, 컴퓨터 과학 등 선형대수학의 거의 모든 응용은 고유 분석에 의존합니다.
 
-   $$
-   \|\mathbf{v}\|^2 = \sum_{i=1}^n |\langle \mathbf{v}, \mathbf{u}_i \rangle|^2.
-   $$
+### 연습문제 8.1
 
-3. Projections:
-   The orthogonal projection onto the span of $\\{\mathbf{u}_1,\dots,\mathbf{u}_k\\}$ is
+1.  \(\begin{bmatrix} 4 & 0 \\ 0 & -1 \end{bmatrix}\)의 고유값과 고유 벡터를 찾으십시오.
+2.  고유 벡터의 모든 스칼라 배수가 동일한 고유값에 대한 고유 벡터임을 보이십시오.
+3.  회전 행렬 \(R_\theta\)가 \(\theta = 0\) 또는 \(\pi\)가 아니면 실수 고유값을 갖지 않음을 확인하십시오.
+4.  \(\begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\)의 특성 다항식을 계산하십시오.
+5.  전단 행렬 \(\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}\)에 대해 고유 벡터와 고유값이 기하학적으로 무엇을 나타내는지 설명하십시오.
 
-   $$
-   \text{proj}(\mathbf{v}) = \sum_{i=1}^k \langle \mathbf{v}, \mathbf{u}_i \rangle \mathbf{u}_i.
-   $$
+## 8.2 대각화
 
-### Constructing Orthonormal Bases
+선형대수학의 중심 목표는 좋은 기저를 선택하여 행렬의 작용을 단순화하는 것입니다. 대각화는 행렬을 독립적인 방향을 따라 단순한 스케일링으로 작용하도록 다시 쓰는 과정입니다. 이것은 거듭제곱, 지수, 미분 방정식 풀기와 같은 계산을 훨씬 쉽게 만듭니다.
 
-- Start with any linearly independent set, then apply the Gram–Schmidt process to obtain an orthonormal set spanning the
-  same subspace.
-- In practice, orthonormal bases are often chosen for numerical stability and simplicity of computation.
+### 정의
 
-### Geometric Interpretation
+정사각 행렬 \(A \in \mathbb{R}^{n \times n}\)는 다음과 같은 가역 행렬 \(P\)가 존재할 경우 대각화 가능하다고 합니다.
 
-An orthonormal basis is like a perfectly aligned and equally scaled coordinate system. Distances and angles are computed
-directly using coordinates without correction factors. They are the ideal rulers of linear algebra.
+\[P^{-1} A P = D,\]
 
-### Why this matters
+여기서 \(D\)는 대각 행렬입니다.
 
-Orthonormal bases simplify every aspect of linear algebra: solving systems, computing projections, expanding functions,
-diagonalizing symmetric matrices, and working with Fourier series. In data science, principal component analysis
-produces orthonormal directions capturing maximum variance.
+\(D\)의 대각 항목은 \(A\)의 고유값이고, \(P\)의 열은 해당 고유 벡터입니다.
 
-### Exercises 7.4
+### 행렬이 대각화 가능할 때는 언제인가?
 
-1. Verify that $(1/\\sqrt{2})(1,1)$ and $(1/\\sqrt{2})(1,-1)$ form an orthonormal basis of $\mathbb{R}^2$.
-2. Express $(3,4)$ in terms of the orthonormal basis $\{(1/\\sqrt{2})(1,1), (1/\\sqrt{2})(1,-1)\}$.
-3. Prove Parseval’s identity for $\\mathbb{R}^n$ with the dot product.
-4. Find an orthonormal basis for the plane $x+y+z=0$ in $\\mathbb{R}^3$.
-5. Explain why orthonormal bases are numerically more stable than arbitrary bases in computations.
+-   행렬은 \(n\)개의 선형 독립적인 고유 벡터를 가질 경우 대각화 가능합니다.
+-   동등하게, 고유 공간의 차원의 합이 \(n\)과 같습니다.
+-   대칭 행렬(\(\mathbb{R}\)에 대해)은 항상 대각화 가능하며, 고유 벡터의 정규직교 기저를 가집니다.
 
-# Chapter 8. Eigenvalues and eigenvectors
+### 예제 8.2.1
 
-## 8.1 Definitions and Intuition
+다음과 같이 가정합니다.
 
-The concepts of eigenvalues and eigenvectors reveal the most fundamental behavior of linear transformations. They
-identify the special directions in which a transformation acts by simple stretching or compressing, without rotation or
-distortion.
+\[A = \begin{bmatrix} 4 & 1 \\ 0 & 2 \end{bmatrix}.\]
 
-### Definition
+1.  특성 다항식:
 
-Let $T: V \to V$ be a linear transformation on a vector space $V$. A nonzero vector $\mathbf{v} \in V$ is called an
-eigenvector of $T$ if
+    \[\det(A - \lambda I) = (4-\lambda)(2-\lambda).\]
 
-$$
-T(\mathbf{v}) = \lambda \mathbf{v}
-$$
+    따라서 고유값은 \(\lambda_1 = 4\), \(\lambda_2 = 2\)입니다.
 
-for some scalar $\lambda \in \mathbb{R}$ (or $\mathbb{C}$). The scalar $\lambda$ is the eigenvalue corresponding
-to $\mathbf{v}$.
+2.  고유 벡터:
 
-Equivalently, if $A$ is the matrix of $T$, then eigenvalues and eigenvectors satisfy
+    -   \(\lambda = 4\)에 대해, \((A-4I)\mathbf{v}=0\)을 풉니다.
+        \(\begin{bmatrix} 0 & 1 \\ 0 & -2 \end{bmatrix}\mathbf{v} = 0\), \(\mathbf{v}_1 = (1,0)\)을 제공합니다.
+    -   \(\lambda = 2\)에 대해: \((A-2I)\mathbf{v}=0\), \(\mathbf{v}_2 = (1,-2)\)를 제공합니다.
 
-$$
-A\mathbf{v} = \lambda \mathbf{v}.
-$$
+3.  \(P = \begin{bmatrix} 1 & 1 \\ 0 & -2 \end{bmatrix}\)를 구성합니다. 그러면
 
-### Basic Examples
+    \[P^{-1} A P = \begin{bmatrix} 4 & 0 \\ 0 & 2 \end{bmatrix}.\]
 
-Example 8.1.1.
-Let
+    따라서 \(A\)는 대각화 가능합니다.
 
-$$
-A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}.
-$$
+### 왜 대각화하는가?
 
-Then
+-   거듭제곱 계산:
+    \(A = P D P^{-1}\)이면,
 
-$$
-A(1,0)^T = 2(1,0)^T, \quad A(0,1)^T = 3(0,1)^T.
-$$
+    \[A^k = P D^k P^{-1}.\]
 
-So $(1,0)$ is an eigenvector with eigenvalue $2$, and $(0,1)$ is an eigenvector with eigenvalue $3$.
+    \(D\)가 대각 행렬이므로, \(D^k\)는 계산하기 쉽습니다.
 
-Example 8.1.2.
-Rotation matrix in $\mathbb{R}^2$:
+-   행렬 지수:
+    \(e^A = P e^D P^{-1}\), 미분 방정식을 푸는 데 유용합니다.
 
-$$
-R_\theta = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}.
-$$
+-   기하학 이해:
+    대각화는 변환이 공간을 독립적으로 늘리거나 압축하는 방향을 드러냅니다.
 
-If $\theta \neq 0, \pi$, $R_\theta$ has no real eigenvalues: every vector is rotated, not scaled. Over $\mathbb{C}$,
-however, it has eigenvalues $e^{i\theta}, e^{-i\theta}$.
+### 비-대각화 가능 예제
 
-### Algebraic Formulation
+모든 행렬이 대각화될 수 있는 것은 아닙니다.
 
-Eigenvalues arise from solving the characteristic equation:
+\[A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}\]
 
-$$
-\det(A - \lambda I) = 0.
-$$
+는 고유 공간 차원이 1인 고유값 \(\lambda = 1\)만 가집니다. \(n=2\)이지만 독립적인 고유 벡터가 1개뿐이므로, \(A\)는 대각화 가능하지 않습니다.
 
-This polynomial in $\lambda$ is the characteristic polynomial. Its roots are the eigenvalues.
+### 기하학적 해석
 
-### Geometric Intuition
+대각화는 우리가 고유 벡터의 기저를 찾았음을 의미합니다. 이 기저에서, 행렬은 각 좌표축을 따라 단순한 스케일링으로 작용합니다. 복잡한 움직임을 독립적인 1D 움직임으로 변환합니다.
 
-- Eigenvectors are directions that remain unchanged in orientation under a transformation; only their length is scaled.
-- Eigenvalues tell us the scaling factor along those directions.
-- If a matrix has many independent eigenvectors, it can often be simplified (diagonalized) by changing basis.
+### 이것이 중요한 이유
 
-### Applications in Geometry and Science
+대각화는 선형대수학의 초석입니다. 계산을 단순화하고, 구조를 드러내며, 스펙트럼 정리, 조르당 형식, 그리고 물리학, 공학, 데이터 과학의 많은 응용의 출발점입니다.
 
-- Stretching along principal axes of an ellipse (quadratic forms).
-- Stable directions of dynamical systems.
-- Principal components in statistics and machine learning.
-- Quantum mechanics, where observables correspond to operators with eigenvalues.
+### 연습문제 8.2
 
-### Why this matters
+1.  다음을 대각화하십시오.
 
-Eigenvalues and eigenvectors are a bridge between algebra and geometry. They provide a lens for understanding linear
-transformations in their simplest form. Nearly every application of linear algebra-differential equations, statistics,
-physics, computer science-relies on eigen-analysis.
+    \[A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}.\]
+2.  다음이 대각화 가능한지 확인하십시오.
 
-### Exercises 8.1
+    \[A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}\]
 
-1. Find the eigenvalues and eigenvectors of
-   $\begin{bmatrix} 4 & 0 \\ 0 & -1 \end{bmatrix}$.
-2. Show that every scalar multiple of an eigenvector is again an eigenvector for the same eigenvalue.
-3. Verify that the rotation matrix $R_\theta$ has no real eigenvalues unless $\theta = 0$ or $\pi$.
-4. Compute the characteristic polynomial of
-   $\begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$.
-5. Explain geometrically what eigenvectors and eigenvalues represent for the shear matrix
-   $\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$.
+    왜 그렇거나 그렇지 않습니까?
+3.  다음에 대해 \(A^5\)를 찾으십시오.
 
-## 8.2 Diagonalization
+    \[A = \begin{bmatrix} 4 & 1 \\ 0 & 2 \end{bmatrix}\]
 
-A central goal in linear algebra is to simplify the action of a matrix by choosing a good basis. Diagonalization is the
-process of rewriting a matrix so that it acts by simple scaling along independent directions. This makes computations
-such as powers, exponentials, and solving differential equations far easier.
+    대각화를 사용합니다.
+4.  \(n\)개의 서로 다른 고유값을 가진 \(n \times n\) 행렬이 대각화 가능함을 보이십시오.
+5.  실수 대칭 행렬이 항상 대각화 가능한 이유를 설명하십시오.
 
-### Definition
+## 8.3 특성 다항식
 
-A square matrix $A \in \mathbb{R}^{n \times n}$ is diagonalizable if there exists an invertible matrix $P$ such that
+고유값을 찾는 열쇠는 행렬의 특성 다항식입니다. 이 다항식은 행렬 \(A - \lambda I\)가 가역이 아닌 \(\lambda\) 값을 인코딩합니다.
 
-$$
-P^{-1} A P = D,
-$$
+### 정의
 
-where $D$ is a diagonal matrix.
+\(n \times n\) 행렬 \(A\)에 대해, 특성 다항식은
 
-The diagonal entries of $D$ are eigenvalues of $A$, and the columns of $P$ are the corresponding eigenvectors.
+\[p_A(\lambda) = \det(A - \lambda I).\]
 
-### When is a Matrix Diagonalizable?
+\(p_A(\lambda)\)의 근은 \(A\)의 고유값입니다.
 
-- A matrix is diagonalizable if it has $n$ linearly independent eigenvectors.
-- Equivalently, the sum of the dimensions of its eigenspaces equals $n$.
-- Symmetric matrices (over $\mathbb{R}$) are always diagonalizable, with an orthonormal basis of eigenvectors.
+### 예제
 
-### Example 8.2.1
+예제 8.3.1.
+다음과 같이 가정합니다.
 
-Let
+\[A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}.\]
 
-$$
-A = \begin{bmatrix} 4 & 1 \\ 0 & 2 \end{bmatrix}.
-$$
+그러면
 
-1. Characteristic polynomial:
+\[p_A(\lambda) = \det\!\begin{bmatrix} 2-\lambda & 1 \\ 1 & 2-\lambda \end{bmatrix} = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3.\]
 
-$$
-\det(A - \lambda I) = (4-\lambda)(2-\lambda).
-$$
+따라서 고유값은 \(\lambda = 1, 3\)입니다.
 
-So eigenvalues are $\lambda_1 = 4$, $\lambda_2 = 2$.
+예제 8.3.2.
+다음에 대해
 
-2. Eigenvectors:
+\[A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}\]
 
-- For $\lambda = 4$, solve $(A-4I)\mathbf{v}=0$:
-  $\begin{bmatrix} 0 & 1 \\ 0 & -2 \end{bmatrix}\mathbf{v} = 0$, giving $\mathbf{v}_1 = (1,0)$.
-- For $\lambda = 2$: $(A-2I)\mathbf{v}=0$, giving $\mathbf{v}_2 = (1,-2)$.
+(90° 회전),
 
-3. Construct $P = \begin{bmatrix} 1 & 1 \\ 0 & -2 \end{bmatrix}$. Then
+\[p_A(\lambda) = \det\!\begin{bmatrix} -\lambda & -1 \\ 1 & -\lambda \end{bmatrix} = \lambda^2 + 1.\]
 
-$$
-P^{-1} A P = \begin{bmatrix} 4 & 0 \\ 0 & 2 \end{bmatrix}.
-$$
+고유값은 \(\lambda = \pm i\)입니다. 순수 회전과 일치하는 실수 고유값은 없습니다.
 
-Thus, $A$ is diagonalizable.
+예제 8.3.3.
+삼각 행렬에 대해
 
-### Why Diagonalize?
+\[A = \begin{bmatrix} 2 & 1 & 0 \\ 0 & 3 & 5 \\ 0 & 0 & 4 \end{bmatrix},\]
 
-- Computing powers:
-  If $A = P D P^{-1}$, then
+행렬식은 단순히 대각 항목에서 \(\lambda\)를 뺀 것의 곱입니다.
 
-  $$
-  A^k = P D^k P^{-1}.
-  $$
+\[p_A(\lambda) = (2-\lambda)(3-\lambda)(4-\lambda).\]
 
-  Since $D$ is diagonal, $D^k$ is easy to compute.
+따라서 고유값은 \(2, 3, 4\)입니다.
 
-- Matrix exponentials:
-  $e^A = P e^D P^{-1}$, useful in solving differential equations.
+### 속성
 
-- Understanding geometry:
-  Diagonalization reveals the directions along which a transformation stretches or compresses space independently.
+1.  \(n \times n\) 행렬의 특성 다항식은 차수가 \(n\)입니다.
+2.  고유값의 합(중복도 포함)은 \(A\)의 트레이스와 같습니다.
 
-### Non-Diagonalizable Example
+    \[\text{tr}(A) = \lambda_1 + \cdots + \lambda_n.\]
+3.  고유값의 곱은 \(A\)의 행렬식과 같습니다.
 
-Not all matrices can be diagonalized.
+    \[\det(A) = \lambda_1 \cdots \lambda_n.\]
+4.  유사 행렬은 동일한 특성 다항식을 가지므로, 동일한 고유값을 가집니다.
 
-$$
-A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}
-$$
+### 기하학적 해석
 
-has only one eigenvalue $\lambda = 1$, with eigenspace dimension 1. Since $n=2$ but we only have 1 independent
-eigenvector, $A$ is not diagonalizable.
+특성 다항식은 \(A - \lambda I\)가 공간을 붕괴시킬 때를 포착합니다. 행렬식이 0인 것은 정확히 변환 \(A - \lambda I\)가 특이할 때입니다. 따라서 고유값은 행렬이 가역성을 잃는 임계 스케일링을 표시합니다.
 
-### Geometric Interpretation
+### 이것이 중요한 이유
 
-Diagonalization means we have found a basis of eigenvectors. In this basis, the matrix acts by simple scaling along each
-coordinate axis. It transforms complicated motion into independent 1D motions.
+특성 다항식은 고유값을 추출하는 계산 도구를 제공합니다. 행렬 불변량(트레이스 및 행렬식)을 기하학과 연결하고, 대각화, 스펙트럼 정리, 동적 시스템의 안정성 분석의 기초를 형성합니다.
 
-### Why this matters
+### 연습문제 8.3
 
-Diagonalization is a cornerstone of linear algebra. It simplifies computation, reveals structure, and is the starting
-point for the spectral theorem, Jordan form, and many applications in physics, engineering, and data science.
+1.  다음 행렬의 특성 다항식을 계산하십시오.
 
-### Exercises 8.2
+    \[A = \begin{bmatrix} 4 & 2 \\ 1 & 3 \end{bmatrix}.\]
+2.  \(\begin{bmatrix} 5 & 0 \\ 0 & -2 \end{bmatrix}\)의 고유값의 합이 트레이스와 같고, 곱이 행렬식과 같음을 확인하십시오.
+3.  임의의 삼각 행렬에 대해, 고유값이 단지 대각 항목임을 보이십시오.
+4.  \(A\)와 \(B\)가 유사 행렬이면, \(p_A(\lambda) = p_B(\lambda)\)임을 증명하십시오.
+5.  \(\begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{bmatrix}\)의 특성 다항식을 계산하십시오.
 
-1. Diagonalize
+## 8.4 응용 (미분 방정식, 마르코프 연쇄)
 
-   $$
-   A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}.
-   $$
+고유값과 고유 벡터는 선형대수학 이론의 중심일 뿐만 아니라, 수학 및 응용 과학 전반에 걸쳐 필수적인 도구입니다. 두 가지 고전적인 응용은 미분 방정식 시스템 해결과 마르코프 연쇄 분석입니다.
 
-2. Determine whether
+### 선형 미분 방정식
 
-   $$
-   A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}
-   $$
+다음 시스템을 고려하십시오.
 
-   is diagonalizable. Why or why not?
+\[\frac{d\mathbf{x}}{dt} = A \mathbf{x},\]
 
-3. Find $A^5$ for
+여기서 \(A\)는 \(n \times n\) 행렬이고, \(\mathbf{x}(t)\)는 벡터 값 함수입니다.
 
-   $$
-   A = \begin{bmatrix} 4 & 1 \\ 0 & 2 \end{bmatrix}
-   $$
+\(\mathbf{v}\)가 고유값 \(\lambda\)를 가진 \(A\)의 고유 벡터이면, 함수
 
-   using diagonalization.
+\[\mathbf{x}(t) = e^{\lambda t}\mathbf{v}\]
 
-4. Show that any $n \times n$ matrix with $n$ distinct eigenvalues is diagonalizable.
+는 해입니다.
 
-5. Explain why real symmetric matrices are always diagonalizable.
+-   고유값은 성장 또는 붕괴 속도를 결정합니다.
 
-## 8.3 Characteristic Polynomials
+    -   \(\lambda < 0\)이면, 해는 붕괴합니다 (안정).
+    -   \(\lambda > 0\)이면, 해는 성장합니다 (불안정).
+    -   \(\lambda\)가 복소수이면, 진동이 발생합니다.
 
-The key to finding eigenvalues is the characteristic polynomial of a matrix. This polynomial encodes the values
-of $\lambda$ for which the matrix $A - \lambda I$ fails to be invertible.
+고유 벡터 해를 결합하여, 일반적인 초기 조건을 해결할 수 있습니다.
 
-### Definition
+예제 8.4.1.
+다음과 같이 가정합니다.
 
-For an $n \times n$ matrix $A$, the characteristic polynomial is
+\[A = \begin{bmatrix} 2 & 0 \\ 0 & -1 \end{bmatrix}.\]
 
-$$
-p_A(\lambda) = \det(A - \lambda I).
-$$
+그러면 고유값은 \(2, -1\)이고, 고유 벡터는 \((1,0), (0,1)\)입니다. 해는
 
-The roots of $p_A(\lambda)$ are the eigenvalues of $A$.
+\[\mathbf{x}(t) = c_1 e^{2t}(1,0) + c_2 e^{-t}(0,1).\]
 
-### Examples
+따라서 한 구성 요소는 지수적으로 성장하고, 다른 구성 요소는 붕괴합니다.
 
-Example 8.3.1.
-Let
+### 마르코프 연쇄
 
-$$
-A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}.
-$$
+마르코프 연쇄는 각 열의 합이 1이고 항목이 음수가 아닌 확률 행렬 \(P\)로 설명됩니다. \(\mathbf{x}_k\)가 \(k\) 단계 후의 확률 분포를 나타내면,
 
-Then
+\[\mathbf{x}_{k+1} = P \mathbf{x}_k.\]
 
-$$
-p_A(\lambda) = \det\!\begin{bmatrix} 2-\lambda & 1 \\ 1 & 2-\lambda \end{bmatrix}
-= (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3.
-$$
+반복하면 다음과 같습니다.
 
-Thus eigenvalues are $\lambda = 1, 3$.
+\[\mathbf{x}_k = P^k \mathbf{x}_0.\]
 
-Example 8.3.2.
-For
+장기적인 동작을 이해하는 것은 \(P\)의 거듭제곱을 분석하는 것으로 축소됩니다.
 
-$$
-A = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}
-$$
+-   고유값 \(\lambda = 1\)은 항상 존재합니다. 그 고유 벡터는 정상 상태 분포를 제공합니다.
+-   다른 모든 고유값은 \(|\lambda| \leq 1\)을 만족합니다. 그 영향은 \(k \to \infty\)일 때 붕괴됩니다.
 
-(rotation by 90°),
+예제 8.4.2.
+다음을 고려하십시오.
 
-$$
-p_A(\lambda) = \det\!\begin{bmatrix} -\lambda & -1 \\ 1 & -\lambda \end{bmatrix}
-= \lambda^2 + 1.
-$$
+\[P = \begin{bmatrix} 0.9 & 0.5 \\ 0.1 & 0.5 \end{bmatrix}.\]
 
-Eigenvalues are $\lambda = \pm i$. No real eigenvalues exist, consistent with pure rotation.
+고유값은 \(\lambda_1 = 1\), \(\lambda_2 = 0.4\)입니다. \(\lambda = 1\)에 대한 고유 벡터는 \((5,1)\)에 비례합니다. 정규화하면 정상 상태가 됩니다.
 
-Example 8.3.3.
-For a triangular matrix
+\[\pi = \left(\tfrac{5}{6}, \tfrac{1}{6}\right).\]
 
-$$
-A = \begin{bmatrix} 2 & 1 & 0 \\ 0 & 3 & 5 \\ 0 & 0 & 4 \end{bmatrix},
-$$
+따라서 시작 분포에 관계없이, 연쇄는 \(\pi\)로 수렴합니다.
 
-the determinant is simply the product of diagonal entries minus $\lambda$:
+### 기하학적 해석
 
-$$
-p_A(\lambda) = (2-\lambda)(3-\lambda)(4-\lambda).
-$$
+-   미분 방정식에서, 고유값은 시간 진화를 결정합니다: 지수적 성장, 붕괴 또는 진동.
+-   마르코프 연쇄에서, 고유값은 확률 과정의 장기 평형을 결정합니다.
 
-So eigenvalues are $2, 3, 4$.
+### 이것이 중요한 이유
 
-### Properties
+고유값 방법은 복잡한 반복 또는 동적 시스템을 다루기 쉬운 문제로 바꿉니다. 물리학, 공학, 금융에서 안정성과 공명을 설명합니다. 컴퓨터 과학 및 통계학에서, 구글의 페이지랭크에서 현대 기계 학습에 이르기까지 알고리즘을 구동합니다.
 
-1. The characteristic polynomial of an $n \times n$ matrix has degree $n$.
-2. The sum of the eigenvalues (counted with multiplicity) equals the trace of $A$:
+### 연습문제 8.4
 
-   $$
-   \text{tr}(A) = \lambda_1 + \cdots + \lambda_n.
-   $$
-3. The product of the eigenvalues equals the determinant of $A$:
+1.  \(\tfrac{d}{dt}\mathbf{x} = \begin{bmatrix} 3 & 0 \\ 0 & -2 \end{bmatrix}\mathbf{x}\)를 푸십시오.
+2.  \(A\)가 복소수 고유값 \(\alpha \pm i\beta\)를 가지면, \(\tfrac{d}{dt}\mathbf{x} = A\mathbf{x}\)의 해가 주파수 \(\beta\)의 진동을 포함함을 보이십시오.
+3.  다음의 정상 상태 분포를 찾으십시오.
 
-   $$
-   \det(A) = \lambda_1 \cdots \lambda_n.
-   $$
-4. Similar matrices have the same characteristic polynomial, hence the same eigenvalues.
+    \[P = \begin{bmatrix} 0.7 & 0.2 \\ 0.3 & 0.8 \end{bmatrix}.\]
+4.  임의의 확률 행렬 \(P\)에 대해, \(1\)이 항상 고유값임을 증명하십시오.
+5.  확률 행렬의 모든 고유값이 \(|\lambda| \leq 1\)을 만족하는 이유를 설명하십시오.
 
-### Geometric Interpretation
+# 제9장. 이차 형식과 스펙트럼 정리
 
-The characteristic polynomial captures when $A - \lambda I$ collapses space: its determinant is zero precisely when the
-transformation $A - \lambda I$ is singular. Thus, eigenvalues mark the critical scalings where the matrix loses
-invertibility.
+## 9.1 이차 형식
 
-### Why this matters
+이차 형식은 여러 변수에서 2차 다항식으로, 행렬을 사용하여 깔끔하게 표현됩니다. 이차 형식은 최적화, 원뿔 단면의 기하학, 통계학(분산), 물리학(에너지 함수) 등 수학 전반에 걸쳐 나타납니다.
 
-Characteristic polynomials provide the computational tool to extract eigenvalues. They connect matrix invariants (trace
-and determinant) with geometry, and form the foundation for diagonalization, spectral theorems, and stability analysis
-in dynamical systems.
+### 정의
 
-### Exercises 8.3
+\(A\)를 \(n \times n\) 대칭 행렬이고, \(\mathbf{x} \in \mathbb{R}^n\)라고 가정합니다. \(A\)와 관련된 이차 형식은
 
-1. Compute the characteristic polynomial of
+\[Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}.\]
 
-   $$
-   A = \begin{bmatrix} 4 & 2 \\ 1 & 3 \end{bmatrix}.
-   $$
+확장하면,
 
-2. Verify that the sum of the eigenvalues of
-   $\begin{bmatrix} 5 & 0 \\ 0 & -2 \end{bmatrix}$
-   equals its trace, and their product equals its determinant.
+\[Q(\mathbf{x}) = \sum_{i=1}^n \sum_{j=1}^n a_{ij} x_i x_j.\]
 
-3. Show that for any triangular matrix, the eigenvalues are just the diagonal entries.
+\(A\)가 대칭이므로(\(a_{ij} = a_{ji}\)), 교차 항은 자연스럽게 그룹화될 수 있습니다.
 
-4. Prove that if $A$ and $B$ are similar matrices, then $p_A(\lambda) = p_B(\lambda)$.
+### 예제
 
-5. Compute the characteristic polynomial of
-   $\begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{bmatrix}$.
+예제 9.1.1.
+다음에 대해
 
-## 8.4 Applications (Differential Equations, Markov Chains)
+\[A = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix} x \\ y \end{bmatrix},\]
 
-Eigenvalues and eigenvectors are not only central to the theory of linear algebra-they are indispensable tools across
-mathematics and applied science. Two classic applications are solving systems of differential equations and analyzing
-Markov chains.
+\[Q(x,y) = \begin{bmatrix} x & y \end{bmatrix} \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = 2x^2 + 2xy + 3y^2.\]
 
-### Linear Differential Equations
+예제 9.1.2.
+이차 형식
 
-Consider the system
+\[Q(x,y) = x^2 + y^2\]
 
-$$
-\frac{d\mathbf{x}}{dt} = A \mathbf{x},
-$$
+는 행렬 \(A = I_2\)에 해당합니다. 원점으로부터의 유클리드 거리의 제곱을 측정합니다.
 
-where $A$ is an $n \times n$ matrix and $\mathbf{x}(t)$ is a vector-valued function.
+예제 9.1.3.
+원뿔 단면 방정식
 
-If $\mathbf{v}$ is an eigenvector of $A$ with eigenvalue $\lambda$, then the function
+\[4x^2 + 2xy + 5y^2 = 1\]
 
-$$
-\mathbf{x}(t) = e^{\lambda t}\mathbf{v}
-$$
+은 이차 형식 \(\mathbf{x}^T A \mathbf{x} = 1\)로 설명되며, 여기서
 
-is a solution.
+\[A = \begin{bmatrix} 4 & 1 \\ 1 & 5 \end{bmatrix}.\]
 
-- Eigenvalues determine the growth or decay rate:
+### 이차 형식의 대각화
 
-  - If $\lambda < 0$, solutions decay (stable).
-  - If $\lambda > 0$, solutions grow (unstable).
-  - If $\lambda$ is complex, oscillations occur.
+\(A\)의 고유 벡터로 구성된 새 기저를 선택하여, 교차 항 없이 이차 형식을 다시 쓸 수 있습니다. \(A = PDP^{-1}\)이고 \(D\)가 대각 행렬이면,
 
-By combining eigenvector solutions, we can solve general initial conditions.
+\[Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} = (P^{-1}\mathbf{x})^T D (P^{-1}\mathbf{x}).\]
 
-Example 8.4.1.
-Let
+따라서 이차 형식은 항상 가중 제곱의 합으로 표현될 수 있습니다.
 
-$$
-A = \begin{bmatrix}
-2 & 0 \\
-0 & -1 \end{bmatrix}.
-$$
+\[Q(\mathbf{y}) = \lambda_1 y_1^2 + \cdots + \lambda_n y_n^2,\]
 
-Then eigenvalues are $2, -1$ with eigenvectors $(1,0)$, $(0,1)$. Solutions are
+여기서 \(\lambda_i\)는 \(A\)의 고유값입니다.
 
-$$
-\mathbf{x}(t) = c_1 e^{2t}(1,0) + c_2 e^{-t}(0,1).
-$$
+### 기하학적 해석
 
-Thus one component grows exponentially, the other decays.
+이차 형식은 기하학적 모양을 설명합니다.
 
-### Markov Chains
+-   2D에서: 타원, 포물선, 쌍곡선.
+-   3D에서: 타원체, 포물면, 쌍곡면.
+-   고차원에서: 타원체의 일반화.
 
-A Markov chain is described by a stochastic matrix $P$, where each column sums to 1 and entries are nonnegative.
-If $\mathbf{x}_k$ represents the probability distribution after $k$ steps, then
+대각화는 좌표축을 모양의 주축과 정렬합니다.
 
-$$
-\mathbf{x}_{k+1} = P \mathbf{x}_k.
-$$
+### 이것이 중요한 이유
 
-Iterating gives
+이차 형식은 기하학과 대수학을 통합합니다. 최적화(에너지 함수 최소화), 통계학(공분산 행렬 및 분산), 역학(운동 에너지), 수치 해석에서 중심적입니다. 이차 형식을 이해하는 것은 스펙트럼 정리로 직접 이어집니다.
 
-$$
-\mathbf{x}_k = P^k \mathbf{x}_0.
-$$
+### 연습문제 9.1
 
-Understanding long-term behavior reduces to analyzing powers of $P$.
+1.  이차 형식 \(Q(x,y) = 3x^2 + 4xy + y^2\)를 어떤 대칭 행렬 \(A\)에 대해 \(\mathbf{x}^T A \mathbf{x}\)로 쓰십시오.
+2.  \(A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\)에 대해, \(Q(x,y)\)를 명시적으로 계산하십시오.
+3.  이차 형식 \(Q(x,y) = 2x^2 + 2xy + 3y^2\)를 대각화하십시오.
+4.  \(Q(x,y) = x^2 - y^2\)에 의해 주어진 원뿔 단면을 식별하십시오.
+5.  \(A\)가 대칭이면, \(A\)와 \(A^T\)에 의해 정의된 이차 형식이 동일함을 보이십시오.
 
-- The eigenvalue $\lambda = 1$ always exists. Its eigenvector gives the steady-state distribution.
-- All other eigenvalues satisfy $|\lambda| \leq 1$. Their influence decays as $k \to \infty$.
+## 9.2 양의 정부호 행렬
 
-Example 8.4.2.
-Consider
+이차 형식은 관련 행렬이 양의 정부호일 때 특히 중요합니다. 왜냐하면 이들은 에너지, 거리 또는 분산의 양성을 보장하기 때문입니다. 양의 정부호성은 최적화, 수치 해석, 통계학의 초석입니다.
 
-$$
-P = \begin{bmatrix}
-0.9 & 0.5 \\
-0.1 & 0.5 \end{bmatrix}.
-$$
+### 정의
 
-Eigenvalues are $\lambda_1 = 1$, $\lambda_2 = 0.4$. The eigenvector for $\lambda = 1$ is proportional to $(5,1)$.
-Normalizing gives the steady state
+대칭 행렬 \(A \in \mathbb{R}^{n \times n}\)는 다음과 같이 불립니다.
 
-$$
-\pi = \left(\tfrac{5}{6}, \tfrac{1}{6}\right).
-$$
+-   양의 정부호:
 
-Thus, regardless of the starting distribution, the chain converges to $\pi$.
+    \[\mathbf{x}^T A \mathbf{x} > 0 \quad \text{for all nonzero } \mathbf{x} \in \mathbb{R}^n.\]
+-   양의 준정부호:
 
-### Geometric Interpretation
+    \[\mathbf{x}^T A \mathbf{x} \geq 0 \quad \text{for all } \mathbf{x}.\]
 
-- In differential equations, eigenvalues determine the time evolution: exponential growth, decay, or oscillation.
-- In Markov chains, eigenvalues determine the long-term equilibrium of stochastic processes.
+마찬가지로, 음의 정부호(항상 < 0) 및 부정부호( < 0 및 > 0 모두 가능) 행렬이 정의됩니다.
 
-### Why this matters
+### 예제
 
-Eigenvalue methods turn complex iterative or dynamical systems into tractable problems. In physics, engineering, and
-finance, they describe stability and resonance. In computer science and statistics, they power algorithms from Google’s
-PageRank to modern machine learning.
+예제 9.2.1.
 
-### Exercises 8.4
+\[A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}\]
 
-1. Solve $\tfrac{d}{dt}\mathbf{x} = \begin{bmatrix} 3 & 0 \\ 0 & -2 \end{bmatrix}\mathbf{x}$.
-2. Show that if $A$ has a complex eigenvalue $\alpha \pm i\beta$, then solutions
-   of $\tfrac{d}{dt}\mathbf{x} = A\mathbf{x}$ involve oscillations of frequency $\beta$.
-3. Find the steady-state distribution of
+는 양의 정부호입니다.
 
-   $$
-   P = \begin{bmatrix} 0.7 & 0.2 \\ 0.3 & 0.8 \end{bmatrix}.
-   $$
-4. Prove that for any stochastic matrix $P$, $1$ is always an eigenvalue.
-5. Explain why all eigenvalues of a stochastic matrix satisfy $|\lambda| \leq 1$.
+\[Q(x,y) = 2x^2 + 3y^2 > 0\]
 
-# Chapter 9. Quadratic Forms and Spectral Theorems
+모든 \((x,y) \neq (0,0)\)에 대해.
 
-## 9.1 Quadratic Forms
+예제 9.2.2.
 
-A quadratic form is a polynomial of degree two in several variables, expressed neatly using matrices. Quadratic forms
-appear throughout mathematics: in optimization, geometry of conic sections, statistics (variance), and physics (energy
-functions).
+\[A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}\]
 
-### Definition
+는 이차 형식을 가집니다.
 
-Let $A$ be an $n \times n$ symmetric matrix and $\mathbf{x} \in \mathbb{R}^n$. The quadratic form associated with $A$ is
+\[Q(x,y) = x^2 + 4xy + y^2.\]
 
-$$
-Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}.
-$$
+이 행렬은 양의 정부호가 아닙니다. \(Q(1,-1) = -2 < 0\).
 
-Expanded,
+### 특성화
 
-$$
-Q(\mathbf{x}) = \sum_{i=1}^n \sum_{j=1}^n a_{ij} x_i x_j.
-$$
+대칭 행렬 \(A\)에 대해:
 
-Because $A$ is symmetric ($a_{ij} = a_{ji}$), the cross-terms can be grouped naturally.
+1.  고유값 테스트: \(A\)는 모든 고유값이 양수인 경우에만 양의 정부호입니다.
+2.  주 소행렬식 테스트 (실베스터의 기준): \(A\)는 모든 선행 주 소행렬식(왼쪽 상단 \(k \times k\) 부분 행렬의 행렬식)이 양수인 경우에만 양의 정부호입니다.
+3.  촐레스키 분해: \(A\)는 다음과 같이 쓸 수 있는 경우에만 양의 정부호입니다.
 
-### Examples
+    \[A = R^T R,\]
 
-Example 9.1.1.
-For
+    여기서 \(R\)은 양의 대각 항목을 가진 상삼각 행렬입니다.
 
-$$
-A = \begin{bmatrix}
-2 & 1 \\
-1 & 3 \end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix}
-x \\
-y \end{bmatrix},
-$$
+### 기하학적 해석
 
-$$
-Q(x,y) = \begin{bmatrix} x & y \end{bmatrix}
-\begin{bmatrix}
-2 & 1 \\
-1 & 3 \end{bmatrix}
-\begin{bmatrix}
-x \\
-y \end{bmatrix}
-= 2x^2 + 2xy + 3y^2.
-$$
+-   양의 정부호 행렬은 원점에 중심을 둔 타원체를 정의하는 이차 형식에 해당합니다.
+-   양의 준정부호 행렬은 평평한 타원체(퇴화 가능)를 정의합니다.
+-   부정부호 행렬은 쌍곡선 또는 안장 모양의 표면을 정의합니다.
 
-Example 9.1.2.
-The quadratic form
+### 응용
 
-$$
-Q(x,y) = x^2 + y^2
-$$
+-   최적화: 볼록 함수의 헤세 행렬은 양의 준정부호입니다. 엄격한 볼록성은 양의 정부호 헤세 행렬에 해당합니다.
+-   통계학: 공분산 행렬은 양의 준정부호입니다.
+-   수치 방법: 촐레스키 분해는 양의 정부호 행렬을 가진 시스템을 효율적으로 해결하는 데 널리 사용됩니다.
 
-corresponds to the matrix $A = I_2$. It measures squared Euclidean distance from the origin.
+### 이것이 중요한 이유
 
-Example 9.1.3.
-The conic section equation
+양의 정부호성은 수학 및 계산에서 안정성과 보장을 제공합니다. 에너지 함수가 아래로 유계되고, 최적화 문제에 고유한 해가 있으며, 통계 모델이 의미가 있도록 보장합니다.
 
-$$
-4x^2 + 2xy + 5y^2 = 1
-$$
+### 연습문제 9.2
 
-is described by the quadratic form $\mathbf{x}^T A \mathbf{x} = 1$ with
+1.  실베스터의 기준을 사용하여 다음 행렬이 양의 정부호인지 확인하십시오.
 
-$$
-A = \begin{bmatrix}
-4 & 1 \\
-1 & 5
-\end{bmatrix}.
-$$
+    \[A = \begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}\]
+2.  다음 행렬이 양의 정부호, 준정부호 또는 부정부호인지 확인하십시오.
 
-### Diagonalization of Quadratic Forms
+    \[A = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}\]
+3.  다음 행렬의 고유값을 찾으십시오.
 
-By choosing a new basis consisting of eigenvectors of $A$, we can rewrite the quadratic form without cross terms.
-If $A = PDP^{-1}$ with $D$ diagonal, then
+    \[A = \begin{bmatrix} 4 & 2 \\ 2 & 3 \end{bmatrix},\]
 
-$$
-Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} = (P^{-1}\mathbf{x})^T D (P^{-1}\mathbf{x}).
-$$
+    그리고 이를 사용하여 정부호성을 분류하십시오.
+4.  양의 항목을 가진 모든 대각 행렬이 양의 정부호임을 증명하십시오.
+5.  \(A\)가 양의 정부호이면, 임의의 가역 행렬 \(P\)에 대해 \(P^T A P\)도 양의 정부호임을 보이십시오.
 
-Thus quadratic forms can always be expressed as a sum of weighted squares:
+## 9.3 스펙트럼 정리
 
-$$
-Q(\mathbf{y}) = \lambda_1 y_1^2 + \cdots + \lambda_n y_n^2,
-$$
+스펙트럼 정리는 선형대수학에서 가장 강력한 결과 중 하나입니다. 대칭 행렬은 항상 고유 벡터의 직교 기저에 의해 대각화될 수 있다고 명시합니다. 이것은 대수학(고유값), 기하학(직교 방향), 응용(안정성, 최적화, 통계학)을 연결합니다.
 
-where $\lambda_i$ are the eigenvalues of $A$.
+### 스펙트럼 정리의 진술
 
-### Geometric Interpretation
+\(A \in \mathbb{R}^{n \times n}\)가 대칭(\(A^T = A\))이면:
 
-Quadratic forms describe geometric shapes:
+1.  \(A\)의 모든 고유값은 실수입니다.
+2.  \(A\)의 고유 벡터로 구성된 \(\mathbb{R}^n\)의 정규직교 기저가 존재합니다.
+3.  따라서 \(A\)는 다음과 같이 쓸 수 있습니다.
 
-- In 2D: ellipses, parabolas, hyperbolas.
-- In 3D: ellipsoids, paraboloids, hyperboloids.
-- In higher dimensions: generalizations of ellipsoids.
+    \[A = Q \Lambda Q^T,\]
 
-Diagonalization aligns the coordinate axes with the principal axes of the shape.
+    여기서 \(Q\)는 직교 행렬(\(Q^T Q = I\))이고, \(\Lambda\)는 대각선에 \(A\)의 고유값을 가진 대각 행렬입니다.
 
-### Why this matters
+### 결과
 
-Quadratic forms unify geometry and algebra. They are central in optimization (minimizing energy functions), statistics (
-covariance matrices and variance), mechanics (kinetic energy), and numerical analysis. Understanding quadratic forms
-leads directly to the spectral theorem.
+-   대칭 행렬은 항상 대각화 가능하며, 대각화는 수치적으로 안정적입니다.
+-   이차 형식 \(\mathbf{x}^T A \mathbf{x}\)는 고유값과 고유 벡터로 표현될 수 있으며, 고유 방향과 정렬된 타원체를 보여줍니다.
+-   모든 고유값이 양수임을 확인하여 양의 정부호성을 확인할 수 있습니다.
 
-### Exercises 9.1
+### 예제 9.3.1
 
-1. Write the quadratic form $Q(x,y) = 3x^2 + 4xy + y^2$ as $\mathbf{x}^T A \mathbf{x}$ for some symmetric matrix $A$.
-2. For $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$, compute $Q(x,y)$ explicitly.
-3. Diagonalize the quadratic form $Q(x,y) = 2x^2 + 2xy + 3y^2$.
-4. Identify the conic section given by $Q(x,y) = x^2 - y^2$.
-5. Show that if $A$ is symmetric, quadratic forms defined by $A$ and $A^T$ are identical.
+다음과 같이 가정합니다.
 
-## 9.2 Positive Definite Matrices
+\[A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}.\]
 
-Quadratic forms are especially important when their associated matrices are positive definite, since these guarantee
-positivity of energy, distance, or variance. Positive definiteness is a cornerstone in optimization, numerical analysis,
-and statistics.
+1.  특성 다항식:
 
-### Definition
+    \[p(\lambda) = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3.\]
 
-A symmetric matrix $A \in \mathbb{R}^{n \times n}$ is called:
+    고유값: \(\lambda_1 = 1, \ \lambda_2 = 3\).
 
-- Positive definite if
+2.  고유 벡터:
 
-  $$
-  \mathbf{x}^T A \mathbf{x} > 0 \quad \text{for all nonzero } \mathbf{x} \in \mathbb{R}^n.
-  $$
-- Positive semidefinite if
+    -   \(\lambda=1\)에 대해: \((A-I)\mathbf{v} = 0\)을 풀면, \((1,-1)\)을 얻습니다.
+    -   \(\lambda=3\)에 대해: \((A-3I)\mathbf{v} = 0\)을 풀면, \((1,1)\)을 얻습니다.
 
-  $$
-  \mathbf{x}^T A \mathbf{x} \geq 0 \quad \text{for all } \mathbf{x}.
-  $$
+3.  고유 벡터 정규화:
 
-Similarly, negative definite (always < 0) and indefinite (can be both < 0 and > 0) matrices are defined.
+    \[\mathbf{u}_1 = \tfrac{1}{\sqrt{2}}(1,-1), \quad \mathbf{u}_2 = \tfrac{1}{\sqrt{2}}(1,1).\]
+4.  그러면
 
-### Examples
+    \[Q = \begin{bmatrix} \tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \[6pt] -\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \end{bmatrix}, \quad \Lambda = \begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix}.\]
 
-Example 9.2.1.
+    그래서
 
-$$
-A = \begin{bmatrix}
-2 & 0 \\
-0 & 3 \end{bmatrix}
-$$
+    \[A = Q \Lambda Q^T.\]
 
-is positive definite, since
+### 기하학적 해석
 
-$$
-Q(x,y) = 2x^2 + 3y^2 > 0
-$$
+스펙트럼 정리는 모든 대칭 행렬이 직교 방향을 따라 독립적인 스케일링처럼 작용한다고 말합니다. 기하학에서, 이것은 수직 축을 따라 공간을 늘리는 것에 해당합니다.
 
-for all $(x,y) \neq (0,0)$.
+-   타원, 타원체, 이차 곡면은 고유값과 고유 벡터를 통해 완전히 이해될 수 있습니다.
+-   직교성은 변환 후에도 방향이 수직을 유지하도록 보장합니다.
 
-Example 9.2.2.
+### 응용
 
-$$
-A = \begin{bmatrix}
-1 & 2 \\
-2 & 1 \end{bmatrix}
-$$
+-   최적화: 스펙트럼 정리는 헤세 행렬의 고유값을 통한 임계점 분류의 기초가 됩니다.
+-   PCA (주성분 분석): 데이터 공분산 행렬은 대칭이며, PCA는 최대 분산의 직교 방향을 찾습니다.
+-   미분 방정식 및 물리학: 대칭 연산자는 실수 고유값을 가진 측정 가능한 양(안정성, 에너지)에 해당합니다.
 
-has quadratic form
+### 이것이 중요한 이유
 
-$$
-Q(x,y) = x^2 + 4xy + y^2.
-$$
+스펙트럼 정리는 대칭 행렬이 가능한 한 간단하다는 것을 보장합니다. 항상 실수, 직교 고유 벡터로 분석될 수 있습니다. 이것은 깊은 이론적 통찰력과 강력한 계산 도구를 모두 제공합니다.
 
-This matrix is not positive definite, since $Q(1,-1) = -2 < 0$.
+### 연습문제 9.3
 
-### Characterizations
+1.  다음을 스펙트럼 정리를 사용하여 대각화하십시오.
 
-For a symmetric matrix $A$:
+    \[A = \begin{bmatrix} 4 & 2 \\ 2 & 3 \end{bmatrix}\]
+2.  실수 대칭 행렬의 모든 고유값이 실수임을 증명하십시오.
+3.  대칭 행렬의 서로 다른 고유값에 해당하는 고유 벡터가 직교함을 보이십시오.
+4.  스펙트럼 정리가 이차 형식에 의해 정의된 타원체를 어떻게 설명하는지 기하학적으로 설명하십시오.
+5.  공분산 행렬에 스펙트럼 정리를 적용하십시오.
 
-1. Eigenvalue test: $A$ is positive definite if and only if all eigenvalues of $A$ are positive.
-2. Principal minors test (Sylvester’s criterion): $A$ is positive definite if and only if all leading principal minors (
-   determinants of top-left $k \times k$ submatrices) are positive.
-3. Cholesky factorization: $A$ is positive definite if and only if it can be written as
+    \[\Sigma = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix},\]
 
-   $$
-   A = R^T R,
-   $$
+    그리고 고유 벡터를 분산의 주 방향으로 해석하십시오.
 
-   where $R$ is an upper triangular matrix with positive diagonal entries.
+## 9.4 주성분 분석 (PCA)
 
-### Geometric Interpretation
+주성분 분석(PCA)은 데이터 과학, 기계 학습, 통계학에서 널리 사용되는 기술입니다. 핵심적으로, PCA는 공분산 행렬에 대한 스펙트럼 정리의 응용입니다. 데이터에서 최대 분산을 포착하는 직교 방향(주성분)을 찾습니다.
 
-- Positive definite matrices correspond to quadratic forms that define ellipsoids centered at the origin.
-- Positive semidefinite matrices define flattened ellipsoids (possibly degenerate).
-- Indefinite matrices define hyperbolas or saddle-shaped surfaces.
+### 아이디어
 
-### Applications
+벡터 데이터셋 \(\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_m \in \mathbb{R}^n\)이 주어지면:
 
-- Optimization: Hessians of convex functions are positive semidefinite; strict convexity corresponds to positive
-  definite Hessians.
-- Statistics: Covariance matrices are positive semidefinite.
-- Numerical methods: Cholesky decomposition is widely used to solve systems with positive definite matrices efficiently.
+1.  평균 벡터 \(\bar{\mathbf{x}}\)를 빼서 데이터를 중심화합니다.
+2.  공분산 행렬을 형성합니다.
 
-### Why this matters
+    \[\Sigma = \frac{1}{m} \sum_{i=1}^m (\mathbf{x}_i - \bar{\mathbf{x}})(\mathbf{x}_i - \bar{\mathbf{x}})^T.\]
+3.  스펙트럼 정리를 적용합니다: \(\Sigma = Q \Lambda Q^T\).
 
-Positive definiteness provides stability and guarantees in mathematics and computation. It ensures energy functions are
-bounded below, optimization problems have unique solutions, and statistical models are meaningful.
+    -   \(Q\)의 열은 정규직교 고유 벡터(주 방향)입니다.
+    -   \(\Lambda\)의 고유값은 각 방향으로 설명되는 분산을 측정합니다.
 
-### Exercises 9.2
+첫 번째 주성분은 가장 큰 고유값에 해당하는 고유 벡터이며, 최대 분산의 방향입니다.
 
-1. Use Sylvester’s criterion to check whether
+### 예제 9.4.1
 
-   $$
-   A = \begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}
-   $$
+선 \(y = x\)를 따라 대략적으로 정렬된 2차원 데이터 포인트가 있다고 가정합니다. 공분산 행렬은 대략 다음과 같습니다.
 
-   is positive definite.
+\[\Sigma = \begin{bmatrix} 2 & 1.9 \\ 1.9 & 2 \end{bmatrix}.\]
 
-2. Determine whether
+고유값은 약 \(3.9\)와 \(0.1\)입니다. \(\lambda = 3.9\)에 대한 고유 벡터는 대략 \((1,1)/\sqrt{2}\)입니다.
 
-   $$
-   A = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
-   $$
+-   첫 번째 주성분: 선 \(y = x\).
+-   대부분의 분산은 이 방향을 따라 있습니다.
+-   두 번째 성분은 거의 직교(\(y = -x\))하지만, 그곳의 분산은 매우 작습니다.
 
-   is positive definite, semidefinite, or indefinite.
+따라서 PCA는 데이터를 본질적으로 1차원으로 축소합니다.
 
-3. Find the eigenvalues of
+### PCA의 응용
 
-   $$
-   A = \begin{bmatrix} 4 & 2 \\ 2 & 3 \end{bmatrix},
-   $$
+1.  차원 축소: 대부분의 분산을 유지하면서 더 적은 특징으로 데이터를 표현합니다.
+2.  노이즈 감소: 작은 고유값은 노이즈에 해당하며, 이를 버리면 데이터가 필터링됩니다.
+3.  시각화: 고차원 데이터를 상위 2개 또는 3개의 주성분에 투영하면 구조가 드러납니다.
+4.  압축: PCA는 이미지 및 신호 압축에 사용됩니다.
 
-   and use them to classify definiteness.
+### 스펙트럼 정리와의 연결
 
-4. Prove that all diagonal matrices with positive entries are positive definite.
+공분산 행렬 \(\Sigma\)는 항상 대칭이고 양의 준정부호입니다. 따라서 스펙트럼 정리에 의해, 정규직교 고유 벡터의 기저와 음이 아닌 실수 고유값을 가집니다. PCA는 이 고유 기저에서 데이터를 다시 표현하는 것 이상이 아닙니다.
 
-5. Show that if $A$ is positive definite, then so is $P^T A P$ for any invertible matrix $P$.
+### 이것이 중요한 이유
 
-## 9.3 Spectral Theorem
+PCA는 추상적인 선형대수학이 현대 응용을 직접적으로 구동하는 방법을 보여줍니다. 고유값과 고유 벡터는 데이터를 단순화하고, 패턴을 드러내고, 복잡성을 줄이는 실용적인 방법을 제공합니다. 스펙트럼 정리에서 파생된 가장 중요한 알고리즘 중 하나입니다.
 
-The spectral theorem is one of the most powerful results in linear algebra. It states that symmetric matrices can always
-be diagonalized by an orthogonal basis of eigenvectors. This links algebra (eigenvalues), geometry (orthogonal
-directions), and applications (stability, optimization, statistics).
+### 연습문제 9.4
 
-### Statement of the Spectral Theorem
+1.  공분산 행렬이 대칭이고 양의 준정부호임을 보이십시오.
+2.  데이터셋 \((1,2), (2,3), (3,4)\)의 공분산 행렬을 계산하고, 고유값과 고유 벡터를 찾으십시오.
+3.  첫 번째 주성분이 최대 분산을 포착하는 이유를 설명하십시오.
+4.  이미지 압축에서, PCA가 상위 \(k\)개의 주성분만 유지하여 저장 공간을 줄일 수 있는 방법을 설명하십시오.
+5.  공분산 행렬의 고유값의 합이 데이터셋의 총 분산과 같음을 증명하십시오.
 
-If $A \in \mathbb{R}^{n \times n}$ is symmetric ($A^T = A$), then:
+# 제10장. 실제 선형대수학
 
-1. All eigenvalues of $A$ are real.
-2. There exists an orthonormal basis of $\mathbb{R}^n$ consisting of eigenvectors of $A$.
-3. Thus, $A$ can be written as
+## 10.1 컴퓨터 그래픽스 (회전, 투영)
 
-   $$
-   A = Q \Lambda Q^T,
-   $$
+선형대수학은 현대 컴퓨터 그래픽스의 언어입니다. 화면에 렌더링되는 모든 이미지, 회전되거나 투영되는 모든 3D 모델은 궁극적으로 벡터에 행렬을 적용한 결과입니다. 회전, 반사, 스케일링, 투영은 모두 선형 변환이므로, 행렬은 기하학을 조작하는 자연스러운 도구입니다.
 
-   where $Q$ is an orthogonal matrix ($Q^T Q = I$) and $\Lambda$ is diagonal with eigenvalues of $A$ on the diagonal.
+### 2D에서의 회전
 
-### Consequences
+평면에서 각도 \(\theta\)만큼 시계 반대 방향으로 회전하는 것은 다음과 같이 표현됩니다.
 
-- Symmetric matrices are always diagonalizable, and the diagonalization is numerically stable.
-- Quadratic forms $\mathbf{x}^T A \mathbf{x}$ can be expressed in terms of eigenvalues and eigenvectors, showing
-  ellipsoids aligned with eigen-directions.
-- Positive definiteness can be checked by confirming that all eigenvalues are positive.
+\[R_\theta = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}.\]
 
-### Example 9.3.1
+임의의 벡터 \(\mathbf{v} \in \mathbb{R}^2\)에 대해, 회전된 벡터는
 
-Let
+\[\mathbf{v}' = R_\theta \mathbf{v}.\]
 
-$$
-A = \begin{bmatrix}
-2 & 1 \\
-1 & 2 \end{bmatrix}.
-$$
+\(R_\theta\)가 행렬식이 1인 직교 행렬이므로, 길리와 각도를 보존합니다.
 
-1. Characteristic polynomial:
+### 3D에서의 회전
 
-$$
-p(\lambda) = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3.
-$$
+3차원에서 회전은 행렬식이 1인 \(3 \times 3\) 직교 행렬로 표현됩니다. 예를 들어, \(z\)축에 대한 회전은
 
-Eigenvalues: $\lambda_1 = 1, \ \lambda_2 = 3$.
+\[R_z(\theta) = \begin{bmatrix} \cos\theta & -\sin\theta & 0 \\ \sin\theta & \cos\theta & 0 \\ 0 & 0 & 1 \end{bmatrix}.\]
 
-2. Eigenvectors:
+\(x\)축 및 \(y\)축에 대한 회전에 대한 유사한 공식이 존재합니다.
 
-- For $\lambda=1$: solve $(A-I)\mathbf{v} = 0$, giving $(1,-1)$.
-- For $\lambda=3$: solve $(A-3I)\mathbf{v} = 0$, giving $(1,1)$.
+더 일반적인 3D 회전은 축-각도 표현 또는 쿼터니언으로 설명될 수 있지만, 기본 아이디어는 여전히 행렬로 표현되는 선형 변환입니다.
 
-3. Normalize eigenvectors:
+### 투영
 
-$$
-\mathbf{u}_1 = \tfrac{1}{\sqrt{2}}(1,-1), \quad \mathbf{u}_2 = \tfrac{1}{\sqrt{2}}(1,1).
-$$
+3D 객체를 2D 화면에 표시하기 위해, 우리는 투영을 사용합니다.
 
-4. Then
+1.  직교 투영: \(z\)좌표를 버리고, \((x,y,z) \mapsto (x,y)\)로 매핑합니다.
 
-$$
-Q = 
-\begin{bmatrix}
-\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \[6pt] -\tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} 
-\end{bmatrix}, \quad
-\Lambda = 
-\begin{bmatrix}
-1 & 0 \\
-0 & 3
-\end{bmatrix}.
-$$
+    \[P = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{bmatrix}.\]
+2.  원근 투영: 카메라의 효과를 모방합니다. 점 \((x,y,z)\)는
 
-So
+    \[\left(\frac{x}{z}, \frac{y}{z}\right),\]
 
-$$
-A = Q \Lambda Q^T.
-$$
+    로 투영되며, 멀리 있는 객체가 더 작게 보이는 방식을 포착합니다.
 
-### Geometric Interpretation
+이러한 연산은 선형(직교 투영)이거나 거의 선형(원근 투영은 동차 좌표에서 선형이 됨)입니다.
 
-The spectral theorem says every symmetric matrix acts like independent scaling along orthogonal directions. In geometry,
-this corresponds to stretching space along perpendicular axes.
+### 동차 좌표
 
-- Ellipses, ellipsoids, and quadratic surfaces can be fully understood via eigenvalues and eigenvectors.
-- Orthogonality ensures directions remain perpendicular after transformation.
+변환과 투영을 선형 변환과 통합하기 위해, 컴퓨터 그래픽스는 동차 좌표를 사용합니다. 3D 점 \((x,y,z)\)는 4D 벡터 \((x,y,z,1)\)로 표현됩니다. 변환은 그런 다음 \(4 \times 4\) 행렬이며, 단일 프레임워크에서 회전, 스케일링, 변환을 나타낼 수 있습니다.
 
-### Applications
+예: \((a,b,c)\)에 의한 변환:
 
-- Optimization: The spectral theorem underlies classification of critical points via eigenvalues of the Hessian.
-- PCA (Principal Component Analysis): Data covariance matrices are symmetric, and PCA finds orthogonal directions of
-  maximum variance.
-- Differential equations & physics: Symmetric operators correspond to measurable quantities with real eigenvalues (
-  stability, energy).
+\[T = \begin{bmatrix} 1 & 0 & 0 & a \\ 0 & 1 & 0 & b \\ 0 & 0 & 1 & c \\ 0 & 0 & 0 & 1 \end{bmatrix}.\]
 
-### Why this matters
+### 기하학적 해석
 
-The spectral theorem guarantees that symmetric matrices are as simple as possible: they can always be analyzed in terms
-of real, orthogonal eigenvectors. This provides both deep theoretical insight and powerful computational tools.
+-   회전은 모양과 크기를 보존하고, 방향만 변경합니다.
+-   투영은 차원을 줄입니다: 3D 월드 공간에서 2D 화면 공간으로.
+-   동차 좌표는 여러 변환(회전 + 변환 + 투영)을 단일 행렬 곱셈으로 결합할 수 있게 합니다.
 
-### Exercises 9.3
+### 이것이 중요한 이유
 
-1. Diagonalize
+선형대수학은 모든 실시간 그래픽스를 가능하게 합니다: 비디오 게임, 시뮬레이션, CAD 소프트웨어, 영화 효과. 간단한 행렬 연산을 연결하여, 복잡한 변환이 초당 수백만 개의 점에 효율적으로 적용됩니다.
 
-   $$
-   A = \begin{bmatrix} 4 & 2 \\ 2 & 3 \end{bmatrix}
-   $$
+### 연습문제 10.1
 
-   using the spectral theorem.
+1.  \(\mathbb{R}^2\)에서 90° 시계 반대 방향 회전에 대한 회전 행렬을 쓰십시오. \((1,0)\)에 적용하십시오.
+2.  점 \((1,1,0)\)을 \(z\)축에 대해 180° 회전하십시오.
+3.  임의의 2D 또는 3D 회전 행렬의 행렬식이 1임을 보이십시오.
+4.  \(\mathbb{R}^3\)에서 \(xy\)-평면으로의 직교 투영 행렬을 유도하십시오.
+5.  동차 좌표가 변환을 행렬 곱셈으로 표현할 수 있게 하는 방법을 설명하십시오.
 
-2. Prove that all eigenvalues of a real symmetric matrix are real.
+## 10.2 데이터 과학 (차원 축소, 최소 제곱)
 
-3. Show that eigenvectors corresponding to distinct eigenvalues of a symmetric matrix are orthogonal.
+선형대수학은 많은 데이터 과학 기술의 기초를 제공합니다. 가장 중요한 두 가지는 고차원 데이터셋을 필수 정보를 보존하면서 압축하는 차원 축소와, 회귀 및 모델 피팅의 기초가 되는 최소 제곱 방법입니다.
 
-4. Explain geometrically how the spectral theorem describes ellipsoids defined by quadratic forms.
+### 차원 축소
 
-5. Apply the spectral theorem to the covariance matrix
+고차원 데이터는 종종 중복성을 포함합니다. 많은 특징이 상관 관계가 있으며, 이는 데이터가 본질적으로 더 낮은 차원의 부분 공간 근처에 있음을 의미합니다. 차원 축소는 이러한 부분 공간을 식별합니다.
 
-   $$
-   \Sigma = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix},
-   $$
+-   PCA (주성분 분석):
+    앞서 소개한 바와 같이, PCA는 데이터의 공분산 행렬을 대각화합니다.
 
-   and interpret the eigenvectors as principal directions of variance.
+    -   고유 벡터(주성분)는 최대 분산의 직교 방향을 정의합니다.
+    -   고유값은 각 방향을 따라 얼마나 많은 분산이 있는지 측정합니다.
+    -   상위 \(k\)개의 성분만 유지하면, 대부분의 변동성을 유지하면서 데이터를 \(n\)차원 공간에서 \(k\)차원 공간으로 축소합니다.
 
-## 9.4 Principal Component Analysis (PCA)
+예제 10.2.1. 각각 1024 픽셀을 가진 1000개의 이미지 데이터셋은 공분산 행렬의 단 50개의 고유 벡터에 의해 대부분의 분산이 포착될 수 있습니다. 이러한 성분에 투영하면, 필수 특징을 보존하면서 데이터를 압축합니다.
 
-Principal Component Analysis (PCA) is a widely used technique in data science, machine learning, and statistics. At its
-core, PCA is an application of the spectral theorem to covariance matrices: it finds orthogonal directions (principal
-components) that capture the maximum variance in data.
+### 최소 제곱
 
-### The Idea
+종종, 우리는 미지수보다 방정식이 더 많습니다 - 과결정 시스템:
 
-Given a dataset of vectors $\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_m \in \mathbb{R}^n$:
+\[A\mathbf{x} \approx \mathbf{b}, \quad A \in \mathbb{R}^{m \times n}, \ m > n.\]
 
-1. Center the data by subtracting the mean vector $\bar{\mathbf{x}}$.
-2. Form the covariance matrix
+정확한 해가 존재하지 않을 수 있습니다. 대신, 우리는 오차를 최소화하는 \(\mathbf{x}\)를 찾습니다.
 
-   $$
-   \Sigma = \frac{1}{m} \sum_{i=1}^m (\mathbf{x}_i - \bar{\mathbf{x}})(\mathbf{x}_i - \bar{\mathbf{x}})^T.
-   $$
-3. Apply the spectral theorem: $\Sigma = Q \Lambda Q^T$.
+\[\|A\mathbf{x} - \mathbf{b}\|^2.\]
 
-    - Columns of $Q$ are orthonormal eigenvectors (principal directions).
-    - Eigenvalues in $\Lambda$ measure variance explained by each direction.
+이것은 정규 방정식으로 이어집니다.
 
-The first principal component is the eigenvector corresponding to the largest eigenvalue; it is the direction of maximum
-variance.
+\[A^T A \mathbf{x} = A^T \mathbf{b}.\]
 
-### Example 9.4.1
+해는 \(A\)의 열 공간에 대한 \(\mathbf{b}\)의 직교 투영입니다.
 
-Suppose we have two-dimensional data points roughly aligned along the line $y = x$. The covariance matrix is
-approximately
+### 예제 10.2.2
 
-$$
-\Sigma = 
-\begin{bmatrix}
-2 & 1.9 \\
-1.9 & 2
-\end{bmatrix}.
-$$
+데이터 포인트 \((x_i, y_i)\)에 선 \(y = mx + c\)를 맞춥니다.
 
-Eigenvalues are about $3.9$ and $0.1$. The eigenvector for $\lambda = 3.9$ is approximately $(1,1)/\sqrt{2}$.
+행렬 형식:
 
-- First principal component: the line $y = x$.
-- Most variance lies along this direction.
-- Second component is nearly orthogonal ($y = -x$), but variance there is tiny.
+\[A = \begin{bmatrix} x_1 & 1 \\ x_2 & 1 \\ \vdots & \vdots \\ x_m & 1 \end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_m \end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix} m \\ c \end{bmatrix}.\]
 
-Thus PCA reduces the data to essentially one dimension.
+\(A^T A \mathbf{x} = A^T \mathbf{b}\)를 풉니다. 이것은 최소 제곱 의미에서 최적의 선을 산출합니다.
 
-### Applications of PCA
+### 기하학적 해석
 
-1. Dimensionality reduction: Represent data with fewer features while retaining most variance.
-2. Noise reduction: Small eigenvalues correspond to noise; discarding them filters data.
-3. Visualization: Projecting high-dimensional data onto top 2 or 3 principal components reveals structure.
-4. Compression: PCA is used in image and signal compression.
+-   차원 축소: 대부분의 분산을 포착하는 최상의 부분 공간을 찾습니다.
+-   최소 제곱: 예측 변수에 의해 생성된 부분 공간에 대상 벡터를 투영합니다.
 
-### Connection to the Spectral Theorem
+둘 다 내적과 직교성을 사용하여 해결되는 투영 문제입니다.
 
-The covariance matrix $\Sigma$ is always symmetric and positive semidefinite. Hence by the spectral theorem, it has an
-orthonormal basis of eigenvectors and nonnegative real eigenvalues. PCA is nothing more than re-expressing data in this
-eigenbasis.
+### 이것이 중요한 이유
 
-### Why this matters
+차원 축소는 큰 데이터셋을 다루기 쉽게 만들고, 노이즈를 필터링하고, 구조를 드러냅니다. 최소 제곱 피팅은 회귀, 통계학, 기계 학습을 구동합니다. 둘 다 고유값, 고유 벡터, 투영 - 선형대수학의 핵심 도구에 직접 의존합니다.
 
-PCA demonstrates how abstract linear algebra directly powers modern applications. Eigenvalues and eigenvectors give a
-practical method for simplifying data, revealing patterns, and reducing complexity. It is one of the most important
-algorithms derived from the spectral theorem.
+### 연습문제 10.2
 
-### Exercises 9.4
+1.  PCA가 작은 고유값 성분을 버림으로써 데이터셋의 노이즈를 줄이는 이유를 설명하십시오.
+2.  \((0,0), (1,1), (2,2)\)를 통과하는 선을 맞추는 최소 제곱 해를 계산하십시오.
+3.  최소 제곱 해가 \(A^T A\)가 가역인 경우에만 고유함을 보이십시오.
+4.  최소 제곱 해가 투영 인수를 통해 제곱 오차를 최소화함을 증명하십시오.
+5.  데이터 포인트 \((1,0), (2,1), (3,2)\)에 PCA를 적용하고 첫 번째 주성분을 찾으십시오.
 
-1. Show that the covariance matrix is symmetric and positive semidefinite.
-2. Compute the covariance matrix of the dataset $(1,2), (2,3), (3,4)$, and find its eigenvalues and eigenvectors.
-3. Explain why the first principal component captures the maximum variance.
-4. In image compression, explain how PCA can reduce storage by keeping only the top $k$ principal components.
-5. Prove that the sum of the eigenvalues of the covariance matrix equals the total variance of the dataset.
+## 10.3 네트워크와 마르코프 연쇄
 
-# Chapter 10. Linear Algebra in Practice
+그래프와 네트워크는 선형대수학이 생생하게 살아나는 자연스러운 환경을 제공합니다. 흐름과 연결성을 모델링하는 것에서부터 장기적인 행동을 예측하는 것에 이르기까지, 행렬은 네트워크 구조를 대수적 형태로 변환합니다. 섹션 8.4에서 이미 소개된 마르코프 연쇄는 시간이 지남에 따라 진화하는 네트워크의 중심적인 예입니다.
 
-## 10.1 Computer Graphics (Rotations, Projections)
+### 인접 행렬
 
-Linear algebra is the language of modern computer graphics. Every image rendered on a screen, every 3D model rotated or
-projected, is ultimately the result of applying matrices to vectors. Rotations, reflections, scalings, and projections
-are all linear transformations, making matrices the natural tool for manipulating geometry.
+\(n\)개의 노드를 가진 네트워크(그래프)는 인접 행렬 \(A \in \mathbb{R}^{n \times n}\)로 표현될 수 있습니다.
 
-### Rotations in 2D
+\[A_{ij} = \begin{cases} 1 & \text{노드 \(i\)에서 노드 \(j\)로의 간선이 있는 경우} \\ 0 & \text{그렇지 않은 경우.} \end{cases}\]
 
-A counterclockwise rotation by an angle $\theta$ in the plane is represented by
+가중 그래프의 경우, 항목은 0/1 대신 양의 가중치일 수 있습니다.
 
-$$
-R_\theta =
-\begin{bmatrix}
-\cos\theta & -\sin\theta \\
-\sin\theta & \cos\theta
-\end{bmatrix}.
-$$
+-   노드 \(i\)에서 노드 \(j\)까지의 길이 \(k\)의 보행 수는 항목 \((A^k)_{ij}\)에 의해 주어집니다.
+-   따라서 인접 행렬의 거듭제곱은 시간 경과에 따른 연결성을 인코딩합니다.
 
-For any vector $\mathbf{v} \in \mathbb{R}^2$, the rotated vector is
+### 라플라시안 행렬
 
-$$
-\mathbf{v}' = R_\theta \mathbf{v}.
-$$
+또 다른 중요한 행렬은 그래프 라플라시안입니다.
 
-This preserves lengths and angles, since $R_\theta$ is orthogonal with determinant $1$.
+\[L = D - A,\]
 
-### Rotations in 3D
+여기서 \(D\)는 대각 차수 행렬(\(D_{ii} = \text{degree}(i)\))입니다.
 
-In three dimensions, rotations are represented by $3 \times 3$ orthogonal matrices with determinant $1$. For example, a
-rotation about the $z$-axis is
+-   \(L\)은 대칭이고 양의 준정부호입니다.
+-   가장 작은 고유값은 항상 \(0\)이며, 고유 벡터는 \((1,1,\dots,1)\)입니다.
+-   고유값 \(0\)의 중복도는 그래프의 연결된 구성 요소의 수와 같습니다.
 
-$$
-R_z(\theta) =
-\begin{bmatrix}
-\cos\theta & -\sin\theta & 0 \\
-\sin\theta & \cos\theta & 0 \\
-0 & 0 & 1
-\end{bmatrix}.
-$$
+고유값과 연결성 사이의 이 연결은 스펙트럼 그래프 이론의 기초를 형성합니다.
 
-Similar formulas exist for rotations about the $x$- and $y$-axes.
+### 그래프에서의 마르코프 연쇄
 
-More general 3D rotations can be described by axis–angle representation or quaternions, but the underlying idea is still
-linear transformations represented by matrices.
+마르코프 연쇄는 그래프에서의 무작위 보행으로 볼 수 있습니다. \(P\)가 노드 \(i\)에서 노드 \(j\)로 이동할 확률이 \(P_{ij}\)인 전이 행렬이면,
 
-### Projections
+\[\mathbf{x}_{k+1} = P \mathbf{x}_k\]
 
-To display 3D objects on a 2D screen, we use projections:
+는 \(k\) 단계 후의 위치 분포를 설명합니다.
 
-1. Orthogonal projection: drops the $z$-coordinate, mapping $(x,y,z) \mapsto (x,y)$.
+-   정상 상태 분포는 고유값 \(1\)을 가진 \(P\)의 고유 벡터에 의해 주어집니다.
+-   수렴 속도는 가장 큰 고유값(항상 \(1\))과 두 번째로 큰 고유값 사이의 간격에 따라 달라집니다.
 
-   $$
-   P = \begin{bmatrix}
-   1 & 0 & 0 \\
-   0 & 1 & 0
-   \end{bmatrix}.
-   $$
+### 예제 10.3.1
 
-2. Perspective projection: mimics the effect of a camera. A point $(x,y,z)$ projects to
+단순한 3-노드 순환 그래프를 고려하십시오.
 
-   $$
-   \left(\frac{x}{z}, \frac{y}{z}\right),
-   $$
+\[P = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{bmatrix}.\]
 
-   capturing how distant objects appear smaller.
+이 마르코프 연쇄는 노드 사이를 결정론적으로 순환합니다. 고유값은 단일성의 세제곱근입니다: \(1, e^{2\pi i/3}, e^{4\pi i/3}\). 고유값 \(1\)은 정상 상태에 해당하며, 이는 균등 분포 \((1/3,1/3,1/3)\)입니다.
 
-These operations are linear (orthogonal projection) or nearly linear (perspective projection becomes linear in
-homogeneous coordinates).
+### 응용
 
-### Homogeneous Coordinates
+-   검색 엔진: 구글의 페이지랭크 알고리즘은 웹을 마르코프 연쇄로 모델링하며, 여기서 정상 상태 확률은 페이지를 순위 매깁니다.
+-   네트워크 분석: 인접 또는 라플라시안 행렬의 고유값은 커뮤니티, 병목 현상, 견고성을 드러냅니다.
+-   역학 및 정보 흐름: 무작위 보행은 질병이나 아이디어가 네트워크를 통해 어떻게 퍼지는지를 모델링합니다.
 
-To unify translations and projections with linear transformations, computer graphics uses homogeneous coordinates. A 3D
-point $(x,y,z)$ is represented as a 4D vector $(x,y,z,1)$. Transformations are then $4 \times 4$ matrices, which can
-represent rotations, scalings, and translations in a single framework.
+### 이것이 중요한 이유
 
-Example: Translation by $(a,b,c)$:
+선형대수학은 네트워크 문제를 행렬 문제로 변환합니다. 고유값과 고유 벡터는 연결성, 흐름, 안정성, 장기적인 역학을 드러냅니다. 네트워크는 소셜 미디어, 생물학, 금융, 인터넷 등 어디에나 있으므로 이러한 도구는 필수 불가결합니다.
 
-$$
-T = \begin{bmatrix}
-1 & 0 & 0 & a \\
-0 & 1 & 0 & b \\
-0 & 0 & 1 & c \\
-0 & 0 & 0 & 1
-\end{bmatrix}.
-$$
+### 연습문제 10.3
 
-### Geometric Interpretation
+1.  4개의 노드를 가진 정사각형 그래프의 인접 행렬을 쓰십시오. \(A^2\)를 계산하고 항목을 해석하십시오.
+2.  연결된 그래프의 라플라시안이 정확히 하나의 0 고유값을 가짐을 보이십시오.
+3.  다음 마르코프 연쇄의 정상 상태 분포를 찾으십시오.
 
-- Rotations preserve shape and size, only changing orientation.
-- Projections reduce dimension: from 3D world space to 2D screen space.
-- Homogeneous coordinates allow us to combine multiple transformations (rotation + translation + projection) into a
-  single matrix multiplication.
+    \[P = \begin{bmatrix} 0.5 & 0.5 \\ 0.4 & 0.6 \end{bmatrix}.\]
+4.  라플라시안의 고유값이 그래프의 연결되지 않은 구성 요소를 어떻게 감지할 수 있는지 설명하십시오.
+5.  페이지랭크가 고유한 정상 상태 분포를 보장하기 위해 웹 그래프의 전이 행렬을 어떻게 수정하는지 설명하십시오.
 
-### Why this matters
+## 10.4 기계 학습 연결
 
-Linear algebra enables all real-time graphics: video games, simulations, CAD software, and movie effects. By chaining
-simple matrix operations, complex transformations are applied efficiently to millions of points per second.
+현대 기계 학습은 선형대수학 위에 구축됩니다. 데이터를 행렬로 표현하는 것에서부터 대규모 모델의 최적화에 이르기까지, 거의 모든 단계는 벡터 공간, 투영, 고유값, 행렬 분해와 같은 개념에 의존합니다.
 
-### Exercises 10.1
+### 행렬로서의 데이터
 
-1. Write the rotation matrix for a 90° counterclockwise rotation in $\mathbb{R}^2$. Apply it to $(1,0)$.
-2. Rotate the point $(1,1,0)$ about the $z$-axis by 180°.
-3. Show that the determinant of any 2D or 3D rotation matrix is 1.
-4. Derive the orthogonal projection matrix from $\mathbb{R}^3$ to the $xy$-plane.
-5. Explain how homogeneous coordinates allow translations to be represented as matrix multiplications.
+\(m\)개의 예제와 \(n\)개의 특징을 가진 데이터셋은 행렬 \(X \in \mathbb{R}^{m \times n}\)로 표현됩니다.
 
-## 10.2 Data Science (Dimensionality Reduction, Least Squares)
+\[X = \begin{bmatrix} - & \mathbf{x}_1^T & - \\ - & \mathbf{x}_2^T & - \\ & \vdots & \\ - & \mathbf{x}_m^T & - \end{bmatrix},\]
 
-Linear algebra provides the foundation for many data science techniques. Two of the most important are dimensionality
-reduction, where high-dimensional datasets are compressed while preserving essential information, and the least squares
-method, which underlies regression and model fitting.
+여기서 각 행 \(\mathbf{x}_i \in \mathbb{R}^n\)는 특징 벡터입니다. 선형대수학은 이 데이터를 분석, 압축, 변환하는 도구를 제공합니다.
 
-### Dimensionality Reduction
+### 선형 모델
 
-High-dimensional data often contains redundancy: many features are correlated, meaning the data essentially lies near a
-lower-dimensional subspace. Dimensionality reduction identifies these subspaces.
+기계 학습의 핵심에는 선형 예측 변수가 있습니다.
 
-- PCA (Principal Component Analysis):
-  As introduced earlier, PCA diagonalizes the covariance matrix of the data.
+\[\hat{y} = X\mathbf{w},\]
 
-  - Eigenvectors (principal components) define orthogonal directions of maximum variance.
-  - Eigenvalues measure how much variance lies along each direction.
-  - Keeping only the top $k$ components reduces data from $n$-dimensional space to $k$-dimensional space while
-    retaining most variability.
+여기서 \(\mathbf{w}\)는 가중치 벡터입니다. 훈련은 종종 최소 제곱 문제 또는 릿지 회귀와 같은 정규화된 변형을 해결하는 것을 포함합니다.
 
-Example 10.2.1. A dataset of 1000 images, each with 1024 pixels, may have most variance captured by just 50 eigenvectors
-of the covariance matrix. Projecting onto these components compresses the data while preserving essential features.
+\[\min_{\mathbf{w}} \|X\mathbf{w} - \mathbf{y}\|^2 + \lambda \|\mathbf{w}\|^2.\]
 
-### Least Squares
+이것은 행렬 분해를 사용하여 효율적으로 해결됩니다.
 
-Often, we have more equations than unknowns-an overdetermined system:
+### 특이값 분해 (SVD)
 
-$$
-A\mathbf{x} \approx \mathbf{b}, \quad A \in \mathbb{R}^{m \times n}, \ m > n.
-$$
+행렬 \(X\)의 SVD는
 
-An exact solution may not exist. Instead, we seek $\mathbf{x}$ that minimizes the error
+\[X = U \Sigma V^T,\]
 
-$$
-\|A\mathbf{x} - \mathbf{b}\|^2.
-$$
+여기서 \(U, V\)는 직교이고, \(\Sigma\)는 음이 아닌 항목(특이값)을 가진 대각 행렬입니다.
 
-This leads to the normal equations:
+-   특이값은 특징 공간에서 방향의 중요성을 측정합니다.
+-   SVD는 차원 축소(저-랭크 근사), 토픽 모델링, 추천 시스템에 사용됩니다.
 
-$$
-A^T A \mathbf{x} = A^T \mathbf{b}.
-$$
+### 기계 학습에서의 고유값
 
-The solution is the orthogonal projection of $\mathbf{b}$ onto the column space of $A$.
+-   PCA (주성분 분석): 공분산 행렬의 대각화는 최대 분산의 방향을 식별합니다.
+-   스펙트럼 클러스터링: 라플라시안의 고유 벡터를 사용하여 데이터 포인트를 클러스터로 그룹화합니다.
+-   안정성 분석: 헤세 행렬의 고유값은 최적화가 최소값으로 수렴하는지 여부를 결정합니다.
 
-### Example 10.2.2
+### 신경망
 
-Fit a line $y = mx + c$ to data points $(x_i, y_i)$.
+비선형이지만, 딥 러닝조차도 핵심적으로 선형대수학을 사용합니다.
 
-Matrix form:
+-   각 계층은 행렬 곱셈 다음에 비선형 활성화가 이어집니다.
+-   훈련에는 행렬 미적분학으로 표현되는 기울기를 계산해야 합니다.
+-   역전파는 본질적으로 선형대수학을 사용한 연쇄 법칙의 반복적인 적용입니다.
 
-$$
-A = \begin{bmatrix}
-x_1 & 1 \\
-x_2 & 1 \\
-\vdots & \vdots \\
-x_m & 1
-\end{bmatrix},
-\quad
-\mathbf{b} = 
-\begin{bmatrix}
-y_1 \\ 
-y_2 \\ 
-\vdots \\
-y_m \end{bmatrix},
-\quad
-\mathbf{x} =
-\begin{bmatrix}
-m \\
-c \end{bmatrix}.
-$$
+### 이것이 중요한 이유
 
-Solve $A^T A \mathbf{x} = A^T \mathbf{b}$. This yields the best-fit line in the least squares sense.
+기계 학습 모델은 종종 수백만 개의 특징과 매개변수를 가진 데이터셋을 포함합니다. 선형대수학은 훈련과 추론을 가능하게 하는 알고리즘과 추상화를 제공합니다. 그것 없이는 AI에서의 대규모 계산은 다루기 어려울 것입니다.
 
-### Geometric Interpretation
+### 연습문제 10.4
 
-- Dimensionality reduction: Find the best subspace capturing most variance.
-- Least squares: Project the target vector onto the subspace spanned by predictors.
+1.  릿지 회귀가 정규 방정식으로 이어진다는 것을 보이십시오.
 
-Both are projection problems, solved using inner products and orthogonality.
-
-### Why this matters
-
-Dimensionality reduction makes large datasets tractable, filters noise, and reveals structure. Least squares fitting
-powers regression, statistics, and machine learning. Both rely directly on eigenvalues, eigenvectors, and
-projections-core tools of linear algebra.
-
-### Exercises 10.2
-
-1. Explain why PCA reduces noise in datasets by discarding small eigenvalue components.
-2. Compute the least squares solution to fitting a line through $(0,0), (1,1), (2,2)$.
-3. Show that the least squares solution is unique if and only if $A^T A$ is invertible.
-4. Prove that the least squares solution minimizes the squared error by projection arguments.
-5. Apply PCA to the data points $(1,0), (2,1), (3,2)$ and find the first principal component.
-
-## 10.3 Networks and Markov Chains
-
-Graphs and networks provide a natural setting where linear algebra comes to life. From modeling flows and connectivity
-to predicting long-term behavior, matrices translate network structure into algebraic form. Markov chains, already
-introduced in Section 8.4, are a central example of networks evolving over time.
-
-### Adjacency Matrices
-
-A network (graph) with $n$ nodes can be represented by an adjacency matrix $A \in \mathbb{R}^{n \times n}$:
-
-$$
-A_{ij} =
-\begin{cases}
-1 & \text{if there is an edge from node \(i\) to node \(j\)} \\
-0 & \text{otherwise.}
-\end{cases}
-$$
-
-For weighted graphs, entries may be positive weights instead of $0/1$.
-
-- The number of walks of length $k$ from node $i$ to node $j$ is given by the entry $(A^k)_{ij}$.
-- Powers of adjacency matrices thus encode connectivity over time.
-
-### Laplacian Matrices
-
-Another important matrix is the graph Laplacian:
-
-$$
-L = D - A,
-$$
-
-where $D$ is the diagonal degree matrix ( $D_{ii} = \text{degree}(i)$ ).
-
-- $L$ is symmetric and positive semidefinite.
-- The smallest eigenvalue is always $0$, with eigenvector $(1,1,\dots,1)$.
-- The multiplicity of eigenvalue $0$ equals the number of connected components in the graph.
-
-This connection between eigenvalues and connectivity forms the basis of spectral graph theory.
-
-### Markov Chains on Graphs
-
-A Markov chain can be viewed as a random walk on a graph. If $P$ is the transition matrix where $P_{ij}$ is the
-probability of moving from node $i$ to node $j$, then
-
-$$
-\mathbf{x}_{k+1} = P \mathbf{x}_k
-$$
-
-describes the distribution of positions after $k$ steps.
-
-- The steady-state distribution is given by the eigenvector of $P$ with eigenvalue $1$.
-- The speed of convergence depends on the gap between the largest eigenvalue (which is always $1$) and the second
-  largest eigenvalue.
-
-### Example 10.3.1
-
-Consider a simple 3-node cycle graph:
-
-$$
-P = \begin{bmatrix}
-0 & 1 & 0 \\
-0 & 0 & 1 \\
-1 & 0 & 0
-\end{bmatrix}.
-$$
-
-This Markov chain cycles deterministically among the nodes. Eigenvalues are the cube roots of
-unity: $1, e^{2\pi i/3}, e^{4\pi i/3}$. The eigenvalue $1$ corresponds to the steady state, which is the uniform
-distribution $(1/3,1/3,1/3)$.
-
-### Applications
-
-- Search engines: Google’s PageRank algorithm models the web as a Markov chain, where steady-state probabilities rank
-  pages.
-- Network analysis: Eigenvalues of adjacency or Laplacian matrices reveal communities, bottlenecks, and robustness.
-- Epidemiology and information flow: Random walks model how diseases or ideas spread through networks.
-
-### Why this matters
-
-Linear algebra transforms network problems into matrix problems. Eigenvalues and eigenvectors reveal connectivity, flow,
-stability, and long-term dynamics. Networks are everywhere-social media, biology, finance, and the internet-so these
-tools are indispensable.
-
-### Exercises 10.3
-
-1. Write the adjacency matrix of a square graph with 4 nodes. Compute $A^2$ and interpret the entries.
-2. Show that the Laplacian of a connected graph has exactly one zero eigenvalue.
-3. Find the steady-state distribution of the Markov chain with
-
-   $$
-   P = \begin{bmatrix} 0.5 & 0.5 \\ 0.4 & 0.6 \end{bmatrix}.
-   $$
-4. Explain how eigenvalues of the Laplacian can detect disconnected components of a graph.
-5. Describe how PageRank modifies the transition matrix of the web graph to ensure a unique steady-state distribution.
-
-## 10.4 Machine Learning Connections
-
-Modern machine learning is built on linear algebra. From the representation of data as matrices to the optimization of
-large-scale models, nearly every step relies on concepts such as vector spaces, projections, eigenvalues, and matrix
-decompositions.
-
-### Data as Matrices
-
-A dataset with $m$ examples and $n$ features is represented as a matrix $X \in \mathbb{R}^{m \times n}$:
-
-$$
-X =
-\begin{bmatrix}
-\- & \mathbf{x}_1^T & - \\
-\- & \mathbf{x}_2^T & - \\
-  & \vdots & \\
-\- & \mathbf{x}_m^T & -
-\end{bmatrix},
-$$
-
-where each row $\mathbf{x}_i \in \mathbb{R}^n$ is a feature vector. Linear algebra provides tools to analyze, compress,
-and transform this data.
-
-### Linear Models
-
-At the heart of machine learning are linear predictors:
-
-$$\hat{y} = X\mathbf{w},$$
-
-where $\mathbf{w}$ is the weight vector. Training often involves solving a least squares problem or a regularized
-variant such as ridge regression:
-
-$$\min_{\mathbf{w}} \|X\mathbf{w} - \mathbf{y}\|^2 + \lambda \|\mathbf{w}\|^2.$$
-
-This is solved efficiently using matrix factorizations.
-
-### Singular Value Decomposition (SVD)
-
-The SVD of a matrix $X$ is
-
-$$X = U \Sigma V^T,$$
-
-where $U, V$ are orthogonal and $\Sigma$ is diagonal with nonnegative entries (singular values).
-
-- Singular values measure the importance of directions in feature space.
-- SVD is used for dimensionality reduction (low-rank approximations), topic modeling, and recommender systems.
-
-### Eigenvalues in Machine Learning
-
-- PCA (Principal Component Analysis): diagonalization of the covariance matrix identifies directions of maximal
-  variance.
-- Spectral clustering: uses eigenvectors of the Laplacian to group data points into clusters.
-- Stability analysis: eigenvalues of Hessian matrices determine whether optimization converges to a minimum.
-
-### Neural Networks
-
-Even deep learning, though nonlinear, uses linear algebra at its core:
-
-- Each layer is a matrix multiplication followed by a nonlinear activation.
-- Training requires computing gradients, which are expressed in terms of matrix calculus.
-- Backpropagation is essentially repeated applications of the chain rule with linear algebra.
-
-### Why this matters
-
-Machine learning models often involve datasets with millions of features and parameters. Linear algebra provides the
-algorithms and abstractions that make training and inference possible. Without it, large-scale computation in AI would
-be intractable.
-
-### Exercises 10.4
-
-1. Show that ridge regression leads to the normal equations
-
-$$
-(X^T X + \lambda I)\mathbf{w} = X^T \mathbf{y}.
-$$
-
-2. Explain how SVD can be used to compress an image represented as a matrix of pixel intensities.
-
-3. For a covariance matrix $\Sigma$, show why its eigenvalues represent variances along principal components.
-
-4. Give an example of how eigenvectors of the Laplacian matrix can be used for clustering a small graph.
-
-5. In a neural network with one hidden layer, write the forward pass in matrix form.
+    \[(X^T X + \lambda I)\mathbf{w} = X^T \mathbf{y}.\]
+2.  SVD가 픽셀 강도의 행렬로 표현된 이미지를 압축하는 데 어떻게 사용될 수 있는지 설명하십시오.
+3.  공분산 행렬 \(\Sigma\)에 대해, 고유값이 주성분을 따라 분산을 나타내는 이유를 보이십시오.
+4.  라플라시안 행렬의 고유 벡터가 작은 그래프를 클러스터링하는 데 어떻게 사용될 수 있는지 예를 드십시오.
+5.  하나의 은닉 계층을 가진 신경망에서, 순방향 패스를 행렬 형식으로 쓰십시오.

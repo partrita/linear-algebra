@@ -17,6 +17,7 @@
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
   \usepackage{unicode-math} % this also loads fontspec
+  \usepackage{kotex}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
@@ -80,7 +81,7 @@
   urlcolor={blue},
   pdfcreator={LaTeX via pandoc}}
 
-\title{The Little Book of Linear Algebra}
+\title{선형대수학 소책자}
 \usepackage{etoolbox}
 \makeatletter
 \providecommand{\subtitle}[1]{% add subtitle to \maketitle
@@ -99,400 +100,313 @@
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
-\section{Chapter 1. Vectors}\label{chapter-1-vectors}
+\section{제1장. 벡터}\label{chapter-1-vectors}
 
-\subsection{1.1 Scalars and Vectors}\label{11-scalars-and-vectors}
+\subsection{1.1 스칼라와 벡터}\label{11-scalars-and-vectors}
 
-A scalar is a single numerical quantity, most often taken from the real
-numbers, denoted by \(\mathbb{R}\). Scalars are the fundamental building
-blocks of arithmetic: they can be added, subtracted, multiplied, and,
-except in the case of zero, divided. In linear algebra, scalars play the
-role of coefficients, scaling factors, and entries of larger structures
-such as vectors and matrices. They provide the weights by which more
-complex objects are measured and combined. A vector is an ordered
-collection of scalars, arranged either in a row or a column. When the
-scalars are real numbers, the vector is said to belong to \emph{real}
-\(n\)-dimensional space, written
+스칼라는 단일 숫자 양으로, 대부분 실수 집합에서 가져오며 \(\mathbb{R}\)로 표기됩니다. 스칼라는 산술의 기본 구성 요소입니다. 즉, 더하고, 빼고, 곱하고, 0이 아닌 경우 나눌 수 있습니다. 선형대수학에서 스칼라는 계수, 스케일링 인수, 그리고 벡터 및 행렬과 같은 더 큰 구조의 항목 역할을 합니다. 스칼라는 더 복잡한 객체를 측정하고 결합하는 가중치를 제공합니다. 벡터는 스칼라의 순서 있는 모음으로, 행이나 열로 배열됩니다. 스칼라가 실수일 때, 벡터는 \emph{실수} \(n\)차원 공간에 속한다고 하며, 다음과 같이 씁니다.
 
 \[\mathbb{R}^n = \{ (x_1, x_2, \dots, x_n) \mid x_i \in \mathbb{R} \}.\]
 
-An element of \(\mathbb{R}^n\) is called a vector of dimension \(n\) or
-an \emph{n}-vector. The number \(n\) is called the dimension of the
-vector space. Thus \(\mathbb{R}^2\) is the space of all ordered pairs of
-real numbers, \(\mathbb{R}^3\) the space of all ordered triples, and so
-on.
+\(\mathbb{R}^n\)의 원소는 차원 \(n\)의 벡터 또는 \emph{n}-벡터라고 합니다. 숫자 \(n\)은 벡터 공간의 차원이라고 합니다. 따라서 \(\mathbb{R}^2\)는 모든 순서 있는 실수 쌍의 공간이고, \(\mathbb{R}^3\)는 모든 순서 있는 실수 삼중항의 공간입니다.
 
-Example 1.1.1.
+예제 1.1.1.
 
 \begin{itemize}
 \item
-  A 2-dimensional vector: \((3, -1) \in \mathbb{R}^2\).
+  2차원 벡터: \((3, -1) \in \mathbb{R}^2\).
 \item
-  A 3-dimensional vector: \((2, 0, 5) \in \mathbb{R}^3\).
+  3차원 벡터: \((2, 0, 5) \in \mathbb{R}^3\).
 \item
-  A 1-dimensional vector: \((7) \in \mathbb{R}^1\), which corresponds to
-  the scalar \(7\) itself.
+  1차원 벡터: \((7) \in \mathbb{R}^1\), 이는 스칼라 \(7\) 자체에 해당합니다.
 \end{itemize}
 
-Vectors are often written vertically in column form, which emphasizes
-their role in matrix multiplication:
+벡터는 종종 행렬 곱셈에서의 역할을 강조하기 위해 세로 열 형태로 작성됩니다.
 
 \[\mathbf{v} = \begin{bmatrix} 2 \\ 0 \\ 5 \end{bmatrix} \in \mathbb{R}^3.\]
 
-The vertical layout makes the structure clearer when we consider linear
-combinations or multiply matrices by vectors.
+세로 레이아웃은 선형 조합을 고려하거나 행렬에 벡터를 곱할 때 구조를 더 명확하게 만듭니다.
 
-\subsubsection{Geometric Interpretation}\label{geometric-interpretation}
+\subsubsection{기하학적 해석}\label{geometric-interpretation}
 
-In \(\mathbb{R}^2\), a vector \((x_1, x_2)\) can be visualized as an
-arrow starting at the origin \((0,0)\) and ending at the point
-\((x_1, x_2)\). Its length corresponds to the distance from the origin,
-and its orientation gives a direction in the plane. In \(\mathbb{R}^3\),
-the same picture extends into three dimensions: a vector is an arrow
-from the origin to \((x_1, x_2, x_3)\). Beyond three dimensions, direct
-visualization is no longer possible, but the algebraic rules of vectors
-remain identical. Even though we cannot draw a vector in
-\(\mathbb{R}^{10}\), it behaves under addition, scaling, and
-transformation exactly as a 2- or 3-dimensional vector does. This
-abstract point of view is what allows linear algebra to apply to data
-science, physics, and machine learning, where data often lives in very
-high-dimensional spaces. Thus a vector may be regarded in three
-complementary ways:
+\(\mathbb{R}^2\)에서 벡터 \((x_1, x_2)\)는 원점 \((0,0)\)에서 시작하여 점 \((x_1, x_2)\)에서 끝나는 화살표로 시각화할 수 있습니다. 길이는 원점으로부터의 거리에 해당하며, 방향은 평면에서의 방향을 나타냅니다. \(\mathbb{R}^3\)에서는 동일한 그림이 3차원으로 확장됩니다. 즉, 벡터는 원점에서 \((x_1, x_2, x_3)\)까지의 화살표입니다. 3차원을 넘어서면 직접적인 시각화는 더 이상 불가능하지만, 벡터의 대수적 규칙은 동일하게 유지됩니다. \(\mathbb{R}^{10}\)에서 벡터를 그릴 수는 없지만, 2차원 또는 3차원 벡터와 마찬가지로 덧셈, 스케일링, 변환에서 정확하게 동일하게 동작합니다. 이러한 추상적인 관점은 선형대수학이 데이터 과학, 물리학, 기계 학습에 적용될 수 있도록 하며, 여기서 데이터는 종종 매우 고차원 공간에 존재합니다. 따라서 벡터는 세 가지 보완적인 방식으로 간주될 수 있습니다.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  As a point in space, described by its coordinates.
+  좌표로 설명되는 공간의 한 점.
 \item
-  As a displacement or arrow, described by a direction and a length.
+  방향과 길이로 설명되는 변위 또는 화살표.
 \item
-  As an abstract element of a vector space, whose properties follow
-  algebraic rules independent of geometry.
+  기하학과 무관한 대수적 규칙을 따르는 속성을 가진 벡터 공간의 추상적 요소.
 \end{enumerate}
 
-\subsubsection{Notation}\label{notation}
+\subsubsection{표기법}\label{notation}
 
 \begin{itemize}
 \item
-  Vectors are written in boldface lowercase letters:
+  벡터는 굵은 소문자로 씁니다:
   \(\mathbf{v}, \mathbf{w}, \mathbf{x}\).
 \item
-  The \emph{i}-th entry of a vector \(\mathbf{v}\) is written \(v_i\),
-  where indices begin at 1.
+  벡터 \(\mathbf{v}\)의 \emph{i}번째 항목은 \(v_i\)로 쓰며, 인덱스는 1에서 시작합니다.
 \item
-  The set of all \emph{n}-dimensional vectors over \(\mathbb{R}\) is
-  denoted \(\mathbb{R}^n\).
+  \(\mathbb{R}\) 상의 모든 \emph{n}차원 벡터 집합은 \(\mathbb{R}^n\)으로 표기합니다.
 \item
-  Column vectors will be the default form unless otherwise stated.
+  달리 명시되지 않는 한 열 벡터가 기본 형식입니다.
 \end{itemize}
 
-\subsubsection{Why begin here?}\label{why-begin-here}
+\subsubsection{왜 여기서 시작하는가?}\label{why-begin-here}
 
-Scalars and vectors form the atoms of linear algebra. Every structure we
-will build-vector spaces, linear transformations, matrices,
-eigenvalues-relies on the basic notions of number and ordered collection
-of numbers. Once vectors are understood, we can define operations such
-as addition and scalar multiplication, then generalize to subspaces,
-bases, and coordinate systems. Eventually, this framework grows into the
-full theory of linear algebra, with powerful applications to geometry,
-computation, and data.
+스칼라와 벡터는 선형대수학의 원자를 형성합니다. 우리가 만들 모든 구조(벡터 공간, 선형 변환, 행렬, 고유값)는 숫자와 순서 있는 숫자 모음의 기본 개념에 의존합니다. 벡터를 이해하면 덧셈 및 스칼라 곱셈과 같은 연산을 정의한 다음, 부분 공간, 기저, 좌표계로 일반화할 수 있습니다. 결국 이 프레임워크는 기하학, 계산 및 데이터에 대한 강력한 응용을 갖춘 완전한 선형대수학 이론으로 성장합니다.
 
-\subsubsection{Exercises 1.1}\label{exercises-11}
+\subsubsection{연습문제 1.1}\label{exercises-11}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Write three different vectors in \(\mathbb{R}^2\) and sketch them as
-  arrows from the origin. Identify their coordinates explicitly.
+  \(\mathbb{R}^2\)에서 세 개의 다른 벡터를 쓰고 원점에서 화살표로 스케치하십시오. 좌표를 명시적으로 식별하십시오.
 \item
-  Give an example of a vector in \(\mathbb{R}^4\). Can you visualize it
-  directly? Explain why high-dimensional visualization is challenging.
+  \(\mathbb{R}^4\)의 벡터 예를 드십시오. 직접 시각화할 수 있습니까? 고차원 시각화가 어려운 이유를 설명하십시오.
 \item
-  Let \(\mathbf{v} = (4, -3, 2)\). Write \(\mathbf{v}\) in column form
-  and state \(v_1, v_2, v_3\).
+  \(\mathbf{v} = (4, -3, 2)\)라고 가정합니다. \(\mathbf{v}\)를 열 형식으로 쓰고 \(v_1, v_2, v_3\)를 명시하십시오.
 \item
-  In what sense is the set \(\mathbb{R}^1\) both a line and a vector
-  space? Illustrate with examples.
+  어떤 의미에서 집합 \(\mathbb{R}^1\)은 선과 벡터 공간 둘 다입니까? 예제로 설명하십시오.
 \item
-  Consider the vector \(\mathbf{u} = (1,1,\dots,1) \in \mathbb{R}^n\).
-  What is special about this vector when \(n\) is large? What might it
-  represent in applications?
+  벡터 \(\mathbf{u} = (1,1,\dots,1) \in \mathbb{R}^n\)을 고려하십시오. \(n\)이 클 때 이 벡터의 특별한 점은 무엇입니까? 응용 분야에서 무엇을 나타낼 수 있습니까?
 \end{enumerate}
 
-\subsection{1.2 Vector Addition and Scalar
-Multiplication}\label{12-vector-addition-and-scalar-multiplication}
+\subsection{1.2 벡터 덧셈과 스칼라
+곱셈}\label{12-vector-addition-and-scalar-multiplication}
 
-Vectors in linear algebra are not static objects; their power comes from
-the operations we can perform on them. Two fundamental operations define
-the structure of vector spaces: addition and scalar multiplication.
-These operations satisfy simple but far-reaching rules that underpin the
-entire subject.
+선형대수학의 벡터는 정적인 객체가 아닙니다. 그들의 힘은 우리가 수행할 수 있는 연산에서 나옵니다. 두 가지 기본 연산이 벡터 공간의 구조를 정의합니다. 즉, 덧셈과 스칼라 곱셈입니다.
+이러한 연산은 전체 주제를 뒷받침하는 간단하지만 광범위한 규칙을 만족합니다.
 
-\subsubsection{Vector Addition}\label{vector-addition}
+\subsubsection{벡터 덧셈}\label{vector-addition}
 
-Given two vectors of the same dimension, their sum is obtained by adding
-corresponding entries. Formally, if
+동일한 차원의 두 벡터가 주어지면, 그 합은 해당 항목을 더하여 얻습니다. 공식적으로, 만약
 
 \[\mathbf{u} = (u_1, u_2, \dots, u_n), \quad 
 \mathbf{v} = (v_1, v_2, \dots, v_n),\]
 
-then their sum is
+이면, 그 합은
 
 \[\mathbf{u} + \mathbf{v} = (u_1+v_1, u_2+v_2, \dots, u_n+v_n).\]
 
-Example 1.2.1.\\
-Let \(\mathbf{u} = (2, -1, 3)\) and \(\mathbf{v} = (4, 0, -5)\). Then
+예제 1.2.1.\\
+\(\mathbf{u} = (2, -1, 3)\)이고 \(\mathbf{v} = (4, 0, -5)\)라고 가정합니다. 그러면
 
 \[\mathbf{u} + \mathbf{v} = (2+4, -1+0, 3+(-5)) = (6, -1, -2).\]
 
-Geometrically, vector addition corresponds to the \emph{parallelogram
-rule}. If we draw both vectors as arrows from the origin, then placing
-the tail of one vector at the head of the other produces the sum. The
-diagonal of the parallelogram they form represents the resulting vector.
+기하학적으로 벡터 덧셈은 \emph{평행사변형
+규칙}에 해당합니다. 두 벡터를 모두 원점에서 화살표로 그리면, 한 벡터의 꼬리를 다른 벡터의 머리에 놓으면 합이 생성됩니다. 그들이 형성하는 평행사변형의 대각선은 결과 벡터를 나타냅니다.
 
-\subsubsection{Scalar Multiplication}\label{scalar-multiplication}
+\subsubsection{스칼라 곱셈}\label{scalar-multiplication}
 
-Multiplying a vector by a scalar stretches or shrinks the vector while
-preserving its direction, unless the scalar is negative, in which case
-the vector is also reversed. If \(c \in \mathbb{R}\) and
+벡터에 스칼라를 곱하면 벡터의 방향을 유지하면서 벡터를 늘리거나 줄입니다. 단, 스칼라가 음수이면 벡터도 반전됩니다. 만약 \(c \in \mathbb{R}\)이고
 
 \[\mathbf{v} = (v_1, v_2, \dots, v_n),\]
 
-then
+이면,
 
 \[c \mathbf{v} = (c v_1, c v_2, \dots, c v_n).\]
 
-Example 1.2.2.\\
-Let \(\mathbf{v} = (3, -2)\) and \(c = -2\). Then
+예제 1.2.2.\\
+\(\mathbf{v} = (3, -2)\)이고 \(c = -2\)라고 가정합니다. 그러면
 
 \[c\mathbf{v} = -2(3, -2) = (-6, 4).\]
 
-This corresponds to flipping the vector through the origin and doubling
-its length.
+이는 벡터를 원점을 통해 뒤집고 길이를 두 배로 하는 것에 해당합니다.
 
-\subsubsection{Linear Combinations}\label{linear-combinations}
+\subsubsection{선형 조합}\label{linear-combinations}
 
-The interaction of addition and scalar multiplication allows us to form
-\emph{linear combinations}. A linear combination of vectors
-\(\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\) is any vector of the
-form
+덧셈과 스칼라 곱셈의 상호 작용을 통해 \emph{선형 조합}을 형성할 수 있습니다. 벡터
+\(\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\)의 선형 조합은 다음과 같은 형태의 벡터입니다.
 
 \[c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_k \mathbf{v}_k, \quad c_i \in \mathbb{R}.\]
 
-Linear combinations are the mechanism by which we generate new vectors
-from existing ones. The span of a set of vectors-the collection of all
-their linear combinations-will later lead us to the idea of a subspace.
+선형 조합은 기존 벡터에서 새 벡터를 생성하는 메커니즘입니다. 벡터 집합의 스팬(모든
+선형 조합의 모음)은 나중에 부분 공간의 아이디어로 이어집니다.
 
-Example 1.2.3.\\
-Let \(\mathbf{v}_1 = (1,0)\) and \(\mathbf{v}_2 = (0,1)\). Then any
-vector \((a,b)\in\mathbb{R}^2\) can be expressed as
+예제 1.2.3.\\
+\(\mathbf{v}_1 = (1,0)\)이고 \(\mathbf{v}_2 = (0,1)\)이라고 가정합니다. 그러면 \(\mathbb{R}^2\)의 모든
+벡터 \((a,b)\)는 다음과 같이 표현될 수 있습니다.
 
 \[a\mathbf{v}_1 + b\mathbf{v}_2.\]
 
-Thus \((1,0)\) and \((0,1)\) form the basic building blocks of the
-plane.
+따라서 \((1,0)\)과 \((0,1)\)은 평면의 기본 구성 요소를 형성합니다.
 
-\subsubsection{Notation}\label{notation-2}
+\subsubsection{표기법}\label{notation-2}
 
 \begin{itemize}
 \item
-  Addition: \(\mathbf{u} + \mathbf{v}\) means component-wise addition.
+  덧셈: \(\mathbf{u} + \mathbf{v}\)는 성분별 덧셈을 의미합니다.
 \item
-  Scalar multiplication: \(c\mathbf{v}\) scales each entry of
-  \(\mathbf{v}\) by \(c\).
+  스칼라 곱셈: \(c\mathbf{v}\)는 \(\mathbf{v}\)의 각 항목에 \(c\)를 곱합니다.
 \item
-  Linear combination: a sum of the form
+  선형 조합: a sum of the form
   \(c_1 \mathbf{v}_1 + \cdots + c_k \mathbf{v}_k\).
 \end{itemize}
 
-\subsubsection{Why this matters}\label{why-this-matters}
+\subsubsection{이것이 중요한 이유}\label{why-this-matters}
 
-Vector addition and scalar multiplication are the defining operations of
-linear algebra. They give structure to vector spaces, allow us to
-describe geometric phenomena like translation and scaling, and provide
-the foundation for solving systems of equations. Everything that
-follows-basis, dimension, transformations-builds on these simple but
-profound rules.
+벡터 덧셈과 스칼라 곱셈은 선형대수학의 정의적인 연산입니다. 그들은 벡터 공간에 구조를 부여하고, 변환 및 스케일링과 같은 기하학적 현상을 설명하고, 방정식 시스템을 푸는 기초를 제공합니다. 다음에 나오는 모든 것(기저, 차원, 변환)은 이러한 간단하지만
+심오한 규칙 위에 구축됩니다.
 
-\subsubsection{Exercises 1.2}\label{exercises-12}
+\subsubsection{연습문제 1.2}\label{exercises-12}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Compute \(\mathbf{u} + \mathbf{v}\) where \(\mathbf{u} = (1,2,3)\) and
-  \(\mathbf{v} = (4, -1, 0)\).
+  \(\mathbf{u} = (1,2,3)\)이고 \(\mathbf{v} = (4, -1, 0)\)일 때 \(\mathbf{u} + \mathbf{v}\)를 계산하십시오.
 \item
-  Find \(3\mathbf{v}\) where \(\mathbf{v} = (-2,5)\). Sketch both
-  vectors to illustrate the scaling.
+  \(\mathbf{v} = (-2,5)\)일 때 \(3\mathbf{v}\)를 찾으십시오. 스케일링을 설명하기 위해 두 벡터를 모두 스케치하십시오.
 \item
-  Show that \((5,7)\) can be written as a linear combination of
-  \((1,0)\) and \((0,1)\).
+  \((5,7)\)이 \((1,0)\)과 \((0,1)\)의 선형 조합으로 쓰여질 수 있음을 보이십시오.
 \item
-  Write \((4,4)\) as a linear combination of \((1,1)\) and \((1,-1)\).
+  \((4,4)\)를 \((1,1)\)과 \((1,-1)\)의 선형 조합으로 쓰십시오.
 \item
-  Prove that if \(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\), then
-  \((c+d)(\mathbf{u}+\mathbf{v}) = c\mathbf{u} + c\mathbf{v} + d\mathbf{u} + d\mathbf{v}\)
-  for scalars \(c,d \in \mathbb{R}\).
+  \(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\)이면, 스칼라 \(c,d \in \mathbb{R}\)에 대해 \((c+d)(\mathbf{u}+\mathbf{v}) = c\mathbf{u} + c\mathbf{v} + d\mathbf{u} + d\mathbf{v}\)임을 증명하십시오.
 \end{enumerate}
 
-\subsection{1.3 Dot Product, Norms, and
-Angles}\label{13-dot-product-norms-and-angles}
+\subsection{1.3 내적, 노름, 그리고
+각도}\label{13-dot-product-norms-and-angles}
 
-The dot product is the fundamental operation that links algebra and
-geometry in vector spaces. It allows us to measure lengths, compute
-angles, and determine orthogonality. From this single definition flow
-the notions of \emph{norm} and \emph{angle}, which give geometry to
-abstract vector spaces.
+내적은 벡터 공간에서 대수와
+기하학을 연결하는 기본 연산입니다. 길이를 측정하고, 각도를 계산하고, 직교성을 결정할 수 있습니다. 이 단일 정의에서 \emph{노름}과 \emph{각도}의 개념이 나오며, 이는 추상 벡터 공간에 기하학을 부여합니다.
 
-\subsubsection{The Dot Product}\label{the-dot-product}
+\subsubsection{내적}\label{the-dot-product}
 
-For two vectors in \(\mathbb{R}^n\), the dot product (also called the
-inner product) is defined by
+\(\mathbb{R}^n\)의 두 벡터에 대한 내적(내부 곱이라고도 함)은 다음과 같이 정의됩니다.
 
 \[\mathbf{u} \cdot \mathbf{v} = u_1 v_1 + u_2 v_2 + \cdots + u_n v_n.\]
 
-Equivalently, in matrix notation:
+행렬 표기법에서는 다음과 같습니다.
 
 \[\mathbf{u} \cdot \mathbf{v} = \mathbf{u}^T \mathbf{v}.\]
 
-Example 1.3.1.\\
-Let \(\mathbf{u} = (2, -1, 3)\) and \(\mathbf{v} = (4, 0, -2)\). Then
+예제 1.3.1.\\
+\(\mathbf{u} = (2, -1, 3)\)이고 \(\mathbf{v} = (4, 0, -2)\)라고 가정합니다. 그러면
 
 \[\mathbf{u} \cdot \mathbf{v} = 2\cdot 4 + (-1)\cdot 0 + 3\cdot (-2) = 8 - 6 = 2.\]
 
-The dot product outputs a single scalar, not another vector.
+내적은 다른 벡터가 아닌 단일 스칼라를 출력합니다.
 
-\subsubsection{Norms (Length of a
-Vector)}\label{norms-length-of-a-vector}
+\subsubsection{노름 (벡터의
+길이)}\label{norms-length-of-a-vector}
 
-The \emph{Euclidean norm} of a vector is the square root of its dot
-product with itself:
+벡터의 \emph{유클리드 노름}은 자신과의 내적의 제곱근입니다.
 
 \[\|\mathbf{v}\| = \sqrt{\mathbf{v} \cdot \mathbf{v}} = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2}.\]
 
-This generalizes the Pythagorean theorem to arbitrary dimensions.
+이는 피타고라스 정리를 임의의 차원으로 일반화합니다.
 
-Example 1.3.2.\\
-For \(\mathbf{v} = (3, 4)\),
+예제 1.3.2.\\
+\(\mathbf{v} = (3, 4)\)에 대해,
 
 \[\|\mathbf{v}\| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5.\]
 
-This is exactly the length of the vector as an arrow in the plane.
+이것은 평면에서 화살표로서의 벡터의 길이와 정확히 같습니다.
 
-\subsubsection{Angles Between Vectors}\label{angles-between-vectors}
+\subsubsection{벡터 간의 각도}\label{angles-between-vectors}
 
-The dot product also encodes the angle between two vectors. For nonzero
-vectors \(\mathbf{u}, \mathbf{v}\),
+내적은 또한 두 벡터 사이의 각도를 인코딩합니다. 0이 아닌 벡터 \(\mathbf{u}, \mathbf{v}\)에 대해,
 
 \[\mathbf{u} \cdot \mathbf{v} = \|\mathbf{u}\| \, \|\mathbf{v}\| \cos \theta,\]
 
-where \(\theta\) is the angle between them. Thus,
+여기서 \(\theta\)는 두 벡터 사이의 각도입니다. 따라서,
 
 \[\cos \theta = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|\|\mathbf{v}\|}.\]
 
-Example 1.3.3.\\
-Let \(\mathbf{u} = (1,0)\) and \(\mathbf{v} = (0,1)\). Then
+예제 1.3.3.\\
+\(\mathbf{u} = (1,0)\)이고 \(\mathbf{v} = (0,1)\)이라고 가정합니다. 그러면
 
 \[\mathbf{u} \cdot \mathbf{v} = 0, \quad \|\mathbf{u}\| = 1, \quad \|\mathbf{v}\| = 1.\]
 
-Hence
+따라서
 
 \[\cos \theta = \frac{0}{1\cdot 1} = 0 \quad \Rightarrow \quad \theta = \frac{\pi}{2}.\]
 
-The vectors are perpendicular.
+벡터는 수직입니다.
 
-\subsubsection{Orthogonality}\label{orthogonality}
+\subsubsection{직교성}\label{orthogonality}
 
-Two vectors are said to be orthogonal if their dot product is zero:
+두 벡터의 내적이 0이면 직교한다고 합니다.
 
 \[\mathbf{u} \cdot \mathbf{v} = 0.\]
 
-Orthogonality generalizes the idea of perpendicularity from geometry to
-higher dimensions.
+직교성은 기하학에서 수직성의 개념을 고차원으로 일반화합니다.
 
-\subsubsection{Notation}\label{notation-3}
+\subsubsection{표기법}\label{notation-3}
 
 \begin{itemize}
 \item
-  Dot product: \(\mathbf{u} \cdot \mathbf{v}\).
+  내적: \(\mathbf{u} \cdot \mathbf{v}\).
 \item
-  Norm (length): \(|\mathbf{v}|\).
+  노름 (길이): \(|\mathbf{v}|\).
 \item
-  Orthogonality: \(\mathbf{u} \perp \mathbf{v}\) if
-  \(\mathbf{u} \cdot \mathbf{v} = 0\).
+  직교성: \(\mathbf{u} \cdot \mathbf{v} = 0\)이면 \(\mathbf{u} \perp \mathbf{v}\).
 \end{itemize}
 
-\subsubsection{Why this matters}\label{why-this-matters-2}
+\subsubsection{이것이 중요한 이유}\label{why-this-matters-2}
 
-The dot product turns vector spaces into geometric objects: vectors gain
-lengths, angles, and notions of perpendicularity. This foundation will
-later support the study of orthogonal projections, Gram--Schmidt
-orthogonalization, eigenvectors, and least squares problems.
+내적은 벡터 공간을 기하학적 객체로 바꿉니다. 벡터는 길이, 각도, 수직성의 개념을 얻습니다. 이 기초는 나중에 직교 투영, 그람-슈미트
+직교화, 고유 벡터 및 최소 제곱 문제 연구를 지원합니다.
 
-\subsubsection{Exercises 1.3}\label{exercises-13}
+\subsubsection{연습문제 1.3}\label{exercises-13}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Compute \(\mathbf{u} \cdot \mathbf{v}\) for \(\mathbf{u} = (1,2,3)\),
-  \(\mathbf{v} = (4,5,6)\).
+  \(\mathbf{u} = (1,2,3)\), \(\mathbf{v} = (4,5,6)\)에 대해 \(\mathbf{u} \cdot \mathbf{v}\)를 계산하십시오.
 \item
-  Find the norm of \(\mathbf{v} = (2, -2, 1)\).
+  \(\mathbf{v} = (2, -2, 1)\)의 노름을 찾으십시오.
 \item
-  Determine whether \(\mathbf{u} = (1,1,0)\) and
-  \(\mathbf{v} = (1,-1,2)\) are orthogonal.
+  \(\mathbf{u} = (1,1,0)\)과 \(\mathbf{v} = (1,-1,2)\)가 직교하는지 확인하십시오.
 \item
-  Let \(\mathbf{u} = (3,4)\), \(\mathbf{v} = (4,3)\). Compute the angle
-  between them.
+  \(\mathbf{u} = (3,4)\), \(\mathbf{v} = (4,3)\)이라고 가정합니다. 두 벡터 사이의 각도를 계산하십시오.
 \item
   Prove that
   \(|\mathbf{u} + \mathbf{v}|^2 = |\mathbf{u}|^2 + |\mathbf{v}|^2 + 2\mathbf{u}\cdot \mathbf{v}\).
-  This identity is the algebraic version of the Law of Cosines.
+  이 항등식은 코사인 법칙의 대수적 버전입니다.
 \end{enumerate}
 
-\subsection{1.4 Orthogonality}\label{14-orthogonality}
+\subsection{1.4 직교성}\label{14-orthogonality}
 
-Orthogonality captures the notion of perpendicularity in vector spaces.
-It is one of the most important geometric ideas in linear algebra,
-allowing us to decompose vectors, define projections, and construct
-special bases with elegant properties.
+직교성은 벡터 공간에서 수직성의 개념을 포착합니다.
+선형대수학에서 가장 중요한 기하학적 아이디어 중 하나로,
+벡터를 분해하고, 투영을 정의하고, 우아한 속성을 가진 특별한 기저를 구성할 수 있습니다.
 
-\subsubsection{Definition}\label{definition}
+\subsubsection{정의}\label{definition}
 
-Two vectors \(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\) are said to be
-orthogonal if their dot product is zero:
+두 벡터 \(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\)는 내적이 0이면 직교한다고 합니다.
 
 \[\mathbf{u} \cdot \mathbf{v} = 0.\]
 
-This condition ensures that the angle between them is \(\pi/2\) radians
-(90 degrees).
+이 조건은 두 벡터 사이의 각도가 \(\pi/2\) 라디안
+(90도)임을 보장합니다.
 
-Example 1.4.1.\\
-In \(\mathbb{R}^2\), the vectors \((1,2)\) and \((2,-1)\) are orthogonal
-since
+예제 1.4.1.\\
+\(\mathbb{R}^2\)에서 벡터 \((1,2)\)와 \((2,-1)\)은 직교합니다.
 
 \[(1,2) \cdot (2,-1) = 1\cdot 2 + 2\cdot (-1) = 0.\]
 
-\subsubsection{Orthogonal Sets}\label{orthogonal-sets}
+\subsubsection{직교 집합}\label{orthogonal-sets}
 
-A collection of vectors is called orthogonal if every distinct pair of
-vectors in the set is orthogonal. If, in addition, each vector has norm
-1, the set is called orthonormal.
+벡터 모음은 집합의 모든 서로 다른 벡터 쌍이
+직교하면 직교 집합이라고 합니다. 만약,
+추가적으로 각 벡터의 노름이 1이면, 그 집합은 정규직교 집합이라고 합니다.
 
-Example 1.4.2.\\
-In \(\mathbb{R}^3\), the standard basis vectors
+예제 1.4.2.\\
+\(\mathbb{R}^3\)에서 표준 기저 벡터
 
 \[\mathbf{e}_1 = (1,0,0), \quad \mathbf{e}_2 = (0,1,0), \quad \mathbf{e}_3 = (0,0,1)\]
 
-form an orthonormal set: each has length 1, and their dot products
-vanish when the indices differ.
+는 정규직교 집합을 형성합니다. 각 벡터의 길이는 1이고, 인덱스가 다를 때 내적은 0이 됩니다.
 
-\subsubsection{Projections}\label{projections}
+\subsubsection{투영}\label{projections}
 
-Orthogonality makes possible the decomposition of a vector into two
-components: one parallel to another vector, and one orthogonal to it.
-Given a nonzero vector \(\mathbf{u}\) and any vector \(\mathbf{v}\), the
-projection of \(\mathbf{v}\) onto \(\mathbf{u}\) is
+직교성을 사용하면 벡터를 두 구성 요소로 분해할 수 있습니다. 하나는 다른 벡터에 평행하고 다른 하나는 직교합니다.
+0이 아닌 벡터 \(\mathbf{u}\)와 임의의 벡터 \(\mathbf{v}\)가 주어지면, \(\mathbf{v}\)의 \(\mathbf{u}\)에 대한 투영은 다음과 같습니다.
 
 \[\text{proj}_{\mathbf{u}}(\mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\mathbf{u} \cdot \mathbf{u}} \mathbf{u}.\]
 
@@ -567,17 +481,14 @@ regression, PCA) rely on orthogonality.
   then \((\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v}) = 0\).
 \end{enumerate}
 
-\section{Chapter 2. Matrices}\label{chapter-2-matrices}
+\section{제2장. 행렬}\label{chapter-2-matrices}
 
-\subsection{2.1 Definition and
-Notation}\label{21-definition-and-notation}
+\subsection{2.1 정의와
+표기법}\label{21-definition-and-notation}
 
-Matrices are the central objects of linear algebra, providing a compact
-way to represent and manipulate linear transformations, systems of
-equations, and structured data. A matrix is a rectangular array of
-numbers arranged in rows and columns.
+행렬은 선형대수학의 중심 객체로, 선형 변환, 방정식 시스템, 구조화된 데이터를 간결하게 표현하고 조작하는 방법을 제공합니다. 행렬은 행과 열로 배열된 숫자의 직사각형 배열입니다.
 
-\subsubsection{Formal Definition}\label{formal-definition}
+\subsubsection{공식 정의}\label{formal-definition}
 
 An \(m \times n\) matrix is an array with \(m\) rows and \(n\) columns,
 written
@@ -675,8 +586,8 @@ numerical data and functional rules.
   \(e_{11}, e_{12}, e_{21}, e_{22}\) explicitly.
 \end{enumerate}
 
-\subsection{2.2 Matrix Addition and
-Multiplication}\label{22-matrix-addition-and-multiplication}
+\subsection{2.2 행렬 덧셈과
+곱셈}\label{22-matrix-addition-and-multiplication}
 
 Once matrices are defined, the next step is to understand how they
 combine. Just as vectors gain meaning through addition and scalar
@@ -855,7 +766,7 @@ B = \begin{bmatrix} 2 & 1 \\ 0 & -1 \\ 3 & 4 \end{bmatrix}.\]
   \(A(B+C) = AB + AC\).
 \end{enumerate}
 
-\subsection{2.3 Transpose and Inverse}\label{23-transpose-and-inverse}
+\subsection{2.3 전치와 역행렬}\label{23-transpose-and-inverse}
 
 Two special operations on matrices-the transpose and the inverse-give
 rise to deep algebraic and geometric properties. The transpose
@@ -1033,7 +944,7 @@ and explain its geometric action on vectors in the plane.
   \((A^T)^{-1} = (A^{-1})^T\).
 \end{enumerate}
 
-\subsection{2.4 Special Matrices}\label{24-special-matrices}
+\subsection{2.4 특수 행렬}\label{24-special-matrices}
 
 Certain matrices occur so frequently in theory and applications that
 they are given special names. Recognizing their properties allows us to
@@ -1182,11 +1093,10 @@ B = \begin{bmatrix} 0 & 5 \\ -5 & 0 \end{bmatrix}\]
 
 are symmetric, skew-symmetric, or neither.
 
-\section{Chapter 3. Systems of Linear
-Equations}\label{chapter-3-systems-of-linear-equations}
+\section{제3장. 선형 방정식 시스템}\label{chapter-3-systems-of-linear-equations}
 
-\subsection{3.1 Linear Systems and
-Solutions}\label{31-linear-systems-and-solutions}
+\subsection{3.1 선형 시스템과
+해}\label{31-linear-systems-and-solutions}
 
 One of the central motivations for linear algebra is solving systems of
 linear equations. These systems arise naturally in science, engineering,
@@ -1863,7 +1773,7 @@ x - y + z = 0, \\
 
 compute a basis for the null space of \(A\).
 
-\section{Chapter 4. Vector Spaces}\label{chapter-4-vector-spaces}
+\section{제4장. 벡터 공간}\label{chapter-4-vector-spaces}
 
 \subsection{4.1 Definition of a Vector
 Space}\label{41-definition-of-a-vector-space}
@@ -2320,8 +2230,8 @@ algebra, and computation.
   unique.
 \end{enumerate}
 
-\section{Chapter 5. Linear
-Transformations}\label{chapter-5-linear-transformations}
+\section{제5장. 선형
+변환}\label{chapter-5-linear-transformations}
 
 \subsection{5.1 Functions that Preserve
 Linearity}\label{51-functions-that-preserve-linearity}
@@ -2783,7 +2693,7 @@ system-whether in geometry, physics, or machine learning.
   change-of-basis matrix \(P\) and compute \(P^{-1}\).
 \end{enumerate}
 
-\section{Chapter 6. Determinants}\label{chapter-6-determinants}
+\section{제6장. 행렬식}\label{chapter-6-determinants}
 
 \subsection{6.1 Motivation and Geometric
 Meaning}\label{61-motivation-and-geometric-meaning}
@@ -3285,8 +3195,8 @@ calculus), and computation (solving systems and checking singularity).
   exists.
 \end{enumerate}
 
-\section{Chapter 7. Inner Product
-Spaces}\label{chapter-7-inner-product-spaces}
+\section{제7장. 내적
+공간}\label{chapter-7-inner-product-spaces}
 
 \subsection{7.1 Inner Products and
 Norms}\label{71-inner-products-and-norms}
@@ -3761,8 +3671,8 @@ maximum variance.
   arbitrary bases in computations.
 \end{enumerate}
 
-\section{Chapter 8. Eigenvalues and
-eigenvectors}\label{chapter-8-eigenvalues-and-eigenvectors}
+\section{제8장. 고유값과
+고유벡터}\label{chapter-8-eigenvalues-and-eigenvectors}
 
 \subsection{8.1 Definitions and
 Intuition}\label{81-definitions-and-intuition}
@@ -4271,8 +4181,8 @@ algorithms from Google's PageRank to modern machine learning.
   \(|\lambda| \leq 1\).
 \end{enumerate}
 
-\section{Chapter 9. Quadratic Forms and Spectral
-Theorems}\label{chapter-9-quadratic-forms-and-spectral-theorems}
+\section{제9장. 이차 형식과 스펙트럼
+정리}\label{chapter-9-quadratic-forms-and-spectral-theorems}
 
 \subsection{9.1 Quadratic Forms}\label{91-quadratic-forms}
 
@@ -4791,8 +4701,7 @@ of the most important algorithms derived from the spectral theorem.
   the total variance of the dataset.
 \end{enumerate}
 
-\section{Chapter 10. Linear Algebra in
-Practice}\label{chapter-10-linear-algebra-in-practice}
+\section{제10장. 실제 선형대수학}\label{chapter-10-linear-algebra-in-practice}
 
 \subsection{10.1 Computer Graphics (Rotations,
 Projections)}\label{101-computer-graphics-rotations-projections}
