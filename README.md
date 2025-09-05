@@ -4,9 +4,99 @@ A concise, beginner-friendly introduction to the core ideas of linear algebra.
 
 ## Formats
 
-- [Download PDF](book.pdf) – print-ready version
-- [Download EPUB](book.epub) – e-reader friendly
-- [View LaTeX](book.tex) – Latex source
+- [Download PDF](./book.pdf) – print-ready version
+- [Download EPUB](./book.epub) – e-reader friendly
+- [View LaTeX](./book.tex) – Latex source
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
+- [View Markdown](./book.md) - Converted to markdown
 
 # Chapter 1. Vectors
 
