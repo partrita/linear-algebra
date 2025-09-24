@@ -1,6 +1,87 @@
 name: Release PDF (Korean Translation)
 
 on:
+  push:
+    branches:
+      - translate-book-to-korean
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Korean system fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-nanum fonts-noto-cjk
+
+      # Compile using texlive-action; run xelatex commands directly
+      - name: Compile LaTeX document
+        uses: xu-cheng/texlive-action@v2
+        with:
+          scheme: full
+          texlive_version: '2024'
+          run: |
+            xelatex -interaction=nonstopmode -halt-on-error book_ko.tex
+            xelatex -interaction=nonstopmode -halt-on-error book_ko.tex
+
+      # Ensure the built PDF exists
+      - name: List workspace for PDF
+        run: ls -l
+
+      # Delete existing release and tag with the same name (if any)
+      - name: Delete existing release & tag (if present)
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const tag = 'latest-korean-build'
+            try {
+              // Find release by tag
+              const releases = await github.rest.repos.listReleases({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              })
+              for (const r of releases.data) {
+                if (r.tag_name === tag) {
+                  await github.rest.repos.deleteRelease({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    release_id: r.id,
+                  })
+                }
+              }
+              // Delete tag ref if exists
+              try {
+                await github.rest.git.deleteRef({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ref: `tags/${tag}`,
+                })
+              } catch (e) {
+                // ignore if tag doesn't exist
+              }
+            } catch (error) {
+              core.info(`Delete existing release/tag step encountered an error: ${error}`)
+            }
+
+      # Create a release and upload the PDF
+      - name: Create Release and upload PDF
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: "latest-korean-build"
+          name: "Latest Korean Build"
+          body: "최신 PDF 빌드입니다."
+          files: book_ko.pdf
+name: Release PDF (Korean Translation)
+
+on:
   # 'translate-book-to-korean' 브랜치에 push가 있을 때 워크플로우를 실행합니다.
   push:
     branches:
@@ -39,6 +120,52 @@ jobs:
           # 릴리스 설명
           body: "최신 PDF 빌드입니다."
           # 업로드할 파일
-          files: book.pdf
+          files: book_ko.pdf
           # 동일한 태그가 이미 존재하면 덮어씁니다.
-          overwrite: true
+          name: Release PDF (Korean Translation)
+
+          on:
+            # 'translate-book-to-korean' 브랜치에 push가 있을 때 워크플로우를 실행합니다.
+            push:
+              branches:
+                - translate-book-to-korean
+  
+            # GitHub Actions 탭에서 수동으로 워크플로우를 실행할 수 있도록 합니다.
+            workflow_dispatch:
+
+          jobs:
+            release:
+              runs-on: ubuntu-latest
+              steps:
+                # 1. 워크플로우를 트리거한 브랜치(translate-book-to-korean)의 코드를 체크아웃합니다.
+                - name: Check out repository
+                  uses: actions/checkout@v4
+
+                # 2. 한글 지원을 포함하여 LaTeX 문서를 PDF로 컴파일합니다.
+                # Note: xu-cheng/texlive-action@v2 no longer accepts 'root_file', 'latex_engine', or
+                # 'extra_system_packages' inputs. Use 'scheme' (to include many packages) and
+                # 'run' to execute the xelatex command.
+                - name: Compile LaTeX document
+                  uses: xu-cheng/texlive-action@v2
+                  with:
+                    # Use a comprehensive scheme so needed packages are available
+                    scheme: full
+                    # (Optional) pin a texlive version; using latest known year is fine.
+                    texlive_version: '2024'
+                    # Run xelatex twice to resolve references; adjust flags as needed.
+                    run: |
+                      xelatex -interaction=nonstopmode -halt-on-error book_ko.tex
+                      xelatex -interaction=nonstopmode -halt-on-error book_ko.tex
+
+                # 3. 컴파일된 PDF 파일을 GitHub Release에 업로드합니다.
+                - name: Create/Update Latest Release
+                  uses: softprops/action-gh-release@v1
+                  with:
+                    # 릴리스 태그 이름
+                    tag_name: "latest-korean-build"
+                    # 릴리스 이름
+                    name: "Latest Korean Build"
+                    # 릴리스 설명
+                    body: "최신 PDF 빌드입니다."
+                    # 업로드할 파일
+                    files: book_ko.pdf
