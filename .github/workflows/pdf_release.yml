@@ -1,42 +1,82 @@
 name: Release PDF (Korean Translation)
 
 on:
-  # 'translate-book-to-korean' 브랜치에 push가 있을 때 워크플로우를 실행합니다.
   push:
     branches:
       - translate-book-to-korean
-  
-  # GitHub Actions 탭에서 수동으로 워크플로우를 실행할 수 있도록 합니다.
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      # 1. 워크플로우를 트리거한 브랜치(translate-book-to-korean)의 코드를 체크아웃합니다.
       - name: Check out repository
         uses: actions/checkout@v4
 
-      # 2. 한글 지원을 포함하여 LaTeX 문서를 PDF로 컴파일합니다.
+      - name: Install Korean system fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-nanum fonts-noto-cjk
+
       - name: Compile LaTeX document
         uses: xu-cheng/texlive-action@v2
         with:
-          # 컴파일할 메인 tex 파일
-          root_file: book_ko.tex
-          # 한글 및 유니코드 지원을 위해 xelatex 엔진 사용
-          latex_engine: xelatex
-          # 한글(ko.tex) 및 추가 폰트, 패키지를 설치합니다.
-          extra_system_packages: "texlive-lang-korean texlive-fonts-extra texlive-latex-extra texlive-science"
+          scheme: full
+          texlive_version: '2024'
+          run: |
+            xelatex -interaction=nonstopmode -halt-on-error book_ko.tex
+            xelatex -interaction=nonstopmode -halt-on-error book_ko.tex
 
-      # 3. 컴파일된 PDF 파일을 GitHub Release에 업로드합니다.
-      - name: Create/Update Latest Release
+      - name: List workspace and check for PDF
+        run: |
+          echo "Listing files in workspace:"
+          ls -la
+          if [ ! -f book_ko.pdf ]; then
+            echo "ERROR: book_ko.pdf not found after build"
+            exit 1
+          fi
+
+      - name: Delete existing release & tag (if present)
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const tag = 'latest-korean-build'
+            try {
+              const releases = await github.rest.repos.listReleases({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              })
+              for (const r of releases.data) {
+                if (r.tag_name === tag) {
+                  await github.rest.repos.deleteRelease({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    release_id: r.id,
+                  })
+                }
+              }
+              try {
+                await github.rest.git.deleteRef({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ref: `tags/${tag}`,
+                })
+              } catch (e) {
+                // tag may not exist; ignore
+                console.log('Tag deletion skipped or failed (may not exist):', e.message)
+              }
+            } catch (error) {
+              console.log('Error while deleting existing release/tag:', error.message)
+            }
+
+      - name: Create Release and upload PDF
         uses: softprops/action-gh-release@v1
         with:
-          # 릴리스 태그 이름
           tag_name: "latest-korean-build"
-          # 릴리스 이름
           name: "Latest Korean Build"
-          # 릴리스 설명
           body: "최신 PDF 빌드입니다."
-          # 업로드할 파일
           files: book_ko.pdf
