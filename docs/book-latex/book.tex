@@ -25158,7 +25158,7 @@ matrices.
 
 \begin{verbatim}
 Eigenvalues: [12.83286783  2.13019807 -2.9630659 ]
-Sum of eigenvalues = 12.000000000000007
+Sum of eigenvalues = 12.000000000000004
 Trace = 12
 \end{verbatim}
 
@@ -25554,7 +25554,7 @@ multiplication with and without vectorization.
 
 \begin{verbatim}
 Vectorized dot: 0.0 seconds
-Triple loop: 0.026 seconds
+Triple loop: 0.035 seconds
 \end{verbatim}
 
 The vectorized version should be thousands of times faster.
@@ -25619,7 +25619,7 @@ For large computations, data type matters.
 
 \begin{verbatim}
 Result shape: (1000, 1000) dtype: float32
-Time: 0.002 seconds
+Time: 0.004 seconds
 \end{verbatim}
 
 Using \texttt{float32} instead of \texttt{float64} halves memory use and
@@ -30645,7 +30645,7 @@ losing information.
 \end{Shaded}
 
 \begin{verbatim}
-Determinant: 1.0000000000000002
+Determinant: 1.0000000000000009
 Inverse:
  [[ 3. -1.]
  [-5.  2.]]
@@ -31246,7 +31246,7 @@ R = 2P - I
 \end{Shaded}
 
 \begin{verbatim}
-Reflection of v across line u: [ 5.0000000e+00 -4.4408921e-16]
+Reflection of v across line u: [ 5.00000000e+00 -5.55111512e-16]
 \end{verbatim}
 
 \begin{enumerate}
@@ -33058,7 +33058,7 @@ Diagonal entries all nonzero → invertible.
 \end{Shaded}
 
 \begin{verbatim}
-det(A): 1.0000000000000002
+det(A): 1.0000000000000009
 Inverse:
  [[ 3. -1.]
  [-5.  2.]]
@@ -33369,7 +33369,7 @@ Walkthrough}\label{step-by-step-code-walkthrough-57}
 
 \begin{verbatim}
 Permutation formula det: 0
-NumPy det: -9.51619735392994e-16
+NumPy det: 0.0
 \end{verbatim}
 
 Both results ≈ 0, since rows are dependent.
@@ -33745,7 +33745,7 @@ det via LU product: -3
 \end{Shaded}
 
 \begin{verbatim}
-NumPy det: -3.000000000000001
+NumPy det: -2.9999999999999996
 \end{verbatim}
 
 NumPy uses optimized routines (LAPACK under the hood).
@@ -33767,7 +33767,7 @@ NumPy uses optimized routines (LAPACK under the hood).
 \end{Shaded}
 
 \begin{verbatim}
-NumPy det (5x5): 0.009658225505885114
+NumPy det (5x5): 0.00965822550588513
 \end{verbatim}
 
 Computes quickly even for larger matrices.
@@ -33791,7 +33791,7 @@ floating-point errors. For example, if rows are nearly dependent:
 \end{Shaded}
 
 \begin{verbatim}
-det(C): -4.996003624823549e-23
+det(C): 0.0
 \end{verbatim}
 
 The result may not be exactly 0 due to floating-point approximations.
@@ -36074,9 +36074,9 @@ Q (orthonormal basis):
  [-0.82070726 -0.38684608 -0.42046368]
  [-0.430037   -0.06628079  0.90037494]]
 Check Q^T Q = I:
- [[1.00000000e+00 5.55111512e-17 5.55111512e-17]
- [5.55111512e-17 1.00000000e+00 3.47849792e-17]
- [5.55111512e-17 3.47849792e-17 1.00000000e+00]]
+ [[ 1.00000000e+00 -1.29639194e-16 -1.91943696e-17]
+ [-1.29639194e-16  1.00000000e+00  5.38253498e-17]
+ [-1.91943696e-17  5.38253498e-17  1.00000000e+00]]
 \end{verbatim}
 
 \subsubsection{Try It Yourself}\label{try-it-yourself-170}
@@ -36851,7 +36851,7 @@ Walkthrough}\label{step-by-step-code-walkthrough-76}
 \begin{verbatim}
 Q (orthonormal basis):
  [[-5.77350269e-01  7.07106781e-01]
- [-5.77350269e-01 -1.73054947e-16]
+ [-5.77350269e-01  5.55111512e-17]
  [-5.77350269e-01 -7.07106781e-01]]
 R (upper triangular):
  [[-1.73205081 -3.46410162]
@@ -36917,7 +36917,7 @@ The answers should match closely.
 
 \begin{verbatim}
 Residual vector: [ 1. -2.  1.]
-Check orthogonality (Q^T r): [0.00000000e+00 3.46109895e-16]
+Check orthogonality (Q^T r): [-1.44328993e-15 -1.22124533e-15]
 \end{verbatim}
 
 Residual is orthogonal to the column space, confirming correctness.
@@ -37113,8 +37113,8 @@ Q (random orthogonal):
  [-0.52236172  0.74141714  0.42123492]]
 Check Q^T Q ≈ I:
  [[ 1.  0. -0.]
- [ 0.  1. -0.]
- [-0. -0.  1.]]
+ [ 0.  1.  0.]
+ [-0.  0.  1.]]
 \end{verbatim}
 
 \subsubsection{Try It Yourself}\label{try-it-yourself-176}
@@ -37238,7 +37238,7 @@ Peaks appear at 3Hz and 5Hz → the frequencies of the original signal.
 \end{Shaded}
 
 \begin{verbatim}
-Reconstruction error: 1.4664679821708477e-15
+Reconstruction error: 1.786526604658442e-15
 \end{verbatim}
 
 Error is near zero → perfect reconstruction.
@@ -37262,7 +37262,7 @@ Error is near zero → perfect reconstruction.
 \end{Shaded}
 
 \begin{verbatim}
-Inner product of 3Hz and 5Hz sinusoids: 1.2961853812498703e-14
+Inner product of 3Hz and 5Hz sinusoids: 1.2982670494210424e-14
 \end{verbatim}
 
 The result is ≈ 0 → confirms orthogonality.
@@ -37543,7 +37543,7 @@ U:
 Singular values: [3.46410162 3.16227766]
 V^T:
  [[-4.08248290e-01 -8.16496581e-01 -4.08248290e-01]
- [-8.94427191e-01  4.47213595e-01  5.27355937e-16]
+ [-8.94427191e-01  4.47213595e-01  5.26260748e-16]
  [-1.82574186e-01 -3.65148372e-01  9.12870929e-01]]
 \end{verbatim}
 
@@ -37576,7 +37576,7 @@ V^T:
 \end{Shaded}
 
 \begin{verbatim}
-Reconstruction error: 1.5895974606912448e-15
+Reconstruction error: 1.709166621382058e-15
 \end{verbatim}
 
 The error should be near zero.
@@ -37957,12 +37957,12 @@ Notice: singular values from SVD = square roots of eigenvalues of
 \end{Shaded}
 
 \begin{verbatim}
-Eigenvalues of A A^T: [ 5.30277564e+00  1.69722436e+00 -2.01266546e-17]
+Eigenvalues of A A^T: [ 5.30277564e+00  1.69722436e+00 -2.15148422e-17]
 Square roots: [2.30277564 1.30277564        nan]
 \end{verbatim}
 
 \begin{verbatim}
-/var/folders/_g/lq_pglm508df70x751kkxrl80000gp/T/ipykernel_31637/436251338.py:5: RuntimeWarning: invalid value encountered in sqrt
+/tmp/ipykernel_329529/436251338.py:5: RuntimeWarning: invalid value encountered in sqrt
   print("Square roots:", np.sqrt(np.sort(eigvals2)[::-1]))
 \end{verbatim}
 
@@ -38129,7 +38129,7 @@ Only the first \textasciitilde5 should be large; the rest close to zero.
 \end{Shaded}
 
 \begin{verbatim}
-Rank-1 approximation error: 65.36149641872869
+Rank-1 approximation error: 65.36149641872868
 \end{verbatim}
 
 \begin{enumerate}
@@ -38150,7 +38150,7 @@ Rank-1 approximation error: 65.36149641872869
 \end{Shaded}
 
 \begin{verbatim}
-Rank-5 approximation error: 5.756573247253659e-14
+Rank-5 approximation error: 6.37596738696176e-14
 \end{verbatim}
 
 \begin{enumerate}
@@ -38712,8 +38712,8 @@ Condition number = ratio of singular values → moderate size.
 \end{Shaded}
 
 \begin{verbatim}
-Solution: [ 2.00000000e+00 -5.73526099e-13]
-Condition number: 40002.000075017124
+Solution: [ 2.00000000e+00 -7.20128227e-17]
+Condition number: 40002.0000750375
 \end{verbatim}
 
 Condition number is very large → instability.
@@ -38758,7 +38758,7 @@ The solution changes drastically → shows sensitivity.
 
 \begin{verbatim}
 Singular values: [2.000050e+00 4.999875e-05]
-Condition number (SVD): 40002.00007501713
+Condition number (SVD): 40002.0000750375
 \end{verbatim}
 
 \begin{enumerate}
@@ -38905,7 +38905,7 @@ Walkthrough}\label{step-by-step-code-walkthrough-87}
 
 \begin{verbatim}
 Frobenius norm: 7.810249675906654
-Spectral norm: 6.813953458914004
+Spectral norm: 6.813953458914003
 1-norm: 9.0
 Infinity norm: 9.0
 \end{verbatim}
@@ -38927,8 +38927,8 @@ Infinity norm: 9.0
 \end{Shaded}
 
 \begin{verbatim}
-Largest singular value: 6.813953458914004
-Spectral norm: 6.813953458914004
+Largest singular value: 6.8139534589140025
+Spectral norm: 6.813953458914003
 \end{verbatim}
 
 They match → spectral norm = largest singular value.
@@ -38953,7 +38953,7 @@ They match → spectral norm = largest singular value.
 \end{Shaded}
 
 \begin{verbatim}
-Frobenius norm (from SVD): 7.810249675906654
+Frobenius norm (from SVD): 7.810249675906653
 \end{verbatim}
 
 \begin{enumerate}
@@ -38977,7 +38977,7 @@ Pick a random vector and see how much it grows:
 
 \begin{verbatim}
 Stretch factor: 2.7537463268177698
-Spectral norm (max possible stretch): 6.813953458914004
+Spectral norm (max possible stretch): 6.813953458914003
 \end{verbatim}
 
 The stretch ≤ spectral norm, always.
@@ -39083,7 +39083,7 @@ Walkthrough}\label{step-by-step-code-walkthrough-88}
 \end{Shaded}
 
 \begin{verbatim}
-Least squares solution: [ 2.00000000e+00 -2.84186735e-14]
+Least squares solution: [2.0000000e+00 4.6705917e-17]
 \end{verbatim}
 
 The result may be unstable.
@@ -39760,9 +39760,9 @@ End effector position: [1.80244213 2.8631023  0.        ]
 \end{Shaded}
 
 \begin{verbatim}
-/var/folders/_g/lq_pglm508df70x751kkxrl80000gp/T/ipykernel_31637/2038614107.py:8: RuntimeWarning: divide by zero encountered in divide
+/tmp/ipykernel_329529/2038614107.py:8: RuntimeWarning: divide by zero encountered in divide
   proj2d = proj[:,:2] / proj[:,2:3]
-/var/folders/_g/lq_pglm508df70x751kkxrl80000gp/T/ipykernel_31637/2038614107.py:8: RuntimeWarning: invalid value encountered in divide
+/tmp/ipykernel_329529/2038614107.py:8: RuntimeWarning: invalid value encountered in divide
   proj2d = proj[:,:2] / proj[:,2:3]
 \end{verbatim}
 
@@ -40054,7 +40054,7 @@ Walkthrough}\label{step-by-step-code-walkthrough-93}
 \end{Shaded}
 
 \begin{verbatim}
-Mean after centering: [ 8.88178420e-18 -1.22124533e-17]
+Mean after centering: [-7.10542736e-17 -1.33226763e-17]
 \end{verbatim}
 
 \begin{enumerate}
@@ -40106,8 +40106,8 @@ Check covariance:
 
 \begin{verbatim}
 Whitened covariance:
- [[1.00000000e+00 2.54402864e-15]
- [2.54402864e-15 1.00000000e+00]]
+ [[ 1.00000000e+00 -1.16104501e-14]
+ [-1.16104501e-14  1.00000000e+00]]
 \end{verbatim}
 
 \begin{enumerate}
@@ -40678,7 +40678,7 @@ Observed ratings:
 \end{Shaded}
 
 \begin{verbatim}
-Approximation error (MSE): 1.4862378490976202
+Approximation error (MSE): 1.4862378490976194
 \end{verbatim}
 
 \begin{enumerate}
@@ -41032,7 +41032,7 @@ solve directly.
 \end{Shaded}
 
 \begin{verbatim}
-Condition number: 20001.00000000417
+Condition number: 20000.999999985102
 \end{verbatim}
 
 \begin{itemize}
@@ -41167,7 +41167,7 @@ prediction.
 \end{Shaded}
 
 \begin{verbatim}
-R^2 on test set: 0.3691398497153573
+R^2 on test set: 0.3691398497153572
 \end{verbatim}
 
 Does reducing dimensions improve or hurt accuracy?
