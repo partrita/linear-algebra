@@ -1,17 +1,17 @@
 ---
 engine: jupyter
-jupyter: lab-venv
+jupyter: python3
 ---
 
-# 실습실
+# 실습실 (The LAB)
 
-## 1장. 벡터, 스칼라, 그리고 기하학
+## 제1장. 벡터, 스칼라, 그리고 기하학
 
-### 1. 스칼라, 벡터, 그리고 좌표계 — 실습
+### 1. 스칼라, 벡터, 그리고 좌표계
 
-손을 더럽혀 봅시다! 이 실습은 선형대수학의 *기본 구성 요소*인 스칼라와 벡터를 다루는 것입니다. **스칼라**를 `3`이나 `-1.5`와 같은 단순한 숫자로 생각해보세요. **벡터**는 숫자의 작은 목록으로, 공간에서 화살표로 그려볼 수 있습니다.
+이제 직접 해봅시다! 이 실습은 선형대수학의 **구성 요소**인 스칼라와 벡터를 가지고 노는 것입니다. 스칼라를 `3`이나 `-1.5` 같은 평범한 숫자로 생각하세요. 벡터는 숫자의 작은 목록으로, 공간의 화살표로 상상할 수 있습니다.
 
-Python(과 NumPy)을 사용해서 이를 탐구해보겠습니다. NumPy를 처음 사용하신다면 걱정하지 마세요 — 천천히 진행하겠습니다.
+우리는 Python(과 NumPy)을 사용하여 이를 탐구할 것입니다. NumPy가 처음이라도 걱정하지 마세요. 천천히 진행하겠습니다.
 
 #### 실습 환경 설정
 
@@ -19,11 +19,11 @@ Python(과 NumPy)을 사용해서 이를 탐구해보겠습니다. NumPy를 처�
 import numpy as np
 ```
 
-이제 준비가 완료되었습니다! NumPy는 선형대수학에 사용할 주요 도구입니다.
+이걸로 끝입니다. 준비됐습니다! NumPy는 우리가 선형대수학에 사용할 주요 도구입니다.
 
 #### 단계별 코드 설명
 
-**스칼라는 단순한 숫자입니다.**
+스칼라는 단지 숫자입니다.
 
 ```{python}
 a = 5       # 스칼라
@@ -33,7 +33,7 @@ print(a + b)   # 더하기
 print(a * b)   # 곱하기
 ```
 
-**벡터는 숫자의 목록입니다.**
+벡터는 숫자의 목록입니다.
 
 ```{python}
 v = np.array([2, 3])      # 2차원 벡터
@@ -43,10 +43,10 @@ print(v)
 print(w)
 ```
 
-**좌표는 우리가 어디에 있는지 알려줍니다.**
-`[2, 3]`을 "x 방향으로 2걸음, y 방향으로 3걸음 가라"고 생각해보세요.
+좌표는 우리가 어디에 있는지 알려줍니다.
+`[2, 3]`을 "x 방향으로 2걸음, y 방향으로 3걸음 가라"는 뜻으로 생각하세요.
 
-심지어 *그려볼* 수도 있습니다:
+심지어 이것을 *그릴* 수도 있습니다:
 
 ```{python}
 import matplotlib.pyplot as plt
@@ -59,22 +59,1942 @@ plt.grid()
 plt.show()
 ```
 
-이는 원점 `(0,0)`에서 `(2,3)`까지의 작은 화살표를 만듭니다.
+이것은 원점 `(0,0)`에서 `(2,3)`까지 작은 화살표를 만듭니다.
 
-#### 직접 해보세요
+#### 직접 해보기
 
 1. 벡터 `v`를 `[4, 1]`로 바꿔보세요. 화살표가 이제 어디를 가리키나요?
-2. `[1, 2, 3, 4]`처럼 4개의 숫자로 3차원 벡터를 만들어보세요. 무엇이 일어나나요?
-3. `np.array([2,3])`을 `np.array([0,0])`으로 바꿔보세요. 화살표가 어떻게 보이나요?
+2. `[1, 2, 3, 4]`처럼 4개의 숫자로 3차원 벡터를 만들어보세요. 무슨 일이 일어나나요?
+3. `np.array([2,3])`을 `np.array([0,0])`으로 바꿔보세요. 화살표가 어떻게 생겼나요?
 
-#### 초보자가 자주 하는 실수
 
-* `np.array([...])` 사용을 잊는 것. NumPy 없이 `[2, 3]`을 쓰면 단순한 Python 리스트가 됩니다 — 벡터가 아닙니다.
-* 차원을 섞는 것: 2차원 벡터와 3차원 벡터를 직접 더할 수는 없습니다.
+### 2. 벡터 표기법, 성분, 그리고 화살표
+
+이 실습에서는 벡터를 다양한 방식으로 읽고, 쓰고, 시각화하는 연습을 할 것입니다. 벡터는 처음에는 단순해 보일 수 있습니다(단지 숫자 목록일 뿐이죠). 하지만 우리가 그것을 어떻게 *쓰고* 어떻게 *해석*하느냐가 정말 중요합니다. 여기서 표기법과 성분이 중요한 역할을 합니다.
+
+벡터는 다음을 가집니다:
+
+- 기호 (우리는 `v`, `w` 또는 기하학에서 `→AB`라고 부를 수 있습니다).
+- 성분 (`[2, 3]`에서 `2`와 `3` 같은 개별 숫자).
+- 화살표 그림 (벡터를 방향이 있는 선분으로 보는 기하학적 방법).
+
+Python으로 이 세 가지를 모두 확인해 봅시다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+#### 단계별 코드 설명
+
+1. Python에서 벡터 쓰기
+
+```{python}
+# 2차원 벡터
+v = np.array([2, 3])
+
+# 3차원 벡터
+w = np.array([1, -1, 4])
+
+print("v =", v)
+print("w =", w)
+```
+
+여기서 `v`는 성분 `(2, 3)`을 가지고, `w`는 성분 `(1, -1, 4)`를 가집니다.
+
+2. 성분 접근하기
+벡터의 각 숫자는 *성분*입니다. 인덱싱을 사용하여 성분을 뽑아낼 수 있습니다.
+
+```{python}
+print("v의 첫 번째 성분:", v[0])
+print("v의 두 번째 성분:", v[1])
+```
+
+참고: Python에서는 인덱스가 `0`부터 시작하므로 `v[0]`이 *첫 번째* 성분입니다.
+
+3. 벡터를 화살표로 시각화하기
+2D에서는 원점 `(0,0)`에서 끝점 `(x,y)`까지 벡터를 그리기 쉽습니다.
+
+```{python}
+plt.quiver(0, 0, v[0], v[1], angles='xy', scale_units='xy', scale=1, color='r')
+plt.xlim(-1, 4)
+plt.ylim(-2, 4)
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+이것은 벡터 v를 `(0,0)`에서 `(2,3)`으로 가는 빨간 화살표로 보여줍니다.
+
+4. 여러 벡터 그리기
+여러 화살표를 한 번에 그려서 비교할 수 있습니다.
+
+```{python}
+u = np.array([3, 1])
+z = np.array([-1, 2])
+
+# v, u, z를 다른 색으로 그리기
+plt.quiver(0, 0, v[0], v[1], angles='xy', scale_units='xy', scale=1, color='r', label='v')
+plt.quiver(0, 0, u[0], u[1], angles='xy', scale_units='xy', scale=1, color='b', label='u')
+plt.quiver(0, 0, z[0], z[1], angles='xy', scale_units='xy', scale=1, color='g', label='z')
+
+plt.xlim(-2, 4)
+plt.ylim(-2, 4)
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+이제 같은 지점에서 시작하여 각기 다른 방향을 가리키는 세 개의 화살표를 볼 수 있습니다.
+
+#### 직접 해보기
+
+1. `v`를 `[5, 0]`으로 바꿔보세요. 화살표가 이제 어떻게 보이나요?
+2. `[0, -3]` 같은 벡터를 시도해보세요. 어느 축과 나란한가요?
+3. 새로운 벡터 `q = np.array([2, 0, 0])`을 만드세요. 2D에서 `plt.quiver`로 그리려고 하면 무슨 일이 일어나나요?
+
+### 3. 벡터 덧셈과 스칼라 곱셈
+
+이 실습에서는 벡터로 수행할 수 있는 가장 근본적인 두 가지 연산, 즉 벡터끼리 더하기와 숫자로 벡터 크기 조절하기(스칼라 곱셈)를 탐구할 것입니다. 이 연산들은 기하학에서 기계 학습에 이르기까지 선형대수학의 모든 것의 기초를 형성합니다. 코드로 그리고 시각적으로 이것들이 어떻게 작동하는지 이해하는 것이 직관을 기르는 열쇠입니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+#### 단계별 코드 설명
+
+1. 벡터 덧셈
+두 벡터를 더할 때는 성분들을 하나씩 더하면 됩니다.
+
+```{python}
+v = np.array([2, 3])
+u = np.array([1, -1])
+
+sum_vector = v + u
+print("v + u =", sum_vector)
+```
+
+여기서 `(2,3) + (1,-1) = (3,2)`입니다.
+
+2. 벡터 덧셈 시각화 (꼬리에 꼬리를 무는 방법)
+그래픽적으로 벡터 덧셈은 한 벡터의 꼬리를 다른 벡터의 머리에 놓는 것을 의미합니다. 결과 벡터는 첫 번째 벡터의 시작점에서 두 번째 벡터의 끝점까지 갑니다.
+
+```{python}
+plt.quiver(0, 0, v[0], v[1], angles='xy', scale_units='xy', scale=1, color='r', label='v')
+plt.quiver(v[0], v[1], u[0], u[1], angles='xy', scale_units='xy', scale=1, color='b', label='v의 끝에 놓인 u')
+plt.quiver(0, 0, sum_vector[0], sum_vector[1], angles='xy', scale_units='xy', scale=1, color='g', label='v + u')
+
+plt.xlim(-1, 5)
+plt.ylim(-2, 5)
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+녹색 화살표가 `v`와 `u`를 더한 결과입니다.
+
+3. 스칼라 곱셈
+벡터에 스칼라를 곱하면 벡터가 늘어나거나 줄어듭니다. 스칼라가 음수이면 벡터의 방향이 뒤집힙니다.
+
+```{python}
+c = 2
+scaled_v = c * v
+print("2 * v =", scaled_v)
+
+d = -1
+scaled_v_neg = d * v
+print("-1 * v =", scaled_v_neg)
+```
+
+그래서 `2 * (2,3) = (4,6)`이고 `-1 * (2,3) = (-2,-3)`입니다.
+
+4. 스칼라 곱셈 시각화
+
+```{python}
+plt.quiver(0, 0, v[0], v[1], angles='xy', scale_units='xy', scale=1, color='r', label='v')
+plt.quiver(0, 0, scaled_v[0], scaled_v[1], angles='xy', scale_units='xy', scale=1, color='b', label='2 * v')
+plt.quiver(0, 0, scaled_v_neg[0], scaled_v_neg[1], angles='xy', scale_units='xy', scale=1, color='g', label='-1 * v')
+
+plt.xlim(-5, 5)
+plt.ylim(-5, 7)
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+여기서 파란색 화살표는 빨간색 화살표보다 두 배 길고, 녹색 화살표는 반대 방향을 가리킵니다.
+
+5. 두 연산 결합하기
+벡터를 스칼라 배하고 더할 수 있습니다. 이것을 선형 결합이라고 부릅니다 (다음 섹션의 기초가 됩니다).
+
+```{python}
+combo = 3*v + (-2)*u
+print("3*v - 2*u =", combo)
+```
+
+#### 직접 해보기
+
+1. `c = 2`를 `c = 0.5`로 바꿔보세요. 벡터에 무슨 일이 일어나나요?
+2. 세 벡터를 더해보세요: `v + u + np.array([-1,2])`. 출력하기 전에 결과를 예측할 수 있나요?
+3. `3*v + 2*u`를 화살표로 시각화해보세요. 그냥 `v + u`와 어떻게 다른가요?
+
+
+### 4. 선형 결합과 생성(Span)
+
+이제 벡터를 더하고 스칼라 배하는 법을 알았으니, 이 두 가지를 결합하여 선형 결합을 만들 수 있습니다. 선형 결합은 레시피와 같습니다: 벡터에 스칼라를 곱한 다음 더하는 것입니다. 이런 레시피로 얻을 수 있는 모든 가능한 결과의 집합을 생성(span)이라고 합니다.
+
+이 아이디어가 강력한 이유는, 생성을 통해 주어진 벡터들로 도달할 수 있는 방향과 공간의 영역을 알 수 있기 때문입니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+#### 단계별 코드 설명
+
+1. Python에서의 선형 결합
+
+```{python}
+v = np.array([2, 1])
+u = np.array([1, 3])
+
+combo1 = 2*v + 3*u
+combo2 = -1*v + 4*u
+
+print("2*v + 3*u =", combo1)
+print("-v + 4*u =", combo2)
+```
+
+여기서 우리는 스칼라를 사용하여 벡터를 곱하고 더했습니다. 각 결과는 새로운 벡터입니다.
+
+2. 선형 결합 시각화
+`v`, `u`, 그리고 그들의 결합을 그려봅시다.
+
+```{python}
+plt.quiver(0, 0, v[0], v[1], angles='xy', scale_units='xy', scale=1, color='r', label='v')
+plt.quiver(0, 0, u[0], u[1], angles='xy', scale_units='xy', scale=1, color='b', label='u')
+plt.quiver(0, 0, combo1[0], combo1[1], angles='xy', scale_units='xy', scale=1, color='g', label='2v + 3u')
+plt.quiver(0, 0, combo2[0], combo2[1], angles='xy', scale_units='xy', scale=1, color='m', label='-v + 4u')
+
+plt.xlim(-5, 10)
+plt.ylim(-5, 10)
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+이것은 원래 화살표를 스칼라 배하고 더하여 새로운 화살표가 어떻게 생성되는지 보여줍니다.
+
+3. 생성(Span) 탐구하기
+두 2D 벡터의 생성은 다음 중 하나입니다:
+
+- 선 (하나가 다른 하나의 배수인 경우).
+- 전체 2D 평면 (그들이 독립적인 경우).
+
+```{python}
+# 많은 결합 생성
+coeffs = range(-5, 6)
+points = []
+for a in coeffs:
+    for b in coeffs:
+        point = a*v + b*u
+        points.append(point)
+
+points = np.array(points)
+
+plt.scatter(points[:,0], points[:,1], s=10, color='gray')
+plt.quiver(0, 0, v[0], v[1], angles='xy', scale_units='xy', scale=1, color='r')
+plt.quiver(0, 0, u[0], u[1], angles='xy', scale_units='xy', scale=1, color='b')
+
+plt.xlim(-10, 10)
+plt.ylim(-10, 10)
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+회색 점들은 `v`와 `u`의 결합으로 도달할 수 있는 모든 점을 보여줍니다.
+
+4. 특수한 경우: 종속 벡터
+
+```{python}
+w = np.array([4, 2])  # w = 2*v 임을 주목하세요
+coeffs = range(-5, 6)
+points = []
+for a in coeffs:
+    for b in coeffs:
+        points.append(a*v + b*w)
+
+points = np.array(points)
+
+plt.scatter(points[:,0], points[:,1], s=10, color='gray')
+plt.quiver(0, 0, v[0], v[1], angles='xy', scale_units='xy', scale=1, color='r')
+plt.quiver(0, 0, w[0], w[1], angles='xy', scale_units='xy', scale=1, color='b')
+
+plt.xlim(-10, 10)
+plt.ylim(-10, 10)
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+여기서는 `w`가 단지 `v`의 확대 복사본이기 때문에 생성이 선으로 축소됩니다.
+
+#### 직접 해보기
+
+1. `u = [1,3]`을 `u = [-1,2]`로 바꿔보세요. 생성이 어떻게 보이나요?
+2. 2D에서 세 벡터(예: `v, u, w`)를 시도해보세요. 평면보다 더 많은 것을 얻나요?
+3. 3D 벡터로 실험해보세요. `np.array([x,y,z])`를 사용하고 다른 벡터들이 평면을 생성하는지 전체 공간을 생성하는지 확인하세요.
+
+### 5. 길이(노름)와 거리
+
+이 실습에서는 벡터가 얼마나 큰지(길이, 또는 노름이라고도 함)와 두 벡터가 얼마나 떨어져 있는지(거리)를 측정할 것입니다. 이 아이디어들은 대수와 기하학을 연결합니다: 노름을 계산할 때 우리는 화살표의 크기를 측정하는 것이고, 거리를 계산할 때 우리는 공간의 두 점 사이의 간격을 측정하는 것입니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+#### 단계별 코드 설명
+
+1. 2D에서의 벡터 길이(노름)
+벡터의 길이는 피타고라스 정리를 사용하여 계산합니다. 벡터 `(x, y)`에 대해 길이는 `sqrt(x² + y²)`입니다.
+
+```{python}
+v = np.array([3, 4])
+length = np.linalg.norm(v)
+print("v의 길이 =", length)
+```
+
+이것은 `5.0`을 출력합니다. `(3,4)`는 변이 3과 4인 직각 삼각형을 형성하고, `sqrt(3²+4²)=5`이기 때문입니다.
+
+2. 수동 계산 vs NumPy
+
+```{python}
+manual_length = (v[0]**2 + v[1]**2)**0.5
+print("수동 길이 =", manual_length)
+print("NumPy 길이 =", np.linalg.norm(v))
+```
+
+둘 다 같은 결과를 줍니다.
+
+3. 벡터 길이 시각화
+
+```{python}
+plt.quiver(0, 0, v[0], v[1], angles='xy', scale_units='xy', scale=1, color='r')
+plt.xlim(0, 5)
+plt.ylim(0, 5)
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.text(v[0]/2, v[1]/2, f"Length={length}", fontsize=10, color='blue')
+plt.grid()
+plt.show()
+```
+
+길이가 표시된 화살표 `(3,4)`를 볼 수 있습니다.
+
+4. 두 벡터 사이의 거리
+`v`와 다른 벡터 `u` 사이의 거리는 그 차이의 길이입니다: `‖v - u‖`.
+
+```{python}
+u = np.array([0, 0])   # 원점
+dist = np.linalg.norm(v - u)
+print("v와 u 사이의 거리 =", dist)
+```
+
+`u`가 원점이므로 이것은 단지 `v`의 길이입니다.
+
+5. 더 흥미로운 거리
+
+```{python}
+u = np.array([1, 1])
+dist = np.linalg.norm(v - u)
+print("v와 u 사이의 거리 =", dist)
+```
+
+이것은 `(3,4)`가 `(1,1)`에서 얼마나 떨어져 있는지 측정합니다.
+
+6. 점 사이의 거리 시각화
+
+```{python}
+plt.scatter([v[0], u[0]], [v[1], u[1]], color=['red','blue'])
+plt.plot([v[0], u[0]], [v[1], u[1]], 'k--')
+plt.text(v[0], v[1], 'v', fontsize=12, color='red')
+plt.text(u[0], u[1], 'u', fontsize=12, color='blue')
+plt.grid()
+plt.show()
+```
+
+점선은 두 점 사이의 거리를 보여줍니다.
+
+7. 고차원 벡터
+노름과 거리는 모든 차원에서 같은 방식으로 작동합니다:
+
+```{python}
+a = np.array([1,2,3])
+b = np.array([4,0,8])
+print("‖a‖ =", np.linalg.norm(a))
+print("‖b‖ =", np.linalg.norm(b))
+print("a와 b 사이의 거리 =", np.linalg.norm(a-b))
+```
+
+종이에 3D를 쉽게 그릴 수는 없지만 공식은 여전히 적용됩니다.
+
+#### 직접 해보기
+
+1. `np.array([5,12])`의 길이를 계산하세요. 무엇을 예상하나요?
+2. `(2,3)`과 `(7,7)` 사이의 거리를 구하세요. 손으로 스케치하고 확인할 수 있나요?
+3. 3D에서 벡터 `(1,1,1)`과 `(2,2,2)`를 시도해보세요. 왜 거리가 정확히 `sqrt(3)`인가요?
+
+### 6. 내적 (Dot Product)
+
+내적은 선형대수학에서 가장 중요한 연산 중 하나입니다. 두 벡터를 취해 하나의 숫자를 줍니다. 그 숫자는 벡터의 길이와 그들이 얼마나 같은 방향을 가리키는지를 결합합니다. 이 실습에서는 여러 가지 방법으로 내적을 계산하고, 기하학과 어떻게 관련되는지 확인하고, 그 의미를 시각화할 것입니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+#### 단계별 코드 설명
+
+1. 대수적 정의
+두 벡터의 내적은 성분들의 곱의 합입니다:
+
+```{python}
+v = np.array([2, 3])
+u = np.array([4, -1])
+
+dot_manual = v[0]*u[0] + v[1]*u[1]
+dot_numpy = np.dot(v, u)
+
+print("수동 내적:", dot_manual)
+print("NumPy 내적:", dot_numpy)
+```
+
+여기서 `(2*4) + (3*-1) = 8 - 3 = 5`입니다.
+
+2. 기하학적 정의
+내적은 또한 벡터의 길이의 곱에 그 사이 각도의 코사인을 곱한 것과 같습니다:
+
+$$
+v \cdot u = \|v\| \|u\| \cos \theta
+$$
+
+우리는 각도를 계산할 수 있습니다:
+
+```{python}
+norm_v = np.linalg.norm(v)
+norm_u = np.linalg.norm(u)
+
+cos_theta = np.dot(v, u) / (norm_v * norm_u)
+theta = np.arccos(cos_theta)
+
+print("cos(theta) =", cos_theta)
+print("theta (라디안) =", theta)
+print("theta (도) =", np.degrees(theta))
+```
+
+이것은 `v`와 `u` 사이의 각도를 줍니다.
+
+3. 내적 시각화
+두 벡터를 그려봅시다:
+
+```{python}
+plt.quiver(0,0,v[0],v[1],angles='xy',scale_units='xy',scale=1,color='r',label='v')
+plt.quiver(0,0,u[0],u[1],angles='xy',scale_units='xy',scale=1,color='b',label='u')
+plt.xlim(-1,5)
+plt.ylim(-2,4)
+plt.axhline(0,color='black',linewidth=0.5)
+plt.axvline(0,color='black',linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+각도가 90도 미만이면 내적은 양수, 90도보다 크면 음수, 벡터가 수직이면 0입니다.
+
+4. 투영과 내적
+내적을 사용하면 한 벡터가 다른 벡터의 방향으로 얼마나 놓여 있는지 계산할 수 있습니다.
+
+```{python}
+proj_length = np.dot(v, u) / np.linalg.norm(u)
+print("u 위로의 v 투영 길이:", proj_length)
+```
+
+이것은 `u` 위로의 `v` 그림자의 길이입니다.
+
+5. 특수한 경우
+
+- 벡터가 같은 방향을 가리키면 내적은 크고 양수입니다.
+- 벡터가 수직이면 내적은 0입니다.
+- 벡터가 반대 방향을 가리키면 내적은 음수입니다.
+
+```{python}
+a = np.array([1,0])
+b = np.array([0,1])
+c = np.array([-1,0])
+
+print("a · b =", np.dot(a,b))   # 수직
+print("a · a =", np.dot(a,a))   # 길이 제곱
+print("a · c =", np.dot(a,c))   # 반대
+```
+
+#### 직접 해보기
+
+1. `(3,4)`와 `(4,3)`의 내적을 계산하세요. 결과가 길이의 곱보다 큰가요, 작은가요?
+2. `(1,2,3) · (4,5,6)`을 시도해보세요. 3D에서도 기하학적 의미가 여전히 통하나요?
+3. 두 개의 수직 벡터(예: `(2,0)`과 `(0,5)`)를 만드세요. 내적이 0인지 확인하세요.
+
+### 7. 벡터 사이의 각도와 코사인
+
+이 실습에서는 각도를 계산하여 벡터와 기하학 사이의 연결을 더 깊이 파고들 것입니다. 각도는 두 벡터가 얼마나 "같은 방향을 가리키는지" 알려줍니다. 여기서 대수와 기하학을 잇는 다리는 내적에서 직접 나오는 코사인 공식입니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+#### 단계별 코드 설명
+
+1. 각도 공식
+두 벡터 $v$와 $u$ 사이의 각도 $\theta$는 다음과 같이 주어집니다:
+
+$$
+\cos \theta = \frac{v \cdot u}{\|v\| \, \|u\|}
+$$
+
+이것은 다음을 의미합니다:
+
+- $\cos \theta = 1$이면, 벡터는 정확히 같은 방향을 가리킵니다.
+- $\cos \theta = 0$이면, 그들은 수직입니다.
+- $\cos \theta = -1$이면, 그들은 반대 방향을 가리킵니다.
+
+2. Python에서 각도 계산
+
+```{python}
+v = np.array([2, 3])
+u = np.array([3, -1])
+
+dot = np.dot(v, u)
+norm_v = np.linalg.norm(v)
+norm_u = np.linalg.norm(u)
+
+cos_theta = dot / (norm_v * norm_u)
+theta = np.arccos(cos_theta)
+
+print("cos(theta) =", cos_theta)
+print("theta 라디안 =", theta)
+print("theta 도 =", np.degrees(theta))
+```
+
+이것은 코사인 값과 실제 각도를 모두 줍니다.
+
+3. 벡터 시각화
+
+```{python}
+plt.quiver(0,0,v[0],v[1],angles='xy',scale_units='xy',scale=1,color='r',label='v')
+plt.quiver(0,0,u[0],u[1],angles='xy',scale_units='xy',scale=1,color='b',label='u')
+
+plt.xlim(-1,4)
+plt.ylim(-2,4)
+plt.axhline(0,color='black',linewidth=0.5)
+plt.axvline(0,color='black',linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+빨간색과 파란색 화살표 사이의 간격으로 `v`와 `u` 사이의 각도를 볼 수 있습니다.
+
+4. 특수 사례 확인
+
+```{python}
+a = np.array([1,0])
+b = np.array([0,1])
+c = np.array([-1,0])
+
+print("a와 b 사이의 각도 =", np.degrees(np.arccos(np.dot(a,b)/(np.linalg.norm(a)*np.linalg.norm(b)))))
+print("a와 c 사이의 각도 =", np.degrees(np.arccos(np.dot(a,c)/(np.linalg.norm(a)*np.linalg.norm(c)))))
+```
+
+- `(1,0)`과 `(0,1)` 사이의 각도는 90°입니다.
+- `(1,0)`과 `(-1,0)` 사이의 각도는 180°입니다.
+
+5. 유사도 척도로서의 코사인 사용
+데이터 과학과 머신러닝에서는 종종 원시 각도 대신 코사인 유사도를 사용합니다. 이것은 단지 코사인 값 자체입니다:
+
+```{python}
+cosine_similarity = np.dot(v,u)/(np.linalg.norm(v)*np.linalg.norm(u))
+print("코사인 유사도 =", cosine_similarity)
+```
+
+`1`에 가까운 값은 벡터가 정렬되었음을 의미하고, `0`에 가까운 값은 관련이 없음을, `-1`에 가까운 값은 반대임을 의미합니다.
+
+#### 직접 해보기
+
+1. `np.random.randn(3)`으로 두 개의 무작위 벡터를 만들고 그 사이의 각도를 계산하세요.
+2. 벡터를 바꿔도 같은 각도가 나오는지 확인하세요(대칭성).
+3. 코사인 유사도가 정확히 `0`인 두 벡터를 찾으세요. 2D에서 예를 들 수 있나요?
+
+### 8. 투영과 분해
+
+이 실습에서는 벡터를 두 부분으로 나누는 방법을 배웁니다: 한 부분은 다른 벡터를 *따라* 있고, 다른 부분은 *수직*입니다. 이 과정을 투영과 분해라고 합니다. 투영은 "벡터가 주어진 방향을 얼마나 가리키는지" 측정하게 해주고, 분해는 벡터를 유용한 성분으로 나누는 방법을 제공합니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+#### 단계별 코드 설명
+
+1. 투영 공식
+벡터 $v$의 벡터 $u$로의 투영은 다음과 같습니다:
+
+$$
+\text{proj}_u(v) = \frac{v \cdot u}{u \cdot u} \, u
+$$
+
+이것은 $u$의 방향을 가리키는 $v$의 성분을 줍니다.
+
+2. Python에서 투영 계산
+
+```{python}
+v = np.array([3, 2])
+u = np.array([2, 0])
+
+proj_u_v = (np.dot(v, u) / np.dot(u, u)) * u
+print("u 위로의 v 투영:", proj_u_v)
+```
+
+여기서 $v = (3,2)$이고 $u = (2,0)$입니다. `v`의 `u` 위로의 투영은 x축을 따라 가리키는 벡터입니다.
+
+3. 평행 및 수직 부분으로 분해하기
+
+우리는 다음과 같이 쓸 수 있습니다:
+
+$$
+v = \text{proj}_u(v) + (v - \text{proj}_u(v))
+$$
+
+첫 번째 부분은 `u`에 평행하고, 두 번째 부분은 수직입니다.
+
+```{python}
+perp = v - proj_u_v
+print("평행 부분:", proj_u_v)
+print("수직 부분:", perp)
+```
+
+4. 투영과 분해 시각화
+
+```{python}
+plt.quiver(0, 0, v[0], v[1], angles='xy', scale_units='xy', scale=1, color='r', label='v')
+plt.quiver(0, 0, u[0], u[1], angles='xy', scale_units='xy', scale=1, color='b', label='u')
+plt.quiver(0, 0, proj_u_v[0], proj_u_v[1], angles='xy', scale_units='xy', scale=1, color='g', label='proj_u(v)')
+plt.quiver(proj_u_v[0], proj_u_v[1], perp[0], perp[1], angles='xy', scale_units='xy', scale=1, color='m', label='수직')
+
+plt.xlim(-1, 5)
+plt.ylim(-1, 4)
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+`v`(빨강), `u`(파랑), 투영(녹색), 그리고 수직 나머지(마젠타)를 볼 수 있습니다.
+
+5. 고차원에서의 투영
+
+이 공식은 모든 차원에서 작동합니다:
+
+```{python}
+a = np.array([1,2,3])
+b = np.array([0,1,0])
+
+proj = (np.dot(a,b)/np.dot(b,b)) * b
+perp = a - proj
+
+print("b 위로의 a 투영:", proj)
+print("수직 성분:", perp)
+```
+
+3D 이상에서도 투영은 "따라서"와 "가로질러"로 나누는 것입니다.
+
+#### 직접 해보기
+
+1. `(2,3)`을 `(0,5)`에 투영해보세요. 어디에 떨어지나요?
+2. `(4,2,6)` 같은 3D 벡터를 가져와 `(1,0,0)`에 투영하세요. 무엇을 얻나요?
+3. 기본 벡터 `u`를 축과 정렬되지 않은 것, 예를 들어 `(1,1)`로 바꿔보세요. 투영이 여전히 작동하나요?
+
+### 9. 코시-슈바르츠 및 삼각 부등식
+
+이 실습은 선형대수학의 두 가지 기본 부등식을 소개합니다. 처음에는 추상적으로 보일 수 있지만, 벡터에 대해 항상 참임을 보장해 줍니다. Python으로 작은 예제를 통해 왜 중요한지 알아보겠습니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+```
+
+#### 단계별 코드 설명
+
+1. 코시-슈바르츠 부등식
+
+부등식은 다음과 같습니다:
+
+$$
+|v \cdot u| \leq \|v\| \, \|u\|
+$$
+
+내적이 벡터 길이의 곱보다 절대 "클" 수 없다는 것을 의미합니다. 등호는 두 벡터가 정확히 같은(또는 반대) 방향을 가리킬 때만 성립합니다.
+
+```{python}
+v = np.array([3, 4])
+u = np.array([1, 2])
+
+lhs = abs(np.dot(v, u))
+rhs = np.linalg.norm(v) * np.linalg.norm(u)
+
+print("좌변 (|v·u|):", lhs)
+print("우변 (‖v‖‖u‖):", rhs)
+print("부등식이 성립하나요?", lhs <= rhs)
+```
+
+2. 다른 벡터로 코시-슈바르츠 테스트하기
+
+```{python}
+pairs = [
+    (np.array([1,0]), np.array([0,1])),  # 수직
+    (np.array([2,3]), np.array([4,6])),  # 배수
+    (np.array([-1,2]), np.array([3,-6])) # 반대 배수
+]
+
+for v,u in pairs:
+    lhs = abs(np.dot(v, u))
+    rhs = np.linalg.norm(v) * np.linalg.norm(u)
+    print(f"v={v}, u={u} -> |v·u|={lhs}, ‖v‖‖u‖={rhs}, 성립={lhs<=rhs}")
+```
+
+- 수직 벡터는 `|v·u| = 0`을 주며, 이는 노름의 곱보다 훨씬 작습니다.
+- 배수는 등호를 줍니다 (`lhs = rhs`).
+
+3. 삼각 부등식
+
+삼각 부등식은 다음과 같습니다:
+
+$$
+\|v + u\| \leq \|v\| + \|u\|
+$$
+
+기하학적으로, 삼각형의 한 변의 길이는 다른 두 변의 합보다 길 수 없습니다.
+
+```{python}
+v = np.array([3, 4])
+u = np.array([1, 2])
+
+lhs = np.linalg.norm(v + u)
+rhs = np.linalg.norm(v) + np.linalg.norm(u)
+
+print("‖v+u‖ =", lhs)
+print("‖v‖ + ‖u‖ =", rhs)
+print("부등식이 성립하나요?", lhs <= rhs)
+```
+
+4. 삼각형으로 시각적 증명
+
+```{python}
+import matplotlib.pyplot as plt
+
+origin = np.array([0,0])
+points = np.array([origin, v, v+u, origin])
+
+plt.plot(points[:,0], points[:,1], 'ro-')  # 삼각형 외곽선
+plt.text(v[0], v[1], 'v')
+plt.text(v[0]+u[0], v[1]+u[1], 'v+u')
+plt.text(u[0], u[1], 'u')
+
+plt.grid()
+plt.axhline(0,color='black',linewidth=0.5)
+plt.axvline(0,color='black',linewidth=0.5)
+plt.axis('equal')
+plt.show()
+```
+
+이 삼각형은 왜 부등식이 "삼각" 부등식이라고 불리는지 보여줍니다.
+
+5. 무작위 벡터로 삼각 부등식 테스트하기
+
+```{python}
+for _ in range(5):
+    v = np.random.randn(2)
+    u = np.random.randn(2)
+    lhs = np.linalg.norm(v+u)
+    rhs = np.linalg.norm(v) + np.linalg.norm(u)
+    print(f"‖v+u‖={lhs:.3f}, ‖v‖+‖u‖={rhs:.3f}, 성립={lhs <= rhs}")
+```
+
+어떤 벡터를 시도하든 부등식은 항상 성립합니다.
 
 #### 핵심 정리
 
-* **스칼라**는 단일 숫자입니다.
-* **벡터**는 공간에서 점이나 화살표를 나타내는 숫자의 목록입니다.
-* 좌표계는 벡터를 격자 위에 배치하고 시각화할 수 있게 해줍니다.
+- 코시-슈바르츠: 내적은 항상 벡터 길이의 곱으로 제한됩니다.
+- 삼각 부등식: 삼각형의 한 변의 길이는 다른 두 변의 합을 초과할 수 없습니다.
+- 이 부등식들은 기하학, 해석학, 그리고 선형대수학의 많은 증명의 뼈대를 형성합니다.
 
+### 10. ℝ²/ℝ³에서의 정규직교 집합
+
+이 실습에서는 정규직교 집합, 즉 직교(수직)하면서 정규화된(길이 = 1) 벡터들의 모음을 탐구할 것입니다. 이 집합들은 벡터 공간의 "가장 좋은" 기저입니다. 2D와 3D에서는 우리가 이미 알고 있는 좌표축에 해당하지만, 새로운 것을 만들고 테스트할 수도 있습니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+#### 단계별 코드 설명
+
+1. 직교 벡터
+두 벡터의 내적이 0이면 직교합니다.
+
+```{python}
+x_axis = np.array([1, 0])
+y_axis = np.array([0, 1])
+
+print("x_axis · y_axis =", np.dot(x_axis, y_axis))  # 0이어야 함
+```
+
+그래서 표준 축은 직교합니다.
+
+2. 벡터 정규화
+정규화는 벡터를 그 길이로 나누어 노름을 1로 만드는 것을 의미합니다.
+
+```{python}
+v = np.array([3, 4])
+v_normalized = v / np.linalg.norm(v)
+
+print("원래 v:", v)
+print("정규화된 v:", v_normalized)
+print("정규화된 v의 길이:", np.linalg.norm(v_normalized))
+```
+
+이제 `v_normalized`는 `v`와 같은 방향을 가리키지만 단위 길이를 가집니다.
+
+3. 2D에서 정규직교 집합 만들기
+
+```{python}
+u1 = np.array([1, 0])
+u2 = np.array([0, 1])
+
+print("u1 길이:", np.linalg.norm(u1))
+print("u2 길이:", np.linalg.norm(u2))
+print("u1 · u2 =", np.dot(u1,u2))
+```
+
+둘 다 길이가 1이고 내적이 0입니다. 이것이 `{u1, u2}`를 2D에서 정규직교 집합으로 만듭니다.
+
+4. 2D 정규직교 벡터 시각화
+
+```{python}
+plt.quiver(0,0,u1[0],u1[1],angles='xy',scale_units='xy',scale=1,color='r')
+plt.quiver(0,0,u2[0],u2[1],angles='xy',scale_units='xy',scale=1,color='b')
+
+plt.xlim(-1.5,1.5)
+plt.ylim(-1.5,1.5)
+plt.axhline(0,color='black',linewidth=0.5)
+plt.axvline(0,color='black',linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+직각을 이루며 각각 길이가 1인 빨간색과 파란색 화살표를 볼 수 있습니다.
+
+5. 3D에서의 정규직교 집합
+3D에서 표준 기저 벡터는 다음과 같습니다:
+
+```{python}
+i = np.array([1,0,0])
+j = np.array([0,1,0])
+k = np.array([0,0,1])
+
+print("‖i‖ =", np.linalg.norm(i))
+print("‖j‖ =", np.linalg.norm(j))
+print("‖k‖ =", np.linalg.norm(k))
+print("i·j =", np.dot(i,j))
+print("j·k =", np.dot(j,k))
+print("i·k =", np.dot(i,k))
+```
+
+길이는 모두 1이고 내적은 0입니다. 따라서 `{i, j, k}`는 ℝ³에서 정규직교 집합입니다.
+
+6. 집합이 정규직교인지 테스트하기
+도우미 함수를 작성할 수 있습니다:
+
+```{python}
+def is_orthonormal(vectors):
+    for i in range(len(vectors)):
+        for j in range(len(vectors)):
+            dot = np.dot(vectors[i], vectors[j])
+            if i == j:
+                if not np.isclose(dot, 1): return False
+            else:
+                if not np.isclose(dot, 0): return False
+    return True
+
+print(is_orthonormal([i, j, k]))  # True
+```
+
+7. 새로운 정규직교 쌍 구성하기
+모든 정규직교 집합이 축처럼 보이는 것은 아닙니다.
+
+```{python}
+u1 = np.array([1,1]) / np.sqrt(2)
+u2 = np.array([-1,1]) / np.sqrt(2)
+
+print("u1·u2 =", np.dot(u1,u2))
+print("‖u1‖ =", np.linalg.norm(u1))
+print("‖u2‖ =", np.linalg.norm(u2))
+```
+
+이것은 2D에서 회전된 정규직교 기저를 제공합니다.
+
+#### 직접 해보기
+
+1. `(2,2,1)`을 정규화하여 단위 벡터로 만드세요.
+2. 집합 `{[1,0,0], [0,2,0], [0,0,3]}`이 정규직교인지 테스트하세요.
+3. 수직이 아닌 2D 벡터 두 개를 만드세요. 그것들을 정규화하고 내적이 여전히 0인지 확인하세요.
+
+## 제2장. 행렬과 기본 연산
+
+### 11. 표로서의 행렬과 기계로서의 행렬
+
+행렬은 처음에는 신비롭게 느껴질 수 있지만, 생각하는 두 가지 간단한 방법이 있습니다:
+
+1. 숫자의 표 - 저장하고 조작할 수 있는 격자.
+2. 기계 - 벡터를 입력받아 새로운 벡터를 뱉어내는 것.
+
+이 실습에서는 두 가지 관점을 모두 탐구하고 어떻게 연결되는지 볼 것입니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+```
+
+#### 단계별 코드 설명
+
+1. 숫자 표로서의 행렬
+
+```{python}
+A = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+print("행렬 A:\n", A)
+print("A의 모양:", A.shape)
+```
+
+여기서 `A`는 2×3 행렬(2행, 3열)입니다.
+
+- 행 = 수평 슬라이스 → `[1,2,3]` 및 `[4,5,6]`
+- 열 = 수직 슬라이스 → `[1,4]`, `[2,5]`, `[3,6]`
+
+2. 행과 열 접근하기
+
+```{python}
+first_row = A[0]        # 0번째 행
+second_column = A[:,1]  # 1번째 열
+
+print("첫 번째 행:", first_row)
+print("두 번째 열:", second_column)
+```
+
+행도 전체 벡터이고, 열도 마찬가지입니다.
+
+3. 기계로서의 행렬
+
+행렬은 벡터에 "작용"할 수 있습니다. `x = [x1, x2, x3]`이면, `A·x`는 `A`의 열들의 선형 결합을 취하여 계산됩니다.
+
+```{python}
+x = np.array([1, 0, -1])  # 3차원 벡터
+result = A.dot(x)
+
+print("A·x =", result)
+```
+
+해석: `A`와 `x`를 곱함 = `A`의 열들을 `x`의 가중치로 결합함.
+
+$$
+A \cdot x = 1 \cdot \text{(열 1)} + 0 \cdot \text{(열 2)} + (-1) \cdot \text{(열 3)}
+$$
+
+4. 열 결합 관점 확인하기
+
+```{python}
+col1 = A[:,0]
+col2 = A[:,1]
+col3 = A[:,2]
+
+manual = 1*col1 + 0*col2 + (-1)*col3
+print("수동 결합:", manual)
+print("A·x 결과:", result)
+```
+
+정확히 일치합니다. 이는 "기계" 해석이 열 결합의 지름길일 뿐임을 보여줍니다.
+
+5. 기하학적 직관 (2D 예제)
+
+```{python}
+B = np.array([
+    [2, 0],
+    [0, 1]
+])
+
+v = np.array([1,2])
+print("B·v =", B.dot(v))
+```
+
+여기서 `B`는 x 방향을 2배로 늘리면서 y 방향은 그대로 둡니다. 그래서 `(1,2)`는 `(2,2)`가 됩니다.
+
+#### 직접 해보기
+
+1. `np.eye(3)`으로 3×3 항등 행렬을 만들고 다른 벡터를 곱해보세요. 무슨 일이 일어나나요?
+2. 행렬 `[[0,-1],[1,0]]`을 만드세요. `(1,0)`과 `(0,1)`을 곱해보세요. 이것은 어떤 변환인가요?
+3. 벡터를 x축에 대해 뒤집는 자신만의 2×2 행렬을 만드세요. `(1,2)`와 `(−3,4)`로 테스트하세요.
+
+#### 핵심 정리
+
+- 행렬은 숫자의 격자이자 벡터를 변환하는 기계입니다.
+- 행렬-벡터 곱셈은 주어진 가중치로 열을 결합하는 것과 같습니다.
+- 행렬을 기계로 생각하는 것은 나중에 회전, 크기 조절 및 기타 변환에 대한 직관을 기르는 데 도움이 됩니다.
+
+### 12. 행렬 모양, 인덱싱, 그리고 블록 뷰
+
+행렬은 다양한 모양으로 나오며, 그 구조를 읽는 법을 배우는 것은 필수적입니다. 모양은 행렬에 행과 열이 몇 개 있는지 알려줍니다. 인덱싱을 사용하면 특정 항목, 행 또는 열을 잡을 수 있습니다. 블록 뷰를 사용하면 부분 행렬을 확대할 수 있어 이론과 계산 모두에 매우 유용합니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+```
+
+#### 단계별 코드 설명
+
+1. 행렬 모양
+
+행렬의 모양은 `(행, 열)`입니다.
+
+```{python}
+A = np.array([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+])
+
+print("행렬 A:\n", A)
+print("A의 모양:", A.shape)
+```
+
+여기서 `A`는 3×3 행렬입니다.
+
+2. 요소 인덱싱
+
+NumPy에서 행과 열은 0부터 시작합니다. 첫 번째 항목은 `A[0,0]`입니다.
+
+```{python}
+print("A[0,0] =", A[0,0])  # 왼쪽 상단 요소
+print("A[1,2] =", A[1,2])  # 두 번째 행, 세 번째 열
+```
+
+3. 행과 열 추출하기
+
+```{python}
+row1 = A[0]       # 첫 번째 행
+col2 = A[:,1]     # 두 번째 열
+
+print("첫 번째 행:", row1)
+print("두 번째 열:", col2)
+```
+
+참고: `A[i]`는 행을 주고, `A[:,j]`는 열을 줍니다.
+
+4. 부분 행렬 슬라이싱 (블록 뷰)
+
+여러 행과 열을 잘라내어 더 작은 행렬을 만들 수 있습니다.
+
+```{python}
+block = A[0:2, 1:3]  # 행 0–1, 열 1–2
+print("블록 부분 행렬:\n", block)
+```
+
+이 블록은 다음과 같습니다:
+
+$$
+\begin{bmatrix}
+2 & 3 \\
+5 & 6
+\end{bmatrix}
+$$
+
+5. 행렬의 일부 수정하기
+
+```{python}
+A[0,0] = 99
+print("수정된 A:\n", A)
+
+A[1,:] = [10, 11, 12]   # 행 1 교체
+print("행 1 교체 후:\n", A)
+```
+
+6. 정사각형이 아닌 행렬
+
+모든 행렬이 정사각형인 것은 아닙니다. 모양은 직사각형일 수도 있습니다.
+
+```{python}
+B = np.array([
+    [1, 2],
+    [3, 4],
+    [5, 6]
+])
+
+print("행렬 B:\n", B)
+print("B의 모양:", B.shape)
+```
+
+여기서 `B`는 3×2입니다(3행, 2열).
+
+7. 블록 분해 아이디어
+
+큰 행렬을 작은 블록으로 이루어진 것으로 생각할 수 있습니다. 이것은 선형대수학 증명과 알고리즘에서 흔합니다.
+
+```{python}
+C = np.array([
+    [1,2,3,4],
+    [5,6,7,8],
+    [9,10,11,12],
+    [13,14,15,16]
+])
+
+top_left = C[0:2, 0:2]
+bottom_right = C[2:4, 2:4]
+
+print("왼쪽 상단 블록:\n", top_left)
+print("오른쪽 하단 블록:\n", bottom_right)
+```
+
+이것이 블록 행렬 표기법의 시작입니다.
+
+#### 직접 해보기
+
+1. `np.arange(1,21).reshape(4,5)`를 사용하여 값 1–20을 가진 4×5 행렬을 만드세요. 모양을 찾으세요.
+2. 중간 행과 마지막 열을 추출하세요.
+3. 네 개의 2×2 블록으로 자르세요. 다른 순서로 재조립할 수 있나요?
+
+### 13. 행렬 덧셈과 스칼라 곱셈
+
+행렬 모양과 인덱싱을 이해했으니, 가장 간단하지만 중요한 두 가지 연산인 행렬 더하기와 숫자로 크기 조절하기(스칼라)를 연습해 봅시다. 이 연산들은 우리가 이미 알고 있는 벡터 규칙을 확장합니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+```
+
+#### 단계별 코드 설명
+
+1. 두 행렬 더하기
+두 행렬이 같은 모양일 때만 더할 수 있습니다. 덧셈은 항목별로 일어납니다.
+
+```{python}
+A = np.array([
+    [1, 2],
+    [3, 4]
+])
+
+B = np.array([
+    [5, 6],
+    [7, 8]
+])
+
+C = A + B
+print("A + B =\n", C)
+```
+
+`C`의 각 요소는 `A`와 `B`의 해당 요소의 합입니다.
+
+2. 스칼라 곱셈
+행렬에 스칼라를 곱하면 모든 항목에 그 숫자가 곱해집니다.
+
+```{python}
+k = 3
+D = k * A
+print("3 * A =\n", D)
+```
+
+여기서 `A`의 각 요소는 세 배가 됩니다.
+
+3. 두 연산 결합하기
+벡터처럼 덧셈과 스칼라 배를 섞을 수 있습니다.
+
+```{python}
+combo = 2*A - B
+print("2A - B =\n", combo)
+```
+
+이것은 다른 행렬들의 선형 결합으로 새로운 행렬을 만듭니다.
+
+4. 영 행렬
+모든 0으로 된 행렬은 덧셈에서 "아무 일도 일어나지 않음"과 같습니다.
+
+```{python}
+zero = np.zeros((2,2))
+print("영 행렬:\n", zero)
+print("A + 영 =\n", A + zero)
+```
+
+5. 모양 불일치 (실패하는 경우)
+모양이 맞지 않으면 NumPy는 오류를 발생시킵니다.
+
+```{python}
+X = np.array([
+    [1,2,3],
+    [4,5,6]
+])
+
+try:
+    print(A + X)
+except ValueError as e:
+    print("오류:", e)
+```
+
+이것은 왜 모양의 일관성이 중요한지 보여줍니다.
+
+#### 직접 해보기
+
+1. `np.random.randint(0,10,(3,3))`으로 두 개의 무작위 3×3 행렬을 만들고 더하세요.
+2. 4×4 행렬에 `-1`을 곱하세요. 항목들에 무슨 일이 일어나나요?
+3. 위 행렬들로 `3A + 2B`를 계산하세요. 각 단계를 수동으로 하는 것과 비교하세요.
+
+
+### 14. 행렬-벡터 곱 (열의 선형 결합)
+
+이 실습에서는 선형대수학에서 가장 중요한 연산 중 하나인 행렬-벡터 곱을 소개합니다. 행렬에 벡터를 곱하는 것은 단순히 숫자를 계산하는 것이 아니라, 행렬의 열들을 가중치가 있는 방식으로 결합하여 새로운 벡터를 생성하는 것입니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+```
+
+#### 단계별 코드 설명
+
+1. 간단한 행렬과 벡터
+
+```{python}
+A = np.array([
+    [1, 2],
+    [3, 4],
+    [5, 6]
+])  # 3×2 행렬
+
+x = np.array([2, -1])  # 2차원 벡터
+```
+
+여기서 `A`는 2개의 열을 가지고 있으므로, 2차원 벡터 `x`를 곱할 수 있습니다.
+
+2. NumPy에서의 행렬-벡터 곱셈
+
+```{python}
+y = A.dot(x)
+print("A·x =", y)
+```
+
+결과: 3차원 벡터.
+
+3. 결과를 선형 결합으로 해석하기
+
+행렬 `A`는 두 개의 열을 가집니다:
+
+```{python}
+col1 = A[:,0]   # 첫 번째 열
+col2 = A[:,1]   # 두 번째 열
+
+manual = 2*col1 + (-1)*col2
+print("수동 선형 결합:", manual)
+```
+
+이것은 `A·x`와 일치합니다. 말로 하면: *각 열에 `x`의 해당 항목을 곱한 다음 더합니다*.
+
+4. 또 다른 예 (기하학)
+
+```{python}
+B = np.array([
+    [2, 0],
+    [0, 1]
+])  # x축을 2배로 늘림
+
+v = np.array([1, 3])
+print("B·v =", B.dot(v))
+```
+
+여기서 `(1,3)`은 `(2,3)`이 됩니다. x 성분은 두 배가 되었고, y는 그대로 유지되었습니다.
+
+5. 행렬 작용의 시각화
+
+```{python}
+import matplotlib.pyplot as plt
+
+# 원래 벡터 그리기
+plt.quiver(0,0,v[0],v[1],angles='xy',scale_units='xy',scale=1,color='r',label='v')
+
+# 변환된 벡터 그리기
+v_transformed = B.dot(v)
+plt.quiver(0,0,v_transformed[0],v_transformed[1],angles='xy',scale_units='xy',scale=1,color='b',label='B·v')
+
+plt.xlim(-1,4)
+plt.ylim(-1,4)
+plt.axhline(0,color='black',linewidth=0.5)
+plt.axvline(0,color='black',linewidth=0.5)
+plt.grid()
+plt.show()
+```
+
+빨간 화살표 = 원래 벡터, 파란 화살표 = 변환된 벡터.
+
+#### 직접 해보기
+
+1. 곱하기
+
+   $$
+   A = \begin{bmatrix}1 & 0 \\ 0 & 1 \\ -1 & 2\end{bmatrix},\; x = [3,1]
+   $$
+
+   결과는 무엇인가요?
+
+2. `B`를 `[[0,-1],[1,0]]`으로 바꾸세요. `(1,0)`과 `(0,1)`을 곱하세요. 이것은 어떤 기하학적 변환을 나타내나요?
+
+3. 4×4 항등 행렬(`np.eye(4)`)에 대해 아무 4차원 벡터나 곱해보세요. 무엇을 관찰하나요?
+
+### 15. 행렬-행렬 곱 (선형 단계의 구성)
+
+행렬-행렬 곱셈은 두 선형 변환을 하나로 결합하는 방법입니다. 한 변환을 적용하고 나서 다른 변환을 적용하는 대신, 그들의 행렬을 곱해서 두 가지를 한 번에 수행하는 단일 행렬을 얻을 수 있습니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+```
+
+#### 단계별 코드 설명
+
+1. NumPy에서의 행렬-행렬 곱셈
+
+```{python}
+A = np.array([
+    [1, 2],
+    [3, 4]
+])  # 2×2
+
+B = np.array([
+    [2, 0],
+    [1, 2]
+])  # 2×2
+
+C = A.dot(B)   # 또는 A @ B
+print("A·B =\n", C)
+```
+
+결과 `C`는 또 다른 2×2 행렬입니다.
+
+2. 수동 계산
+
+`C`의 각 항목은 A의 행과 B의 열을 내적하여 계산됩니다:
+
+```{python}
+c11 = A[0,:].dot(B[:,0])
+c12 = A[0,:].dot(B[:,1])
+c21 = A[1,:].dot(B[:,0])
+c22 = A[1,:].dot(B[:,1])
+
+print("수동 C =\n", np.array([[c11,c12],[c21,c22]]))
+```
+
+이것은 `A·B`와 일치해야 합니다.
+
+3. 기하학적 해석
+
+두 변환이 어떻게 결합되는지 봅시다.
+
+- 행렬 `B`는 x를 2배로 크기 조절하고 y를 2배로 늘립니다.
+- 행렬 `A`는 또 다른 선형 변환을 적용합니다.
+
+함께, `C = A·B`는 한 단계로 두 가지를 모두 수행합니다.
+
+```{python}
+v = np.array([1,1])
+
+print("먼저 B 적용:", B.dot(v))
+print("그 다음 A 적용:", A.dot(B.dot(v)))
+print("C로 직접:", C.dot(v))
+```
+
+결과는 같습니다: `B`를 적용한 다음 `A`를 적용하는 것은 `C`를 적용하는 것과 같습니다.
+
+4. 정사각형이 아닌 행렬
+
+행렬 곱셈은 내부 차원이 일치하는 한 직사각형 행렬에서도 작동합니다.
+
+```{python}
+M = np.array([
+    [1, 0, 2],
+    [0, 1, 3]
+])  # 2×3
+
+N = np.array([
+    [1, 2],
+    [0, 1],
+    [4, 0]
+])  # 3×2
+
+P = M.dot(N)  # 결과는 2×2
+print("M·N =\n", P)
+```
+
+모양 규칙: `(2×3)·(3×2) = (2×2)`.
+
+5. 결합 법칙 (그러나 교환 법칙은 아님)
+
+행렬 곱셈은 결합적입니다: `(A·B)·C = A·(B·C)`. 그러나 교환적이지 않습니다: 일반적으로 `A·B ≠ B·A`.
+
+```{python}
+A = np.array([[1,2],[3,4]])
+B = np.array([[0,1],[1,0]])
+
+print("A·B =\n", A.dot(B))
+print("B·A =\n", B.dot(A))
+```
+
+두 결과는 다릅니다.
+
+#### 직접 해보기
+
+1. 곱하기
+
+   $$
+   A = \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix},\; 
+   B = \begin{bmatrix}0 & -1 \\ 1 & 0\end{bmatrix}
+   $$
+
+   `A·B`는 어떤 변환을 나타내나요?
+
+2. 무작위 3×2 행렬과 2×4 행렬을 만드세요. 곱하세요. 결과의 모양은 무엇인가요?
+
+3. Python으로 어떤 3×3 무작위 행렬들에 대해 `(A·B)·C = A·(B·C)`임을 확인하세요.
+
+### 16. 항등행렬, 역행렬, 그리고 전치행렬
+
+이 실습에서는 세 가지 특별한 행렬 연산과 객체를 만날 것입니다: 항등행렬, 역행렬, 그리고 전치행렬. 이들은 행렬 대수의 구성 요소이며, 각각 단순한 의미를 가지지만 깊은 중요성을 가집니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+```
+
+#### 단계별 코드 설명
+
+1. 항등행렬
+항등행렬은 행렬의 숫자 `1`과 같습니다: 곱해도 아무것도 변하지 않습니다.
+
+```{python}
+I = np.eye(3)  # 3×3 항등행렬
+print("항등행렬:\n", I)
+
+A = np.array([
+    [2, 1, 0],
+    [0, 1, 3],
+    [4, 0, 1]
+])
+
+print("A·I =\n", A.dot(I))
+print("I·A =\n", I.dot(A))
+```
+
+둘 다 `A`와 같습니다.
+
+2. 전치행렬
+전치행렬은 행과 열을 뒤집습니다.
+
+```{python}
+B = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+print("B:\n", B)
+print("B.T:\n", B.T)
+```
+
+- 원래: 2×3
+- 전치: 3×2
+
+기하학적으로, 전치는 벡터를 행/열 형태로 볼 때 축을 바꿉니다.
+
+3. 역행렬
+역행렬은 숫자로 나누는 것과 같습니다: 행렬에 그 역행렬을 곱하면 항등행렬이 됩니다.
+
+```{python}
+C = np.array([
+    [2, 1],
+    [5, 3]
+])
+
+C_inv = np.linalg.inv(C)
+print("C의 역행렬:\n", C_inv)
+
+print("C·C_inv =\n", C.dot(C_inv))
+print("C_inv·C =\n", C_inv.dot(C))
+```
+
+두 곱 모두 (대략) 항등행렬입니다.
+
+4. 역행렬이 없는 행렬
+모든 행렬이 가역적인 것은 아닙니다. 행렬이 특이 행렬(행렬식 = 0)이면 역행렬이 없습니다.
+
+```{python}
+D = np.array([
+    [1, 2],
+    [2, 4]
+])
+
+try:
+    np.linalg.inv(D)
+except np.linalg.LinAlgError as e:
+    print("오류:", e)
+```
+
+여기서 두 번째 행은 첫 번째 행의 배수이므로 `D`는 뒤집을 수 없습니다.
+
+5. 전치와 역행렬 함께 사용하기
+가역 행렬에 대해,
+
+$$
+(A^T)^{-1} = (A^{-1})^T
+$$
+
+우리는 이것을 수치적으로 확인할 수 있습니다:
+
+```{python}
+A = np.array([
+    [1, 2],
+    [3, 5]
+])
+
+lhs = np.linalg.inv(A.T)
+rhs = np.linalg.inv(A).T
+
+print("일치하나요?", np.allclose(lhs, rhs))
+```
+
+#### 직접 해보기
+
+1. 4×4 항등행렬을 만드세요. 아무 4×1 벡터나 곱해보세요. 변하나요?
+2. `np.random.randint`로 무작위 2×2 행렬을 가져오세요. 역행렬을 계산하고 곱하면 항등행렬이 되는지 확인하세요.
+3. 직사각형 3×2 행렬을 고르세요. `np.linalg.inv`를 시도하면 어떻게 되나요? 왜 그런가요?
+4. 어떤 행렬 `A`에 대해 `(A.T).T`를 계산하세요. 무엇을 알 수 있나요?
+
+### 17. 대칭, 대각, 삼각, 그리고 치환 행렬
+
+이 실습에서는 네 가지 중요한 특수 행렬 가족을 만날 것입니다. 그들은 이해하고, 계산하고, 알고리즘에서 사용하기 쉽게 만드는 패턴을 가지고 있습니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+```
+
+#### 단계별 코드 설명
+
+1. 대칭 행렬
+행렬이 전치와 같으면 대칭입니다: $A = A^T$.
+
+```{python}
+A = np.array([
+    [2, 3, 4],
+    [3, 5, 6],
+    [4, 6, 8]
+])
+
+print("A:\n", A)
+print("A.T:\n", A.T)
+print("대칭인가요?", np.allclose(A, A.T))
+```
+
+대칭 행렬은 물리학, 최적화 및 통계(예: 공분산 행렬)에 나타납니다.
+
+2. 대각 행렬
+대각 행렬은 주 대각선에만 0이 아닌 항목이 있습니다.
+
+```{python}
+D = np.diag([1, 5, 9])
+print("대각 행렬:\n", D)
+
+x = np.array([2, 3, 4])
+print("D·x =", D.dot(x))  # 각 성분 크기 조절
+```
+
+대각 곱셈은 단순히 각 좌표를 개별적으로 크기 조절합니다.
+
+3. 삼각 행렬
+상삼각: 대각선 아래의 모든 항목이 0입니다.
+하삼각: 대각선 위의 모든 항목이 0입니다.
+
+```{python}
+U = np.array([
+    [1, 2, 3],
+    [0, 4, 5],
+    [0, 0, 6]
+])
+
+L = np.array([
+    [7, 0, 0],
+    [8, 9, 0],
+    [1, 2, 3]
+])
+
+print("상삼각 U:\n", U)
+print("하삼각 L:\n", L)
+```
+
+이들은 선형 시스템(예: 가우스 소거법)을 푸는 데 중요합니다.
+
+4. 치환 행렬
+치환 행렬은 좌표의 순서를 재배열합니다. 각 행과 각 열에 정확히 하나의 `1`이 있고, 나머지는 `0`입니다.
+
+```{python}
+P = np.array([
+    [0, 1, 0],
+    [0, 0, 1],
+    [1, 0, 0]
+])
+
+print("치환 행렬 P:\n", P)
+
+v = np.array([10, 20, 30])
+print("P·v =", P.dot(v))
+```
+
+여기서 `P`는 `(10,20,30)`을 `(20,30,10)`으로 순환시킵니다.
+
+5. 속성 확인
+
+```{python}
+def is_symmetric(M): return np.allclose(M, M.T)
+def is_diagonal(M): return np.count_nonzero(M - np.diag(np.diag(M))) == 0
+def is_upper_triangular(M): return np.allclose(M, np.triu(M))
+def is_lower_triangular(M): return np.allclose(M, np.tril(M))
+
+print("A 대칭?", is_symmetric(A))
+print("D 대각?", is_diagonal(D))
+print("U 상삼각?", is_upper_triangular(U))
+print("L 하삼각?", is_lower_triangular(L))
+```
+
+#### 직접 해보기
+
+1. 아무 행렬 `M`을 생성하고 `(M + M.T)/2`를 계산하여 무작위 대칭 행렬을 만드세요.
+2. 대각 항목 `[2,4,6,8]`을 가진 4×4 대각 행렬을 만들고 `[1,1,1,1]`을 곱하세요.
+3. 3차원 벡터의 첫 번째와 마지막 성분을 바꾸는 치환 행렬을 만드세요.
+4. 항등행렬이 대각, 대칭, 상삼각, 하삼각인지 한 번에 확인하세요.
+
+### 18. 대각합(Trace)과 기본 행렬 성질
+
+이 실습에서는 행렬의 대각합(Trace)과 증명, 알고리즘 및 응용 프로그램에 자주 나타나는 몇 가지 빠른 속성을 소개합니다. 대각합은 계산하기 쉽지만 놀라울 정도로 강력합니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+```
+
+#### 단계별 코드 설명
+
+1. 대각합이란 무엇인가?
+정사각 행렬의 대각합은 대각선 항목의 합입니다:
+
+$$
+\text{tr}(A) = \sum_i A_{ii}
+$$
+
+```{python}
+A = np.array([
+    [2, 1, 3],
+    [0, 4, 5],
+    [7, 8, 6]
+])
+
+trace_A = np.trace(A)
+print("행렬 A:\n", A)
+print("A의 대각합 =", trace_A)
+```
+
+여기서 대각합 = $2 + 4 + 6 = 12$.
+
+2. 대각합은 선형입니다
+행렬 `A`와 `B`에 대해:
+
+$$
+\text{tr}(A+B) = \text{tr}(A) + \text{tr}(B)
+$$
+
+$$
+\text{tr}(cA) = c \cdot \text{tr}(A)
+$$
+
+```{python}
+B = np.array([
+    [1, 0, 0],
+    [0, 2, 0],
+    [0, 0, 3]
+])
+
+print("tr(A+B) =", np.trace(A+B))
+print("tr(A) + tr(B) =", np.trace(A) + np.trace(B))
+
+print("tr(3A) =", np.trace(3*A))
+print("3 * tr(A) =", 3*np.trace(A))
+```
+
+3. 곱의 대각합
+한 가지 중요한 속성은 다음과 같습니다:
+
+$$
+\text{tr}(AB) = \text{tr}(BA)
+$$
+
+```{python}
+C = np.array([
+    [0,1],
+    [2,3]
+])
+
+D = np.array([
+    [4,5],
+    [6,7]
+])
+
+print("tr(CD) =", np.trace(C.dot(D)))
+print("tr(DC) =", np.trace(D.dot(C)))
+```
+
+`CD`와 `DC`가 다른 행렬이더라도 둘은 같습니다.
+
+4. 대각합과 고유값
+대각합은 행렬의 고유값의 합과 같습니다(중복도 포함).
+
+```{python}
+vals, vecs = np.linalg.eig(A)
+print("고유값:", vals)
+print("고유값의 합 =", np.sum(vals))
+print("대각합 =", np.trace(A))
+```
+
+결과가 일치해야 합니다(반올림 오차 범위 내에서).
+
+5. 빠른 불변량
+
+- 대각합은 전치해도 변하지 않습니다: `tr(A) = tr(A.T)`
+- 대각합은 닮음 변환에서도 변하지 않습니다: `tr(P^-1 A P) = tr(A)`
+
+```{python}
+print("tr(A) =", np.trace(A))
+print("tr(A.T) =", np.trace(A.T))
+```
+
+#### 직접 해보기
+
+1. 90°에 대한 2×2 회전 행렬을 만드세요:
+
+   $$
+   R = \begin{bmatrix}0 & -1 \\ 1 & 0\end{bmatrix}
+   $$
+
+   대각합은 무엇인가요? 그것이 고유값에 대해 무엇을 알려주나요?
+
+2. 무작위 3×3 행렬을 만들고 `tr(A)`를 고유값의 합과 비교하세요.
+
+3. 직사각형 행렬 `A`(예: 2×3)와 `B`(3×2)로 `tr(AB)`와 `tr(BA)`를 테스트하세요. 여전히 일치하나요?
+
+
+### 19. 아핀 변환과 동차 좌표
+
+아핀 변환을 사용하면 선형 연산 이상의 것을 할 수 있습니다. 일반 행렬만으로는 처리할 수 없는 평행 이동(점 이동)을 포함합니다. 회전, 크기 조절, 반사 및 평행 이동을 통합하기 위해 동차 좌표를 사용합니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+#### 단계별 코드 설명
+
+1. 선형 변환 vs 아핀 변환
+
+- 선형 변환은 회전, 크기 조절 또는 전단할 수 있지만 항상 원점을 고정합니다.
+- 아핀 변환은 평행 이동도 허용합니다.
+
+예를 들어, 모든 점을 `(2,3)`만큼 이동하는 것은 아핀이지만 선형은 아닙니다.
+
+2. 동차 좌표 아이디어
+벡터에 추가 좌표(보통 `1`)를 더합니다.
+
+- 2D 점 `(x,y)`는 `(x,y,1)`이 됩니다.
+- 3D 점 `(x,y,z)`는 `(x,y,z,1)`이 됩니다.
+
+이 트릭을 사용하면 행렬 곱셈을 사용하여 평행 이동을 표현할 수 있습니다.
+
+3. 2D 평행 이동 행렬
+
+$$
+T = \begin{bmatrix}
+1 & 0 & t_x \\
+0 & 1 & t_y \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+```{python}
+T = np.array([
+    [1, 0, 2],
+    [0, 1, 3],
+    [0, 0, 1]
+])
+
+p = np.array([1, 1, 1])  # (1,1)에 있는 점
+p_translated = T.dot(p)
+
+print("원래 점:", p)
+print("이동된 점:", p_translated)
+```
+
+이것은 `(1,1)`을 `(3,4)`로 이동합니다.
+
+4. 회전과 평행 이동 결합
+
+원점을 중심으로 한 2D 90° 회전:
+
+```{python}
+R = np.array([
+    [0, -1, 0],
+    [1,  0, 0],
+    [0,  0, 1]
+])
+
+M = T.dot(R)  # 회전 후 이동
+print("결합된 변환:\n", M)
+
+p = np.array([1, 0, 1])
+print("회전 + 이동된 점:", M.dot(p))
+```
+
+이제 한 단계로 회전과 평행 이동을 적용할 수 있습니다.
+
+5. 평행 이동 시각화
+
+```{python}
+points = np.array([
+    [0,0,1],
+    [1,0,1],
+    [1,1,1],
+    [0,1,1]
+])  # 단위 정사각형
+
+transformed = points.dot(T.T)
+
+plt.scatter(points[:,0], points[:,1], color='r', label='원래')
+plt.scatter(transformed[:,0], transformed[:,1], color='b', label='이동됨')
+
+for i in range(len(points)):
+    plt.arrow(points[i,0], points[i,1],
+              transformed[i,0]-points[i,0],
+              transformed[i,1]-points[i,1],
+              head_width=0.05, color='gray')
+
+plt.legend()
+plt.axis('equal')
+plt.grid()
+plt.show()
+```
+
+빨간색 단위 정사각형이 `(2,3)`만큼 이동된 파란색 단위 정사각형으로 이동하는 것을 볼 수 있습니다.
+
+6. 3D로 확장
+3D에서 동차 좌표는 4×4 행렬을 사용합니다. 평행 이동, 회전 및 크기 조절이 모두 같은 프레임워크에 맞습니다.
+
+```{python}
+T3 = np.array([
+    [1,0,0,5],
+    [0,1,0,-2],
+    [0,0,1,3],
+    [0,0,0,1]
+])
+
+p3 = np.array([1,2,3,1])
+print("이동된 3D 점:", T3.dot(p3))
+```
+
+이것은 `(1,2,3)`을 `(6,0,6)`으로 이동합니다.
+
+#### 직접 해보기
+
+1. 동차 좌표에서 x와 y를 모두 두 배로 늘리는 크기 조절 행렬을 만들고 `(1,1)`에 적용하세요.
+2. 90° 회전한 다음 `(−2,1)`만큼 이동하는 2D 변환을 만드세요. `(0,2)`에 적용하세요.
+3. 3D에서 `(0,0,0)`을 `(10,10,10)`만큼 이동하세요. 어떤 동차 행렬을 사용했나요?
+
+### 20. 행렬 계산 (비용 계산과 간단한 가속)
+
+행렬 작업은 이론에 관한 것만이 아닙니다. 실제로 우리는 연산을 수행하는 데 얼마나 많은 계산이 필요한지, 그리고 어떻게 더 빠르게 만들 수 있는지에 관심이 있습니다. 이 실습에서는 기본 비용 분석(연산 횟수 세기)을 소개하고 간단한 NumPy 최적화를 보여줍니다.
+
+#### 실습 환경 설정
+
+```{python}
+import numpy as np
+import time
+```
+
+#### 단계별 코드 설명
+
+1. 연산 횟수 세기 (행렬-벡터 곱)
+
+`A`가 $m \times n$ 행렬이고 `x`가 $n$차원 벡터라면, `A·x`를 계산하는 데는 약 $m \times n$번의 곱셈과 같은 수의 덧셈이 필요합니다.
+
+```{python}
+m, n = 3, 4
+A = np.random.randint(1,10,(m,n))
+x = np.random.randint(1,10,n)
+
+print("행렬 A:\n", A)
+print("벡터 x:", x)
+print("A·x =", A.dot(x))
+```
