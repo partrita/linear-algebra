@@ -227,297 +227,295 @@
 
 \bookmarksetup{startatroot}
 
-\chapter{Content}\label{content}
+\chapter{목차}\label{uxbaa9uxcc28}
 
-\subsubsection{Chapter 1. Vectors, Scalars, and
-Geometry}\label{chapter-1.-vectors-scalars-and-geometry}
+\subsubsection{제1장. 벡터, 스칼라, 그리고
+기하학}\label{uxc81c1uxc7a5.-uxbca1uxd130-uxc2a4uxce7cuxb77c-uxadf8uxb9acuxace0-uxae30uxd558uxd559}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Scalars, vectors, and coordinate systems (what they are, why we care)
+  스칼라, 벡터, 그리고 좌표계 (무엇이며 왜 중요한가)
 \item
-  Vector notation, components, and arrows (reading and writing vectors)
+  벡터 표기법, 성분, 그리고 화살표 (벡터 읽고 쓰기)
 \item
-  Vector addition and scalar multiplication (the two basic moves)
+  벡터 덧셈과 스칼라 곱셈 (두 가지 기본 동작)
 \item
-  Linear combinations and span (building new vectors from old ones)
+  선형 결합과 생성(Span) (기존 벡터로 새 벡터 만들기)
 \item
-  Length (norm) and distance (how big and how far)
+  길이(노름)와 거리 (얼마나 크고 얼마나 먼가)
 \item
-  Dot product (algebraic and geometric views)
+  내적 (대수적 및 기하학적 관점)
 \item
-  Angles between vectors and cosine (measuring alignment)
+  벡터 사이의 각도와 코사인 (정렬 측정하기)
 \item
-  Projections and decompositions (splitting along a direction)
+  투영과 분해 (방향에 따라 나누기)
 \item
-  Cauchy--Schwarz and triangle inequalities (two fundamental bounds)
+  코시-슈바르츠 및 삼각 부등식 (두 가지 근본적인 경계)
 \item
-  Orthonormal sets in ℝ²/ℝ³ (nice bases you already know)
+  ℝ²/ℝ³에서의 정규직교 집합 (이미 알고 있는 좋은 기저들)
 \end{enumerate}
 
-\subsubsection{Chapter 2. Matrices and Basic
-Operations}\label{chapter-2.-matrices-and-basic-operations}
+\subsubsection{제2장. 행렬과 기본
+연산}\label{uxc81c2uxc7a5.-uxd589uxb82cuxacfc-uxae30uxbcf8-uxc5f0uxc0b0}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{10}
 \tightlist
 \item
-  Matrices as tables and as machines (two mental models)
+  표로서의 행렬과 기계로서의 행렬 (두 가지 사고 모델)
 \item
-  Matrix shapes, indexing, and block views (seeing structure)
+  행렬 모양, 인덱싱, 그리고 블록 뷰 (구조 보기)
 \item
-  Matrix addition and scalar multiplication (componentwise rules)
+  행렬 덧셈과 스칼라 곱셈 (성분별 규칙)
 \item
-  Matrix--vector product (linear combos of columns)
+  행렬-벡터 곱 (열의 선형 결합)
 \item
-  Matrix--matrix product (composition of linear steps)
+  행렬-행렬 곱 (선형 단계의 구성)
 \item
-  Identity, inverse, and transpose (three special friends)
+  항등행렬, 역행렬, 그리고 전치행렬 (세 명의 특별한 친구들)
 \item
-  Symmetric, diagonal, triangular, and permutation matrices (special
-  families)
+  대칭, 대각, 삼각, 그리고 치환 행렬 (특별한 가족들)
 \item
-  Trace and basic matrix properties (quick invariants)
+  대각합(Trace)과 기본 행렬 성질 (빠른 불변량)
 \item
-  Affine transforms and homogeneous coordinates (translations included)
+  아핀 변환과 동차 좌표 (평행이동 포함)
 \item
-  Computing with matrices (cost counts and simple speedups)
+  행렬 계산 (비용 계산과 간단한 가속)
 \end{enumerate}
 
-\subsubsection{Chapter 3. Linear Systems and
-Elimination}\label{chapter-3.-linear-systems-and-elimination}
+\subsubsection{제3장. 선형 시스템과
+소거법}\label{uxc81c3uxc7a5.-uxc120uxd615-uxc2dcuxc2a4uxd15cuxacfc-uxc18cuxac70uxbc95}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{20}
 \tightlist
 \item
-  From equations to matrices (augmenting and encoding)
+  방정식에서 행렬로 (확장 및 인코딩)
 \item
-  Row operations (legal moves that keep solutions)
+  기본 행 연산 (해를 유지하는 합법적 이동)
 \item
-  Row-echelon and reduced row-echelon forms (target shapes)
+  행 사다리꼴 및 기약 행 사다리꼴 (목표 형태)
 \item
-  Pivots, free variables, and leading ones (reading solutions)
+  피벗, 자유 변수, 그리고 선행 1 (해 읽기)
 \item
-  Solving consistent systems (unique vs.~infinite solutions)
+  일관된 시스템 풀기 (유일해 vs 무한해)
 \item
-  Detecting inconsistency (when no solution exists)
+  불일치 감지 (해가 없을 때)
 \item
-  Gaussian elimination by hand (a disciplined procedure)
+  손으로 하는 가우스 소거법 (규율 있는 절차)
 \item
-  Back substitution and solution sets (finishing cleanly)
+  후방 대입과 해 집합 (깔끔하게 마무리하기)
 \item
-  Rank and its first meaning (pivots as information)
+  랭크(Rank)와 그 첫 번째 의미 (정보로서의 피벗)
 \item
-  LU factorization (elimination captured as L and U)
+  LU 분해 (L과 U로 포착된 소거)
 \end{enumerate}
 
-\subsubsection{Chapter 4. Vector Spaces and
-Subspaces}\label{chapter-4.-vector-spaces-and-subspaces}
+\subsubsection{제4장. 벡터 공간과 부분
+공간}\label{uxc81c4uxc7a5.-uxbca1uxd130-uxacf5uxac04uxacfc-uxbd80uxbd84-uxacf5uxac04}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{30}
 \tightlist
 \item
-  Axioms of vector spaces (what ``space'' really means)
+  벡터 공간의 공리 (``공간''의 진정한 의미)
 \item
-  Subspaces, column space, and null space (where solutions live)
+  부분 공간, 열 공간, 그리고 영 공간 (해가 사는 곳)
 \item
-  Span and generating sets (coverage of a space)
+  생성(Span)과 생성 집합 (공간의 범위)
 \item
-  Linear independence and dependence (no redundancy vs.~redundancy)
+  선형 독립과 종속 (비중복 vs 중복)
 \item
-  Basis and coordinates (naming every vector uniquely)
+  기저와 좌표 (모든 벡터에 고유하게 이름 붙이기)
 \item
-  Dimension (how many directions)
+  차원 (얼마나 많은 방향인가)
 \item
-  Rank--nullity theorem (dimensions that add up)
+  랭크-널리티 정리 (더해지는 차원들)
 \item
-  Coordinates relative to a basis (changing the ``ruler'')
+  기저에 대한 좌표 (``자'' 바꾸기)
 \item
-  Change-of-basis matrices (moving between coordinate systems)
+  기저 변환 행렬 (좌표계 사이 이동)
 \item
-  Affine subspaces (lines and planes not through the origin)
+  아핀 부분 공간 (원점을 지나지 않는 선과 평면)
 \end{enumerate}
 
-\subsubsection{Chapter 5. Linear Transformations and
-Structure}\label{chapter-5.-linear-transformations-and-structure}
+\subsubsection{제5장. 선형 변환과
+구조}\label{uxc81c5uxc7a5.-uxc120uxd615-uxbcc0uxd658uxacfc-uxad6cuxc870}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{40}
 \tightlist
 \item
-  Linear transformations (preserving lines and sums)
+  선형 변환 (선과 합 보존)
 \item
-  Matrix representation of a linear map (choosing a basis)
+  선형 맵의 행렬 표현 (기저 선택)
 \item
-  Kernel and image (inputs that vanish; outputs we can reach)
+  커널(Kernel)과 이미지(Image) (사라지는 입력; 도달할 수 있는 출력)
 \item
-  Invertibility and isomorphisms (perfectly reversible maps)
+  가역성과 동형 사상 (완벽하게 되돌릴 수 있는 맵)
 \item
-  Composition, powers, and iteration (doing it again and again)
+  합성, 거듭제곱, 그리고 반복 (계속해서 수행하기)
 \item
-  Similarity and conjugation (same action, different basis)
+  닮음과 켤레 (같은 작용, 다른 기저)
 \item
-  Projections and reflections (idempotent and involutive maps)
+  투영과 반사 (멱등 및 대합 맵)
 \item
-  Rotations and shear (geometric intuition)
+  회전과 전단 (기하학적 직관)
 \item
-  Rank and operator viewpoint (rank beyond elimination)
+  랭크와 연산자 관점 (소거법 너머의 랭크)
 \item
-  Block matrices and block maps (divide and conquer structure)
+  블록 행렬과 블록 맵 (분할 정복 구조)
 \end{enumerate}
 
-\subsubsection{Chapter 6. Determinants and
-Volume}\label{chapter-6.-determinants-and-volume}
+\subsubsection{제6장. 행렬식(Determinant)과
+부피}\label{uxc81c6uxc7a5.-uxd589uxb82cuxc2dddeterminantuxacfc-uxbd80uxd53c}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{50}
 \tightlist
 \item
-  Areas, volumes, and signed scale factors (geometric entry point)
+  면적, 부피, 그리고 부호 있는 스케일 인자 (기하학적 진입점)
 \item
-  Determinant via linear rules (multilinearity, sign, normalization)
+  선형 규칙을 통한 행렬식 (다중 선형성, 부호, 정규화)
 \item
-  Determinant and row operations (how each move changes det)
+  행렬식과 기본 행 연산 (각 이동이 행렬식을 어떻게 바꾸는가)
 \item
-  Triangular matrices and product of diagonals (fast wins)
+  삼각 행렬과 대각선의 곱 (빠른 승리)
 \item
-  det(AB) = det(A)det(B) (multiplicative magic)
+  det(AB) = det(A)det(B) (곱셈의 마법)
 \item
-  Invertibility and zero determinant (flat vs.~full volume)
+  가역성과 0인 행렬식 (납작함 vs 꽉 찬 부피)
 \item
-  Cofactor expansion (Laplace's method)
+  여인수 전개 (라플라스 방법)
 \item
-  Permutations and sign (the combinatorial core)
+  치환과 부호 (조합론적 핵심)
 \item
-  Cramer's rule (solving with determinants, and when not to use it)
+  크라메르의 규칙 (행렬식으로 풀기, 그리고 쓰지 말아야 할 때)
 \item
-  Computing determinants in practice (use LU, mind stability)
+  실전에서의 행렬식 계산 (LU 사용, 안정성 유의)
 \end{enumerate}
 
-\subsubsection{Chapter 7. Eigenvalues, Eigenvectors, and
-Dynamics}\label{chapter-7.-eigenvalues-eigenvectors-and-dynamics}
+\subsubsection{제7장. 고유값, 고유벡터, 그리고
+동역학}\label{uxc81c7uxc7a5.-uxace0uxc720uxac12-uxace0uxc720uxbca1uxd130-uxadf8uxb9acuxace0-uxb3d9uxc5eduxd559}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{60}
 \tightlist
 \item
-  Eigenvalues and eigenvectors (directions that stay put)
+  고유값과 고유벡터 (가만히 있는 방향들)
 \item
-  Characteristic polynomial (where eigenvalues come from)
+  특성 다항식 (고유값이 나오는 곳)
 \item
-  Algebraic vs.~geometric multiplicity (how many and how independent)
+  대수적 vs 기하학적 중복도 (얼마나 많고 얼마나 독립적인가)
 \item
-  Diagonalization (when a matrix becomes simple)
+  대각화 (행렬이 단순해질 때)
 \item
-  Powers of a matrix (long-term behavior via eigenvalues)
+  행렬의 거듭제곱 (고유값을 통한 장기적 거동)
 \item
-  Real vs.~complex spectra (rotations and oscillations)
+  실수 vs 복소수 스펙트럼 (회전과 진동)
 \item
-  Defective matrices and a peek at Jordan form (when diagonalization
-  fails)
+  결함 행렬과 조르당 표준형 엿보기 (대각화가 실패할 때)
 \item
-  Stability and spectral radius (grow, decay, or oscillate)
+  안정성과 스펙트럼 반경 (성장, 감쇠, 또는 진동)
 \item
-  Markov chains and steady states (probabilities as linear algebra)
+  마르코프 체인과 정상 상태 (선형대수학으로서의 확률)
 \item
-  Linear differential systems (solutions via eigen-decomposition)
+  선형 미분 시스템 (고유 분해를 통한 해)
 \end{enumerate}
 
-\subsubsection{Chapter 8. Orthogonality, Least Squares, and
-QR}\label{chapter-8.-orthogonality-least-squares-and-qr}
+\subsubsection{제8장. 직교성, 최소 제곱, 그리고
+QR}\label{uxc81c8uxc7a5.-uxc9c1uxad50uxc131-uxcd5cuxc18c-uxc81cuxacf1-uxadf8uxb9acuxace0-qr}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{70}
 \tightlist
 \item
-  Inner products beyond dot product (custom notions of angle)
+  내적 너머의 내적 (각도의 맞춤형 개념)
 \item
-  Orthogonality and orthonormal bases (perpendicular power)
+  직교성과 정규직교 기저 (수직의 힘)
 \item
-  Gram--Schmidt process (constructing orthonormal bases)
+  그람-슈미트 과정 (정규직교 기저 구성하기)
 \item
-  Orthogonal projections onto subspaces (closest point principle)
+  부분 공간으로의 직교 투영 (최단 거리 원리)
 \item
-  Least-squares problems (fit when exact solve is impossible)
+  최소 제곱 문제 (정확한 해가 불가능할 때 맞추기)
 \item
-  Normal equations and geometry of residuals (why it works)
+  정규 방정식과 잔차의 기하학 (왜 작동하는가)
 \item
-  QR factorization (stable least squares via orthogonality)
+  QR 분해 (직교성을 통한 안정적인 최소 제곱)
 \item
-  Orthogonal matrices (length-preserving transforms)
+  직교 행렬 (길이를 보존하는 변환)
 \item
-  Fourier viewpoint (expanding in orthogonal waves)
+  푸리에 관점 (직교 파동으로의 확장)
 \item
-  Polynomial and multifeature least squares (fitting more flexibly)
+  다항식 및 다중 특징 최소 제곱 (더 유연하게 맞추기)
 \end{enumerate}
 
-\subsubsection{Chapter 9. SVD, PCA, and
-Conditioning}\label{chapter-9.-svd-pca-and-conditioning}
+\subsubsection{제9장. SVD, PCA, 그리고
+조건화}\label{uxc81c9uxc7a5.-svd-pca-uxadf8uxb9acuxace0-uxc870uxac74uxd654}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{80}
 \tightlist
 \item
-  Singular values and SVD (universal factorization)
+  특이값과 SVD (보편적 분해)
 \item
-  Geometry of SVD (rotations + stretching)
+  SVD의 기하학 (회전 + 늘리기)
 \item
-  Relation to eigen-decompositions (ATA and AAT)
+  고유 분해와의 관계 (ATA 및 AAT)
 \item
-  Low-rank approximation (best small models)
+  저랭크 근사 (최고의 작은 모델)
 \item
-  Principal component analysis (variance and directions)
+  주성분 분석 (분산과 방향)
 \item
-  Pseudoinverse (Moore--Penrose) and solving ill-posed systems
+  유사 역행렬 (Moore--Penrose)과 불량 조건 시스템 풀기
 \item
-  Conditioning and sensitivity (how errors amplify)
+  조건화와 민감도 (오차가 어떻게 증폭되는가)
 \item
-  Matrix norms and singular values (measuring size properly)
+  행렬 노름과 특이값 (크기 제대로 측정하기)
 \item
-  Regularization (ridge/Tikhonov to tame instability)
+  정규화 (불안정성을 길들이는 릿지/티호노프)
 \item
-  Rank-revealing QR and practical diagnostics (what rank really is)
+  랭크를 드러내는 QR과 실용적 진단 (랭크란 정말 무엇인가)
 \end{enumerate}
 
-\subsubsection{Chapter 10. Applications and
-Computation}\label{chapter-10.-applications-and-computation}
+\subsubsection{제10장. 응용과
+계산}\label{uxc81c10uxc7a5.-uxc751uxc6a9uxacfc-uxacc4uxc0b0}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{90}
 \tightlist
 \item
-  2D/3D geometry pipelines (cameras, rotations, and transforms)
+  2D/3D 기하학 파이프라인 (카메라, 회전, 그리고 변환)
 \item
-  Computer graphics and robotics (homogeneous tricks in action)
+  컴퓨터 그래픽스와 로봇 공학 (작동 중인 동차 트릭)
 \item
-  Graphs, adjacency, and Laplacians (networks via matrices)
+  그래프, 인접성, 그리고 라플라시안 (행렬을 통한 네트워크)
 \item
-  Data preprocessing as linear ops (centering, whitening, scaling)
+  선형 연산으로서의 데이터 전처리 (중심화, 백색화, 스케일링)
 \item
-  Linear regression and classification (from model to matrix)
+  선형 회귀와 분류 (모델에서 행렬로)
 \item
-  PCA in practice (dimensionality reduction workflow)
+  실전에서의 PCA (차원 축소 워크플로우)
 \item
-  Recommender systems and low-rank models (fill the missing entries)
+  추천 시스템과 저랭크 모델 (누락된 항목 채우기)
 \item
-  PageRank and random walks (ranking with eigenvectors)
+  페이지랭크와 무작위 보행 (고유벡터로 순위 매기기)
 \item
-  Numerical linear algebra essentials (floating point, BLAS/LAPACK)
+  수치 선형대수학 필수 요소 (부동 소수점, BLAS/LAPACK)
 \item
-  Capstone problem sets and next steps (a roadmap to mastery)
+  캡스톤 문제 세트와 다음 단계 (숙달로 가는 로드맵)
 \end{enumerate}
 
 \bookmarksetup{startatroot}
@@ -588,7 +586,7 @@ patterns guide our sight.
 \newpage
 
 \section{Chapter 1. Vectors, scalars, and
-geometry}\label{chapter-1.-vectors-scalars-and-geometry-1}
+geometry}\label{chapter-1.-vectors-scalars-and-geometry}
 
 \subsubsection{Opening}\label{opening}
 
@@ -2387,7 +2385,7 @@ clarity takes shape.
 \end{verbatim}
 
 \section{Chapter 2. Matrices and basic
-operations}\label{chapter-2.-matrices-and-basic-operations-1}
+operations}\label{chapter-2.-matrices-and-basic-operations}
 
 \subsubsection{Opening}\label{opening-1}
 
@@ -4792,7 +4790,7 @@ structure in the square.
 \end{verbatim}
 
 \section{Chapter 3. Linear Systems and
-Elimination}\label{chapter-3.-linear-systems-and-elimination-1}
+Elimination}\label{chapter-3.-linear-systems-and-elimination}
 
 \subsection{21. From Equations to
 Matrices}\label{from-equations-to-matrices}
@@ -7265,7 +7263,7 @@ truth distilled in rows.
 \end{verbatim}
 
 \section{Chapter 4. Vector spaces and
-subspaces}\label{chapter-4.-vector-spaces-and-subspaces-1}
+subspaces}\label{chapter-4.-vector-spaces-and-subspaces}
 
 \subsubsection{Opening}\label{opening-2}
 
@@ -11285,7 +11283,7 @@ form remains within.
 \end{verbatim}
 
 \section{Chapter 6. Determinants and
-volume}\label{chapter-6.-determinants-and-volume-1}
+volume}\label{chapter-6.-determinants-and-volume}
 
 \subsubsection{Opening}\label{opening-4}
 
@@ -13228,7 +13226,7 @@ depth in every move.
 \end{verbatim}
 
 \section{Chapter 7. Eigenvalues, eigenvectors, and
-dynamics}\label{chapter-7.-eigenvalues-eigenvectors-and-dynamics-1}
+dynamics}\label{chapter-7.-eigenvalues-eigenvectors-and-dynamics}
 
 \subsubsection{Opening}\label{opening-5}
 
@@ -17333,7 +17331,7 @@ angles guard the truth.
 \end{verbatim}
 
 \section{Chapter 9. SVD, PCA, and
-conditioning}\label{chapter-9.-svd-pca-and-conditioning-1}
+conditioning}\label{chapter-9.-svd-pca-and-conditioning}
 
 \subsection{Opening}\label{opening-7}
 
@@ -19504,7 +19502,7 @@ essence shines within.
 \end{verbatim}
 
 \section{Chapter 10. Applications and
-computation}\label{chapter-10.-applications-and-computation-1}
+computation}\label{chapter-10.-applications-and-computation}
 
 \subsubsection{Opening}\label{opening-8}
 
@@ -21778,7 +21776,7 @@ they stretch toward the stars.
 \chapter{The LAB}\label{the-lab}
 
 \section{Chapter 1. Vectors, scalars, and
-geometry}\label{chapter-1.-vectors-scalars-and-geometry-2}
+geometry}\label{chapter-1.-vectors-scalars-and-geometry-1}
 
 \subsection{1. Scalars, Vectors, and Coordinate
 Systems}\label{scalars-vectors-and-coordinate-systems-1}
@@ -23309,11 +23307,11 @@ inequality.
 \end{Shaded}
 
 \begin{verbatim}
-‖v+u‖=0.776, ‖v‖+‖u‖=2.440, holds=True
-‖v+u‖=0.707, ‖v‖+‖u‖=2.453, holds=True
-‖v+u‖=1.283, ‖v‖+‖u‖=3.379, holds=True
-‖v+u‖=3.319, ‖v‖+‖u‖=3.375, holds=True
-‖v+u‖=1.321, ‖v‖+‖u‖=1.323, holds=True
+‖v+u‖=2.996, ‖v‖+‖u‖=3.244, holds=True
+‖v+u‖=3.593, ‖v‖+‖u‖=4.093, holds=True
+‖v+u‖=1.512, ‖v‖+‖u‖=2.777, holds=True
+‖v+u‖=3.087, ‖v‖+‖u‖=3.283, holds=True
+‖v+u‖=0.359, ‖v‖+‖u‖=1.187, holds=True
 \end{verbatim}
 
 No matter what vectors you try, the inequality always holds.
@@ -23567,7 +23565,7 @@ This gives a rotated orthonormal basis in 2D.
 \end{enumerate}
 
 \section{Chapter 2. Matrices and basic
-operations}\label{chapter-2.-matrices-and-basic-operations-2}
+operations}\label{chapter-2.-matrices-and-basic-operations-1}
 
 \subsection{11. Matrices as Tables and as
 Machines}\label{matrices-as-tables-and-as-machines-1}
@@ -25476,11 +25474,11 @@ If \texttt{A} is an \(m \times n\) matrix and \texttt{x} is an
 
 \begin{verbatim}
 Matrix A:
- [[6 1 6 9]
- [1 3 1 3]
- [7 9 4 7]]
-Vector x: [9 4 1 3]
-A·x = [ 91  31 124]
+ [[6 4 1 4]
+ [1 8 1 6]
+ [4 1 2 2]]
+Vector x: [2 4 8 7]
+A·x = [64 84 42]
 \end{verbatim}
 
 Here the cost is \(3 \times 4 = 12\) multiplications + 12 additions.
@@ -25509,9 +25507,9 @@ about \(m \times n \times p\).
 
 \begin{verbatim}
 A·B =
- [[169 128]
- [115 101]
- [ 86  78]]
+ [[200 127]
+ [189 105]
+ [182  91]]
 \end{verbatim}
 
 Here the cost is \(3 \times 4 \times 2 = 24\) multiplications + 24
@@ -25554,7 +25552,7 @@ multiplication with and without vectorization.
 
 \begin{verbatim}
 Vectorized dot: 0.0 seconds
-Triple loop: 0.063 seconds
+Triple loop: 0.064 seconds
 \end{verbatim}
 
 The vectorized version should be thousands of times faster.
@@ -25660,7 +25658,7 @@ can speed up computation (at the cost of some precision).
 \end{itemize}
 
 \section{Chapter 3. Linear Systems and
-Elimination}\label{chapter-3.-linear-systems-and-elimination-2}
+Elimination}\label{chapter-3.-linear-systems-and-elimination-1}
 
 \subsection{21. From Equations to Matrices (Augmenting and
 Encoding)}\label{from-equations-to-matrices-augmenting-and-encoding}
@@ -27859,7 +27857,7 @@ like \texttt{np.linalg.solve}.
 \end{itemize}
 
 \section{Chapter 4. Vector Spaces and
-Subspaces}\label{chapter-4.-vector-spaces-and-subspaces-2}
+Subspaces}\label{chapter-4.-vector-spaces-and-subspaces-1}
 
 \subsection{31. Axioms of Vector Spaces (What ``Space'' Really
 Means)}\label{axioms-of-vector-spaces-what-space-really-means}
@@ -31978,7 +31976,7 @@ equation.
 \end{itemize}
 
 \section{Chapter 6. Determinants and
-volume}\label{chapter-6.-determinants-and-volume-2}
+volume}\label{chapter-6.-determinants-and-volume-1}
 
 \subsection{51. Areas, Volumes, and Signed Scale Factors (Geometric
 Entry
@@ -33828,7 +33826,7 @@ The result may not be exactly 0 due to floating-point approximations.
 \end{itemize}
 
 \section{Chapter 7. Eigenvalues, Eigenvectors, and
-Dynamics}\label{chapter-7.-eigenvalues-eigenvectors-and-dynamics-2}
+Dynamics}\label{chapter-7.-eigenvalues-eigenvectors-and-dynamics-1}
 
 \subsection{61. Eigenvalues and Eigenvectors (Directions That Stay
 Put)}\label{eigenvalues-and-eigenvectors-directions-that-stay-put}
@@ -37478,7 +37476,7 @@ Multi-feature coefficients: [ 1.15666306 -2.0492999   0.72733812 -0.65902274]
 \end{itemize}
 
 \section{Chapter 9. SVD, PCA, and
-Conditioning}\label{chapter-9.-svd-pca-and-conditioning-2}
+Conditioning}\label{chapter-9.-svd-pca-and-conditioning-1}
 
 \subsection{81. Singular Values and SVD (Universal
 Factorization)}\label{singular-values-and-svd-universal-factorization}
@@ -37962,7 +37960,7 @@ Square roots: [2.30277564 1.30277564        nan]
 \end{verbatim}
 
 \begin{verbatim}
-/tmp/ipykernel_2753/436251338.py:5: RuntimeWarning: invalid value encountered in sqrt
+/tmp/ipykernel_2743/436251338.py:5: RuntimeWarning: invalid value encountered in sqrt
   print("Square roots:", np.sqrt(np.sort(eigvals2)[::-1]))
 \end{verbatim}
 
@@ -39368,7 +39366,7 @@ The drop in singular values shows effective rank.
 \end{itemize}
 
 \section{Chapter 10. Applications and
-computation}\label{chapter-10.-applications-and-computation-2}
+computation}\label{chapter-10.-applications-and-computation-1}
 
 \subsection{91. 2D/3D Geometry Pipelines (Cameras, Rotations, and
 Transforms)}\label{d3d-geometry-pipelines-cameras-rotations-and-transforms-1}
@@ -39760,9 +39758,9 @@ End effector position: [1.80244213 2.8631023  0.        ]
 \end{Shaded}
 
 \begin{verbatim}
-/tmp/ipykernel_2753/2038614107.py:8: RuntimeWarning: divide by zero encountered in divide
+/tmp/ipykernel_2743/2038614107.py:8: RuntimeWarning: divide by zero encountered in divide
   proj2d = proj[:,:2] / proj[:,2:3]
-/tmp/ipykernel_2753/2038614107.py:8: RuntimeWarning: invalid value encountered in divide
+/tmp/ipykernel_2743/2038614107.py:8: RuntimeWarning: invalid value encountered in divide
   proj2d = proj[:,:2] / proj[:,2:3]
 \end{verbatim}
 
